@@ -137,7 +137,7 @@
     <nav class="navbar">
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
-            <li><a href="#">Trang chủ</a></li>
+            <li><a href="menu.jsp">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
