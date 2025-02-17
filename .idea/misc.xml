@@ -4,11 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha" />
   </component>
-<<<<<<< HEAD
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="corretto-19" project-jdk-type="JavaSDK">
-=======
   <component name="ProjectRootManager" version="2" project-jdk-name="corretto-19" project-jdk-type="JavaSDK">
->>>>>>> e282434011b486f0056e82e70c308e8d8451529d
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
