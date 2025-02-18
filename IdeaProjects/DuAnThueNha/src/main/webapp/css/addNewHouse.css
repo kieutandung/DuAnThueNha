@@ -1,0 +1,50 @@
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.h-100 {
+    height: 100vh !important;
+}
+
+.bg-dark {
+    background-color: #212529 !important;
+}
+
+.card-registration .form-label {
+    font-weight: 500;
+}
+
+.card-registration .btn {
+    font-size: 1rem;
+    padding: .75rem 1.25rem;
+}
+
+.card-registration .form-control {
+    padding: .75rem 1.25rem;
+    border: 1px solid #ced4da;
+}
+
+.card-registration .input-group-text {
+    padding: .75rem 1.25rem;
+    border: 1px solid #ced4da;
+    background-color: #e9ecef;
+}
+#description {
+    height: calc(12.875rem + 2px);
+    line-height: 1.5;
+}
+#imageUpload {
+    height: 9rem;
+    line-height: 1.5;
+}
+#rentalTime, #endTime {
+    height: 5rem;
+    line-height: 1.5;
+}
+
