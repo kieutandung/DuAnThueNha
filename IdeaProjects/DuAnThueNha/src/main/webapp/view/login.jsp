@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-<section class="vh-100 gradient-custom">
+<section class="min-vh-100 d-flex align-items-center justify-content-center gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-white text-dark" style="border-radius: 1rem;">
+                <div class="card bg-white text-dark" style="border-radius: 1rem; max-width: 600px;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-3 mt-md-4 pb-3">
                             <h2 class="fw-bold mb-2 text-uppercase">Đăng nhập</h2>
@@ -47,7 +47,7 @@
                             </form>
                         </div>
                         <div>
-                            <p class="mb-0">Chưa có tài khoản? <a href="register.jsp" class="text-primary fw-bold">Đăng ký</a></p>
+                            <p class="mb-0">Chưa có tài khoản? <a href="/registerServlet?action=register" class="text-primary fw-bold">Đăng ký</a></p>
                         </div>
 
                     </div>
