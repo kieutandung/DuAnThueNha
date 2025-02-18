@@ -38,4 +38,19 @@ public class ListAccountImpl implements ListAccountService{
         }
         return users;
     }
-}
+    public void deleteUser(int idUser) {
+        String sql = "DELETE FROM users WHERE idUser = ?";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement pre = connection.prepareStatement(sql)) {
+            pre.setInt(1, idUser);
+            int rowsAffected = pre.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Người dùng đã được xóa thành công.");
+            } else {
+                System.out.println("Không tìm thấy người dùng với ID đã cho.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi xóa người dùng", e);
+        }
+    }
+    }

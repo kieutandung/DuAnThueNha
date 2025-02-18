@@ -4,6 +4,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.duanthuenha.Model.Users" %>
 
+
+
 <html>
 <head>
     <title>Danh sách tài khoản</title>
@@ -38,10 +40,6 @@
             text-align: center;
             border-bottom: 1px solid #ddd; /* Đường kẻ dưới ô */
         }
-        /*#name, #email {*/
-        /*    text-align: left;*/
-        /*}*/
-
 
         th {
             background-color: #4CAF50;
@@ -54,10 +52,7 @@
             border-radius: 50%; /* Tạo hình tròn cho ảnh */
         }
 
-        button {
-            background-color: #008CBA;
-            color: white;
-            border: none;
+        .button {
             padding: 10px 15px;
             text-align: center;
             text-decoration: none;
@@ -66,10 +61,25 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+            border: none;
+            color: white;
+            margin-right: 5px; /* Thêm khoảng cách giữa các nút */
         }
 
-        button:hover {
+        .button.change {
+            background-color: #008CBA;
+        }
+
+        .button.change:hover {
             background-color: #005f73;
+        }
+
+        .button.delete {
+            background-color: #f44336;
+        }
+
+        .button.delete:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
@@ -77,9 +87,6 @@
     <jsp:include page="menu.jsp"/>
 </header>
 <body>
-<div>
-
-</div>
 <div class="table">
     <table>
         <thead>
@@ -107,7 +114,8 @@
                 <td>${user.phone}</td>
                 <td>${user.status}</td>
                 <td>
-                    <button onclick="changeStatus(${user.idUser})">Change Status</button>
+                    <button class="button change" onclick="changeStatus(${user.idUser})">Change Status</button>
+                    <button class="button delete" onclick="deleteUser(${user.idUser})">Delete</button>
                 </td>
             </tr>
         </c:forEach>
@@ -118,9 +126,21 @@
 
 <script>
     function changeStatus(id) {
-        // Logic to change the status of the user
         alert("Trạng thái của người dùng với ID " + id + " đã được thay đổi!");
-        // Có thể thêm AJAX để cập nhật trạng thái mà không cần tải lại trang
+    }
+    function deleteUser(id) {
+        if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "adminServlet?action=delete", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    alert("Người dùng với ID " + id + " đã bị xóa thành công!");
+                    location.reload();
+                }
+            };
+            xhr.send("idUser=" + id);
+        }
     }
 </script>
 
