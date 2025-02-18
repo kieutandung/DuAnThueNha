@@ -35,14 +35,14 @@
                                     <label class="form-label" for="typePasswordX">Mật khẩu</label>
                                 </div>
 
-                                <p class="small mb-3 pb-lg-2 text-start"><a class="text-primary ms-2" href="#!">Quên mật khẩu?</a></p>
+                                <p class="small mb-3 pb-lg-2 text-start"><a class="text-primary ms-2" href="/forgotPasswordServlet?action=forgotPassword">Quên mật khẩu?</a></p>
 
                                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" type="submit">Đăng nhập</button>
 
                                 <div class="d-flex justify-content-center text-center mt-5 pt-1">
-                                    <a href="#!" class="text-primary"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                    <a href="#!" class="text-primary mx-4 px-2"><i class="fab fa-twitter fa-lg"></i></a>
-                                    <a href="#!" class="text-primary"><i class="fab fa-google fa-lg"></i></a>
+                                    <a href="/registerServlet?action=register" class="text-primary"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                    <a href="/registerServlet?action=register" class="text-primary mx-4 px-2"><i class="fab fa-twitter fa-lg"></i></a>
+                                    <a href="/registerServlet?action=register" class="text-primary"><i class="fab fa-google fa-lg"></i></a>
                                 </div>
                             </form>
                         </div>

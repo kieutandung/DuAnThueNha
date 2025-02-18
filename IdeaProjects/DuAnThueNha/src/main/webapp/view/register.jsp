@@ -56,7 +56,7 @@
                                 <!-- Số điện thoại -->
                                 <div class="form-outline mb-3">
                                     <input type="text" required pattern="^(?:\+84|0)\d{9}$"
-                                           title="Gồm 10 số" id="typePhone" class="form-control form-control-lg"
+                                           title="Gồm 10 số với đầu +84 hoặc 0" id="typePhone" class="form-control form-control-lg"
                                            name="phone" value ="${phone != null ? phone : ''}"/>
                                     <label class="form-label" for="typePhone">Số điện thoại</label>
                                 </div>
@@ -78,7 +78,6 @@
                                     <a href="/registerServlet?action=login" class="text-primary fw-bold">Đăng nhập</a>
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </div>

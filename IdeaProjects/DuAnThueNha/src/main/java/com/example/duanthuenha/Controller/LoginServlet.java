@@ -36,8 +36,7 @@ public class LoginServlet extends HttpServlet {
         if (loginInfo != null) {
             String role = loginInfo[0];
             String status = loginInfo[1];
-            String name = loginInfo[2];
-            String id = loginInfo[3];
+            String id = loginInfo[2];
             if ("active".equalsIgnoreCase(status)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
@@ -91,9 +90,9 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void loginView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
-        dispatcher.forward(req, resp);
         HttpSession session = req.getSession();
         session.invalidate();
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
+        dispatcher.forward(req, resp);
     }
 }
