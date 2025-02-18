@@ -1,64 +1,202 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="vi">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin cá nhân</title>
-    <link rel="stylesheet" href="/css/profile.css">
+    <title>Thông tin tài khoản</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .account-section {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        h3 {
+            color: #666;
+            font-size: 16px;
+            margin: 12px 0 8px;
+        }
+
+        .info-item {
+            margin: 8px 0;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .note {
+            color: #999;
+            font-size: 12px;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+            max-width: 400px;
+        }
+
+        form h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .form-actions button {
+            flex: 1;
+            margin: 5px;
+            background-color: #007bff;
+        }
+
+        .form-actions button:hover {
+            background-color:#0056b3;
+        }
+
+        .form-actions button:nth-child(2) {
+            background-color: #555555;
+        }
+
+        .form-actions button:nth-child(2):hover {
+            background-color: #363636;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <!-- Thanh menu -->
-    <nav class="navbar">
-        <div class="logo">WE Bare BEARS.vn</div>
-        <ul class="nav-links">
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Giới thiệu</a></li>
-            <li><a href="#">Sản phẩm</a></li>
-            <li><a href="#">Liên hệ</a></li>
-            <li><i class="bell-icon">🔔</i></li>
-            <li><button class="btn">Liên hệ tư vấn</button></li>
-        </ul>
-    </nav>
-
-    <!-- Giao diện thông tin cá nhân -->
-    <div class="profile-container">
-        <div class="sidebar">
-            <ul>
-                <li><a href="#">Hồ sơ</a></li>
-                <li><a href="#">Đơn hàng</a></li>
-                <li><a href="#">Notification</a></li>
-                <li><a href="#">Settings</a></li>
-            </ul>
-        </div>
-
-        <div class="profile-content">
-            <div class="profile-card">
-                <div class="profile-info">
-                    <h2>Tên của bạn</h2>
-                    <p>Email: DungPug@gmail.com</p>
-                    <p>SDT: 0123456789</p>
-                    <button class="save-btn">Lưu</button>
-                </div>
-                <div class="profile-image">
-                    <img src="images/avatar.jpg" alt="Avatar">
-                    <button class="upload-btn">Chọn ảnh</button>
-                    <button class="business-btn">Kênh kinh doanh</button>
-                </div>
-            </div>
+<div class="account-section">
+    <div class="profile-header">
+        <img src="image/IMG_2039.PNG" alt="Ảnh đại diện" class="profile-pic">
+        <div>
+            <h1>Thông tin tài khoản</h1>
+            <h2>Chỉ Anh</h2>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <h3>Đăng ký nhận thông tin từ WE Bare BEARS.vn</h3>
-            <p>Chúng tôi sẽ gửi bạn những thông tin bất động sản mới nhất</p>
-            <input type="email" placeholder="Nhập địa chỉ email của bạn">
-            <button class="subscribe-btn">Đăng ký ngay</button>
+    <div class="personal-info">
+        <h3>Thông tin cá nhân</h3>
+        <div class="info-item">Giới tính Nam</div>
+        <div class="info-item">Ngày sinh 13 tháng 03, 2005</div>
+        <div class="info-item">Điện thoại +84 346 682 183</div>
+    </div>
+
+    <div class="note">
+        Chỉ bạn bè có lưu số của bạn trong danh bạ máy xem được số này
+    </div>
+    <button id="editBtn" onclick="toggleEditForm()">Chỉnh sửa</button>
+
+    <form id="editForm" action="UpdateAccountServlet" method="post" style="display: none;">
+        <h3>Chỉnh sửa thông tin</h3>
+
+        <label for="username">Họ và Tên:</label>
+        <input type="text" id="username" name="username" value="<%= request.getAttribute("username") %>" required>
+
+        <label for="gender">Giới tính:</label>
+        <select id="gender" name="gender">
+            <option value="Nam" <%= "Nam".equals(request.getAttribute("gender")) ? "selected" : "" %>>Nam</option>
+            <option value="Nữ" <%= "Nữ".equals(request.getAttribute("gender")) ? "selected" : "" %>>Nữ</option>
+        </select>
+
+        <label for="dob">Ngày sinh:</label>
+        <input type="date" id="dob" name="dob" value="<%= request.getAttribute("dob") %>" required>
+
+        <label for="phone">Điện thoại:</label>
+        <input type="text" id="phone" name="phone" value="<%= request.getAttribute("phone") %>" required>
+
+        <div class="form-actions">
+            <button type="submit">Lưu</button>
+            <button type="button" onclick="toggleEditForm()">Hủy</button>
         </div>
-    </footer>
+    </form>
+
+    <script>
+        function toggleEditForm() {
+            let form = document.getElementById("editForm");
+            let button = document.getElementById("editBtn");
+
+            if (form.style.display === "none") {
+                form.style.display = "block";
+                button.textContent = "Đóng";
+            } else {
+                form.style.display = "none";
+                button.textContent = "Chỉnh sửa";
+            }
+        }
+    </script>
+
 </div>
 </body>
 </html>
