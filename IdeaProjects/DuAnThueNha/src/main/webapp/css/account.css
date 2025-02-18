@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+td {
+    color: #454545;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Đường kẻ dưới ô */
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+img {
+    width: 50px; /* Kích thước ảnh */
+    height: 50px; /* Kích thước ảnh */
+    border-radius: 50%; /* Tạo hình tròn cho ảnh */
+}
+
+.button {
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    border: none;
+    color: white;
+    margin-right: 5px; /* Thêm khoảng cách giữa các nút */
+}
+
+.button.change {
+    background-color: #008CBA;
+}
+
+.button.change:hover {
+    background-color: #005f73;
+}
+
+.button.delete {
+    background-color: #f44336;
+}
+
+.button.delete:hover {
+    background-color: #d32f2f;
+}
