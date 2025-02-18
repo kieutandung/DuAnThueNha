@@ -9,12 +9,13 @@ public class Users {
     private String email;
     private String role;
     private String status;
+    private String image;
 
     public Users() {
 
     }
 
-    public Users(int idUser, String userName, String password, String fullName, String phone, String email, String role, String status) {
+    public Users(int idUser, String userName, String password, String fullName, String phone, String email, String role, String status, String image) {
         this.idUser = idUser;
         this.userName = userName;
         this.password = password;
@@ -23,6 +24,15 @@ public class Users {
         this.email = email;
         this.role = role;
         this.status = status;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getIdUser() {
