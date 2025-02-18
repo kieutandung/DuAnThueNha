@@ -22,6 +22,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         handleLogin(req,resp);
     }
 
@@ -42,6 +45,8 @@ public class LoginServlet extends HttpServlet {
                     resp.sendRedirect("/home_admin_product");
                 } else if (role.equalsIgnoreCase("user")) {
                     resp.sendRedirect("view/HomeUser.jsp");
+                } else if (role.equalsIgnoreCase("host")) {
+                    resp.sendRedirect("/home_host_product");
                 }
             } else {
                 req.setAttribute("errorMessage", "Tài khoản của bạn đã bị khóa!");
@@ -55,6 +60,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
