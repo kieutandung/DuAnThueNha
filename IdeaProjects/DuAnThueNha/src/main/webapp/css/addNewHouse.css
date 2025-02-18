@@ -35,10 +35,12 @@
     border: 1px solid #ced4da;
     background-color: #e9ecef;
 }
-#description {
-    height: calc(12.875rem + 2px);
-    line-height: 1.5;
-}
+/*#description {*/
+/*    height: 5rem; */
+/*    width: 50%;*/
+/*    line-height: 1.5;*/
+/*    resize: none;*/
+/*}*/
 #imageUpload {
     height: 9rem;
     line-height: 1.5;
