@@ -15,6 +15,10 @@
                 <div class="card bg-white text-dark" style="border-radius: 1rem; max-width: 600px;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-3 mt-md-4 pb-3">
+                            <a href="javascript:history.back()" class="text-decoration-none text-dark d-flex align-items-center">
+                                <i class="fas fa-arrow-left me-2"></i>
+                            </a>
+
                             <h2 class="fw-bold mb-2 text-uppercase">Quên mật khẩu</h2>
                             <p class="text-muted mb-5">Vui lòng nhập số điện thoại của bạn để khôi phục tài khoản</p>
                             <div class="alert alert-success" role="alert"
