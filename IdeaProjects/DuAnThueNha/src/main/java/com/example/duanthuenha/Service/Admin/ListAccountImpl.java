@@ -16,7 +16,7 @@ public class ListAccountImpl implements ListAccountService{
     public List<Users> getAllUser() {
         Connection connection = connectDB.getConnection();
         List<Users> users = new ArrayList<>();
-        String query = "select * from users order by idUser desc";
+        String query = "select * from users order by fullName desc";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();

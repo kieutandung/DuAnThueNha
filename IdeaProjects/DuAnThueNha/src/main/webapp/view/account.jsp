@@ -14,10 +14,14 @@
 <script src="/js/account.js"></script>
 <body>
 <div class="actions">
-    <button class="button add" onclick="addUser()">Thêm</button>
+    <div class="left">
+    <button class="button add" onclick="addUser()">Thêm Người Dùng</button>
     <button class="button sort" onclick="sortUsers()">Sắp Xếp</button>
+    </div>
+    <div class="right">
     <input type="text" id="search" placeholder="Tìm Kiếm" onkeyup="searchUsers()">
     <button class="button search" >Tìm kiếm</button>
+    </div>
 </div>
 <div class="table">
     <table>
