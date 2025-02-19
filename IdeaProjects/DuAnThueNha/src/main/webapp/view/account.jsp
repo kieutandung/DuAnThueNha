@@ -3,53 +3,14 @@
 <%@ page import="com.example.duanthuenha.Service.Admin.ListAccountImpl" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.duanthuenha.Model.Users" %>
-
-
-
 <html>
 <head>
     <title>Danh sách tài khoản</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-
-        .table {
-            width: 100%;
-            max-width: 1200px; /* Giới hạn chiều rộng tối đa */
-            margin: auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        td {
-            color: #454545;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #ddd; /* Đường kẻ dưới ô */
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        img {
-            width: 50px; /* Kích thước ảnh */
-            height: 50px; /* Kích thước ảnh */
-            border-radius: 50%; /* Tạo hình tròn cho ảnh */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         .button {
@@ -60,33 +21,44 @@
             font-size: 14px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+            transition: background-color 0.3s;
             border: none;
             color: white;
-            margin-right: 5px; /* Thêm khoảng cách giữa các nút */
+            margin-right: 5px;
         }
 
-        .button.change {
+        .button.add {
+            background-color: #4CAF50;
+        }
+
+        .button.sort {
             background-color: #008CBA;
         }
 
-        .button.change:hover {
-            background-color: #005f73;
-        }
-
-        .button.delete {
+        .button.search {
             background-color: #f44336;
-        }
-
-        .button.delete:hover {
-            background-color: #d32f2f;
         }
     </style>
 </head>
 <header>
     <jsp:include page="menu.jsp"/>
 </header>
+<link rel="stylesheet" href="/css/account.css">
+<script src="/js/account.js"></script>
 <body>
+<div class="actions">
+    <div class="left">
+        <button class="button add" onclick="addUser()">Thêm Người Dùng</button>
+        <button class="button sort" onclick="sortUsers()">Sắp Xếp</button>
+    </div>
+    <div class="right">
+        <form action="adminServlet?action=search" method="get">
+            <input type="text" name="name" placeholder="Tìm Kiếm">
+            <input type="hidden" name="action" value="search">
+            <button type="submit" class="button search">Tìm kiếm</button>
+        </form>
+    </div>
+</div>
 <div class="table">
     <table>
         <thead>
@@ -95,23 +67,19 @@
             <th>Tên Người Dùng</th>
             <th>Email</th>
             <th>Số Điện Thoại</th>
+            <th>Vai trò</th>
             <th>Trạng Thái</th>
             <th>Thao Tác</th>
         </tr>
         </thead>
         <tbody>
-        <%
-            ListAccountImpl listAccountService = new ListAccountImpl();
-            List<Users> users = listAccountService.getAllUser();
-            request.setAttribute("users", users);
-        %>
-
         <c:forEach items="${users}" var="user">
             <tr>
                 <td><img src="img/${user.image}" alt="User Image"></td>
                 <td id="name">${user.fullName}</td>
                 <td id="email">${user.email}</td>
                 <td>${user.phone}</td>
+                <td>${user.role}</td>
                 <td>${user.status}</td>
                 <td>
                     <button class="button change" onclick="changeStatus(${user.idUser})">Change Status</button>
@@ -119,15 +87,14 @@
                 </td>
             </tr>
         </c:forEach>
-
         </tbody>
     </table>
 </div>
-
 <script>
     function changeStatus(id) {
         alert("Trạng thái của người dùng với ID " + id + " đã được thay đổi!");
     }
+
     function deleteUser(id) {
         if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
             const xhr = new XMLHttpRequest();
@@ -143,6 +110,5 @@
         }
     }
 </script>
-
 </body>
 </html>

@@ -7,4 +7,5 @@ import java.util.List;
 public interface ListAccountService {
     List<Users> getAllUser();
     void deleteUser(int idUser);
+    List<Users> searchUsersByName(String name);
 }
