@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.example.duanthuenha.Service.Admin.ListAccountImpl" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.example.duanthuenha.Model.Users" %>
 <html>
 <head>
@@ -38,6 +36,14 @@
         .button.search {
             background-color: #f44336;
         }
+
+        .button.delete {
+            background-color: #d9534f;
+        }
+
+        .button.change {
+            background-color: #f0ad4e;
+        }
     </style>
 </head>
 <header>
@@ -49,10 +55,11 @@
 <div class="actions">
     <div class="left">
         <button class="button add" onclick="addUser()">Thêm Người Dùng</button>
-        <button class="button sort" onclick="sortUsers()">Sắp Xếp</button>
+        <a href="adminServlet?action=sort" class="button sort">Sắp Xếp</a>
+
     </div>
     <div class="right">
-        <form action="adminServlet?action=search" method="get">
+        <form action="adminServlet" method="get">
             <input type="text" name="name" placeholder="Tìm Kiếm">
             <input type="hidden" name="action" value="search">
             <button type="submit" class="button search">Tìm kiếm</button>
@@ -75,14 +82,14 @@
         <tbody>
         <c:forEach items="${users}" var="user">
             <tr>
-                <td><img src="img/${user.image}" alt="User Image"></td>
-                <td id="name">${user.fullName}</td>
-                <td id="email">${user.email}</td>
+                <td><img src="img/${user.image}" alt="User Image" width="50" height="50"></td>
+                <td>${user.fullName}</td>
+                <td>${user.email}</td>
                 <td>${user.phone}</td>
                 <td>${user.role}</td>
                 <td>${user.status}</td>
                 <td>
-                    <button class="button change" onclick="changeStatus(${user.idUser})">edit</button>
+                    <button class="button change" onclick="changeStatus(${user.idUser})">Edit</button>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">Delete</button>
                 </td>
             </tr>

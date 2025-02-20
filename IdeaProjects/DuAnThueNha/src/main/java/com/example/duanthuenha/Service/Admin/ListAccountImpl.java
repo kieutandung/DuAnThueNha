@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ListAccountImpl implements ListAccountService {
@@ -80,5 +81,32 @@ public class ListAccountImpl implements ListAccountService {
         }
         return users;
     }
+    public List<Users> getAllUsersSortedByName() {
+        List<Users> users = new ArrayList<>();
+        String query = "SELECT * FROM users ORDER BY fullName ASC"; // Sắp xếp tăng dần theo tên
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                int idUser = rs.getInt("idUser");
+                String userName = rs.getString("userName");
+                String password = rs.getString("password");
+                String fullName = rs.getString("fullName");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+
+                Users user = new Users(idUser, userName, password, fullName, phone, email, role, status, image);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi lấy danh sách người dùng đã sắp xếp", e);
+        }
+        return users;
+    }
+
 }
 
