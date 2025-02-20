@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
                 if (role.equalsIgnoreCase("admin")) {
                     resp.sendRedirect("/home_admin_product");
                 } else if (role.equalsIgnoreCase("user")) {
-                    resp.sendRedirect("view/HomeUser.jsp");
+                    resp.sendRedirect("/profileServlet");
                 } else if (role.equalsIgnoreCase("host")) {
                     resp.sendRedirect("/home_host_product");
                 }
