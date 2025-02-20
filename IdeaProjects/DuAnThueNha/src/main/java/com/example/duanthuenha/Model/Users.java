@@ -2,7 +2,7 @@ package com.example.duanthuenha.Model;
 
 public class Users {
     private int idUser;
-    private String userName;
+    private String username;
     private String password;
     private String fullName;
     private String phone;
@@ -15,9 +15,9 @@ public class Users {
 
     }
 
-    public Users(int idUser, String userName, String password, String fullName, String phone, String email, String role, String status, String image) {
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image) {
         this.idUser = idUser;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.phone = phone;
@@ -25,6 +25,15 @@ public class Users {
         this.role = role;
         this.status = status;
         this.image = image;
+    }
+
+    public Users(String username, String password, String fullName, String phone, String email, String role) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
     }
 
     public String getImage() {
@@ -43,12 +52,12 @@ public class Users {
         this.idUser = idUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getusername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setusername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -103,7 +112,7 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "idUser=" + idUser +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +

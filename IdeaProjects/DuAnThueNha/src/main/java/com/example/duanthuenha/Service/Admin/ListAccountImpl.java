@@ -80,5 +80,32 @@ public class ListAccountImpl implements ListAccountService {
         }
         return users;
     }
+
+    @Override
+    public boolean addUser(String username, String password, String fullName, String phone, String email, String role) {
+        Connection connection = connectDB.getConnection();
+        String query = "INSERT INTO users (username, password, fullName, phone, email, role, status) values (?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, fullName);
+            preparedStatement.setString(4, phone);
+            preparedStatement.setString(5, email);
+            preparedStatement.setString(6, role);
+            preparedStatement.setString(7, "active");
+
+            int row = preparedStatement.executeUpdate();
+
+            if (row > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }
 

@@ -33,6 +33,8 @@ public class AdminServlet extends HttpServlet {
                 case "search":
                     searchUsers(req, resp);
                     break;
+                case "addUser":
+                    addUserView(req,resp);
                 default:
                     listAccountView(req, resp);
                     break;
@@ -44,9 +46,30 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        handleRegister(req, resp);
     }
+        public void handleRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
+            String fullName = req.getParameter("fullName");
+            String phone = req.getParameter("phone");
+            String email = req.getParameter("email");
+            String role = req.getParameter("role");
 
+            req.setAttribute("username", username);
+            req.setAttribute("password", password);
+            req.setAttribute("fullName", fullName);
+            req.setAttribute("phone", phone);
+            req.setAttribute("email", email);
+            req.setAttribute("role", role);
+    }
+    private void addUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
+        dispatcher.forward(req,resp);
+    }
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         System.out.println(usersList);

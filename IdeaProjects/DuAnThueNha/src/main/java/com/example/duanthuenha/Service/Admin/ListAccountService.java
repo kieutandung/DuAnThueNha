@@ -8,4 +8,5 @@ public interface ListAccountService {
     List<Users> getAllUser();
     void deleteUser(int idUser);
     List<Users> searchUsersByName(String name);
+    boolean addUser(String username, String password, String fullName, String phone, String email, String role);
 }

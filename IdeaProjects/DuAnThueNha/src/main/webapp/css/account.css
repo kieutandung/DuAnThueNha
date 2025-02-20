@@ -17,8 +17,8 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
 }
+
 td {
     color: #454545;
 }
@@ -53,11 +53,13 @@ img {
     color: white;
     margin-right: 5px; /* Thêm khoảng cách giữa các nút */
 }
+
 .actions {
     display: flex; /* Sử dụng Flexbox để căn chỉnh */
     justify-content: space-between; /* Căn giữa các phần tử */
     align-items: center; /* Căn giữa theo chiều dọc */
     padding: 15px;
+    margin-bottom: 20px;
 }
 
 .actions .left {
@@ -69,7 +71,11 @@ img {
     align-items: center; /* Căn giữa theo chiều dọc */
     margin-left: auto;
 }
-
+.inputSearch {
+    width: 300px;
+    height: 35px;
+    padding-left: 20px;
+}
 #search {
     padding: 10px; /* Khoảng cách bên trong input */
     border: 1px solid #ccc; /* Viền nhẹ cho input */
@@ -79,10 +85,12 @@ img {
 
 /* Nút thêm người dùng */
 .button.add {
-    background-color: #008CBA; /* Màu nền cho nút thêm */
+    background-color: #4CAF50; /* Màu nền cho nút thêm */
 }
+
+/* Nút sắp xếp */
 .button.sort {
-    background-color: #008CBA;
+    background-color: #008CBA; /* Màu nền cho nút sắp xếp */
 }
 
 /* Nút thay đổi */
@@ -105,10 +113,8 @@ img {
 
 /* Nút tìm kiếm */
 .button.search {
-    background-color: #4CAF50; /* Màu nền cho nút tìm kiếm */
+    background-color: #06C12C; /* Màu nền cho nút tìm kiếm */
 }
-
 .button.search:hover {
-    background-color: #45a049; /* Màu nền khi hover cho nút tìm kiếm */
+    background-color: #05AD27; /* Màu nền khi hover cho nút tìm kiếm */
 }
-

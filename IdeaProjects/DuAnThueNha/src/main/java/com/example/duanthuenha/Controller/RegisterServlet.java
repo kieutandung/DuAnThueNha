@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller;
 
+import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Service.Register.RegisterImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -21,12 +22,11 @@ public class RegisterServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         handleRegister(req, resp);
     }
-
     public void handleRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String Rpassword = req.getParameter("rPassword");
-        String fullname = req.getParameter("fullName");
+        String fullName = req.getParameter("fullName");
         String phone = req.getParameter("phone");
         String email = req.getParameter("email");
         String blank = "";
@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
         req.setAttribute("username", username);
         req.setAttribute("password", password);
         req.setAttribute("rPassword", Rpassword);
-        req.setAttribute("fullname", fullname);
+        req.setAttribute("fullName", fullName);
         req.setAttribute("phone", phone);
         req.setAttribute("email", email);
 
@@ -68,7 +68,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        if (registerImpl.registerUser(username, password, fullname, phone, email)) {
+        if (registerImpl.registerUser(username, password, fullName, phone, email)) {
             req.setAttribute("successMessage", "Đăng kí thành công, bạn có thể đăng nhập ngay bây giờ");
             req.getRequestDispatcher("view/login.jsp").forward(req, resp);
         } else {
@@ -103,7 +103,6 @@ public class RegisterServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
     private void registerView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/register.jsp");
         dispatcher.forward(req, resp);

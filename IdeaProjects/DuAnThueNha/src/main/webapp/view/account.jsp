@@ -6,39 +6,6 @@
 <html>
 <head>
     <title>Danh sách tài khoản</title>
-    <style>
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border: none;
-            color: white;
-            margin-right: 5px;
-        }
-
-        .button.add {
-            background-color: #4CAF50;
-        }
-
-        .button.sort {
-            background-color: #008CBA;
-        }
-
-        .button.search {
-            background-color: #f44336;
-        }
-    </style>
 </head>
 <header>
     <jsp:include page="menu.jsp"/>
@@ -48,14 +15,14 @@
 <body>
 <div class="actions">
     <div class="left">
-        <button class="button add" onclick="addUser()">Thêm Người Dùng</button>
+        <a href="/adminServlet?action=addUser" class="button add">Thêm Người Dùng</a>
         <button class="button sort" onclick="sortUsers()">Sắp Xếp</button>
     </div>
     <div class="right">
         <form action="adminServlet?action=search" method="get">
-            <input type="text" name="name" placeholder="Tìm Kiếm">
+            <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm">
             <input type="hidden" name="action" value="search">
-            <button type="submit" class="button search">Tìm kiếm</button>
+            <button type="submit" class="button search">Tìm Kiếm</button>
         </form>
     </div>
 </div>
