@@ -20,7 +20,7 @@ public class AdminServlet extends HttpServlet {
         try {
             switch (action) {
                 default:
-                        ListAccountView(req, resp);
+                    ListAccountView(req, resp);
                     break;
             }
         } catch (ServletException e) {
@@ -28,7 +28,7 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
-    private void ListAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    private void ListAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }

@@ -65,7 +65,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         }
 
         switch (action) {
-            case "forgotPassword":
+            default:
                 forgotPassword(req, resp);
                 break;
         }
