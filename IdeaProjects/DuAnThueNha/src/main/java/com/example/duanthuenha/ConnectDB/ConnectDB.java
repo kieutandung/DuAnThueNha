@@ -10,6 +10,9 @@ public class ConnectDB {
     private String username = System.getenv("jdbcUsernameDB");
     private String password = System.getenv("jdbcPasswordDB");
 
+//    private String username = "root";
+//    private String password = "13122005";
+
     public Connection getConnection() {
         Connection connection = null;
         try {

@@ -1,7 +1,6 @@
 package com.example.duanthuenha.Controller;
 
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
-import com.example.duanthuenha.Service.Admin.ListAccountService;
 import com.example.duanthuenha.Model.Users;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
-    private ListAccountService listAccountService = new ListAccountImpl();
+    private ListAccountImpl listAccountService = new ListAccountImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,7 +33,7 @@ public class AdminServlet extends HttpServlet {
                     searchUsers(req, resp);
                     break;
                 case "addUser":
-                    addUserView(req,resp);
+                    addUserView(req, resp);
                 default:
                     listAccountView(req, resp);
                     break;
@@ -49,27 +48,51 @@ public class AdminServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        handleRegister(req, resp);
-    }
-        public void handleRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            String username = req.getParameter("username");
-            String password = req.getParameter("password");
-            String fullName = req.getParameter("fullName");
-            String phone = req.getParameter("phone");
-            String email = req.getParameter("email");
-            String role = req.getParameter("role");
+        handleAddUser(req, resp);
+        String action = req.getParameter("action");
+        System.out.println(action);
+        if (action == null) {
+            action = "";
+        }
 
-            req.setAttribute("username", username);
-            req.setAttribute("password", password);
-            req.setAttribute("fullName", fullName);
-            req.setAttribute("phone", phone);
-            req.setAttribute("email", email);
-            req.setAttribute("role", role);
+        try {
+            switch (action) {
+                case "addUser":
+                    handleAddUser(req,resp);
+                default:
+                    listAccountView(req, resp);
+                    break;
+            }
+        }catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    public void handleAddUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String fullName = req.getParameter("fullName");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String role = req.getParameter("role");
+
+        req.setAttribute("username", username);
+        req.setAttribute("password", password);
+        req.setAttribute("fullName", fullName);
+        req.setAttribute("phone", phone);
+        req.setAttribute("email", email);
+        req.setAttribute("role", role);
+
+        listAccountService.addUser(username, password, fullName, phone, email, role);
+
+
+    }
+
     private void addUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
-        dispatcher.forward(req,resp);
+        dispatcher.forward(req, resp);
     }
+
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         System.out.println(usersList);

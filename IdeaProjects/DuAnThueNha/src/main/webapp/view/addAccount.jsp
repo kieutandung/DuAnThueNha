@@ -11,11 +11,11 @@
 <body>
 <div class="container">
     <h2>Thêm Tài Khoản</h2>
-    <form action="addAccount" method="post">
+    <form action="adminServlet?action=addUser" method="post">
         <table>
             <tr>
                 <td>Tên Đăng Nhập:</td>
-                <td><input type="text" name="accountName" required></td>
+                <td><input type="text" name="username" required></td>
             </tr>
             <tr>
                 <td>Họ Và Tên:</td>
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="text-align: center;">
-                    <a href="adminServlet" class="button add">Thêm Tài Khoản</a> <!-- Thay nút gửi bằng thẻ a -->
+                   <button class="button" type="submit">Thêm tài khoản</button>
                 </td>
             </tr>
         </table>

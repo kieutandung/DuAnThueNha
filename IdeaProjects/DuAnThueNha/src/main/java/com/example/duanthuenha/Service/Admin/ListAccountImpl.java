@@ -84,7 +84,7 @@ public class ListAccountImpl implements ListAccountService {
     @Override
     public boolean addUser(String username, String password, String fullName, String phone, String email, String role) {
         Connection connection = connectDB.getConnection();
-        String query = "INSERT INTO users (username, password, fullName, phone, email, role, status) values (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO users (username, password, fullName, phone, email, role, status,image) values (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -95,6 +95,7 @@ public class ListAccountImpl implements ListAccountService {
             preparedStatement.setString(5, email);
             preparedStatement.setString(6, role);
             preparedStatement.setString(7, "active");
+            preparedStatement.setString(8, "man.png");
 
             int row = preparedStatement.executeUpdate();
 
