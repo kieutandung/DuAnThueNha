@@ -1,15 +1,15 @@
 package com.example.duanthuenha.Model;
-
+import java.math.BigDecimal;
 public class Product {
     private int idProduct;
     private int idUser;
     private String nameProduct;
     private String productDescription;
-    private int price;
+    private BigDecimal price;
     private String address;
     private String status;
 
-    public Product(int idProduct, int idUser, String nameProduct, String productDescription, int price, String address, String status) {
+    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
         this.idProduct = idProduct;
         this.idUser = idUser;
         this.nameProduct = nameProduct;
@@ -18,7 +18,8 @@ public class Product {
         this.address = address;
         this.status = status;
     }
-    public Product(int idUser, String nameProduct, String productDescription, int price, String address, String status) {
+
+    public Product(int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
         this.idUser = idUser;
         this.nameProduct = nameProduct;
         this.productDescription = productDescription;
@@ -26,6 +27,9 @@ public class Product {
         this.address = address;
         this.status = status;
     }
+
+
+
     public int getIdProduct() {
         return idProduct;
     }
@@ -58,11 +62,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -26,43 +26,55 @@
                         <div class="col-xl-6">
                             <div class="card-body p-md-5 text-black">
                                 <h3 class="mb-5 text-uppercase">Đăng ký thêm mới nhà</h3>
+                                <form action="/productServlet" method="post">
+                                    <input type="hidden" name="action" value="addProduct">
 
-                                <div class="mb-4">
-                                    <label for="imageUpload" class="form-label">Tải lên ảnh</label>
-                                    <input class="form-control form-control-lg" type="file" id="imageUpload">
-                                </div>
+                                    <div class="mb-4">
+                                        <label for="imageUpload" class="form-label">Tải lên ảnh</label>
+                                        <input class="form-control form-control-lg" type="file" id="imageUpload">
+                                    </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="propertyName" class="form-control form-control-lg"/>
-                                            <label class="form-label" for="propertyName">Tên bất động sản</label>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-floating">
+                                                <input type="text" id="idUser" name="idUser" class="form-control" placeholder="ID Người dùng">
+                                                <label for="idUser">ID Người dùng</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-floating">
+                                                <input type="text" id="nameProduct" name="nameProduct" class="form-control" placeholder="Tên bất động sản">
+                                                <label for="nameProduct">Tên bất động sản</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="price" class="form-control form-control-lg"/>
-                                            <label class="form-label" for="price">Mức giá</label>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <input type="text" id="price" name="price" class="form-control" placeholder="Mức giá">
+                                            <label for="price">Mức giá</label>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" id="address" class="form-control form-control-lg"/>
-                                        <label class="form-label" for="address">Địa chỉ</label>
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ">
+                                            <label for="address">Địa chỉ</label>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-outline mb-4">
-                                    <textarea id="description" class="form-control form-control-lg" rows="4"></textarea>
-                                    <label class="form-label" for="description">Mô tả</label>
-                                </div>
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <textarea id="productDescription" name="productDescription" class="form-control" placeholder="Mô tả" style="height: 100px"></textarea>
+                                            <label for="productDescription">Mô tả</label>
+                                        </div>
+                                    </div>
 
-                                <div class="d-flex justify-content-end pt-3">
-                                    <button type="button" class="btn btn-light btn-lg">Đăng tin</button>
-                                    <button type="button" class="btn btn-warning btn-lg ms-2">Hủy Đăng tin</button>
-                                </div>
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <button type="submit" class="btn btn-light btn-lg">Đăng tin</button>
+                                        <button type="reset" class="btn btn-warning btn-lg ms-2">Hủy Đăng tin</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

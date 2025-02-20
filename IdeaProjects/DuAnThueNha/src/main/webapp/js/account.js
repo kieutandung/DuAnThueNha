@@ -16,3 +16,4 @@ function deleteUser(id) {
         xhr.send("idUser=" + id);
     }
 }
+

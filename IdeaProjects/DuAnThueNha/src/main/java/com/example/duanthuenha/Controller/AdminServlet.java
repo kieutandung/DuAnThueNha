@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,7 +24,6 @@ public class AdminServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-
         try {
             switch (action) {
                 case "delete":
@@ -34,6 +34,10 @@ public class AdminServlet extends HttpServlet {
                     break;
                 case "addUser":
                     addUserView(req, resp);
+                    break;
+                case "sort":
+                    sortUsersByName(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -92,10 +96,11 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
         dispatcher.forward(req, resp);
     }
-
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("isSorted", false);
+
         List<Users> usersList = listAccountService.getAllUser();
-        System.out.println(usersList);
         req.setAttribute("users", usersList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
@@ -114,4 +119,21 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
+    private void sortUsersByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        Boolean isSorted = (Boolean) session.getAttribute("isSorted");
+        if (isSorted == null || !isSorted) {
+            List<Users> sortedUsers = listAccountService.getAllUsersSortedByName();
+            req.setAttribute("users", sortedUsers);
+            session.setAttribute("isSorted", true);
+        } else {
+            List<Users> users = listAccountService.getAllUser();
+            req.setAttribute("users", users);
+            session.setAttribute("isSorted", false);
+        }
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+
 }

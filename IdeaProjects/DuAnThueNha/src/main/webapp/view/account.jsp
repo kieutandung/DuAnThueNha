@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="com.example.duanthuenha.Service.Admin.ListAccountImpl" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.example.duanthuenha.Model.Users" %>
 <html>
 <head>
@@ -15,8 +13,8 @@
 <body>
 <div class="actions">
     <div class="left">
-        <a href="/adminServlet?action=addUser" class="button add">Thêm Người Dùng</a>
-        <button class="button sort" onclick="sortUsers()">Sắp Xếp</button>
+        <a href="adminServlet?action=addUser" class="button add">Thêm Người Dùng</a>
+        <a href="adminServlet?action=sort" class="button sort">Sắp Xếp</a>
     </div>
     <div class="right">
         <form action="adminServlet?action=search" method="get">
@@ -42,14 +40,14 @@
         <tbody>
         <c:forEach items="${users}" var="user">
             <tr>
-                <td><img src="img/${user.image}" alt="User Image"></td>
-                <td id="name">${user.fullName}</td>
-                <td id="email">${user.email}</td>
+                <td><img src="img/${user.image}" alt="User Image" width="50" height="50"></td>
+                <td>${user.fullName}</td>
+                <td>${user.email}</td>
                 <td>${user.phone}</td>
                 <td>${user.role}</td>
                 <td>${user.status}</td>
                 <td>
-                    <button class="button change" onclick="changeStatus(${user.idUser})">Change Status</button>
+                    <button class="button change" onclick="changeStatus(${user.idUser})">Edit</button>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">Delete</button>
                 </td>
             </tr>
@@ -57,25 +55,6 @@
         </tbody>
     </table>
 </div>
-<script>
-    function changeStatus(id) {
-        alert("Trạng thái của người dùng với ID " + id + " đã được thay đổi!");
-    }
 
-    function deleteUser(id) {
-        if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", "adminServlet?action=delete", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Người dùng với ID " + id + " đã bị xóa thành công!");
-                    location.reload();
-                }
-            };
-            xhr.send("idUser=" + id);
-        }
-    }
-</script>
 </body>
 </html>
