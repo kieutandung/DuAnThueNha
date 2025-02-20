@@ -82,7 +82,7 @@
                 <td>${user.role}</td>
                 <td>${user.status}</td>
                 <td>
-                    <button class="button change" onclick="changeStatus(${user.idUser})">Change Status</button>
+                    <button class="button change" onclick="changeStatus(${user.idUser})">edit</button>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">Delete</button>
                 </td>
             </tr>
