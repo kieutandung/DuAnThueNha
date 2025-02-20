@@ -17,6 +17,7 @@ import java.io.IOException;
 @WebServlet("/profileServlet")
 public class ProfileServlet extends HttpServlet {
     private ProfileImpl profileImpl = new ProfileImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -35,7 +36,7 @@ public class ProfileServlet extends HttpServlet {
 
     }
 
-    private void showEditProfile (HttpServletRequest req, HttpServletResponse resp) throws
+    private void showEditProfile(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/profile.jsp");
         dispatcher.forward(req, resp);
@@ -51,7 +52,7 @@ public class ProfileServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
@@ -61,9 +62,13 @@ public class ProfileServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "registerHost":
+                addHost(req, resp);
+                showProfile(req, resp);
+                break;
             case "updateInformation":
                 UpdateInformation(req, resp);
-                showProfile(req,resp);
+                showProfile(req, resp);
                 break;
         }
 
@@ -76,13 +81,24 @@ public class ProfileServlet extends HttpServlet {
         Users userPassAndUsername = profileImpl.getUserById(userID);
         String username = userPassAndUsername.getUsername();
         String fullName = req.getParameter("fullName");
-        String password = userPassAndUsername.getPassword();
+        String password = req.getParameter("password");
         String phone = req.getParameter("phone");
         String email = req.getParameter("email");
         String image = req.getParameter("image");
-        Users updatedUser = new Users(userID,username,password,fullName,phone,email,image);
+        if (image == "") {
+            image = req.getParameter("imageBox");
+        }
+        Users updatedUser = new Users(userID, username, password, fullName, phone, email, image);
         profileImpl.UpdateInformation(updatedUser);
 
+    }
+
+    private void addHost(HttpServletRequest req, HttpServletResponse resp) {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
+        Users userToHost = profileImpl.getVerificatioUser(userID);
+        profileImpl.addVerification(userToHost);
     }
 }
 

@@ -60,4 +60,48 @@ public class ProfileImpl implements ProfileService {
         }
     }
 
+    @Override
+    public void addVerification(Users addVerification) {
+        String query = "insert into verificationdocuments (idUser, documentType, documentNumber, documentImage) values (?,?,?,?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, addVerification.getIdUser());
+            stmt.setString(2, addVerification.getDocumentType());
+            stmt.setString(3, addVerification.getDocumentNumber());
+            stmt.setString(4, addVerification.getDocumentImage());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Users getVerificatioUser(int id) {
+        String query = "select * from verificationdocument where userId = ?";
+        Users users = null;
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setInt(1, id);
+            try {
+                ResultSet rs = pstm.executeQuery();
+                {
+                    if (rs.next()) {
+                        int userId = rs.getInt("userId");
+                        String documentType = rs.getString("documentType");
+                        String documentNumber = rs.getString("documentNumber");
+                        String documentImage = rs.getString("documentImage");
+                        users = new Users(userId,documentType,documentNumber,documentImage);
+                        return users;
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

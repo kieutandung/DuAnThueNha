@@ -9,6 +9,10 @@ public interface ProfileService {
 
     void UpdateInformation(Users updatedUser);
 
+    void addVerification(Users addVerification);
+
+    Users getVerificatioUser(int id);
+
 
 }
 

@@ -9,7 +9,46 @@ public class Users {
     private String email;
     private String role;
     private String status;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public String getDocumentImage() {
+        return documentImage;
+    }
+
+    public void setDocumentImage(String documentImage) {
+        this.documentImage = documentImage;
+    }
+
     private String image;
+    private String documentType;
+    private String documentNumber;
+    private String documentImage;;
+
+    public Users(int idUser, String documentType, String documentNumber, String documentImage) {
+        this.idUser = idUser;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.documentImage = documentImage;
+    }
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String image) {
         this.idUser = idUser;
