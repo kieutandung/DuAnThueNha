@@ -4,7 +4,12 @@ package com.example.duanthuenha.Service.Profile;
 import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Users;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileImpl implements ProfileService {
     private ConnectDB connectDB = new ConnectDB();
@@ -49,7 +54,7 @@ public class ProfileImpl implements ProfileService {
             stmt.setString(1, users.getFullName());
             stmt.setString(2, users.getPhone());
             stmt.setString(3, users.getEmail());
-            stmt.setString(4,users.getImage());
+            stmt.setString(4, users.getImage());
             stmt.setString(5, users.getPassword());
             stmt.setInt(6, users.getIdUser());
 
@@ -61,14 +66,14 @@ public class ProfileImpl implements ProfileService {
     }
 
     @Override
-    public void addVerification(Users addVerification) {
-        String query = "insert into verificationdocuments (idUser, documentType, documentNumber, documentImage) values (?,?,?,?)";
+    public void addVerification(int idUser, String documentType, String documentNumber, String documentImage) {
+        String query = "insert into verificationdocument (userId, documentType, documentNumber, documentImage) values (?,?,?,?)";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, addVerification.getIdUser());
-            stmt.setString(2, addVerification.getDocumentType());
-            stmt.setString(3, addVerification.getDocumentNumber());
-            stmt.setString(4, addVerification.getDocumentImage());
+            stmt.setInt(1, idUser);
+            stmt.setString(2, documentType);
+            stmt.setString(3, documentNumber);
+            stmt.setString(4, documentImage);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,9 +81,10 @@ public class ProfileImpl implements ProfileService {
         }
     }
 
-    public Users getVerificatioUser(int id) {
+
+    public List<Users> getALlDocumentNumberUser(int id) {
+        List<Users> users = new ArrayList<>();
         String query = "select * from verificationdocument where userId = ?";
-        Users users = null;
         try {
             Connection connection = connectDB.getConnection();
             PreparedStatement pstm = connection.prepareStatement(query);
@@ -86,13 +92,41 @@ public class ProfileImpl implements ProfileService {
             try {
                 ResultSet rs = pstm.executeQuery();
                 {
-                    if (rs.next()) {
+                    while (rs.next()) {
                         int userId = rs.getInt("userId");
                         String documentType = rs.getString("documentType");
+
+                        if (documentType.equals("ID Card")) {
+                            documentType = "Căn cước công dân";
+                        }
+                        if (documentType.equals("Passport")) {
+                            documentType = "Hộ Chiếu";
+                        }
+                        if (documentType.equals("Business License")) {
+                            documentType = "Giấy phép kinh doanh";
+                        }
+                        if (documentType.equals("House Ownership Certificate")) {
+                            documentType = "Giấy chứng nhận quyền sở hữu nhà";
+                        }
+                        if (documentType.equals("Other")) {
+                            documentType = "Khác";
+                        }
+
                         String documentNumber = rs.getString("documentNumber");
-                        String documentImage = rs.getString("documentImage");
-                        users = new Users(userId,documentType,documentNumber,documentImage);
-                        return users;
+                        String status = rs.getString("status");
+
+                        if (status.equals("approved")) {
+                            status = "Đã được chấp thuận";
+                        }
+                        if (status.equals("pending")) {
+                            status = "Đang chờ duyệt";
+                        }
+                        if (status.equals("rejected")) {
+                            status = "Không hợp lệ";
+                        }
+
+                        Users user = new Users(userId, documentType, documentNumber, status);
+                        users.add(user);
                     }
                 }
             } catch (SQLException e) {
@@ -102,6 +136,6 @@ public class ProfileImpl implements ProfileService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return users;
     }
 }

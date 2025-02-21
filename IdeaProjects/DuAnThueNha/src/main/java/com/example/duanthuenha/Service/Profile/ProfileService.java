@@ -9,9 +9,7 @@ public interface ProfileService {
 
     void UpdateInformation(Users updatedUser);
 
-    void addVerification(Users addVerification);
-
-    Users getVerificatioUser(int id);
+    void addVerification(int idUser, String documentType, String documentNumber, String documentImage);
 
 
 }

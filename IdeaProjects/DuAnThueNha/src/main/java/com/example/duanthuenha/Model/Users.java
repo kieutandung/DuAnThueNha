@@ -41,13 +41,14 @@ public class Users {
     private String image;
     private String documentType;
     private String documentNumber;
-    private String documentImage;;
+    private String documentImage;
 
-    public Users(int idUser, String documentType, String documentNumber, String documentImage) {
+
+    public Users(int idUser, String documentType, String documentNumber, String status) {
         this.idUser = idUser;
         this.documentType = documentType;
         this.documentNumber = documentNumber;
-        this.documentImage = documentImage;
+        this.status = status;
     }
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String image) {
@@ -71,6 +72,7 @@ public class Users {
         this.status = status;
         this.image = image;
     }
+
 
 
     public int getIdUser() {
@@ -159,6 +161,4 @@ public class Users {
                 ", image='" + image + '\'' +
                 '}';
     }
-
-
 }

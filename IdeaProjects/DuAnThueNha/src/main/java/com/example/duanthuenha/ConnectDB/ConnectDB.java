@@ -7,10 +7,11 @@ import java.sql.SQLException;
 public class ConnectDB {
 
     private String url = "jdbc:mysql://localhost:3306/DuAnThueNha?useSSL=true&serverTimezone=UTC";
-//        private String username = System.getenv("jdbcUsernameDB");
+//    private String username = System.getenv("jdbcUsernameDB");
 //    private String password = System.getenv("jdbcPasswordDB");
     private String username = "root";
-    private String password = "root@123";
+    private String password = "123456";
+
 
     public Connection getConnection() {
         Connection connection = null;

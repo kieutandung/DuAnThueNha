@@ -62,10 +62,6 @@ public class ProfileServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "registerHost":
-                addHost(req, resp);
-                showProfile(req, resp);
-                break;
             case "updateInformation":
                 UpdateInformation(req, resp);
                 showProfile(req, resp);
@@ -93,13 +89,6 @@ public class ProfileServlet extends HttpServlet {
 
     }
 
-    private void addHost(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession session = req.getSession();
-        String userIDS = (String) session.getAttribute("userId");
-        int userID = Integer.parseInt(userIDS);
-        Users userToHost = profileImpl.getVerificatioUser(userID);
-        profileImpl.addVerification(userToHost);
-    }
 }
 
 

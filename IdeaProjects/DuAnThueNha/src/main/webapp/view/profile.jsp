@@ -154,7 +154,7 @@
     <!-- 2 nút nằm ngang: "Chỉnh sửa" & "Đăng ký" -->
     <div class="button-row">
         <button id="editBtn" type="button" onclick="toggleEditForm()">Chỉnh sửa</button>
-        <button id="registerBtn" type="button" onclick="toggleRegisterForm()">Kênh kinh doanh</button>
+        <button id="registerBtn" type="button" onclick="window.location.href='userToHostServlet'">Kênh kinh doanh</button>
     </div>
 
     <!-- Form CHỈNH SỬA THÔNG TIN (ẩn mặc định) -->
