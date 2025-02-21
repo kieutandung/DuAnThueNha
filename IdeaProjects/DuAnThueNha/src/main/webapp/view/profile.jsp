@@ -17,8 +17,9 @@
 
         .main-container-user {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 20px auto 100px auto;
             padding: 0 20px;
+
         }
 
         /* Các định dạng khác của nội dung chính */

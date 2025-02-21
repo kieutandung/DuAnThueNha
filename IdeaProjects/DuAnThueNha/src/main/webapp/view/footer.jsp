@@ -54,7 +54,8 @@
     .footer-content {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-between; /* Căn giữa theo chiều ngang */
+        align-items: center;    /* Căn giữa theo chiều dọc */
     }
 
     .footer-section {
@@ -142,13 +143,6 @@
 </style>
 
 <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-a"></div>
-        <h1>Đăng ký nhận thông tin từ WE Bare BEARS.vn</h1>
-        <p>Chúng tôi sẽ gửi bạn những thông tin bất động sản mới nhất</p>
-        <input type="email" placeholder="Nhập địa chỉ email của bạn">
-        <button class="subscribe-btn">Đăng ký ngay</button>
-    </div>
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">

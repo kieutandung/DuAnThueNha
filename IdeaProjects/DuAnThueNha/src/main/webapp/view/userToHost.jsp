@@ -20,6 +20,7 @@
         <div class="col-md-4 border-right">
             <div class="p-3 py-5">
                 <h4 class="text-center mb-4">Đăng ký làm chủ nhà</h4>
+
                 <form action="userToHostServlet" method="post">
                     <!-- 1. Lựa chọn loại tài liệu -->
                     <div class="mb-3">
@@ -69,7 +70,6 @@
 <%--                                    <a href="/userToHostServlet?action=edit"  class="btn btn-warning btn-sm me-2">--%>
 <%--                                        <i class="fas fa-edit"></i> Sửa--%>
 <%--                                    </a>--%>
-
                                     <a href="/userToHostServlet?action=" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Xem chi tiết
                                     </a>
