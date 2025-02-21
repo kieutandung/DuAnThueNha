@@ -14,7 +14,6 @@ public class ConnectDB {
 //    private String username = System.getenv("jdbcUsernameDB");
 //    private String password = System.getenv("jdbcPasswordDB");
 
-    
     public Connection getConnection() {
         Connection connection = null;
         try {

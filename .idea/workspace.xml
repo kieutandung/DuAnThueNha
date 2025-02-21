@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="17eb5606-ec2a-4a72-9520-646c2347db48" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/editAccount.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/editAccount.jsp" afterDir="false" />
@@ -23,6 +24,9 @@
 =======
     <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
 =======
+    <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
+=======
     <list default="true" id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/UserToHostServlet.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/userToHost.css" afterDir="false" />
@@ -37,7 +41,10 @@
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" afterDir="false" />
     </list>
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,14 +99,20 @@
 }</component>
   <component name="ProjectId" id="2tEsa1taM4OavUeje8tt2TVWGZc" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
 =======
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2tEunJuESvN27i4QOZMjJoBDURc" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -182,6 +195,7 @@
       <server-settings>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option name="BASE_DIRECTORY_NAME" value="64977f57-5aff-4de5-a521-37c1d246bc7f" />
 =======
         <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
@@ -192,6 +206,12 @@
         <option name="BASE_DIRECTORY_NAME" value="9f3ccb8a-f8e3-4195-99bf-99b67f086f7f" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9f3ccb8a-f8e3-4195-99bf-99b67f086f7f" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -199,6 +219,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <option name="DEBUG_PORT" value="52818" />
@@ -211,6 +232,12 @@
         <option name="DEBUG_PORT" value="50417" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+        <option name="DEBUG_PORT" value="50503" />
+=======
+        <option name="DEBUG_PORT" value="50417" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -281,6 +308,7 @@
     </configuration>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <configuration name="editAccount.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/view/editAccount.jsp" />
       <deployment>
@@ -343,6 +371,8 @@
 =======
 =======
 =======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
+=======
     <list>
       <item itemvalue="JavaScript Debug.owner.jsp" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.97" />
@@ -353,7 +383,10 @@
       </list>
     </recent_temporary>
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -374,8 +407,11 @@
       <updated>1739928628731</updated>
       <workItem from="1739928630184" duration="8076000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
 =======
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
       <changelist id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="" />
       <created>1739929722994</created>
@@ -386,7 +422,10 @@
       <workItem from="1739954051977" duration="7697000" />
       <workItem from="1740060015767" duration="7728000" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
 >>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
     </task>
     <servers />
   </component>
