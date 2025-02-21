@@ -60,7 +60,7 @@
     }
 
     .search-input {
-        width: 280px;
+        width: 240px;
         padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -125,6 +125,7 @@
             margin: 0 10px; /* Adjust margin for smaller screens */
         }
     }
+
     @media (max-width: 480px) {
         .logo {
             font-size: 18px; /* Reduce logo size */
@@ -164,8 +165,12 @@
             </li>
             <li>
                 <button class="btn_header">Liên hệ tư vấn</button>
+            <li><a href="/loginServlet"><i class="logout-icon"><img
+                    src="/img/logout-black.png"></i></a></li>
             </li>
         </ul>
     </nav>
 
 </div>
+
+

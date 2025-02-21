@@ -15,11 +15,11 @@
         <li><i class=""></i><a href="#" target="_blank">Mục lục</a></li>
         <li><i class=""></i><a href="adminServlet" target="_blank">Danh sách tài khoản</a></li>
         <li><i class="r"></i><a href="#" target="_blank">Hợp đồng</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Hàng chờ</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Tin nhắn</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Thông báo</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Báo cáo</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Khiếu nại</a></li>
+        <li class="logout-item">
+            <a href="/loginServlet">
+                <i class="logout-icon">Đăng xuất</i>
+            </a>
+        </li>
     </ul>
 </div>
 </body>
