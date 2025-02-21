@@ -9,10 +9,56 @@ public class Users {
     private String email;
     private String role;
     private String status;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public String getDocumentImage() {
+        return documentImage;
+    }
+
+    public void setDocumentImage(String documentImage) {
+        this.documentImage = documentImage;
+    }
+
     private String image;
+    private String documentType;
+    private String documentNumber;
+    private String documentImage;
 
-    public Users() {
 
+    public Users(int idUser, String documentType, String documentNumber, String status) {
+        this.idUser = idUser;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.status = status;
+    }
+
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String image) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.image = image;
     }
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image) {
@@ -27,22 +73,7 @@ public class Users {
         this.image = image;
     }
 
-    public Users(String username, String password, String fullName, String phone, String email, String role) {
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.email = email;
-        this.role = role;
-    }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getIdUser() {
         return idUser;
@@ -52,11 +83,11 @@ public class Users {
         this.idUser = idUser;
     }
 
-    public String getusername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setusername(String username) {
+    public void setUserName(String username) {
         this.username = username;
     }
 
@@ -95,7 +126,6 @@ public class Users {
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -108,17 +138,26 @@ public class Users {
         this.status = status;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
                 "idUser=" + idUser +
-                ", username='" + username + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

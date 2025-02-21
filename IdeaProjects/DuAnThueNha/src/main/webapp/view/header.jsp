@@ -1,26 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <style>
     * {
-        margin-left: 0;
-        padding: 0;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
     }
 
     body {
+        margin: 0;
         background-color: #f5f5f5;
+        max-width: 100%;
+        padding: 0;
     }
-
-    /* Navbar */
     .navbar {
         display: flex;
         justify-content: space-between;
-        padding: 15px 30px;
+        padding: 15px 30px; /* Padding for the navbar */
         background: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         align-items: center;
-        overflow: hidden; /* Prevents wrapping */
-        white-space: nowrap; /* Prevents items from breaking to the next line */
+        position: fixed; /* Fix the navbar at the top */
+        top: 0; /* Align to the top of the screen */
+        left: 0; /* Align to the left of the screen */
+        right: 0; /* Align to the right of the screen */
+        z-index: 1000; /* Ensure it stays above other content */
     }
 
     .logo {
@@ -51,7 +53,7 @@
     }
 
     .search-input {
-        width: 400px;
+        width: 250px;
         padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -132,6 +134,7 @@
             padding: 6px 12px; /* Adjust button size */
         }
     }
+
 </style>
 <div class="container">
     <nav class="navbar">

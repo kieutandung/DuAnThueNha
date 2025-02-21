@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet",value = "/loginServlet")
+@WebServlet(name = "LoginServlet", value = "/loginServlet")
 public class LoginServlet extends HttpServlet {
 
     private LoginImpl loginImpl;
@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        handleLogin(req,resp);
+        handleLogin(req, resp);
     }
 
     private void handleLogin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,11 +40,9 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect("/home_admin_product");
+                    resp.sendRedirect("adminServlet");
                 } else if (role.equalsIgnoreCase("user")) {
-                    resp.sendRedirect("view/HomeUser.jsp");
-                } else if (role.equalsIgnoreCase("host")) {
-                    resp.sendRedirect("/home_host_product");
+                    resp.sendRedirect("/profileServlet");
                 }
             } else {
                 req.setAttribute("errorMessage", "Tài khoản của bạn đã bị khóa!");
