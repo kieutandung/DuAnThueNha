@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/userToHost.css">
 </head>
 <body>
+<header>
+    <jsp:include page="header.jsp"/>
+</header>
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
         <%--        <div class="col-md-3 border-right">--%>
@@ -82,6 +85,9 @@
 </div>
 </div>
 </div>
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>
