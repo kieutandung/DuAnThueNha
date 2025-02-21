@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
+=======
+    <list default="true" id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/UserToHostServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/userToHost.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/userToHost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/ProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/ProfileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" afterDir="false" />
+    </list>
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +31,18 @@
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="Class" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -26,10 +54,16 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectColorInfo">{
+<<<<<<< HEAD
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2tEsa1taM4OavUeje8tt2TVWGZc" />
+=======
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2tEunJuESvN27i4QOZMjJoBDURc" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -40,10 +74,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build DuAnThueNha.executor": "Run",
+<<<<<<< HEAD
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Tomcat Server.Tomcat 9.0.97.executor": "Run",
     "Tomcat Server.login.jsp.executor": "Run",
     "git-widget-placeholder": "develop",
+=======
+    "JavaScript Debug.owner.jsp.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Tomcat Server.Tomcat 9.0.97.executor": "Run",
+    "Tomcat Server.Tomcat 9.0.9724.executor": "Run",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "feature/user/user__to__host",
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -51,10 +94,26 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
+=======
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
+    <configuration name="owner.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/owner.jsp">
+      <method v="2" />
+    </configuration>
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -65,7 +124,11 @@
         </artifact>
       </deployment>
       <server-settings>
+<<<<<<< HEAD
         <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9f3ccb8a-f8e3-4195-99bf-99b67f086f7f" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -73,7 +136,11 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
+<<<<<<< HEAD
         <option name="DEBUG_PORT" value="50503" />
+=======
+        <option name="DEBUG_PORT" value="50417" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -152,6 +219,18 @@
         </option>
       </method>
     </configuration>
+<<<<<<< HEAD
+=======
+    <list>
+      <item itemvalue="JavaScript Debug.owner.jsp" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.97" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.owner.jsp" />
+      </list>
+    </recent_temporary>
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -164,16 +243,74 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
       <created>1739928628731</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1739928628731</updated>
       <workItem from="1739928630184" duration="8076000" />
+=======
+      <changelist id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="" />
+      <created>1739929722994</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739929722994</updated>
+      <workItem from="1739929726230" duration="12707000" />
+      <workItem from="1739954051977" duration="7697000" />
+      <workItem from="1740060015767" duration="7728000" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java</url>
+          <line>68</line>
+          <properties class="com.example.duanthuenha.Service.Profile.ProfileImpl" method="addVerification">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/UserToHostServlet.java</url>
+          <line>34</line>
+          <properties class="com.example.duanthuenha.Controller.UserToHostServlet" method="doGet">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/UserToHostServlet.java</url>
+          <line>20</line>
+          <properties class="com.example.duanthuenha.Controller.UserToHostServlet" method="doPost">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
 </project>

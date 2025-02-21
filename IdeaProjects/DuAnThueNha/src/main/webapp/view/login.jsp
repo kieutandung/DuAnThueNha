@@ -35,6 +35,7 @@
                                     <label class="form-label" for="typePasswordX">Mật khẩu</label>
                                 </div>
 
+
                                 <p class="small mb-3 pb-lg-2 text-start"><a class="text-primary ms-2" href="/forgotPasswordServlet">Quên mật khẩu?</a></p>
 
                                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" type="submit">Đăng nhập</button>
