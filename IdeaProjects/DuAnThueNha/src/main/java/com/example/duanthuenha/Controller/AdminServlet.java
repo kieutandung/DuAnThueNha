@@ -131,6 +131,7 @@ public class AdminServlet extends HttpServlet {
 
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }

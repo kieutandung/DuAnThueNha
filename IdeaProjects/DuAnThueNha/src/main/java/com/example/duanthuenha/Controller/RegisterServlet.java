@@ -92,9 +92,6 @@ public class RegisterServlet extends HttpServlet {
                 case "login":
                     loginView(req, resp);
                     break;
-                case "register":
-                    registerView(req, resp);
-                    break;
                 default:
                     registerView(req, resp);
                     break;
