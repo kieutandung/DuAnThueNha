@@ -1,6 +1,4 @@
-function changeStatus(id) {
-    alert("Trạng thái của người dùng với ID " + id + " đã được thay đổi!");
-}
+
 
 function deleteUser(id) {
     if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {

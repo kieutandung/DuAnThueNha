@@ -47,7 +47,7 @@
                 <td>${user.role}</td>
                 <td>${user.status}</td>
                 <td>
-                    <button class="button change" onclick="changeStatus(${user.idUser})">Edit</button>
+                    <a href="adminServlet?action=editUser&idUser=${user.idUser}" class="button edit">Edit</a>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">Delete</button>
                 </td>
             </tr>

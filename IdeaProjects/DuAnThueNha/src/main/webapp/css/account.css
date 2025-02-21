@@ -87,6 +87,9 @@ img {
 .button.add {
     background-color: #4CAF50; /* Màu nền cho nút thêm */
 }
+.button.edit {
+    background-color: #4CAF50;
+}
 
 /* Nút sắp xếp */
 .button.sort {
@@ -102,7 +105,7 @@ img {
     background-color: #005f73; /* Màu nền khi hover cho nút thay đổi */
 }
 
-/* Nút xóa */
+
 .button.delete {
     background-color: #f44336; /* Màu nền cho nút xóa */
 }

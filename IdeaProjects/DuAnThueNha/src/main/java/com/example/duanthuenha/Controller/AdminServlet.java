@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(value = "/adminServlet")
@@ -38,6 +41,9 @@ public class AdminServlet extends HttpServlet {
                 case "sort":
                     sortUsersByName(req, resp);
                     break;
+                case "editUser":
+                    handleEditUserView(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -52,7 +58,7 @@ public class AdminServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        handleAddUser(req, resp);
+
         String action = req.getParameter("action");
         System.out.println(action);
         if (action == null) {
@@ -62,12 +68,19 @@ public class AdminServlet extends HttpServlet {
         try {
             switch (action) {
                 case "addUser":
-                    handleAddUser(req,resp);
+                    handleAddUser(req, resp);
+                    break;
+                case "editUser":
+                    handleEditUser(req, resp);
+                    break;
+                case "delete":
+                    deleteUser(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
             }
-        }catch (ServletException e) {
+        } catch (ServletException e) {
             throw new RuntimeException(e);
         }
     }
@@ -88,14 +101,30 @@ public class AdminServlet extends HttpServlet {
         req.setAttribute("role", role);
 
         listAccountService.addUser(username, password, fullName, phone, email, role);
-
+        listAccountView(req, resp);
 
     }
+
+    public void handleEditUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String fullName = req.getParameter("fullName");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String role = req.getParameter("role");
+        String status = req.getParameter("status");
+        int idUser = Integer.parseInt(req.getParameter("idUser"));
+        listAccountService.updateUser(username,password, fullName, phone, email,  role, status,idUser);
+       listAccountView(req, resp);
+    }
+
+
 
     private void addUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.setAttribute("isSorted", false);
@@ -119,6 +148,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void sortUsersByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Boolean isSorted = (Boolean) session.getAttribute("isSorted");
@@ -135,5 +165,12 @@ public class AdminServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void handleEditUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("idUser")); // Get the user ID to edit
+        Users user = listAccountService.getUserById(id); // Fetch user details from the service
+        req.setAttribute("user", user); // Set user details to request attribute
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
+        dispatcher.forward(req, resp);
+    }
 
 }
