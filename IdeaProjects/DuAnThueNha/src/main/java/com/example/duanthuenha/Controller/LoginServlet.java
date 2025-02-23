@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
                 if (role.equalsIgnoreCase("admin")) {
-                    resp.sendRedirect("/home_admin_product");
+                    resp.sendRedirect("adminServlet");
                 } else if (role.equalsIgnoreCase("user")) {
                     resp.sendRedirect("/profileServlet");
                 }

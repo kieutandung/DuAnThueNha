@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <list default="true" id="17eb5606-ec2a-4a72-9520-646c2347db48" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/editAccount.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/editAccount.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/AdminServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/AdminServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/account.js" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/account.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qodana.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
+    </list>
+=======
     <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
+=======
+    <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
+=======
+    <list default="true" id="ea52d940-6e2f-4fb3-96a1-b536a0749f5f" name="Changes" comment="" />
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
     <list default="true" id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/UserToHostServlet.java" afterDir="false" />
@@ -21,15 +41,29 @@
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" afterDir="false" />
     </list>
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+=======
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/IdeaProjects/DuAnThueNha">
       <ProjectState />
     </projectState>
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
   </component>
 <<<<<<< HEAD
 =======
@@ -56,14 +90,29 @@
   <component name="ProjectColorInfo">{
 <<<<<<< HEAD
   &quot;customColor&quot;: &quot;&quot;,
+<<<<<<< HEAD
+  &quot;associatedIndex&quot;: -1
+}</component>
+  <component name="ProjectId" id="2tJ5OdvkfUOc3tZh3cP0ZU1qQW6" />
+=======
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2tEsa1taM4OavUeje8tt2TVWGZc" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
+=======
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2tEunJuESvN27i4QOZMjJoBDURc" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -71,6 +120,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/admin/edit__account&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.972">
+    <configuration name="Tomcat 9.0.972" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build DuAnThueNha.executor": "Run",
@@ -115,6 +183,7 @@
     </configuration>
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Gradle : com.example : DuAnThueNha-1.0-SNAPSHOT.war">
@@ -125,10 +194,24 @@
       </deployment>
       <server-settings>
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <option name="BASE_DIRECTORY_NAME" value="64977f57-5aff-4de5-a521-37c1d246bc7f" />
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
+=======
         <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
 =======
         <option name="BASE_DIRECTORY_NAME" value="9f3ccb8a-f8e3-4195-99bf-99b67f086f7f" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9d026b9b-1ad1-4da6-b4f0-05b427c660e1" />
+=======
+        <option name="BASE_DIRECTORY_NAME" value="9f3ccb8a-f8e3-4195-99bf-99b67f086f7f" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -137,10 +220,24 @@
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <option name="DEBUG_PORT" value="52818" />
+=======
+        <option name="DEBUG_PORT" value="50503" />
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
+=======
         <option name="DEBUG_PORT" value="50503" />
 =======
         <option name="DEBUG_PORT" value="50417" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+        <option name="DEBUG_PORT" value="50503" />
+=======
+        <option name="DEBUG_PORT" value="50417" />
+>>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -201,16 +298,6 @@
           <option name="VM_PARAMETERS" value="" />
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcUsernameDB" />
-          <option name="VALUE" value="root" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcPasswordDB" />
-          <option name="VALUE" value="123456" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -220,6 +307,71 @@
       </method>
     </configuration>
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <configuration name="editAccount.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/view/editAccount.jsp" />
+      <deployment>
+        <artifact name="Gradle : com.example : DuAnThueNha-1.0-SNAPSHOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/Gradle___com_example___DuAnThueNha_1_0_SNAPSHOT_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="ee385d33-00a0-42ca-bfe2-4b9aca79f867" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Gradle : com.example : DuAnThueNha-1.0-SNAPSHOT.war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.Tomcat 9.0.972" />
+      <item itemvalue="Tomcat Server.editAccount.jsp" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Tomcat Server.editAccount.jsp" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="17eb5606-ec2a-4a72-9520-646c2347db48" name="Changes" comment="" />
+      <created>1740057312633</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740057312633</updated>
+      <workItem from="1740057316761" duration="11044000" />
+      <workItem from="1740100971682" duration="1979000" />
+=======
+=======
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
     <list>
       <item itemvalue="JavaScript Debug.owner.jsp" />
@@ -231,6 +383,10 @@
       </list>
     </recent_temporary>
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -250,6 +406,12 @@
       <option name="presentableId" value="Default" />
       <updated>1739928628731</updated>
       <workItem from="1739928630184" duration="8076000" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
+=======
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
 =======
       <changelist id="c6d13802-8ab4-42fb-af1a-47cc43833ac3" name="Changes" comment="" />
       <created>1739929722994</created>
@@ -260,6 +422,10 @@
       <workItem from="1739954051977" duration="7697000" />
       <workItem from="1740060015767" duration="7728000" />
 >>>>>>> 242c3d3a67d8cb82d1a87f731a2c5fa6b85f4fcd
+<<<<<<< HEAD
+>>>>>>> 91202fc7c72478e95f5583d00159994ba243434c
+=======
+>>>>>>> 5da89f13cb4f0f3532daa8237879750a915f24fa
     </task>
     <servers />
   </component>

@@ -5,5 +5,5 @@ public interface RegisterService {
     boolean checkEmail(String email);
     boolean checkUsername(String username);
 
-    boolean registerUser(String userName, String password, String fullName, String phone, String email);
+    boolean registerUser(String username, String password, String fullName, String phone, String email);
 }
