@@ -37,7 +37,6 @@ th {
 img {
     width: 50px; /* Kích thước ảnh */
     height: 50px; /* Kích thước ảnh */
-    border-radius: 50%; /* Tạo hình tròn cho ảnh */
 }
 
 .button {
@@ -46,7 +45,6 @@ img {
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
     border: none;
@@ -88,7 +86,7 @@ img {
     background-color: #4CAF50; /* Màu nền cho nút thêm */
 }
 .button.edit {
-    background-color: #4CAF50;
+    background-color: #ffffff;
 }
 
 /* Nút sắp xếp */
@@ -107,17 +105,19 @@ img {
 
 
 .button.delete {
-    background-color: #f44336; /* Màu nền cho nút xóa */
+    background-color: #ffffff; /* Màu nền cho nút xóa */
 }
 
-.button.delete:hover {
-    background-color: #d32f2f; /* Màu nền khi hover cho nút xóa */
-}
-
-/* Nút tìm kiếm */
 .button.search {
     background-color: #06C12C; /* Màu nền cho nút tìm kiếm */
 }
 .button.search:hover {
     background-color: #05AD27; /* Màu nền khi hover cho nút tìm kiếm */
 }
+.edit-icon {
+    width: 20px; /* Kích thước ảnh */
+    height: 20px; /* Kích thước ảnh */
+    border-radius: 0; /* Bỏ bo góc */
+}
+
+
