@@ -52,8 +52,6 @@
             <h2 style="text-align: center; color: white; font-size: 24px; font-weight: bold;">
                 We Bare Bears.vn xứng đáng với lựa chọn của bạn
             </h2>
-
-
             <!-- Search Bar -->
             <div class="search-bar mt-4 p-3 bg-white shadow-sm rounded w-75 mx-auto">
                 <form class="row g-2">
@@ -77,9 +75,7 @@
                         </button>
                     </div>
                 </form>
-
             </div>
-
             <!-- Property Categories -->
             <div class="property-types mt-4">
                 <div class="row justify-content-center">
@@ -274,10 +270,8 @@
     </section>
 </footer>
 <!-- Footer -->
-
 <!-- JS -->
 <script type="module" src="assets/js/home.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
-
 </body>
 </html>
