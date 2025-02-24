@@ -19,7 +19,7 @@ public class ProductImpl implements ProductService {
             ps.setInt(1, product.getIdUser());
             ps.setString(2, product.getNameProduct());
             ps.setString(3, product.getProductDescription());
-            ps.setBigDecimal(4, product.getPrice()); // Sử dụng setBigDecimal cho giá trị DECIMAL
+            ps.setBigDecimal(4, product.getPrice());
             ps.setString(5, product.getAddress());
             ps.setString(6, product.getStatus());
             ps.executeUpdate();
