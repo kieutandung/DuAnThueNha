@@ -10,6 +10,15 @@ public class Users {
     private String role;
     private String status;
 
+    public Users(String username, String password, String fullName, String phone, String email, String role) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

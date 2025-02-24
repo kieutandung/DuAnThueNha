@@ -6,7 +6,4 @@
     <welcome-file-list>
         <welcome-file>loginServlet</welcome-file>
     </welcome-file-list>
-<!--    <welcome-file-list>-->
-<!--        <welcome-file>view/header.jsp</welcome-file>-->
-<!--    </welcome-file-list>-->
 </web-app>

@@ -29,21 +29,21 @@ body {
     float: left;
     transition: .5s ease-in-out;
     cursor: pointer;
+}
 
-    & span {
-        position: absolute;
-        height: 5px;
-        width: 100%;
-        vertical-align: middle;
-        margin: 20px 0 0 15px;
-        background: white;
-        border-radius: 8px;
-        opacity: 1;
-        left: 0;
-        transform: rotate(0deg);
-        transition: .25s ease-in-out;
-        padding: 0px;
-    }
+#hambmenu span {
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    vertical-align: middle;
+    margin: 20px 0 0 15px;
+    background: white;
+    border-radius: 8px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    padding: 0px;
 }
 
 .hambclicker {
@@ -61,7 +61,8 @@ body {
     top: 0px;
 }
 
-#hambmenu span:nth-child(2), #hambmenu span:nth-child(3) {
+#hambmenu span:nth-child(2),
+#hambmenu span:nth-child(3) {
     top: 10px;
 }
 
@@ -122,6 +123,17 @@ body {
     border-bottom: none;
 }
 
+/* Link styling */
+#menu a {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Default link color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+#menu a:hover {
+    color: rgba(37, 117, 252, 1); /* Change color on hover */
+}
+
 /* Logout styling */
 .logout-item {
     margin-top: auto; /* Push logout to the bottom */
@@ -141,4 +153,3 @@ body {
 #menu.isopen {
     transform: none;
 }
-

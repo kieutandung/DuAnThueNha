@@ -1,5 +1,4 @@
 
-
 function deleteUser(id) {
     if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
         const xhr = new XMLHttpRequest();
