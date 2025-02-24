@@ -16,11 +16,11 @@
                         <div class="mb-md-3 mt-md-4 pb-3">
                             <h2 class="fw-bold mb-2 text-uppercase">Đăng nhập</h2>
                             <p class="text-muted mb-5">Vui lòng nhập tên đăng nhập hoặc mật khẩu</p>
-                            <div class="alert alert-danger" role="alert"
+                            <div id="alertDiv" class="alert alert-danger" role="alert"
                                  style="display: ${not empty errorMessage ? 'block' : 'none'};">
                                 ${errorMessage}
                             </div>
-                            <div class="alert alert-success" role="alert"
+                            <div id="alertDivSuc" class="alert alert-success" role="alert"
                                  style="display: ${not empty successMessage ? 'block' : 'none'};">
                                 ${successMessage}
                             </div>
@@ -57,6 +57,23 @@
         </div>
     </div>
 </section>
+<script>
+    // Kiểm tra nếu alert đang hiển thị (display != none)
+    var alertDiv = document.getElementById("alertDiv");
+    if (alertDiv && alertDiv.style.display !== "none") {
+        setTimeout(function() {
+            alertDiv.style.display = "none";
+        }, 3000);
+    }
+    var alertDivSuc = document.getElementById("alertDivSuc");
+    if (alertDivSuc && alertDivSuc.style.display !== "none") {
+        setTimeout(function() {
+            alertDivSuc.style.display = "none";
+        }, 3000);
+    }
+
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>

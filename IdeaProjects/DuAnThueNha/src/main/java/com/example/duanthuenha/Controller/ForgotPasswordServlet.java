@@ -24,7 +24,7 @@ public class ForgotPasswordServlet extends HttpServlet {
     public void handleForgotPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String phone = req.getParameter("phone");
         if (!registerImpl.checkPhone(phone)) {
-            req.setAttribute("errorMessage", "Không tìm thấy số điện thoại của bạn, vui lòng thử lại");
+            req.setAttribute("errorMessage", "Không tìm thấy số điện thoại của bạn, vui lòng thử lại!");
             req.getRequestDispatcher("view/forgotPassword.jsp").forward(req, resp);
             return;
         }

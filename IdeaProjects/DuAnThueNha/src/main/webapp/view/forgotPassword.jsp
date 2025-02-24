@@ -21,11 +21,11 @@
 
                             <h2 class="fw-bold mb-2 text-uppercase">Quên mật khẩu</h2>
                             <p class="text-muted mb-5">Vui lòng nhập số điện thoại của bạn để khôi phục tài khoản</p>
-                            <div class="alert alert-success" role="alert"
+                            <div  class="alert alert-success" role="alert"
                                  style="display: ${not empty successMessage ? 'block' : 'none'};">
                                 ${successMessage}
                             </div>
-                            <div class="alert alert-danger" role="alert"
+                            <div id="alertDiv"  class="alert alert-danger" role="alert"
                                  style="display: ${not empty errorMessage ? 'block' : 'none'};">
                                 ${errorMessage}
                             </div>
@@ -39,11 +39,11 @@
 
                                 <c:if test="${reset}">
                                     <div data-mdb-input-init class="form-outline mb-3">
-                                        <input type="password" required id="newPassword" class="form-control form-control-lg" name="newPassword" />
+                                        <input type="password" required pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$" title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự" id="newPassword" class="form-control form-control-lg" name="newPassword" />
                                         <label class="form-label" for="newPassword">Mật khẩu mới</label>
                                     </div>
                                     <div data-mdb-input-init class="form-outline mb-3">
-                                        <input type="password" required id="confirmPassword" class="form-control form-control-lg" name="confirmPassword" />
+                                        <input type="password"  required pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$" title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự" id="confirmPassword" class="form-control form-control-lg" name="confirmPassword" />
                                         <label class="form-label" for="confirmPassword">Xác nhận mật khẩu</label>
                                     </div>
                                 </c:if>
@@ -54,7 +54,7 @@
                                             Đổi mật khẩu
                                         </c:when>
                                         <c:otherwise>
-                                            Xác nhận
+                                            Tiếp tục
                                         </c:otherwise>
                                     </c:choose>
                                 </button>
@@ -76,6 +76,15 @@
         </div>
     </div>
 </section>
+<script>
+    // Kiểm tra nếu alert đang hiển thị (display != none)
+    var alertDiv = document.getElementById("alertDiv");
+    if (alertDiv && alertDiv.style.display !== "none") {
+        setTimeout(function() {
+            alertDiv.style.display = "none";
+        }, 3000);
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>
