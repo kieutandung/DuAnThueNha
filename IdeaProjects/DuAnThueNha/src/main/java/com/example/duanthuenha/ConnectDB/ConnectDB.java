@@ -11,8 +11,10 @@ public class ConnectDB {
     private String username = "root";
     private String password = "13122005";
 
+
 //    private String username = System.getenv("jdbcUsernameDB");
 //    private String password = System.getenv("jdbcPasswordDB");
+
 
     public Connection getConnection() {
         Connection connection = null;

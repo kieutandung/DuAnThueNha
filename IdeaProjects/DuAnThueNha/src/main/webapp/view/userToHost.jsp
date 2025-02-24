@@ -20,7 +20,12 @@
         <div class="col-md-4 border-right">
             <div class="p-3 py-5">
                 <h4 class="text-center mb-4">Đăng ký làm chủ nhà</h4>
+
                 <form action="userToHostServlet" method="post">
+                    <!-- Khối để hiển thị ảnh preview -->
+                    <div class="mt-4 py-4 text-center" id="previewContainer" style="display: none;">
+                        <img id="previewImage" src="" alt="Ảnh xem trước" style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
+                    </div>
                     <!-- 1. Lựa chọn loại tài liệu -->
                     <div class="mb-3">
                         <label for="documentType" class="form-label">Loại tài liệu:</label>
@@ -41,15 +46,16 @@
                                placeholder="Nhập số tài liệu" required>
                     </div>
 
+
                     <!-- 3. Chọn ảnh tài liệu -->
                     <div class="mb-3">
                         <label for="image" class="form-label">Chọn ảnh tài liệu:</label>
-                        <input type="file" id="image" name="image" class="form-control" accept="image/*">
+                        <input type="file" required id="image" name="image" class="form-control" accept="image/*">
                     </div>
 
                     <!-- Nút hành động -->
                     <div class="mt-4 py-4 text-center">
-                        <button type="submit" class="btn btn-success">Xác Nhận</button>
+                        <button type="submit" class="btn btn-success">Đăng ký</button>
                     </div>
                 </form>
             </div>
@@ -57,7 +63,7 @@
         <div class="col-md-8">
             <div class="p-3 py-5">
                 <h4 class="text-center mb-4">Toàn bộ giấy tờ của bạn</h4>
-                <div class="scrollable-container" style="max-height: 500px; overflow-y: auto;">
+                <div class="scrollable-container" style="max-height: 600px; overflow-y: auto;">
                     <c:forEach var="o" items="${allUserDocumentNumber}">
                         <div class="p-3 py-3 border-bottom">
                             <div class="info-item d-flex align-items-center justify-content-between">
@@ -65,11 +71,6 @@
                                     <b>${o.documentType}:</b> ${o.documentNumber} &nbsp; <span>${o.status}</span>
                                 </div>
                                 <div>
-<%--                                    <!-- Nút Sửa -->--%>
-<%--                                    <a href="/userToHostServlet?action=edit"  class="btn btn-warning btn-sm me-2">--%>
-<%--                                        <i class="fas fa-edit"></i> Sửa--%>
-<%--                                    </a>--%>
-
                                     <a href="/userToHostServlet?action=" class="btn btn-info btn-sm">
                                         <i class="fas fa-edit"></i> Xem chi tiết
                                     </a>
@@ -88,6 +89,20 @@
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
+<script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        var file = this.files[0];
+        if (file) {
+            // Tạo URL tạm cho file
+            var imageUrl = URL.createObjectURL(file);
+            // Gán URL cho thẻ img preview
+            var previewImage = document.getElementById('previewImage');
+            previewImage.src = imageUrl;
+            // Hiển thị container chứa preview
+            document.getElementById('previewContainer').style.display = 'block';
+        }
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>

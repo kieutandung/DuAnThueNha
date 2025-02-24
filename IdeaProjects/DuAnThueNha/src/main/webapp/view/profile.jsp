@@ -37,6 +37,11 @@
             align-items: center;
             margin-bottom: 20px;
         }
+        .required::after {
+            content: " *";
+            color: red;
+            font-weight: bold;
+        }
 
         .profile-pic {
             width: 80px;
@@ -142,7 +147,7 @@
             <c:choose>
                 <c:when test="${not empty user}">
                     <!-- Ảnh đại diện -->
-                    <img id="preview" src="img/${user.image}" alt="Ảnh đại diện" class="profile-pic">
+                    <img id="preview" src="img/${user.image}" alt="ảnh người dùng" class="profile-pic" onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
                     <div>
                         <h1>Thông tin tài khoản</h1>
                         <h2>
@@ -164,10 +169,13 @@
                     <div class="info-item"><b>Điện thoại:</b> ${user.phone}</div>
                     <div class="info-item"><b>Email:</b> ${user.email}</div>
                 </div>
-                    <%--            <!-- Cột bên phải: thêm 3 hàng thông tin nữa -->--%>
-                    <%--            <div class="col-md-6">--%>
-                    <%--                <div class="info-item"><b>chủ nhà</b> </div>--%>
-                    <%--            </div>--%>
+                <!-- Cột bên phải: thêm 3 hàng thông tin nữa -->
+                <div class="col-md-6">
+                    <div class="info-item"><b>Ngày sinh:</b> ${not empty user.birthDate ? user.birthDate : "Chưa cập nhật"}</div>
+                    <div class="info-item"><b>Địa chỉ:</b> ${not empty user.address ? user.address : "Chưa cập nhật"}</div>
+                    <div class="info-item"><b>Giới tính:</b> ${not empty user.gender ? user.gender : "Chưa cập nhật"}</div>
+                </div>
+
             </div>
         </c:if>
 
@@ -175,7 +183,7 @@
         <!-- 2 nút nằm ngang: "Chỉnh sửa" & "Đăng ký" -->
         <div class="button-row">
             <button id="editBtn" type="button" onclick="toggleEditForm()">Chỉnh sửa</button>
-            <button id="registerBtn" type="button" onclick="window.location.href='userToHostServlet'">Kênh kinh doanh
+            <button id="registerBtn" class="btn btn-success" type="button" onclick="window.location.href='userToHostServlet'">Đăng kí làm chủ nhà
             </button>
         </div>
 
@@ -184,7 +192,7 @@
             <!-- Modal xác nhận (Bootstrap) -->
             <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
                  aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <!-- Header -->
                         <div class="modal-header">
@@ -206,32 +214,72 @@
 
             <h3>Chỉnh sửa thông tin</h3>
 
-            <label for="image">Avatar:</label>
-            <input type="file" id="image" accept="image/*" name="image" value="img/${user.image}">
-            <input type="text" name="imageBox" value="${user.image}" style="display: none">
+            <div class="text-center">
+                <!-- Avatar -->
+                <label for="image">Ảnh đại diện:</label>
 
-            <label for="fullName">Họ và Tên:</label>
+                <!-- Ẩn file input mặc định -->
+                <input type="file" id="image" name="image" accept="image/*" style="display: none;">
+
+                <!-- Ô hiển thị ảnh (preview) -->
+                <div style="margin-top: 10px;">
+                    <img id="imagePreview" src="img/${user.image != '' ? user.image : 'defaultImg-removebg-preview.png'}" alt="Ảnh đại diện" style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
+                </div>
+
+                <button type="button" class="btn btn-primary mt-2" onclick="document.getElementById('image').click();">
+                    Chọn ảnh
+                </button>
+            </div>
+
+            <!-- Họ và Tên -->
+            <label for="fullName" class="required" >Họ và Tên:</label>
             <input type="text" id="fullName" name="fullName" value="${user.fullName}" required
                    pattern="^[A-ZÀ-Ỹ][a-zà-ỹ]+(?: [A-ZÀ-Ỹ][a-zà-ỹ]+)*$"
                    title="Tên phải viết hoa chữ cái đầu, không chứa số hoặc ký tự đặc biệt ">
 
-            <label for="phone">Điện thoại:</label>
+            <!-- Điện thoại -->
+            <label for="phone" class="required" >Điện thoại:</label>
             <input type="text" id="phone" name="phone" value="${user.phone}" required pattern="^(?:\+84|0)\d{9}$"
                    title="Gồm 10 số">
 
-            <label for="email">Email:</label>
+            <!-- Email -->
+            <label for="email" class="required" >Email:</label>
             <input type="email" id="email" name="email" value="${user.email}" required>
 
-            <label for="password">Password:</label>
+
+            <label for="birthDate">Ngày sinh:</label>
+            <input type="date" id="birthDate" name="birthDate"
+                   value="${user.birthDate}"
+                   placeholder="dd/mm/yyyy"
+                   pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
+                   title="Vui lòng nhập ngày sinh theo định dạng dd/mm/yyyy">
+
+            <!-- Địa chỉ -->
+            <label for="address">Địa chỉ:</label>
+            <input type="text" id="address" name="address" value="${user.address}" placeholder="Nhập địa chỉ của bạn">
+
+            <!-- Giới tính -->
+            <label for="gender">Giới tính:</label>
+            <select id="gender" name="gender">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="male" ${user.gender eq 'male' ? 'selected' : ''}>Nam</option>
+                <option value="female" ${user.gender eq 'female' ? 'selected' : ''}>Nữ</option>
+                <option value="other" ${user.gender eq 'other' ? 'selected' : ''}>Khác</option>
+            </select>
+
+            <!-- Password -->
+            <label for="password" class="required">Mật khẩu:</label>
             <input type="password" id="password" name="password" value="${user.password}" required
                    pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$"
                    title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự">
+
+
 
             <div class="form-actions">
                 <!-- Nút Lưu kích hoạt modal xác nhận -->
                 <button type="button" class="btn btn-primary" id="saveTriggerButton" data-bs-target="#confirmModal">Lưu
                 </button>
-                <button type="button" onclick="toggleEditForm()">Hủy</button>
+                <button type="button" class="btn btn-danger" onclick="toggleEditForm()">Hủy</button>
             </div>
         </form>
 
@@ -319,14 +367,19 @@
 <%--</script>--%>
 
 <!-- Script cho nút Xác nhận trong Modal (chỉ dành cho form edit) -->
+
 <script>
+    document.getElementById('image').addEventListener('change', function(event) {
+        const file = this.files[0];
+        if (file) {
+            const preview = document.getElementById('imagePreview');
+            preview.src = URL.createObjectURL(file);
+        }
+    });
     document.getElementById("confirmButton").addEventListener("click", function () {
         // Submit form "editForm" khi người dùng xác nhận
         document.getElementById("editForm").submit();
     });
-</script>
-
-<script>
     document.addEventListener("DOMContentLoaded", function () {
         const editForm = document.getElementById("editForm");
         const saveTriggerButton = document.getElementById("saveTriggerButton");
@@ -345,7 +398,6 @@
         });
     });
 </script>
-
 
 <!-- Bootstrap JS Bundle (bao gồm Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

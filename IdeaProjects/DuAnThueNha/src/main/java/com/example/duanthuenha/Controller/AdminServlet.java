@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(value = "/adminServlet")
@@ -93,16 +90,16 @@ public class AdminServlet extends HttpServlet {
         String email = req.getParameter("email");
         String role = req.getParameter("role");
 
-        req.setAttribute("username", username);
-        req.setAttribute("password", password);
-        req.setAttribute("fullName", fullName);
-        req.setAttribute("phone", phone);
-        req.setAttribute("email", email);
-        req.setAttribute("role", role);
-
         listAccountService.addUser(username, password, fullName, phone, email, role);
-        listAccountView(req, resp);
 
+        List<Users> users = listAccountService.getAllUser();
+
+        Users newUser = new Users(username, password, fullName, phone, email, role);
+        users.add(0, newUser);
+
+        req.setAttribute("users", users);
+
+        listAccountView(req, resp);
     }
 
     public void handleEditUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

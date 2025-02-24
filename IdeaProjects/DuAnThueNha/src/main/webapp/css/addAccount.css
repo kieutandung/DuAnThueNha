@@ -1,36 +1,38 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-}
 
-.container {
-    max-width: 600px;
-    margin: 50px auto 0;
+/*.container {*/
+/*    max-width: 600px;*/
+/*    margin: 50px auto 0;*/
+/*    padding: 20px;*/
+/*    width: 100%; !* Đảm bảo khung chiếm 100% chiều rộng của màn hình nhỏ *!*/
+/*    background: white;*/
+/*    border-radius: 8px;*/
+/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+/*}*/
 
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Đảm bảo khung chiếm 100% chiều rộng của màn hình nhỏ */
-}
-
-h2 {
+.table-modal-add h2 {
     text-align: center;
     color: #333;
 }
 
-table {
+.table-modal-add {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse; /* Xóa khoảng cách giữa các ô */
 }
 
-td {
+.table-modal-add td {
     padding: 10px;
 }
+.username,
+.fullName,
+.phone {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
@@ -83,7 +85,8 @@ input[type="submit"]:hover {
         padding: 8px; /* Giảm padding cho nút gửi */
     }
 }
-.button {
+
+.table-modal-add.button {
     display: inline-block; /* Để thẻ a giống như nút */
     background-color: #5cb85c;
     color: white;
@@ -96,7 +99,7 @@ input[type="submit"]:hover {
     transition: background-color 0.3s;
 }
 
-.button:hover {
+.table-modal-add.button:hover {
     background-color: #4cae4c; /* Màu khi hover */
 }
 

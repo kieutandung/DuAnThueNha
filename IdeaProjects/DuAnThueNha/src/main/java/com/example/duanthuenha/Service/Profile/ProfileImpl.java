@@ -32,7 +32,19 @@ public class ProfileImpl implements ProfileService {
                         String phone = rs.getString("phone");
                         String email = rs.getString("email");
                         String image = rs.getString("image");
-                        users = new Users(idUser, username, password, fullName, phone, email, image);
+                        String birthDate = rs.getString("birthDate");
+                        String address = rs.getString("address");
+                        String gender = rs.getString("gender");
+                        if (gender != null && gender.equals("male")) {
+                            gender = "Nam";
+                        }
+                        if (gender != null && gender.equals("female")) {
+                            gender = "Nữ";
+                        }
+                        if (gender != null && gender.equals("other")) {
+                            gender = "Khác";
+                        }
+                        users = new Users(idUser, username, password, fullName, phone, email, image, birthDate, address, gender);
                         return users;
                     }
                 }
@@ -48,15 +60,18 @@ public class ProfileImpl implements ProfileService {
 
     @Override
     public void UpdateInformation(Users users) {
-        String query = "UPDATE users SET fullName = ?, phone = ?, email = ?, image = ? ,password = ? WHERE idUser = ?";
+        String query = "UPDATE users SET fullName = ?, phone = ?, email = ?, birthDate = ?, address = ? , gender = ? ,image = ? ,password = ? WHERE idUser = ?";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, users.getFullName());
             stmt.setString(2, users.getPhone());
             stmt.setString(3, users.getEmail());
-            stmt.setString(4, users.getImage());
-            stmt.setString(5, users.getPassword());
-            stmt.setInt(6, users.getIdUser());
+            stmt.setString(4, users.getBirthDate());
+            stmt.setString(5, users.getAddress());
+            stmt.setString(6, users.getGender());
+            stmt.setString(7, users.getImage());
+            stmt.setString(8, users.getPassword());
+            stmt.setInt(9, users.getIdUser());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
