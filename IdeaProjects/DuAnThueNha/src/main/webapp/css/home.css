@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: left;
+}
+h2 span {
+    color: blue;
+    font-style: italic;
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.item {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: end;
+    padding: 10px;
+    height: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.item.large {
+    grid-column: span 1;
+    height: 200px;
+}
+.item.tall {
+    grid-row: span 2;
+    height: 410px;
+}
+footer {
+    margin-top: 90px;
+    background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+footer .container {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+
+
+.hero {
+    background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Search Bar */
+.search-bar {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px;
+
+}
+
+/* Property Categories */
+.property-types i {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.property-types p {
+    font-weight: 500;
+    color: white;
+    margin-top: 5px;
+}
+
+.rental-card {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rental-image {
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding-bottom: 50%;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: blue;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.buy-now {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: lightblue;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.rental-info {
+    width: 50%;
+    padding: 15px;
+}
+
+.rental-info h5 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.rental-info p {
+    margin: 5px 0;
+}
+
+
