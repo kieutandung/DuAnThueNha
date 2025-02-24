@@ -31,9 +31,8 @@ public class LoginImpl implements LoginService {
             if (resultSet.next()) {
                 String role = resultSet.getString("role");
                 String status = resultSet.getString("status");
-                String name = resultSet.getString("fullName");
                 String id = resultSet.getString("idUser");
-                return new String[]{role, status, name, id};
+                return new String[]{role, status, id};
             } else {
                 return null;
             }

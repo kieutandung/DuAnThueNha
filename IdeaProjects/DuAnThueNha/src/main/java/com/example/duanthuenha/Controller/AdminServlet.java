@@ -1,7 +1,6 @@
 package com.example.duanthuenha.Controller;
 
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
-import com.example.duanthuenha.Service.Admin.ListAccountService;
 import com.example.duanthuenha.Model.Users;
 
 import javax.servlet.RequestDispatcher;
@@ -16,7 +15,7 @@ import java.util.List;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
-    private ListAccountService listAccountService = new ListAccountImpl();
+    private ListAccountImpl listAccountService = new ListAccountImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,8 +32,14 @@ public class AdminServlet extends HttpServlet {
                 case "search":
                     searchUsers(req, resp);
                     break;
+                case "addUser":
+                    addUserView(req, resp);
+                    break;
                 case "sort":
                     sortUsersByName(req, resp);
+                    break;
+                case "editUser":
+                    handleEditUserView(req, resp);
                     break;
                 default:
                     listAccountView(req, resp);
@@ -47,14 +52,83 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+        String action = req.getParameter("action");
+        System.out.println(action);
+        if (action == null) {
+            action = "";
+        }
+
+        try {
+            switch (action) {
+                case "addUser":
+                    handleAddUser(req, resp);
+                    break;
+                case "editUser":
+                    handleEditUser(req, resp);
+                    break;
+                case "delete":
+                    deleteUser(req, resp);
+                    break;
+                default:
+                    listAccountView(req, resp);
+                    break;
+            }
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    public void handleAddUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String fullName = req.getParameter("fullName");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String role = req.getParameter("role");
+
+        listAccountService.addUser(username, password, fullName, phone, email, role);
+
+        List<Users> users = listAccountService.getAllUser();
+
+        Users newUser = new Users(username, password, fullName, phone, email, role);
+        users.add(0, newUser);
+
+        req.setAttribute("users", users);
+
+        listAccountView(req, resp);
+    }
+
+    public void handleEditUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        String fullName = req.getParameter("fullName");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String role = req.getParameter("role");
+        String status = req.getParameter("status");
+        int idUser = Integer.parseInt(req.getParameter("idUser"));
+        listAccountService.updateUser(username,password, fullName, phone, email,  role, status,idUser);
+       listAccountView(req, resp);
+    }
+
+
+
+    private void addUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
+        dispatcher.forward(req, resp);
+    }
+
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.setAttribute("isSorted", false);
 
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
@@ -72,6 +146,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void sortUsersByName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         Boolean isSorted = (Boolean) session.getAttribute("isSorted");
@@ -88,5 +163,12 @@ public class AdminServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void handleEditUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("idUser")); // Get the user ID to edit
+        Users user = listAccountService.getUserById(id); // Fetch user details from the service
+        req.setAttribute("user", user); // Set user details to request attribute
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
+        dispatcher.forward(req, resp);
+    }
 
 }

@@ -2,22 +2,108 @@ package com.example.duanthuenha.Model;
 
 public class Users {
     private int idUser;
-    private String userName;
+    private String username;
     private String password;
     private String fullName;
     private String phone;
     private String email;
     private String role;
     private String status;
-    private String image;
+    private String birthDate;
+    private String address;
 
-    public Users() {
-
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public Users(int idUser, String userName, String password, String fullName, String phone, String email, String role, String status, String image) {
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String gender;
+
+    public Users(String username, String password, String fullName, String phone, String email, String role) {
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    public String getDocumentNumber() {
+        return documentNumber;
+    }
+
+    public void setDocumentNumber(String documentNumber) {
+        this.documentNumber = documentNumber;
+    }
+
+    public String getDocumentImage() {
+        return documentImage;
+    }
+
+    public void setDocumentImage(String documentImage) {
+        this.documentImage = documentImage;
+    }
+
+    private String image;
+    private String documentType;
+    private String documentNumber;
+    private String documentImage;
+
+
+    public Users(int idUser, String documentType, String documentNumber, String status) {
         this.idUser = idUser;
-        this.userName = userName;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.status = status;
+    }
+
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.image = image;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.gender = gender;
+    }
+
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image) {
+        this.idUser = idUser;
+        this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.phone = phone;
@@ -27,13 +113,7 @@ public class Users {
         this.image = image;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public int getIdUser() {
         return idUser;
@@ -43,12 +123,12 @@ public class Users {
         this.idUser = idUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -86,7 +166,6 @@ public class Users {
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -99,17 +178,26 @@ public class Users {
         this.status = status;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
                 "idUser=" + idUser +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

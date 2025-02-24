@@ -16,17 +16,17 @@
                         <div class="mb-md-3 mt-md-4 pb-3">
                             <h2 class="fw-bold mb-2 text-uppercase">Đăng nhập</h2>
                             <p class="text-muted mb-5">Vui lòng nhập tên đăng nhập hoặc mật khẩu</p>
-                            <div class="alert alert-danger" role="alert"
+                            <div id="alertDiv" class="alert alert-danger" role="alert"
                                  style="display: ${not empty errorMessage ? 'block' : 'none'};">
                                 ${errorMessage}
                             </div>
-                            <div class="alert alert-success" role="alert"
+                            <div id="alertDivSuc" class="alert alert-success" role="alert"
                                  style="display: ${not empty successMessage ? 'block' : 'none'};">
                                 ${successMessage}
                             </div>
                             <form action="loginServlet" method="post">
                                 <div data-mdb-input-init class="form-outline mb-4">
-                                    <input type="text" required id="typeEmailX" class="form-control form-control-lg" name="username" />
+                                    <input type="text" required id="typeEmailX" class="form-control form-control-lg" name="username" value ="${username != null ? username : ''}" />
                                     <label class="form-label" for="typeEmailX">Tên đăng nhập</label>
                                 </div>
 
@@ -35,19 +35,20 @@
                                     <label class="form-label" for="typePasswordX">Mật khẩu</label>
                                 </div>
 
-                                <p class="small mb-3 pb-lg-2 text-start"><a class="text-primary ms-2" href="#!">Quên mật khẩu?</a></p>
+
+                                <p class="small mb-3 pb-lg-2 text-start"><a class="text-primary ms-2" href="/forgotPasswordServlet">Quên mật khẩu?</a></p>
 
                                 <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" type="submit">Đăng nhập</button>
 
                                 <div class="d-flex justify-content-center text-center mt-5 pt-1">
-                                    <a href="#!" class="text-primary"><i class="fab fa-facebook-f fa-lg"></i></a>
-                                    <a href="#!" class="text-primary mx-4 px-2"><i class="fab fa-twitter fa-lg"></i></a>
-                                    <a href="#!" class="text-primary"><i class="fab fa-google fa-lg"></i></a>
+                                    <a href="/registerServlet" class="text-primary"><i class="fab fa-facebook-f fa-lg"></i></a>
+                                    <a href="/registerServlet" class="text-primary mx-4 px-2"><i class="fab fa-twitter fa-lg"></i></a>
+                                    <a href="/registerServlet" class="text-primary"><i class="fab fa-google fa-lg"></i></a>
                                 </div>
                             </form>
                         </div>
                         <div>
-                            <p class="mb-0">Chưa có tài khoản? <a href="/registerServlet?action=register" class="text-primary fw-bold">Đăng ký</a></p>
+                            <p class="mb-0">Chưa có tài khoản? <a href="/registerServlet" class="text-primary fw-bold">Đăng ký</a></p>
                         </div>
 
                     </div>
@@ -56,6 +57,23 @@
         </div>
     </div>
 </section>
+<script>
+    // Kiểm tra nếu alert đang hiển thị (display != none)
+    var alertDiv = document.getElementById("alertDiv");
+    if (alertDiv && alertDiv.style.display !== "none") {
+        setTimeout(function() {
+            alertDiv.style.display = "none";
+        }, 3000);
+    }
+    var alertDivSuc = document.getElementById("alertDivSuc");
+    if (alertDivSuc && alertDivSuc.style.display !== "none") {
+        setTimeout(function() {
+            alertDivSuc.style.display = "none";
+        }, 3000);
+    }
+
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>

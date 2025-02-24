@@ -1,9 +1,10 @@
-c<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <list default="true" id="12eeba81-dbee-49f8-b596-b5c74a30a87a" name="Changes" comment="" />
 =======
@@ -13,43 +14,28 @@ c<?xml version="1.0" encoding="UTF-8"?>
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" afterDir="false" />
     </list>
 >>>>>>> 515f1dc9d51a24b0d60f88d5065ded2c351c5c1d
+=======
+    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="" />
+>>>>>>> 18ff98a5d1fd338b3f3f64f41ac1f3c6f547e4bb
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$/IdeaProjects/DuAnThueNha">
+    <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2tFTeO1XfuXJbj1hAEg5K41YMQh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2tTZqsKnY6xxVtJC9bpcX9nXykw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -72,10 +58,18 @@ c<?xml version="1.0" encoding="UTF-8"?>
     "node.js.selected.package.tslint": "(autodetect)",
 >>>>>>> 515f1dc9d51a24b0d60f88d5065ded2c351c5c1d
     "vue.rearranger.settings.migration": "true"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> 18ff98a5d1fd338b3f3f64f41ac1f3c6f547e4bb
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.972" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Gradle : com.example : DuAnThueNha-1.0-SNAPSHOT.war">
@@ -85,9 +79,7 @@ c<?xml version="1.0" encoding="UTF-8"?>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="9ba21d97-8c05-4592-89a3-1abde3f35a3a" />
-        <option name="HTTP_PORT" value="8081" />
-        <option name="JNDI_PORT" value="1098" />
+        <option name="BASE_DIRECTORY_NAME" value="e1671b42-ff81-4a0c-9198-bb6560357afc" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -95,7 +87,7 @@ c<?xml version="1.0" encoding="UTF-8"?>
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="64781" />
+        <option name="DEBUG_PORT" value="49971" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -156,16 +148,6 @@ c<?xml version="1.0" encoding="UTF-8"?>
           <option name="VM_PARAMETERS" value="" />
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcUsernameDB" />
-          <option name="VALUE" value="root" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcPasswordDB" />
-          <option name="VALUE" value="Fangxing38" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -178,17 +160,13 @@ c<?xml version="1.0" encoding="UTF-8"?>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eeff06d2-b9d1-4367-8494-308498666eb7" name="Changes" comment="" />
-      <created>1739946917756</created>
+      <changelist id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="" />
+      <created>1740378224712</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739946917756</updated>
-      <workItem from="1739946920008" duration="2444000" />
-      <workItem from="1740014345959" duration="599000" />
+      <updated>1740378224712</updated>
+      <workItem from="1740378225843" duration="22000" />
     </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
 </project>
