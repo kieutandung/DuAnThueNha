@@ -54,8 +54,9 @@
         <c:forEach items="${users}" var="user">
             <tr>
                 <td>
-                    <img src="img/${user.image != '' ? user.image : 'man.png'}" alt="User Image" width="50" height="50">
+                    <img src="img/${user.image != null && user.image != '' ? user.image : 'man.png'}" alt="User Image" width="50" height="50">
                 </td>
+
                 <td>${user.fullName}</td>
                 <td>${user.email}</td>
                 <td>${user.phone}</td>
@@ -187,15 +188,15 @@
                     <table class="table">
                         <tr>
                             <td>Tên Đăng Nhập:</td>
-                            <td><input type="text" name="username" id="modalUsername" required /></td>
+                            <td><input type="text" name="username" class="username" id="modalUsername" required /></td>
                         </tr>
                         <tr>
                             <td>Họ Và Tên:</td>
-                            <td><input type="text" name="fullName" id="modalFullName" required /></td>
+                            <td><input type="text" name="fullName" class="fullName" id="modalFullName" required /></td>
                         </tr>
                         <tr>
                             <td>Số Điện Thoại:</td>
-                            <td><input type="text" name="phone" id="modalPhone" required /></td>
+                            <td><input type="text" name="phone" class="phone" id="modalPhone" required /></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
