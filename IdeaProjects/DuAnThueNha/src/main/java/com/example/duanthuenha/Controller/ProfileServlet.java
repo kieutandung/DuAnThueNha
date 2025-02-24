@@ -81,14 +81,15 @@ public class ProfileServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         String email = req.getParameter("email");
         String image = req.getParameter("image");
-        if (image == "") {
-            image = req.getParameter("imageBox");
-        }
-        Users updatedUser = new Users(userID, username, password, fullName, phone, email, image);
+
+        String birthDate = req.getParameter("birthDate");
+        String address = req.getParameter("address");
+        String gender = req.getParameter("gender");
+
+        Users updatedUser = new Users(userID, username, password, fullName, phone, email, image, birthDate, address, gender);
         profileImpl.UpdateInformation(updatedUser);
 
     }
-
 }
 
 

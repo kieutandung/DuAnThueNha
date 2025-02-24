@@ -9,6 +9,34 @@ public class Users {
     private String email;
     private String role;
     private String status;
+    private String birthDate;
+    private String address;
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String gender;
 
     public void setUsername(String username) {
         this.username = username;
@@ -51,7 +79,7 @@ public class Users {
         this.status = status;
     }
 
-    public Users(int idUser, String username, String password, String fullName, String phone, String email, String image) {
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
         this.idUser = idUser;
         this.username = username;
         this.password = password;
@@ -59,6 +87,9 @@ public class Users {
         this.phone = phone;
         this.email = email;
         this.image = image;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.gender = gender;
     }
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image) {

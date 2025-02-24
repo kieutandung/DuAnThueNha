@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Đăng ksi</title>
+    <title>Đăng kí</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/register.css">
+
 </head>
 <body>
 <section class="min-vh-100 d-flex align-items-center justify-content-center gradient-custom">
@@ -17,7 +18,7 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Đăng ký</h2>
                             <p class="text-muted mb-4">Vui lòng điền thông tin dưới đây để tạo tài khoản</p>
 
-                            <div class="alert alert-danger" role="alert"
+                            <div id="alertDiv" class="alert alert-danger" role="alert"
                                  style="display: ${not empty errorMessage ? 'block' : 'none'};">
                                 ${errorMessage}
                             </div>
@@ -26,45 +27,61 @@
 
                                 <div class="form-outline mb-3">
                                     <input type="text" required pattern="^[a-zA-Z0-9._]{3,20}$"
-                                           title="Độ dài của tên đăng nhập phải từ 3 đến 20 ký tự"
-                                           id="typeUsername" class="form-control form-control-lg" name="username" value ="${username != null ? username : ''}"/>
+                                           title="Độ dài của tên đăng nhập phải từ 3 đến 20 ký tự, không tồn tại dấu cách"
+                                           id="typeUsername" class="form-control form-control-lg" name="username"
+                                           value="${username != null ? username : ''}"/>
                                     <label class="form-label" for="typeUsername">Tên đăng nhập</label>
                                 </div>
 
-                                <div class="form-outline mb-3">
+                                <div class="form-outline mb-3 position-relative">
                                     <input type="password" required pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$"
                                            title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự"
-                                           id="typePassword" class="form-control form-control-lg" name="password" value ="${password != null ? password : ''}"/>
+                                           id="typePassword" class="form-control form-control-lg" name="password"
+                                           value ="${password != null ? password : ''}"
+                                           style="padding-right: 40px;">
+                                    <!-- Icon con mắt bên trong ô input -->
+                                    <span class="eye-icon" onclick="togglePassword('typePassword', 'eyeIcon1')">
+        <i id="eyeIcon1" class="fas fa-eye"></i>
+    </span>
                                     <label class="form-label" for="typePassword">Mật khẩu</label>
                                 </div>
 
-                                <div class="form-outline mb-3">
+                                <div class="form-outline mb-3 position-relative">
                                     <input type="password" required pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$"
                                            title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự"
-                                           id="typeRPassword" class="form-control form-control-lg" name="rPassword" value ="${rPassword != null ? rPassword : ''}"/>
+                                           id="typeRPassword" class="form-control form-control-lg" name="rPassword"
+                                           value ="${rPassword != null ? rPassword : ''}"
+                                           style="padding-right: 40px;">
+                                    <!-- Icon con mắt bên trong ô input -->
+                                    <span class="eye-icon" onclick="togglePassword('typeRPassword', 'eyeIcon2')">
+        <i id="eyeIcon2" class="fas fa-eye"></i>
+    </span>
                                     <label class="form-label" for="typeRPassword">Nhập lại mật khẩu</label>
                                 </div>
+
 
                                 <!-- Tên đầy đủ -->
                                 <div class="form-outline mb-3">
                                     <input type="text" required pattern="^[A-ZÀ-Ỹ][a-zà-ỹ]+(?: [A-ZÀ-Ỹ][a-zà-ỹ]+)*$"
                                            title="Tên phải viết hoa chữ cái đầu, không chứa số hoặc ký tự đặc biệt "
-                                           id="typeFullName" class="form-control form-control-lg" name="fullName" value ="${fullname != null ? fullname : ''}"/>
+                                           id="typeFullName" class="form-control form-control-lg" name="fullName"
+                                           value="${fullname != null ? fullname : ''}"/>
                                     <label class="form-label" for="typeFullName">Tên đầy đủ</label>
                                 </div>
 
                                 <!-- Số điện thoại -->
                                 <div class="form-outline mb-3">
                                     <input type="text" required pattern="^(?:\+84|0)\d{9}$"
-                                           title="Gồm 10 số với đầu +84 hoặc 0" id="typePhone" class="form-control form-control-lg"
-                                           name="phone" value ="${phone != null ? phone : ''}"/>
+                                           title="Gồm 10 số với đầu +84 hoặc 0" id="typePhone"
+                                           class="form-control form-control-lg"
+                                           name="phone" value="${phone != null ? phone : ''}"/>
                                     <label class="form-label" for="typePhone">Số điện thoại</label>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="form-outline mb-3">
                                     <input type="email" required id="typeEmail" class="form-control form-control-lg"
-                                           name="email" value ="${email != null ? email : ''}"/>
+                                           name="email" value="${email != null ? email : ''}"/>
                                     <label class="form-label" for="typeEmail">Email</label>
                                 </div>
 
@@ -85,7 +102,29 @@
         </div>
     </div>
 </section>
+<script>
+    // Kiểm tra nếu alert đang hiển thị (display != none)
+    var alertDiv = document.getElementById("alertDiv");
+    if (alertDiv && alertDiv.style.display !== "none") {
+        setTimeout(function () {
+            alertDiv.style.display = "none";
+        }, 3000);
+    }
+    function togglePassword(inputId, iconId) {
+        var passwordInput = document.getElementById(inputId);
+        var eyeIcon = document.getElementById(iconId);
 
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.classList.remove("fa-eye");
+            eyeIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.classList.remove("fa-eye-slash");
+            eyeIcon.classList.add("fa-eye");
+        }
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
 </body>
 </html>

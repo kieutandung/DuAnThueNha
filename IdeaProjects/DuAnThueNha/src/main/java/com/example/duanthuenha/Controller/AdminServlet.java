@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet(value = "/adminServlet")
@@ -101,6 +99,10 @@ public class AdminServlet extends HttpServlet {
         req.setAttribute("role", role);
 
         listAccountService.addUser(username, password, fullName, phone, email, role);
+        listAccountView(req, resp);
+        List<Users> users = listAccountService.getAllUser();
+        Collections.reverse(users);
+        req.setAttribute("users", users);
         listAccountView(req, resp);
 
     }

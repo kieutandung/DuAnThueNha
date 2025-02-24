@@ -60,7 +60,7 @@
     }
 
     .search-input {
-        width: 240px;
+        width: 220px;
         padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
         border: 1px solid #ccc;
         border-radius: 4px;
