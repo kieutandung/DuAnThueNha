@@ -9,6 +9,8 @@
 <header>
     <jsp:include page="menu.jsp"/>
 </header>
+<link rel="stylesheet" href="css/notification.css">
+<script src="/js/notification.js"></script>
 <link rel="stylesheet" href="/css/account.css">
 <link rel="stylesheet" href="/css/addAccount.css">
 <script src="/js/account.js"></script>
@@ -16,6 +18,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <body>
 <div class="actions">
@@ -163,7 +167,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">
-                                <button class="button" type="submit">Thêm tài khoản</button>
+                                <button class="button-add-modal " type="submit">Thêm tài khoản</button>
                             </td>
                         </tr>
                     </table>
@@ -210,7 +214,6 @@
                             <td>Vai Trò:</td>
                             <td>
                                 <select name="role" id="modalRole">
-                                    <option value="default" ${user.role == 'default' ? 'selected' : ''}>Chọn vai trò</option>
 
                                     <c:if test="${user.role != 'admin'}">
                                         <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
@@ -238,7 +241,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">
-                                <button class="button" type="submit">Cập nhật tài khoản</button>
+                                <button class="button-edit-modal" type="button" id="openConfirmModal">Cập nhật tài khoản</button>
                             </td>
                         </tr>
                     </table>
@@ -247,6 +250,38 @@
         </div>
     </div>
 </div>
+<!-- Modal Xác Nhận -->
+<div class="modal fade" id="confirmEditModal" tabindex="-1" role="dialog" aria-labelledby="confirmEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmEditModalLabel">Xác Nhận Thay Đổi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn cập nhật tài khoản này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" id="confirmEditButton">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('confirmEditButton').addEventListener('click', function() {
+        document.querySelector('form[action="adminServlet?action=editUser"]').submit();
+    });
+
+    document.querySelector('.button-edit-modal').addEventListener('click', function(event) {
+        event.preventDefault();
+        $('#confirmEditModal').modal('show');
+    });
+</script>
+
 
 <script>
     function openEditModal(user) {
@@ -262,6 +297,5 @@
         $('#editAccountModal').modal('show');
     }
 </script>
-
 </body>
 </html>
