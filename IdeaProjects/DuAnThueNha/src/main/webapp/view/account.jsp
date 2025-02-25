@@ -25,10 +25,12 @@
     </div>
     <div class="right">
         <form action="adminServlet?action=search" method="get">
-            <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm">
+            <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm"
+                   value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>">
             <input type="hidden" name="action" value="search">
             <button type="submit" class="button search">Tìm Kiếm</button>
         </form>
+
     </div>
 </div>
 
