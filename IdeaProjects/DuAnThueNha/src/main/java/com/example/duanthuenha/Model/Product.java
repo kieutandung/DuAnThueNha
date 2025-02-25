@@ -1,5 +1,7 @@
 package com.example.duanthuenha.Model;
 import java.math.BigDecimal;
+import java.util.List;
+
 public class Product {
     private int idProduct;
     private int idUser;
@@ -8,6 +10,7 @@ public class Product {
     private BigDecimal price;
     private String address;
     private String status;
+    private String image;
 
     public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
         this.idProduct = idProduct;
@@ -19,16 +22,16 @@ public class Product {
         this.status = status;
     }
 
-    public Product(int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
+    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status, String image) {
+        this.idProduct = idProduct;
         this.idUser = idUser;
         this.nameProduct = nameProduct;
         this.productDescription = productDescription;
         this.price = price;
         this.address = address;
         this.status = status;
+        this.image = image;
     }
-
-
 
     public Product(String nameProduct, String productDescription, BigDecimal price, String address, String status) {
         this.nameProduct = nameProduct;
@@ -93,5 +96,13 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -55,7 +55,7 @@
     <c:forEach var="product" items="${productList}">
         <div class="row mb-4">
             <div class="col-md-7">
-                <img src="images/${product.image}" class="house-image" alt="${product.nameProduct}">
+                <img src="image/${product.image}" class="house-image" alt="${product.nameProduct}">
             </div>
 
             <div class="col-md-5">
@@ -76,41 +76,41 @@
         </div>
     </c:forEach>
 </div>
-<!-- Modal đặt thuê nhà -->
-<div class="modal fade" id="rentalModal" tabindex="-1" aria-labelledby="rentalModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rentalModalLabel">Nhập thông tin thuê nhà</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="submitRental.jsp" method="post">
-                    <div class="mb-3">
-                        <label class="form-label">Ngày bắt đầu</label>
-                        <div class="d-flex gap-2">
-                            <input type="number" class="form-control" placeholder="Ngày" name="start_day">
-                            <input type="number" class="form-control" placeholder="Tháng" name="start_month">
-                            <input type="number" class="form-control" placeholder="Năm" name="start_year">
-                        </div>
-                    </div>
+<%--<!-- Modal đặt thuê nhà -->--%>
+<%--<div class="modal fade" id="rentalModal" tabindex="-1" aria-labelledby="rentalModalLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h5 class="modal-title" id="rentalModalLabel">Nhập thông tin thuê nhà</h5>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                <form action="submitRental.jsp" method="post">--%>
+<%--                    <div class="mb-3">--%>
+<%--                        <label class="form-label">Ngày bắt đầu</label>--%>
+<%--                        <div class="d-flex gap-2">--%>
+<%--                            <input type="number" class="form-control" placeholder="Ngày" name="start_day">--%>
+<%--                            <input type="number" class="form-control" placeholder="Tháng" name="start_month">--%>
+<%--                            <input type="number" class="form-control" placeholder="Năm" name="start_year">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
-                    <div class="mb-3">
-                        <label class="form-label">Số ngày thuê</label>
-                        <input type="number" class="form-control" name="rental_days" placeholder="Nhập số ngày">
-                    </div>
+<%--                    <div class="mb-3">--%>
+<%--                        <label class="form-label">Số ngày thuê</label>--%>
+<%--                        <input type="number" class="form-control" name="rental_days" placeholder="Nhập số ngày">--%>
+<%--                    </div>--%>
 
-                    <div class="mb-3">
-                        <label class="form-label">Ghi chú</label>
-                        <textarea class="form-control" rows="3" name="note" placeholder="Nhập ghi chú"></textarea>
-                    </div>
+<%--                    <div class="mb-3">--%>
+<%--                        <label class="form-label">Ghi chú</label>--%>
+<%--                        <textarea class="form-control" rows="3" name="note" placeholder="Nhập ghi chú"></textarea>--%>
+<%--                    </div>--%>
 
-                    <button type="submit" class="btn btn-success w-100">Xác nhận thuê</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<%--                    <button type="submit" class="btn btn-success w-100">Xác nhận thuê</button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <footer class="mt-5">
     <jsp:include page="footer.jsp"/>
 </footer>

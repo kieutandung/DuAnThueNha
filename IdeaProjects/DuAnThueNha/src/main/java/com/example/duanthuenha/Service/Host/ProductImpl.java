@@ -30,26 +30,33 @@ public class ProductImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        List<Product> products = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT * FROM products";
+
         try (Connection conn = connectDB.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM product")) {
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                products.add(new Product(
-//                        rs.getInt("id"),
+                Product product = new Product(
+                        rs.getInt("idProduct"),
+                        rs.getInt("idUser"),
                         rs.getString("nameProduct"),
                         rs.getString("productDescription"),
                         rs.getBigDecimal("price"),
                         rs.getString("address"),
-                        rs.getString("status")
-//                        rs.getString("image")
-                ));
+                        rs.getString("status"),
+                        rs.getString("image")
+                );
+                productList.add(product);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return products;
+
+        return productList;
+
     }
 
     @Override

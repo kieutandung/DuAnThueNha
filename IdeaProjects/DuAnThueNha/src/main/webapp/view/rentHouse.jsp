@@ -83,7 +83,7 @@
                 <h3 class="text-dark">Đơn hàng</h3>
                 <div class="house-info">
                     <!-- Hình ảnh nhà -->
-                    <img id="houseImage" src="images/sample-house.jpg" class="img-fluid house-image" alt="Hình ảnh nhà">
+                    <img id="houseImage" src="image/sample-house.jpg" class="img-fluid house-image" alt="Hình ảnh nhà">
 
                     <!-- Thông tin đơn hàng -->
                     <p><strong>Biệt thự:</strong> <span id="houseName">Biệt thự vườn Cầu Giấy</span></p>
