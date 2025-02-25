@@ -304,8 +304,8 @@
             <input type="text" id="documentId" name="documentId" placeholder="Nhập số tài liệu" required>
 
             <!-- 3. Cho phép chọn ảnh từ file -->
-            <label for="images">Chọn ảnh tài liệu:</label>
-            <input type="file" id="images" accept="image/*" name="image">
+            <label for="image">Chọn ảnh tài liệu:</label>
+            <input type="file" id="image" accept="image/*" name="image">
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-success">Hoàn tất đăng ký</button>
