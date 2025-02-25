@@ -120,10 +120,12 @@
                     <span class="badge badge-primary">Cho thuê</span>
                 </div>
                 <div class="rental-info">
-                    <h5>Căn hộ tại Tây Hồ</h5>
+                    <h5>Biệt thự tại Tây Hồ</h5>
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -139,6 +141,7 @@
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
                 </div>
             </div>
         </div>
@@ -154,6 +157,7 @@
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
                 </div>
             </div>
         </div>
@@ -165,10 +169,11 @@
                     <span class="badge badge-primary">Cho thuê</span>
                 </div>
                 <div class="rental-info">
-                    <h5>Căn hộ tại Đà Nẵng</h5>
+                    <h5>Chung cư tại Đà Nẵng</h5>
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
                 </div>
             </div>
         </div>
@@ -184,6 +189,7 @@
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
                 </div>
             </div>
         </div>
@@ -199,6 +205,7 @@
                     <p>🛏 Phòng ngủ: 01</p>
                     <p>🛁 Phòng tắm: 01</p>
                     <p>📏 Diện tích trên 30m2</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
                 </div>
             </div>
         </div>
