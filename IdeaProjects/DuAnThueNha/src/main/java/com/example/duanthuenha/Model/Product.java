@@ -30,6 +30,15 @@ public class Product {
 
 
 
+    public Product(String nameProduct, String productDescription, BigDecimal price, String address, String status) {
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+    }
+
+
     public int getIdProduct() {
         return idProduct;
     }
