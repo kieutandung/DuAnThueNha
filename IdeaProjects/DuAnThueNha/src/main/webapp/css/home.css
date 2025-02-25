@@ -64,6 +64,8 @@ h2 {
 }
 
 .btn-thue-ngay {
+    border: none;
+    outline: none;
     display: block;
     background-color: #439af6;
     color: white;

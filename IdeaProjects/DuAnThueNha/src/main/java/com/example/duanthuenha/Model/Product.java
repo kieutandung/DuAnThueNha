@@ -41,6 +41,15 @@ public class Product {
         this.status = status;
     }
 
+    public Product(int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
+        this.idUser = idUser;
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+    }
+
 
     public int getIdProduct() {
         return idProduct;

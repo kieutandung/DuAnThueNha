@@ -61,30 +61,36 @@ public class ProductImpl implements ProductService {
 
     @Override
     public Product getAllProductsById(int idProduct) {
-        Product products = null;
-        try {
-            Connection conn = connectDB.getConnection();
-            String sql = "SELECT * FROM products WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        Product product = null;
+        String sql = "SELECT * FROM products WHERE idProduct = ?";
+
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, idProduct);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                products = new Product(
-//                        rs.getInt("id"),
+                product = new Product(
+                        rs.getInt("idProduct"),
+                        rs.getInt("idUser"),
                         rs.getString("nameProduct"),
                         rs.getString("productDescription"),
                         rs.getBigDecimal("price"),
                         rs.getString("address"),
-                        rs.getString("status")
-//                        rs.getString("image")
+                        rs.getString("status"),
+                        rs.getString("image")
                 );
             }
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException("Lỗi khi lấy sản phẩm theo ID", e);
         }
-        return products;
+
+        return product;
     }
+
 }
 
 

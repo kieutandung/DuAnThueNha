@@ -1,7 +1,9 @@
 package com.example.duanthuenha.Controller;
+
 import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 import com.example.duanthuenha.Service.Host.ProductService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +21,13 @@ public class ProductServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("/view/addNewHouse.jsp");
+
+        String productId = request.getParameter("id");
+        if (productId != null && !productId.isEmpty()) {
+            response.sendRedirect("/view/houseDetail.jsp?id=" + productId);
+        } else {
+            response.sendRedirect("/view/home.jsp");
+        }
     }
 
     @Override
@@ -27,25 +35,25 @@ public class ProductServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-//        addProduct(request, response);
+
+        addProduct(request, response);
     }
 
-//    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int idUser = Integer.parseInt(request.getParameter("idUser"));
-//        String nameProduct = request.getParameter("nameProduct");
-//        String productDescription = request.getParameter("productDescription");
-//        BigDecimal price = new BigDecimal(request.getParameter("price"));
-//        String address = request.getParameter("address");
-//        String status = "active";
-//        Product product = new Product(idUser, nameProduct, productDescription, price, address, status);
-//        productService.addProduct(product);
-//        response.sendRedirect("/view/addNewHouse.jsp");
-//    }
+    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            int idUser = Integer.parseInt(request.getParameter("idUser"));
+            String nameProduct = request.getParameter("nameProduct");
+            String productDescription = request.getParameter("productDescription");
+            BigDecimal price = new BigDecimal(request.getParameter("price"));
+            String address = request.getParameter("address");
+            String status = "active";
 
+            Product product = new Product(idUser, nameProduct, productDescription, price, address, status);
+            productService.addProduct(product);
+
+            response.sendRedirect("/view/addNewHouse.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-
-
-
-
-
