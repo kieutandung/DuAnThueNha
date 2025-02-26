@@ -20,8 +20,58 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
 
 <body>
+<%-- Hiển thị thông báo thành công --%>
+<c:if test="${not empty message}">
+    <div id="successPopup" class="popup popup-success">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <!-- Dùng Font Awesome để thay dấu tick -->
+                <span class="fa fa-check tick-icon"></span>
+            </div>
+            <h2>success</h2>
+            <p>${message}</p>
+        </div>
+    </div>
+</c:if>
+
+
+
+
+<%-- Hiển thị thông báo lỗi --%>
+<c:if test="${not empty error}">
+    <div id="errorPopup" class="popup popup-error">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <!-- Biểu tượng dấu X từ Font Awesome -->
+                <i class="fas fa-times error-icon"></i> <!-- Dấu X màu đen -->
+            </div>
+            <h2>failure</h2>
+            <p>${error}</p>
+        </div>
+    </div>
+</c:if>
+
+
+
+<script>
+    // Tự động ẩn thông báo sau 3 giây
+    setTimeout(function () {
+        document.querySelectorAll('.popup').forEach(el => el.style.display = 'none');
+    }, 3000);
+</script>
+<script>
+    // Tự động ẩn thông báo sau 3 giây
+    setTimeout(function () {
+        document.querySelectorAll('div[style*="background"]').forEach(el => el.style.display = 'none');
+    }, 3000);
+</script>
 <div class="actions">
     <div class="left">
         <button type="button" class="button add" data-toggle="modal" data-target="#addAccountModal">Thêm Người Dùng</button>
@@ -52,6 +102,44 @@
         </tr>
         </thead>
         <tbody>
+<%--       thông báo edit--%>
+        <c:if test="${not empty sessionScope.message}">
+            <div id="successPopup" class="popup popup-success">
+                <div class="popup-content">
+                    <div class="popup-icon">
+                        <span class="fa fa-check tick-icon"></span>
+                    </div>
+                    <h2>success</h2>
+                    <p>${sessionScope.message}</p>
+                </div>
+            </div>
+            <c:remove var="message" scope="session"/>
+        </c:if>
+
+        <c:if test="${not empty sessionScope.error}">
+            <div id="errorPopup" class="popup popup-error">
+                <div class="popup-content">
+                    <div class="popup-icon">
+                        <i class="fas fa-times error-icon"></i>
+                    </div>
+                    <h2>failure</h2>
+                    <p>${sessionScope.error}</p>
+                </div>
+            </div>
+            <c:remove var="error" scope="session"/>
+        </c:if>
+        <!-- JavaScript để ẩn popup sau 3 giây -->
+        <script>
+            setTimeout(function() {
+                var popups = document.querySelectorAll(".popup");
+                popups.forEach(function(popup) {
+                    popup.style.opacity = "0";
+                    setTimeout(() => popup.style.display = "none", 500); // Chờ 0.5s để ẩn hoàn toàn
+                });
+            }, 3000);
+
+        </script>
+<%--  thông báo thêm người dùng mới--%>
         <c:if test="${empty users}">
             <tr>
                 <td colspan="4" style="text-align: center; color: gray;">Không có dữ liệu</td>
@@ -62,7 +150,6 @@
                 <td>
                     <img src="img/${user.image != null && user.image != '' ? user.image : 'man.png'}" alt="User Image" width="50" height="50">
                 </td>
-
                 <td>${user.fullName}</td>
                 <td>${user.email}</td>
                 <td>${user.phone}</td>
@@ -230,7 +317,7 @@
                                     </c:if>
                                 </select>
                             </td>
-
+                            Giải thích
                         </tr>
                         <tr>
                             <td>Trạng Thái:</td>

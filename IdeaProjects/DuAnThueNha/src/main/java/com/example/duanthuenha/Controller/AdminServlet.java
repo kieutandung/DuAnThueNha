@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller;
 
+import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Model.Users;
 
@@ -38,6 +39,9 @@ public class AdminServlet extends HttpServlet {
                 case "editUser":
                     handleEditUserView(req, resp);
                     break;
+                case "approveAccount":
+                    listApproveAccount(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -45,6 +49,14 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Verification> verificationList = listAccountService.getAllVerification();
+        req.setAttribute("verifications", verificationList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -70,6 +82,9 @@ public class AdminServlet extends HttpServlet {
                 case "delete":
                     deleteUser(req, resp);
                     break;
+                case "approveAccount":
+                    listApproveAccount(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -87,7 +102,13 @@ public class AdminServlet extends HttpServlet {
         String email = req.getParameter("email");
         String role = req.getParameter("role");
 
-        listAccountService.addUser(username, password, fullName, phone, email, role);
+        Users newUser = listAccountService.addUser(username, password, fullName, phone, email, role);
+
+        if (newUser != null) {
+            req.setAttribute("message", "Thêm người dùng thành công!");
+        } else {
+            req.setAttribute("error", "Thêm người dùng thất bại!");
+        }
 
         listAccountView(req, resp);
     }
@@ -102,9 +123,17 @@ public class AdminServlet extends HttpServlet {
         String status = req.getParameter("status");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
 
-        listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+        try {
+            listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+            req.setAttribute("message", "Cập nhật người dùng thành công!");
+        } catch (Exception e) {
+            req.setAttribute("error", "Cập nhật người dùng thất bại!");
+        }
+
         listAccountView(req, resp);
     }
+
+
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

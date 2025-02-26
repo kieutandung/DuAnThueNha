@@ -34,8 +34,16 @@
 >>>>>>> 10c0657b24e1eae5b4f7fd289fb599a3ba941445
 =======
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/approveAccount.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/AdminServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/AdminServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/menu.jsp" afterDir="false" />
     </list>
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     <option name="SHOW_DIALOG" value="false" />
@@ -76,12 +84,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="Jsp File" />
 <<<<<<< HEAD
 =======
         <option value="CSS File" />
         <option value="JavaScript File" />
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
+=======
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
       </list>
     </option>
   </component>
@@ -107,10 +121,14 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2tTZqsKnY6xxVtJC9bpcX9nXykw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -145,11 +163,14 @@
 >>>>>>> 515f1dc9d51a24b0d60f88d5065ded2c351c5c1d
     "vue.rearranger.settings.migration": "true"
 =======
+=======
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
 >>>>>>> 18ff98a5d1fd338b3f3f64f41ac1f3c6f547e4bb
 =======
@@ -175,8 +196,18 @@
   <component name="RunManager">
 =======
     "vue.rearranger.settings.migration": "true"
+=======
+    &quot;git-widget-placeholder&quot;: &quot;feature/admin/approve__account&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
     <configuration name="test.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/test.jsp">
       <method v="2" />
@@ -296,8 +327,14 @@
 =======
       <workItem from="1740412007020" duration="5287000" />
       <workItem from="1740446564157" duration="4266000" />
+<<<<<<< HEAD
       <workItem from="1740464434001" duration="964000" />
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
+=======
+      <workItem from="1740464434001" duration="3319000" />
+      <workItem from="1740470371522" duration="5720000" />
+      <workItem from="1740532471622" duration="2502000" />
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
     </task>
     <servers />
   </component>
