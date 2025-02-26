@@ -3,14 +3,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    String idProduct = request.getParameter("id");
-    Product product = null;
+    String productId = request.getParameter("id");
 
-    if (idProduct != null) {
-        ProductImpl productImpl = new ProductImpl();
-        product = productImpl.getAllProductsById(Integer.parseInt(idProduct));
-    }
-    request.setAttribute("product", product);
+    // Gọi service để lấy sản phẩm theo ID
+    ProductImpl productImpl = new ProductImpl();
+    Product product = productImpl.getAllProductsById(Integer.parseInt(productId));
 %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -84,9 +81,9 @@
                 <div class="house-info">
                     <img src="<%= product.getImage() %>" class="house-image" alt="Hình ảnh sản phẩm">
 
-                    <p><strong>Biệt thự:</strong> <span id="houseName"><c:out value="<%= product.getNameProduct() %>"/></span></p>
-                    <p><strong>Giá/ngày:</strong><span id="pricePerDay"><c:out value="<%= product.getPrice() %>"/></span> VND</p>
-                    <p><strong>Ngày đặt:</strong> <span id="orderDate">-</span></p>
+                    <p><strong>Tên nhà: </strong> <span id="houseName"><c:out value="<%= product.getNameProduct() %>"/></span></p>
+                    <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="<%= product.getFormattedPrice() %>"/></span></p>
+                    <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                     <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
                     <p><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VND</p>
 
