@@ -24,8 +24,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-
-
 <body>
 <%-- Hiển thị thông báo thành công --%>
 <c:if test="${not empty message}">
@@ -40,26 +38,18 @@
         </div>
     </div>
 </c:if>
-
-
-
-
 <%-- Hiển thị thông báo lỗi --%>
 <c:if test="${not empty error}">
     <div id="errorPopup" class="popup popup-error">
         <div class="popup-content">
             <div class="popup-icon">
-                <!-- Biểu tượng dấu X từ Font Awesome -->
-                <i class="fas fa-times error-icon"></i> <!-- Dấu X màu đen -->
+                <i class="fas fa-times error-icon"></i>
             </div>
             <h2>failure</h2>
             <p>${error}</p>
         </div>
     </div>
 </c:if>
-
-
-
 <script>
     // Tự động ẩn thông báo sau 3 giây
     setTimeout(function () {
@@ -87,7 +77,6 @@
 
     </div>
 </div>
-
 <div class="table-main">
     <table>
         <thead>
@@ -168,15 +157,15 @@
                             background: none;
                             border: none;
                             cursor: pointer;
-                            display: inline-block; /* Ensure the button is inline-block */
+                            display: inline-block;
                         }
 
                         .button.edit svg path {
-                            transition: fill 0.3s; /* Smooth transition */
+                            transition: fill 0.3s;
                         }
 
                         .button.edit:hover svg path {
-                            fill: #007BFF; /* Hover color */
+                            fill: #007BFF;
                         }
                     </style>
                     <style>
@@ -187,12 +176,11 @@
                         }
 
                         .button.delete svg path {
-                            fill: black; /* Default color */
-                            transition: fill 0.3s; /* Smooth transition */
+                            fill: black;
+                            transition: fill 0.3s;
                         }
-
                         .button.delete:hover svg path {
-                            fill: red; /* Hover color */
+                            fill: red;
                         }
                     </style>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">
@@ -359,7 +347,6 @@
         </div>
     </div>
 </div>
-
 <script>
     document.getElementById('confirmEditButton').addEventListener('click', function() {
         document.querySelector('form[action="adminServlet?action=editUser"]').submit();
@@ -370,8 +357,6 @@
         $('#confirmEditModal').modal('show');
     });
 </script>
-
-
 <script>
     function openEditModal(user) {
         document.getElementById('modalIdUser').value = user.idUser;
