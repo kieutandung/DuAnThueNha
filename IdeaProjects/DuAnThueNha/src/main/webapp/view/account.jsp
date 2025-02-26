@@ -60,7 +60,6 @@
                 <td>
                     <img src="img/${user.image != null && user.image != '' ? user.image : 'man.png'}" alt="User Image" width="50" height="50">
                 </td>
-
                 <td>${user.fullName}</td>
                 <td>${user.email}</td>
                 <td>${user.phone}</td>
