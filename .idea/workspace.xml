@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="12eeba81-dbee-49f8-b596-b5c74a30a87a" name="Changes" comment="" />
 =======
     <list default="true" id="eeff06d2-b9d1-4367-8494-308498666eb7" name="Changes" comment="">
@@ -31,6 +32,12 @@
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/houseDetail.jsp" afterDir="false" />
     </list>
 >>>>>>> 10c0657b24e1eae5b4f7fd289fb599a3ba941445
+=======
+    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+    </list>
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +48,7 @@
       <ProjectState />
     </projectState>
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
@@ -63,19 +71,29 @@
       </state>
     </system>
   </component>
+=======
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
+<<<<<<< HEAD
+=======
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+<<<<<<< HEAD
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="feature/user/home" />
       </map>
     </option>
+=======
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -95,21 +113,30 @@
   </component>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/ADMIN/IdeaProjects/baiTapOop2/DuAnThueNha",
+=======
+    "git-widget-placeholder": "develop",
+    "list.type.of.created.stylesheet": "CSS",
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+<<<<<<< HEAD
 =======
     "git-widget-placeholder": "feature/admin/change__status",
     "node.js.detected.package.eslint": "true",
@@ -146,6 +173,15 @@
   }
 }]]></component>
   <component name="RunManager">
+=======
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
+    <configuration name="test.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/test.jsp">
+      <method v="2" />
+    </configuration>
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -233,6 +269,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.test.jsp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -250,7 +291,13 @@
       <option name="presentableId" value="Default" />
       <updated>1740378224712</updated>
       <workItem from="1740378225843" duration="22000" />
+<<<<<<< HEAD
       <workItem from="1740445595380" duration="8381000" />
+=======
+      <workItem from="1740412007020" duration="5287000" />
+      <workItem from="1740446564157" duration="4266000" />
+      <workItem from="1740464434001" duration="964000" />
+>>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
     </task>
     <servers />
   </component>

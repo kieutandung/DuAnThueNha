@@ -51,6 +51,23 @@ img {
     color: white;
     margin-right: 5px; /* Thêm khoảng cách giữa các nút */
 }
+.button-modal {
+    width: 150px;
+    height: 30px;
+    background-color: #05AD27;
+    color: white;
+    font-size: 14px;
+    border-color: #ffffff;
+    border: 1px solid transparent; /* Thêm border để giữ kích thước */
+    border-radius: 5px; /* Bo tròn góc cho nút */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+.button-modal:hover {
+    background-color: #04A826; /* Màu nền khi hover */
+}
+
 
 .actions {
     display: flex; /* Sử dụng Flexbox để căn chỉnh */
