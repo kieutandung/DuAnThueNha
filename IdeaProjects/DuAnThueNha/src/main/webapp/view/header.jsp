@@ -152,7 +152,6 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="https://i.postimg.cc/ht05Yynx/nh-ch-p-m-n-h-nh-2025-02-24-142458.png" alt="Logo">
             <span>WE Bare BEARS.vn</span>
         </div>
         <ul class="nav-links">
