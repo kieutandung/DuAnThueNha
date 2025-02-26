@@ -42,7 +42,11 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("role", role);
                 if (role.equalsIgnoreCase("admin")) {
                     resp.sendRedirect("adminServlet");
+<<<<<<< HEAD
                 } else if (role.equalsIgnoreCase("user") || role.equalsIgnoreCase("host")) {
+=======
+                } else if (role.equalsIgnoreCase("user")|| role.equalsIgnoreCase("host")) {
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
                     resp.sendRedirect("/profileServlet");
                 }
             } else {

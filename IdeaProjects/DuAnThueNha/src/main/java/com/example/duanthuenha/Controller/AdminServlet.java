@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller;
 
+import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Model.Users;
 
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 @WebServlet(value = "/adminServlet")
@@ -33,14 +33,14 @@ public class AdminServlet extends HttpServlet {
                 case "search":
                     searchUsers(req, resp);
                     break;
-                case "addUser":
-                    addUserView(req, resp);
-                    break;
                 case "sort":
                     sortUsersByName(req, resp);
                     break;
                 case "editUser":
                     handleEditUserView(req, resp);
+                    break;
+                case "approveAccount":
+                    listApproveAccount(req, resp);
                     break;
                 default:
                     listAccountView(req, resp);
@@ -49,6 +49,14 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Verification> verificationList = listAccountService.getAllVerification();
+        req.setAttribute("verifications", verificationList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -74,6 +82,9 @@ public class AdminServlet extends HttpServlet {
                 case "delete":
                     deleteUser(req, resp);
                     break;
+                case "approveAccount":
+                    listApproveAccount(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -91,20 +102,11 @@ public class AdminServlet extends HttpServlet {
         String email = req.getParameter("email");
         String role = req.getParameter("role");
 
-        req.setAttribute("username", username);
-        req.setAttribute("password", password);
-        req.setAttribute("fullName", fullName);
-        req.setAttribute("phone", phone);
-        req.setAttribute("email", email);
-        req.setAttribute("role", role);
-
-        listAccountService.addUser(username, password, fullName, phone, email, role);
-        listAccountView(req, resp);
+        Users newUser = listAccountService.addUser(username, password, fullName, phone, email, role);
         List<Users> users = listAccountService.getAllUser();
-        Collections.reverse(users);
+        users.add(0, newUser);
         req.setAttribute("users", users);
         listAccountView(req, resp);
-
     }
 
     public void handleEditUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -116,20 +118,12 @@ public class AdminServlet extends HttpServlet {
         String role = req.getParameter("role");
         String status = req.getParameter("status");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
-        listAccountService.updateUser(username,password, fullName, phone, email,  role, status,idUser);
-       listAccountView(req, resp);
-    }
 
-
-
-    private void addUserView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/addAccount.jsp");
-        dispatcher.forward(req, resp);
+        listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+        listAccountView(req, resp);
     }
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.setAttribute("isSorted", false);
 
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
@@ -137,6 +131,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
+
 
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUser = Integer.parseInt(req.getParameter("idUser"));

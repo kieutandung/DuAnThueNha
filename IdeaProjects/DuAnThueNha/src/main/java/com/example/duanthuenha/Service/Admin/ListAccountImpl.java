@@ -2,10 +2,9 @@ package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Users;
+import com.example.duanthuenha.Model.Verification;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,11 +80,11 @@ public class ListAccountImpl implements ListAccountService {
     }
 
     @Override
-    public boolean addUser(String username, String password, String fullName, String phone, String email, String role) {
+    public Users addUser(String username, String password, String fullName, String phone, String email, String role) {
         Connection connection = connectDB.getConnection();
-        String query = "INSERT INTO users (username, password, fullName, phone, email, role, status,image) values (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO users (username, password, fullName, phone, email, role, status, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
@@ -99,14 +98,20 @@ public class ListAccountImpl implements ListAccountService {
             int row = preparedStatement.executeUpdate();
 
             if (row > 0) {
-                return true;
+                // Lấy ID của người dùng mới được thêm
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int newUserId = generatedKeys.getInt(1);
+                    // Tạo đối tượng Users mới
+                    return new Users(newUserId, username, password, fullName, phone, email, role, "active", "man.png");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return false;
+        return null; // Trả về null nếu không thành công
     }
+
     public List<Users> getAllUsersSortedByName() {
         List<Users> users = new ArrayList<>();
         String query = "SELECT * FROM users ORDER BY fullName ASC"; // Sắp xếp tăng dần theo tên
@@ -178,6 +183,36 @@ public class ListAccountImpl implements ListAccountService {
         }
         return user; // Return a single Users object
     }
+
+    @Override
+    public List<Verification> getAllVerification() {
+        List<Verification> verificationList = new ArrayList<>();
+        String sql = "SELECT * FROM verificationdocument";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int idDocument = rs.getInt("idDocument");
+                int idUser = rs.getInt("userId");
+                String documentType = rs.getString("documentType");
+                String documentNumber = rs.getString("documentNumber");
+                String documentImage = rs.getString("documentImage");
+                String status = rs.getString("status");
+                String rejectionReason = rs.getString("rejectionReason");
+                String createdAt = rs.getString("createdAt");
+                String updatedAt = rs.getString("updatedAt");
+                Verification verification = new Verification(idDocument,idUser,documentType,documentNumber,documentImage,status,rejectionReason,createdAt,updatedAt);
+                verificationList.add(verification);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return verificationList;
+    }
+
+
 
 
 }
