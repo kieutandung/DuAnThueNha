@@ -14,7 +14,7 @@
     <ul>
         <li><i class=""></i><a href="#" target="_blank">Mục lục</a></li>
         <li><i class=""></i><a href="adminServlet" target="_blank">Danh sách tài khoản</a></li>
-        <li><i class="r"></i><a href="#" target="_blank">Hợp đồng</a></li>
+        <li><i class=""></i><a href="adminServlet?action=approveAccount" target="_blank">Hợp đồng</a></li>
         <li class="logout-item">
             <a href="/loginServlet" class="logout-link">
                 <i class="logout-icon">
