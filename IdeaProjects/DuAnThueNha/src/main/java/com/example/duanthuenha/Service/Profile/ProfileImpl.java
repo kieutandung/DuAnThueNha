@@ -96,7 +96,6 @@ public class ProfileImpl implements ProfileService {
         }
     }
 
-
     public List<Users> getALlDocumentNumberUser(int id) {
         List<Users> users = new ArrayList<>();
         String query = "select * from verificationdocument where userId = ?";

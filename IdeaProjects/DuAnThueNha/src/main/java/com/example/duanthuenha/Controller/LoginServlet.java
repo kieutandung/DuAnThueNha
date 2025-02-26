@@ -39,9 +39,10 @@ public class LoginServlet extends HttpServlet {
             if ("active".equalsIgnoreCase(status)) {
                 HttpSession session = req.getSession();
                 session.setAttribute("userId", id);
+                session.setAttribute("role", role);
                 if (role.equalsIgnoreCase("admin")) {
                     resp.sendRedirect("adminServlet");
-                } else if (role.equalsIgnoreCase("user")) {
+                } else if (role.equalsIgnoreCase("user") || role.equalsIgnoreCase("host")) {
                     resp.sendRedirect("/profileServlet");
                 }
             } else {

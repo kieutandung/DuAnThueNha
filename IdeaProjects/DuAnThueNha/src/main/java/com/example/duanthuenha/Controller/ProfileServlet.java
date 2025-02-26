@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @WebServlet("/profileServlet")
@@ -33,7 +36,6 @@ public class ProfileServlet extends HttpServlet {
                 showProfile(req, resp);
                 break;
         }
-
     }
 
     private void showEditProfile(HttpServletRequest req, HttpServletResponse resp) throws
@@ -83,10 +85,36 @@ public class ProfileServlet extends HttpServlet {
         String image = req.getParameter("image");
 
         String birthDate = req.getParameter("birthDate");
+        String formattedBirthDate = "";
+
+        if (birthDate != null && !birthDate.isEmpty()) {
+            try {
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date date = inputFormat.parse(birthDate);
+                formattedBirthDate = outputFormat.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
         String address = req.getParameter("address");
         String gender = req.getParameter("gender");
 
-        Users updatedUser = new Users(userID, username, password, fullName, phone, email, image, birthDate, address, gender);
+        if (gender != null && !gender.isEmpty()) {
+            gender = "";
+        }
+
+        if (gender.equals("Nam")) {
+            gender = "male";
+        }
+        if (gender.equals("Nữ")) {
+            gender = "female";
+        }
+        if (gender.equals("Khác")) {
+            gender = "other";
+        }
+        Users updatedUser = new Users(userID, username, password, fullName, phone, email, image, formattedBirthDate, address, gender);
         profileImpl.UpdateInformation(updatedUser);
 
     }

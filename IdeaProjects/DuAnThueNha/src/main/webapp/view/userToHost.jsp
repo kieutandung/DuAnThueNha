@@ -24,7 +24,8 @@
                 <form action="userToHostServlet" method="post">
                     <!-- Khối để hiển thị ảnh preview -->
                     <div class="mt-4 py-4 text-center" id="previewContainer" style="display: none;">
-                        <img id="previewImage" src="" alt="Ảnh xem trước" style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
+                        <img id="previewImage" src="" alt="Ảnh xem trước"
+                             style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
                     </div>
                     <!-- 1. Lựa chọn loại tài liệu -->
                     <div class="mb-3">
@@ -63,34 +64,32 @@
         <div class="col-md-8">
             <div class="p-3 py-5">
                 <h4 class="text-center mb-4">Toàn bộ giấy tờ của bạn</h4>
-                <div class="scrollable-container" style="max-height: 600px; overflow-y: auto;">
+                <div class="scrollable-container" style="max-height: 500px; overflow-y: auto;">
                     <c:forEach var="o" items="${allUserDocumentNumber}">
                         <div class="p-3 py-3 border-bottom">
                             <div class="info-item d-flex align-items-center justify-content-between">
                                 <div>
                                     <b>${o.documentType}:</b> ${o.documentNumber} &nbsp; <span>${o.status}</span>
                                 </div>
-                                <div>
-                                    <a href="/userToHostServlet?action=" class="btn btn-info btn-sm">
-                                        <i class="fas fa-edit"></i> Xem chi tiết
-                                    </a>
-
-                                </div>
                             </div>
                         </div>
                     </c:forEach>
                 </div>
             </div>
+            <c:if test="${sessionScope.role == 'host'}">
+                <div class="col-md-3 mx-auto text-center">
+                    <a href="" class="btn btn-primary mb-3">Đến gian hàng của bạn</a>
+                </div>
+            </c:if>
         </div>
     </div>
-</div>
 </div>
 </div>
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
 <script>
-    document.getElementById('image').addEventListener('change', function(event) {
+    document.getElementById('image').addEventListener('change', function (event) {
         var file = this.files[0];
         if (file) {
             // Tạo URL tạm cho file

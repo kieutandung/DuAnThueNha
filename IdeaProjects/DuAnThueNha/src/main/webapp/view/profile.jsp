@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -51,6 +52,7 @@
             object-fit: cover;
             cursor: pointer;
         }
+
 
         h1 {
             color: #1a1a1a;
@@ -149,11 +151,17 @@
                     <!-- Ảnh đại diện -->
                     <img id="preview" src="img/${user.image}" alt="ảnh người dùng" class="profile-pic" onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
                     <div>
-                        <h1>Thông tin tài khoản</h1>
+                        <h1>Thông tin tài khoản </h1>
                         <h2>
                             <div class="info-item">${user.username}</div>
                         </h2>
                     </div>
+                    <c:if test="${sessionScope.role == 'host'}">
+                    <div style="padding-left: 130px">
+                        <a href="productServlet"><i class="shop-icon"><img
+                                src="/img/iconShop.png" style="width: 55px"></i></a>
+                    </div>
+                    </c:if>
                 </c:when>
                 <c:otherwise>
                     <p>Không tìm thấy thông tin tài khoản!</p>
@@ -212,7 +220,7 @@
                 </div>
             </div>
 
-            <h3>Chỉnh sửa thông tin</h3>
+            <h3 class="text-center">Chỉnh sửa thông tin</h3>
 
             <div class="text-center">
                 <!-- Avatar -->
@@ -223,7 +231,7 @@
 
                 <!-- Ô hiển thị ảnh (preview) -->
                 <div style="margin-top: 10px;">
-                    <img id="imagePreview" src="img/${user.image != '' ? user.image : 'defaultImg-removebg-preview.png'}" alt="Ảnh đại diện" style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
+                    <img id="imagePreview" src="img/${user.image != null && user.image != ''  ? user.image : 'defaultImg-removebg-preview.png'}" alt="Ảnh đại diện"  style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
                 </div>
 
                 <button type="button" class="btn btn-primary mt-2" onclick="document.getElementById('image').click();">
@@ -250,9 +258,9 @@
             <label for="birthDate">Ngày sinh:</label>
             <input type="date" id="birthDate" name="birthDate"
                    value="${user.birthDate}"
-                   placeholder="dd/mm/yyyy"
-                   pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$"
-                   title="Vui lòng nhập ngày sinh theo định dạng dd/mm/yyyy">
+                   max="<%= java.time.LocalDate.now() %>"
+                   onblur="formatDateBeforeSubmit()">
+            <input type="hidden" id="formattedBirthDate" name="formattedBirthDate">
 
             <!-- Địa chỉ -->
             <label for="address">Địa chỉ:</label>
@@ -261,7 +269,7 @@
             <!-- Giới tính -->
             <label for="gender">Giới tính:</label>
             <select id="gender" name="gender">
-                <option value="">-- Chọn giới tính --</option>
+                <option value="${user.gender}">-- Chọn giới tính --</option>
                 <option value="male" ${user.gender eq 'male' ? 'selected' : ''}>Nam</option>
                 <option value="female" ${user.gender eq 'female' ? 'selected' : ''}>Nữ</option>
                 <option value="other" ${user.gender eq 'other' ? 'selected' : ''}>Khác</option>
@@ -273,43 +281,11 @@
                    pattern="^(?=.*\d)[A-Za-z\d@$!%*?&]{6,30}$"
                    title="Ít nhất một chữ số, độ dài từ 6 đến 30 ký tự">
 
-
-
             <div class="form-actions">
                 <!-- Nút Lưu kích hoạt modal xác nhận -->
                 <button type="button" class="btn btn-primary" id="saveTriggerButton" data-bs-target="#confirmModal">Lưu
                 </button>
                 <button type="button" class="btn btn-danger" onclick="toggleEditForm()">Hủy</button>
-            </div>
-        </form>
-
-        <!-- Form ĐĂNG KÝ LÀM CHỦ NHÀ (ẩn mặc định) -->
-        <form id="registerForm" action="profileServlet?action=registerOwner" method="post" style="display: none;"
-              enctype="multipart/form-data">
-            <h3>Đăng ký làm chủ nhà</h3>
-
-            <!-- 1. Lựa chọn loại tài liệu -->
-            <label for="documentType">Loại tài liệu:</label>
-            <select id="documentType" name="documentType" required>
-                <option value="">-- Chọn loại tài liệu --</option>
-                <option value="can_cuoc">Căn cước công dân</option>
-                <option value="ho_chieu">Hộ chiếu</option>
-                <option value="giay_phep_kinh_doanh">Giấy phép kinh doanh</option>
-                <option value="giay_chung_nhan_quyen_so_huu_nha">Giấy chứng nhận quyền sở hữu nhà</option>
-                <option value="khac">Khác</option>
-            </select>
-
-            <!-- 2. Nhập số tài liệu (ID) -->
-            <label for="documentId">Số tài liệu:</label>
-            <input type="text" id="documentId" name="documentId" placeholder="Nhập số tài liệu" required>
-
-            <!-- 3. Cho phép chọn ảnh từ file -->
-            <label for="images">Chọn ảnh tài liệu:</label>
-            <input type="file" id="images" accept="image/*" name="image">
-
-            <div class="form-actions">
-                <button type="submit" class="btn btn-success">Hoàn tất đăng ký</button>
-                <button type="button" class="btn btn-secondary" onclick="toggleRegisterForm()">Hủy</button>
             </div>
         </form>
     </div>
@@ -318,17 +294,15 @@
 
 <!-- Toggle Form CHỈNH SỬA -->
 <script>
+    document.getElementById('editForm').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            return false;
+        }
+    });
     function toggleEditForm() {
         let editForm = document.getElementById("editForm");
-        let registerForm = document.getElementById("registerForm");
         let editBtn = document.getElementById("editBtn");
-        let registerBtn = document.getElementById("registerBtn");
-
-        // Đóng form đăng ký nếu đang mở
-        if (registerForm.style.display === "block") {
-            registerForm.style.display = "none";
-            registerBtn.textContent = "Kênh kinh doanh";
-        }
 
         // Mở / đóng form chỉnh sửa
         if (editForm.style.display === "none" || editForm.style.display === "") {
@@ -339,36 +313,14 @@
             editBtn.textContent = "Chỉnh sửa";
         }
     }
-</script>
-
-<!-- Toggle Form ĐĂNG KÝ -->
-<%--<script>--%>
-<%--    function toggleRegisterForm() {--%>
-<%--        let editForm = document.getElementById("editForm");--%>
-<%--        let registerForm = document.getElementById("registerForm");--%>
-<%--        let editBtn = document.getElementById("editBtn");--%>
-<%--        let registerBtn = document.getElementById("registerBtn");--%>
-
-<%--        // Đóng form chỉnh sửa nếu đang mở--%>
-<%--        if (editForm.style.display === "block") {--%>
-<%--            editForm.style.display = "none";--%>
-<%--            editBtn.textContent = "Chỉnh sửa";--%>
-<%--        }--%>
-
-<%--        // Mở / đóng form đăng ký--%>
-<%--        if (registerForm.style.display === "none" || registerForm.style.display === "") {--%>
-<%--            registerForm.style.display = "block";--%>
-<%--            registerBtn.textContent = "Đóng";--%>
-<%--        } else {--%>
-<%--            registerForm.style.display = "none";--%>
-<%--            registerBtn.textContent = "Kênh kinh doanh";--%>
-<%--        }--%>
-<%--    }--%>
-<%--</script>--%>
-
-<!-- Script cho nút Xác nhận trong Modal (chỉ dành cho form edit) -->
-
-<script>
+    function formatDateBeforeSubmit() {
+        let dateInput = document.getElementById("birthDate").value;
+        if (dateInput) {
+            let parts = dateInput.split("-"); // Tách YYYY-MM-DD
+            let formattedDate = parts[2] + "/" + parts[1] + "/" + parts[0]; // Đổi thành DD/MM/YYYY
+            document.getElementById("formattedBirthDate").value = formattedDate; // Gán vào input hidden
+        }
+    }
     document.getElementById('image').addEventListener('change', function(event) {
         const file = this.files[0];
         if (file) {

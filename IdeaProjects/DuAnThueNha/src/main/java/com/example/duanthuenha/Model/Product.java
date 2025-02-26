@@ -1,41 +1,22 @@
 package com.example.duanthuenha.Model;
-import java.math.BigDecimal;
+
 public class Product {
-    private int idProduct;
     private int idUser;
     private String nameProduct;
     private String productDescription;
-    private BigDecimal price;
+    private Double price;
     private String address;
     private String status;
+    private String image;
 
-    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
-        this.idProduct = idProduct;
+    public Product(int idUser, String nameProduct, String productDescription, Double price, String address, String status, String image) {
         this.idUser = idUser;
         this.nameProduct = nameProduct;
         this.productDescription = productDescription;
         this.price = price;
         this.address = address;
         this.status = status;
-    }
-
-    public Product(int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
-        this.idUser = idUser;
-        this.nameProduct = nameProduct;
-        this.productDescription = productDescription;
-        this.price = price;
-        this.address = address;
-        this.status = status;
-    }
-
-
-
-    public int getIdProduct() {
-        return idProduct;
-    }
-
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+        this.image = image;
     }
 
     public int getIdUser() {
@@ -62,11 +43,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -84,5 +65,13 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
