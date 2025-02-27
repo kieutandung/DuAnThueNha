@@ -32,6 +32,7 @@
 .date-buttons {
     display: flex;
     gap: 28px;
+    margin-top: -10px;
 }
 
 .btn-confirm {
