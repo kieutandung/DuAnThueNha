@@ -5,6 +5,6 @@
          version="4.0">
 
     <welcome-file-list>
-        <welcome-file>view/header.jsp</welcome-file>
+        <welcome-file>productServlet</welcome-file>
     </welcome-file-list>
 </web-app>
