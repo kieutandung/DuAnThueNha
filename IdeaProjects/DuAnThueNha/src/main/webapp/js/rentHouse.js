@@ -17,8 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const startDate = startDateInput.value;
         const rentalDays = parseInt(numDaysInput.value) || 0;
 
-        if (!startDate || rentalDays <= 0) {
-            alert("Vui lòng nhập ngày bắt đầu và số ngày hợp lệ!");
+        if (!startDate) {
+            startDateInput.classList.add("is-invalid");
+            alert("Vui lòng chọn ngày bắt đầu!");
+            return;
+        } else {
+            startDateInput.classList.remove("is-invalid");
+        }
+
+        if (rentalDays <= 0) {
+            alert("Vui lòng nhập số ngày hợp lệ!");
             return;
         }
 
@@ -43,10 +51,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Xử lý khi ấn "Thuê ngay"
     rentButton.addEventListener("click", function () {
-        if (document.getElementById("totalAmount").innerText === "0 VND") {
+        if (document.getElementById("totalAmount").innerText === "0") {
             alert("Vui lòng nhập thông tin và xác nhận trước khi thuê!");
         } else {
             alert("Bạn đã thuê thành công!");
+        }
+    });
+
+    // Khi người dùng nhập ngày bắt đầu, bỏ cảnh báo lỗi
+    startDateInput.addEventListener("input", function () {
+        if (startDateInput.value) {
+            startDateInput.classList.remove("is-invalid");
         }
     });
 });

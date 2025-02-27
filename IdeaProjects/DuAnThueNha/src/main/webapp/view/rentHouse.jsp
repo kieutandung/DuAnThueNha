@@ -69,7 +69,7 @@
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
-            <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">15 ngày</button>
+            <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
         </div>
         <input type="number" id="numDays" class="form-control mt-2" placeholder="Nhập số ngày" required>
 
