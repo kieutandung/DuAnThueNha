@@ -64,10 +64,11 @@
         <input type="date" id="startDate" class="form-control" required>
 
         <label class="form-label mt-2">Đặt ngày:</label>
-        <div>
+        <div class="date-buttons">
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
+            <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">15 ngày</button>
         </div>
         <input type="number" id="numDays" class="form-control mt-2" placeholder="Nhập số ngày" required>
 
@@ -76,18 +77,18 @@
 
         <label class="form-label mt-2">Ghi chú:</label>
         <textarea id="note" class="form-control" rows="3"></textarea>
-
-        <button type="button" class="btn btn-primary mt-3" onclick="updateOrder()">Xác nhận thuê</button>
+<%--        <div class="spacer"></div>--%>
+        <button type="button" class="btn btn-primary mt-3  btn-confirm" onclick="updateOrder()">Xác nhận</button>
     </div>
 
-    <div class="separator-vertical"></div> <!-- Dòng kẻ dọc ngăn cách -->
+    <div class="separator-vertical"></div>
 
     <div class="col-md-5 order-summary">
         <h3 class="text-dark">Đơn hàng</h3>
         <div class="house-info position-relative">
                 <div class="house-info position-relative ">
                     <img src="<%= product.getImage() %>" class="house-image" alt="Hình ảnh sản phẩm">
-                    <p><strong>Tên nhà: </strong> <span id="houseName"><c:out value="<%= product.getNameProduct() %>"/></span></p>
+                    <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out value="<%= product.getNameProduct() %>"/></span></p>
                     <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="<%= product.getFormattedPrice() %>"/></span></p>
                     <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                     <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>

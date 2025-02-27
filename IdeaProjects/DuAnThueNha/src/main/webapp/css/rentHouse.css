@@ -29,3 +29,19 @@
 .order-summary {
     margin-left: 35px;
 }
+.date-buttons {
+    display: flex;
+    gap: 28px;
+}
+
+.btn-confirm {
+    width: 100%;
+}
+
+.house-name {
+    margin-top: 20px;
+}
+
+#note {
+    resize: none;
+    height: 200px; }
