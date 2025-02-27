@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.table-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    color: #454545;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+img {
+    width: 50px; /* Kích thước ảnh */
+    height: 50px; /* Kích thước ảnh */
+}
+
+.button {
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+    border: none;
+    color: white;
+    margin-right: 5px; /* Thêm khoảng cách giữa các nút */
+}
+.button-modal {
+    width: 150px;
+    height: 30px;
+    background-color: #05AD27;
+    color: white;
+    font-size: 14px;
+    border-color: #ffffff;
+    border: 1px solid transparent; /* Thêm border để giữ kích thước */
+    border-radius: 5px; /* Bo tròn góc cho nút */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+.button-modal:hover {
+    background-color: #04A826; /* Màu nền khi hover */
+}
+
+
+.actions {
+    display: flex; /* Sử dụng Flexbox để căn chỉnh */
+    justify-content: space-between; /* Căn giữa các phần tử */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.actions.left {
+    display: flex; /* Căn giữa các nút bên trái */
+    justify-content: center; /* Căn giữa các nút bên trái */
+}
+
+.actions.right {
+    display: flex; /* Đảm bảo ô tìm kiếm và nút tìm kiếm trên cùng một dòng */
+    justify-content: flex-start;
+    text-align: center/* Căn trái cho phần tử bên phải */
+}
+
+.inputSearch {
+    width: 200px;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 12px;
+    margin: auto;
+}
+#search {
+    padding: 10px; /* Khoảng cách bên trong input */
+    border: 1px solid #ccc; /* Viền nhẹ cho input */
+    border-radius: 5px; /* Bo tròn góc */
+    margin-right: 10px; /* Khoảng cách giữa ô tìm kiếm và nút tìm kiếm */
+}
+
+/* Nút thêm người dùng */
+.button.add {
+    background-color: #4CAF50; /* Màu nền cho nút thêm */
+}
+.button.edit {
+    background-color: #ffffff;
+}
+
+/* Nút sắp xếp */
+.button.sort {
+    background-color: #008CBA; /* Màu nền cho nút sắp xếp */
+}
+
+/* Nút thay đổi */
+.button.change {
+    background-color: #008CBA; /* Màu nền cho nút thay đổi */
+}
+
+.button.change:hover {
+    background-color: #005f73; /* Màu nền khi hover cho nút thay đổi */
+}
+
+
+.button.delete {
+    background-color: #ffffff; /* Màu nền cho nút xóa */
+}
+
+.button.search {
+    background-color: #06C12C; /* Màu nền cho nút tìm kiếm */
+}
+.button.search:hover {
+    background-color: #05AD27; /* Màu nền khi hover cho nút tìm kiếm */
+}
+.edit-icon {
+    width: 20px; /* Kích thước ảnh */
+    height: 20px; /* Kích thước ảnh */
+    border-radius: 0; /* Bỏ bo góc */
+}
+#avatar,
+#fullName,
+#email,
+#action,
+#phone,
+#role,
+#status{
+    text-align: center;
+}
+
+
