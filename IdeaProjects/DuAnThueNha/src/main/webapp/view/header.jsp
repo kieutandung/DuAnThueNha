@@ -1,5 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <style>
+    .nav-icons a {
+        margin-left: 15px;
+        font-size: 20px;
+        color: #007bff !important;
+        text-decoration: none;
+    }
+
+    .nav-icons a:visited {
+        color: #007bff !important;
+    }
+
+    .nav-icons a:hover {
+        color: #0056b3 !important;
+    }
+
     * {
         margin: 0;
         padding: 0;

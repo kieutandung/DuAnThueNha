@@ -45,7 +45,11 @@
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/menu.jsp" afterDir="false" />
     </list>
+<<<<<<< HEAD
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
+=======
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
+>>>>>>> 1e35f05b11fe70f177258ae0db9b6cee112e1f2e
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +89,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="Jsp File" />
 <<<<<<< HEAD
 =======
@@ -94,6 +99,15 @@
 =======
         <option value="CSS File" />
         <option value="JavaScript File" />
+=======
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
+>>>>>>> 1e35f05b11fe70f177258ae0db9b6cee112e1f2e
         <option value="Jsp File" />
 >>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
       </list>
@@ -107,7 +121,11 @@
       </map>
     </option>
 =======
+<<<<<<< HEAD
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
+=======
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
+>>>>>>> 1e35f05b11fe70f177258ae0db9b6cee112e1f2e
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -192,6 +210,7 @@
     "vue.rearranger.settings.migration": "true"
 >>>>>>> 10c0657b24e1eae5b4f7fd289fb599a3ba941445
   }
+<<<<<<< HEAD
 }]]></component>
   <component name="RunManager">
 =======
@@ -207,12 +226,22 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
 >>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
   }
+=======
+<<<<<<< HEAD
+}]]></component>
+  <component name="RunManager">
+=======
+>>>>>>> 1e35f05b11fe70f177258ae0db9b6cee112e1f2e
 }</component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
     <configuration name="test.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/test.jsp">
       <method v="2" />
     </configuration>
+<<<<<<< HEAD
 >>>>>>> 5528b5bc942b2bef0a71193a20bf620e116a2713
+=======
+>>>>>>> 4c8bd141c0395c5c846f7aef045fc5adc973ebcf
+>>>>>>> 1e35f05b11fe70f177258ae0db9b6cee112e1f2e
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>

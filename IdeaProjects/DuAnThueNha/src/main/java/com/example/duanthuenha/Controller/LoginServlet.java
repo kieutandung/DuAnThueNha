@@ -42,7 +42,8 @@ public class LoginServlet extends HttpServlet {
                 if (role.equalsIgnoreCase("admin")) {
                     resp.sendRedirect("adminServlet");
                 } else if (role.equalsIgnoreCase("user")|| role.equalsIgnoreCase("host")) {
-                    resp.sendRedirect("/profileServlet");
+                    resp.sendRedirect("/productServlet");
+
                 }
             } else {
                 req.setAttribute("errorMessage", "Tài khoản của bạn đã bị khóa!");

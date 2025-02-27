@@ -6,6 +6,7 @@ import com.example.duanthuenha.ConnectDB.ConnectDB;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProductImpl implements ProductService {
@@ -60,30 +61,49 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public Product getAllProductsById(int idProduct) {
-        Product products = null;
-        try {
-            Connection conn = connectDB.getConnection();
-            String sql = "SELECT * FROM products WHERE id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idProduct);
-            ResultSet rs = stmt.executeQuery();
+    public Product getAllProductsById(int id) {
+        Product product = null;
+        String sql = "SELECT " +
+                "p.idProduct, p.nameProduct, p.productDescription, " +
+                "p.price, p.address, p.status, p.image AS mainImage, " +
+                "u.fullName, u.image AS userImage, " +
+                "GROUP_CONCAT(i.img ORDER BY i.idImage SEPARATOR ',') AS additionalImages " +
+                "FROM products p " +
+                "JOIN users u ON p.idUser = u.idUser " +
+                "LEFT JOIN images i ON p.idProduct = i.idProduct " +
+                "WHERE p.idProduct = ? " +
+                "GROUP BY p.idProduct, p.nameProduct, p.productDescription, p.price, " +
+                "p.address, p.status, p.image, u.fullName, u.image;";
 
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                products = new Product(
-//                        rs.getInt("id"),
-                        rs.getString("nameProduct"),
-                        rs.getString("productDescription"),
-                        rs.getBigDecimal("price"),
-                        rs.getString("address"),
-                        rs.getString("status")
-//                        rs.getString("image")
-                );
+                product = new Product();
+                product.setIdProduct(rs.getInt("idProduct"));
+                product.setNameProduct(rs.getString("nameProduct"));
+                product.setProductDescription(rs.getString("productDescription"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setAddress(rs.getString("address"));
+                product.setStatus(rs.getString("status"));
+                product.setImage(rs.getString("mainImage"));
+                product.setOwnerName(rs.getString("fullName"));;
+                product.setOwnerImage(rs.getString("userImage"));
+
+                // Xử lý danh sách hình ảnh
+                String additionalImages = rs.getString("additionalImages");
+                if (additionalImages != null) {
+                    List<String> imagesList = Arrays.asList(additionalImages.split(","));
+                    product.setAdditionalImages(imagesList);
+                } else {
+                    product.setAdditionalImages(new ArrayList<>());
+                }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return products;
+        return product;
     }
 }
 

@@ -1,6 +1,9 @@
 package com.example.duanthuenha.Model;
+
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class Product {
     private int idProduct;
@@ -11,16 +14,9 @@ public class Product {
     private String address;
     private String status;
     private String image;
-
-    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
-        this.idProduct = idProduct;
-        this.idUser = idUser;
-        this.nameProduct = nameProduct;
-        this.productDescription = productDescription;
-        this.price = price;
-        this.address = address;
-        this.status = status;
-    }
+    private String ownerName;
+    private String ownerImage;
+    private List<String> additionalImages;
 
     public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status, String image) {
         this.idProduct = idProduct;
@@ -33,12 +29,18 @@ public class Product {
         this.image = image;
     }
 
-    public Product(String nameProduct, String productDescription, BigDecimal price, String address, String status) {
+
+    public Product(int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status) {
+        this.idUser = idUser;
         this.nameProduct = nameProduct;
         this.productDescription = productDescription;
         this.price = price;
         this.address = address;
         this.status = status;
+    }
+
+    public Product() {
+
     }
 
 
@@ -90,9 +92,9 @@ public class Product {
         this.address = address;
     }
 
-    public String getStatus() {
-        return status;
-    }
+//    public String getStatus() {
+//        return status;
+//    }
 
     public void setStatus(String status) {
         this.status = status;
@@ -105,4 +107,48 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+
+    public String getOwnerImage() {
+        return ownerImage;
+    }
+
+    public void setOwnerImage(String ownerImage) {
+        this.ownerImage = ownerImage;
+    }
+
+    public List<String> getAdditionalImages() {
+        return additionalImages;
+    }
+
+    public void setAdditionalImages(List<String> additionalImages) {
+        this.additionalImages = additionalImages;
+    }
+
+    public String getFormattedPrice() {
+        NumberFormat currencyFormatter = NumberFormat.getNumberInstance(new Locale("vi", "VN"));
+        return currencyFormatter.format(price) + " VNĐ";
+    }
+
+    public String getStatus() {
+        switch (this.status) {
+            case "active":
+                return "Đang hoạt động";
+            case "for rent":
+                return "Cho thuê";
+            case "sold out":
+                return "Đã bán";
+            default:
+                return "Không xác định";
+        }
+    }
+
 }
