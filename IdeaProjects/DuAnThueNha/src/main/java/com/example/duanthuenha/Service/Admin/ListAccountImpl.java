@@ -114,7 +114,7 @@ public class ListAccountImpl implements ListAccountService {
 
     public List<Users> getAllUsersSortedByName() {
         List<Users> users = new ArrayList<>();
-        String query = "SELECT * FROM users ORDER BY fullName ASC"; // Sắp xếp tăng dần theo tên
+        String query = "SELECT * FROM users ORDER BY SUBSTRING_INDEX(fullName, ' ', -1) ASC";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(query);
@@ -138,6 +138,7 @@ public class ListAccountImpl implements ListAccountService {
         }
         return users;
     }
+
     public void updateUser(String username,String password, String fullName, String phone, String email,  String role, String status ,int idUser) {
         try (Connection connection = connectDB.getConnection()) {
             String query = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ? WHERE idUser = ?";
@@ -159,14 +160,14 @@ public class ListAccountImpl implements ListAccountService {
 
     @Override
     public Users getUserById(int id) {
-        Users user = null; // Change to a single Users object
+        Users user = null;
         try (Connection connection = connectDB.getConnection()) {
             String query = "SELECT * FROM users WHERE idUser = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) { // Use if instead of while since ID is unique
+            if (rs.next()) {
                 int idUser = rs.getInt("idUser");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
@@ -181,7 +182,7 @@ public class ListAccountImpl implements ListAccountService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return user; // Return a single Users object
+        return user;
     }
 
     @Override

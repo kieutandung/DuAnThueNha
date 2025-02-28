@@ -19,7 +19,7 @@ import java.util.Collection;
         maxFileSize = 1024 * 1024 * 10,       // 10MB: kích thước tối đa của 1 file
         maxRequestSize = 1024 * 1024 * 50     // 50MB: kích thước tối đa của toàn bộ request
 )
-@WebServlet("/productServlet")
+@WebServlet("/addProductHostServlet")
 public class AddProductHostServlet extends HttpServlet {
     private ProductImpl productService = new ProductImpl();
 

@@ -1,0 +1,48 @@
+
+.main-container {
+    padding-top: 20px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+.separator-vertical {
+    border-right: 1px solid #d3d3d3;
+    height: 100%;
+    margin: 0 35px;
+}
+
+.rental-info, .order-summary {
+    flex: 1;
+    max-width: 50%; /* Giới hạn độ rộng tối đa của mỗi phần tử con */
+    margin: 10px;
+    margin-bottom: 5px;
+}
+
+.order-summary {
+    margin-left: 35px;
+}
+.date-buttons {
+    display: flex;
+    gap: 28px;
+    margin-top: -10px;
+}
+
+.btn-confirm {
+    width: 100%;
+}
+
+.house-name {
+    margin-top: 20px;
+}
+
+#note {
+    resize: none;
+    height: 200px; }

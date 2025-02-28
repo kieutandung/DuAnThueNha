@@ -103,9 +103,13 @@ public class AdminServlet extends HttpServlet {
         String role = req.getParameter("role");
 
         Users newUser = listAccountService.addUser(username, password, fullName, phone, email, role);
-        List<Users> users = listAccountService.getAllUser();
-        users.add(0, newUser);
-        req.setAttribute("users", users);
+
+        if (newUser != null) {
+            req.setAttribute("message", "Thêm người dùng thành công!");
+        } else {
+            req.setAttribute("error", "Thêm người dùng thất bại!");
+        }
+
         listAccountView(req, resp);
     }
 
@@ -119,9 +123,17 @@ public class AdminServlet extends HttpServlet {
         String status = req.getParameter("status");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
 
-        listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+        try {
+            listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+            req.setAttribute("message", "Cập nhật người dùng thành công!");
+        } catch (Exception e) {
+            req.setAttribute("error", "Cập nhật người dùng thất bại!");
+        }
+
         listAccountView(req, resp);
     }
+
+
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

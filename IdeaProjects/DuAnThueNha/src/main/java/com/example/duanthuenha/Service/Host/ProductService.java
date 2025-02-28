@@ -6,7 +6,6 @@ import com.example.duanthuenha.Model.ProductHost;
 import java.util.List;
 
 public interface ProductService {
-
     int addProduct(ProductHost product);
 
     void addImage(Image image);
