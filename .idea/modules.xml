@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DuAnThueNha.iml" filepath="$PROJECT_DIR$/.idea/DuAnThueNha.iml" />
-<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.test.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.main.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.test.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.test.iml" />
->>>>>>> b2839fc7c0aad95af63384ebc640cd99a97de07b
     </modules>
   </component>
 </project>

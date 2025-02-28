@@ -89,6 +89,11 @@ public class AdminServlet extends HttpServlet {
                 case "profileFeedback":
                     handleProfileFeedback(req, resp);
                     break;
+                case "getVerification":  // ✅ Thêm case này
+                    getVerificationInfo(req, resp);
+                    break;
+                case "updateStatus":
+                    updateStatus(req, resp);
                 default:
                     listAccountView(req, resp);
                     break;
@@ -97,17 +102,33 @@ public class AdminServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+    private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
+        Verification verification = listAccountService.getVerificationByIdDocument(idDocument);
+
+        resp.setContentType("text/plain"); // Trả về dữ liệu dạng chuỗi, không dùng JSON
+        resp.setCharacterEncoding("UTF-8");
+
+        if (verification != null) {
+            String result = verification.getStatus() + "|" +
+                    (verification.getRejectionReason() != null ? verification.getRejectionReason() : "");
+            resp.getWriter().write(result);
+        } else {
+            resp.getWriter().write("error");
+        }
+    }
 
     private void handleProfileFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         String status = req.getParameter("status");
-        String rejectionReason = req.getParameter("rejectionReason");
+        String rejectionReason = "Không hợp lệ";
 
-        boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
+        if ("approved".equals(status)) {
+            rejectionReason = null;
+        }
 
-        req.setAttribute("feedbackSuccess", success);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/feedbackResult.jsp");
-        dispatcher.forward(req, resp);
+        boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
+        resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
 
     private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -173,10 +194,16 @@ public class AdminServlet extends HttpServlet {
         String role = req.getParameter("role");
 
         Users newUser = listAccountService.addUser(username, password, fullName, phone, email, role);
+
         List<Users> users = listAccountService.getAllUser();
         users.add(0, newUser);
         req.setAttribute("users", users);
         req.setAttribute("addUserSuccess", true);
+        if (newUser != null) {
+            req.setAttribute("message", "Thêm người dùng thành công!");
+        } else {
+            req.setAttribute("error", "Thêm người dùng thất bại!");
+        }
         listAccountView(req, resp);
     }
 
@@ -189,11 +216,16 @@ public class AdminServlet extends HttpServlet {
         String role = req.getParameter("role");
         String status = req.getParameter("status");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
-
-        listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
-        req.setAttribute("editUserSuccess", true);
+        try {
+            listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+            req.setAttribute("message", "Cập nhật người dùng thành công!");
+        } catch (Exception e) {
+            req.setAttribute("error", "Cập nhật người dùng thất bại!");
+        }
         listAccountView(req, resp);
     }
+
+
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
@@ -239,5 +271,19 @@ public class AdminServlet extends HttpServlet {
         req.setAttribute("user", user); // Set user details to request attribute
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
         dispatcher.forward(req, resp);
+    }
+    private void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
+        String status = req.getParameter("status");
+        String rejectionReason = req.getParameter("rejectionReason");
+
+        // Cập nhật trạng thái trong cơ sở dữ liệu
+        boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
+
+        if (success) {
+            resp.getWriter().write("Cập nhật thành công");
+        } else {
+            resp.getWriter().write("Cập nhật thất bại");
+        }
     }
 }

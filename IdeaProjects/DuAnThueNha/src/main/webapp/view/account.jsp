@@ -20,8 +20,48 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="css/alert.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 <body>
+<%-- Hiển thị thông báo thành công --%>
+<c:if test="${not empty message}">
+    <div id="successPopup" class="popup popup-success">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <!-- Dùng Font Awesome để thay dấu tick -->
+                <span class="fa fa-check tick-icon"></span>
+            </div>
+            <h2>success</h2>
+            <p>${message}</p>
+        </div>
+    </div>
+</c:if>
+<%-- Hiển thị thông báo lỗi --%>
+<c:if test="${not empty error}">
+    <div id="errorPopup" class="popup popup-error">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-times error-icon"></i>
+            </div>
+            <h2>failure</h2>
+            <p>${error}</p>
+        </div>
+    </div>
+</c:if>
+<script>
+    // Tự động ẩn thông báo sau 3 giây
+    setTimeout(function () {
+        document.querySelectorAll('.popup').forEach(el => el.style.display = 'none');
+    }, 3000);
+</script>
+<script>
+    // Tự động ẩn thông báo sau 3 giây
+    setTimeout(function () {
+        document.querySelectorAll('div[style*="background"]').forEach(el => el.style.display = 'none');
+    }, 3000);
+</script>
 <div class="actions">
     <div class="left">
         <button type="button" class="button add" data-toggle="modal" data-target="#addAccountModal">Thêm Người Dùng
@@ -30,13 +70,14 @@
     </div>
     <div class="right">
         <form action="adminServlet?action=search" method="get">
-            <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm">
+            <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm"
+                   value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>">
             <input type="hidden" name="action" value="search">
             <button type="submit" class="button search">Tìm Kiếm</button>
         </form>
+
     </div>
 </div>
-
 <div class="table-main">
     <table>
         <thead>
@@ -51,6 +92,44 @@
         </tr>
         </thead>
         <tbody>
+<%--       thông báo edit--%>
+        <c:if test="${not empty sessionScope.message}">
+            <div id="successPopup" class="popup popup-success">
+                <div class="popup-content">
+                    <div class="popup-icon">
+                        <span class="fa fa-check tick-icon"></span>
+                    </div>
+                    <h2>success</h2>
+                    <p>${sessionScope.message}</p>
+                </div>
+            </div>
+            <c:remove var="message" scope="session"/>
+        </c:if>
+
+        <c:if test="${not empty sessionScope.error}">
+            <div id="errorPopup" class="popup popup-error">
+                <div class="popup-content">
+                    <div class="popup-icon">
+                        <i class="fas fa-times error-icon"></i>
+                    </div>
+                    <h2>failure</h2>
+                    <p>${sessionScope.error}</p>
+                </div>
+            </div>
+            <c:remove var="error" scope="session"/>
+        </c:if>
+        <!-- JavaScript để ẩn popup sau 3 giây -->
+        <script>
+            setTimeout(function() {
+                var popups = document.querySelectorAll(".popup");
+                popups.forEach(function(popup) {
+                    popup.style.opacity = "0";
+                    setTimeout(() => popup.style.display = "none", 500); // Chờ 0.5s để ẩn hoàn toàn
+                });
+            }, 3000);
+
+        </script>
+<%--  thông báo thêm người dùng mới--%>
         <c:if test="${empty users}">
             <tr>
                 <td colspan="4" style="text-align: center; color: gray;">Không có dữ liệu</td>
@@ -91,15 +170,15 @@
                             background: none;
                             border: none;
                             cursor: pointer;
-                            display: inline-block; /* Ensure the button is inline-block */
+                            display: inline-block;
                         }
 
                         .button.edit svg path {
-                            transition: fill 0.3s; /* Smooth transition */
+                            transition: fill 0.3s;
                         }
 
                         .button.edit:hover svg path {
-                            fill: #007BFF; /* Hover color */
+                            fill: #007BFF;
                         }
                     </style>
                     <style>
@@ -110,12 +189,11 @@
                         }
 
                         .button.delete svg path {
-                            fill: black; /* Default color */
-                            transition: fill 0.3s; /* Smooth transition */
+                            fill: black;
+                            transition: fill 0.3s;
                         }
-
                         .button.delete:hover svg path {
-                            fill: red; /* Hover color */
+                            fill: red;
                         }
                     </style>
                     <button class="button delete" onclick="deleteUser(${user.idUser})">
@@ -245,7 +323,7 @@
                                     </c:if>
                                 </select>
                             </td>
-
+                            Giải thích
                         </tr>
                         <tr>
                             <td>Trạng Thái:</td>
@@ -290,7 +368,6 @@
         </div>
     </div>
 </div>
-
 <script>
     document.getElementById('confirmEditButton').addEventListener('click', function () {
         document.querySelector('form[action="adminServlet?action=editUser"]').submit();
@@ -301,8 +378,6 @@
         $('#confirmEditModal').modal('show');
     });
 </script>
-
-
 <script>
     function openEditModal(user) {
         document.getElementById('modalIdUser').value = user.idUser;

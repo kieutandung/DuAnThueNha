@@ -18,5 +18,7 @@ public interface ListAccountService {
     List<Verification> getAllVerification();
     List<Verification> getVerificationsByUserId(int idUser);
     boolean promoteUser(int idUser);
+    boolean updateStatus(int idDocument, String status, String rejectionReason);
+    Verification getVerificationByIdDocument(int idDocument);
     boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
 }

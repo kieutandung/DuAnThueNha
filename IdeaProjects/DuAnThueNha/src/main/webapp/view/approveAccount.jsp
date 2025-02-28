@@ -56,20 +56,37 @@
             </div>
             <div class="modal-body">
                 <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Ảnh Tài liệu</th>
-                        <th>Loại tài liệu</th>
-                        <th>Số tài liệu</th>
-                        <th>Trạng thái</th>
-                        <th>Lý do</th>
-                        <th>Ngày Gửi</th>
-                    </tr>
-                    </thead>
                     <tbody id="documentList">
-                    <!-- Dữ liệu từ AJAX sẽ hiển thị ở đây -->
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="feedbackModalLabel">Phản hồi hồ sơ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="feedbackForm">
+                    <input type="hidden" name="action" value="profileFeedback">
+                    <input type="hidden" name="idDocument" id="feedback-idDocument">
+
+                    <label for="feedback-status">Trạng thái:</label>
+                    <select name="status" id="feedback-status" class="form-select">
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+
+                    <label for="feedback-reason">Lý do từ chối:</label>
+                    <input type="text" name="rejectionReason" id="feedback-reason" class="form-control" style="display: none;">
+
+                    <button type="submit" class="btn btn-primary mt-3">Gửi</button>
+                </form>
             </div>
         </div>
     </div>

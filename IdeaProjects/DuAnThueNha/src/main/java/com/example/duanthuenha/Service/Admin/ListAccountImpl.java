@@ -115,7 +115,7 @@ public class ListAccountImpl implements ListAccountService {
 
     public List<Users> getAllUsersSortedByName() {
         List<Users> users = new ArrayList<>();
-        String query = "SELECT * FROM users ORDER BY fullName ASC"; // Sắp xếp tăng dần theo tên
+        String query = "SELECT * FROM users ORDER BY SUBSTRING_INDEX(fullName, ' ', -1) ASC";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(query);
@@ -140,6 +140,7 @@ public class ListAccountImpl implements ListAccountService {
         return users;
     }
 
+
     public void updateUser(String username, String password, String fullName, String phone, String email, String role, String status, int idUser) {
         try (Connection connection = connectDB.getConnection()) {
             String query = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ? WHERE idUser = ?";
@@ -161,14 +162,14 @@ public class ListAccountImpl implements ListAccountService {
 
     @Override
     public Users getUserById(int id) {
-        Users user = null; // Change to a single Users object
+        Users user = null;
         try (Connection connection = connectDB.getConnection()) {
             String query = "SELECT * FROM users WHERE idUser = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) { // Use if instead of while since ID is unique
+            if (rs.next()) {
                 int idUser = rs.getInt("idUser");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
@@ -183,7 +184,7 @@ public class ListAccountImpl implements ListAccountService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return user; // Return a single Users object
+        return user;
     }
 
     @Override
@@ -263,27 +264,64 @@ public class ListAccountImpl implements ListAccountService {
     }
 
 
-    public boolean updateVerificationStatus(int idDocument, String status, String rejectionReason) {
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        boolean updated = false;
+    public boolean updateStatus(int idDocument, String status, String rejectionReason) {
+        String sql = "UPDATE verificationdocument SET status = ?, rejectionReason = ?, updatedAt = NOW() WHERE idDocument = ?";
 
-        try {
-            conn = connectDB.getConnection();
-            String sql = "UPDATE verificationdocument SET status = ?, rejectionReason = NULLIF(?, '') WHERE idDocument = ?";
-            stmt = conn.prepareStatement(sql);
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, status);
-            stmt.setString(2, "rejected".equalsIgnoreCase(status) ? rejectionReason : null);
+            stmt.setString(2, rejectionReason);
             stmt.setInt(3, idDocument);
 
-            int rowsAffected = stmt.executeUpdate();
-            updated = rowsAffected > 0;
-
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    @Override
+    public Verification getVerificationByIdDocument(int idDocument) {
+        String query = "SELECT * FROM verificationdocument WHERE idDocument = ?";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, idDocument);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new Verification(
+                        rs.getInt("idDocument"),
+                        rs.getInt("userId"),
+                        rs.getString("documentType"),
+                        rs.getString("documentNumber"),
+                        rs.getString("documentImage"),
+                        rs.getString("status"),
+                        rs.getString("rejectionReason"),
+                        rs.getString("createdAt"),
+                        rs.getString("updatedAt")
+                );
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return updated;
+        return null;
     }
+    public boolean updateVerificationStatus(int idDocument, String status, String rejectionReason) {
+        String sql = "UPDATE verificationdocument SET status = ?, rejectionReason = ? WHERE idDocument = ?";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, status);
+            preparedStatement.setString(2, rejectionReason);
+            preparedStatement.setInt(3, idDocument);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0; // Trả về true nếu có bản ghi được cập nhật
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }
 

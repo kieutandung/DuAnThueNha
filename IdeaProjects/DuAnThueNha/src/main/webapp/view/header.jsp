@@ -45,7 +45,6 @@
 
     .nav-icon {
         padding-top: 15px;
-        margin-left: auto;
         list-style: none;
         display: flex;
         align-items: center;
@@ -60,7 +59,7 @@
     }
 
     .search-input {
-        width: 220px;
+        width: 250px;
         padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -89,15 +88,6 @@
 
     .bell-icon {
         font-size: 20px;
-        cursor: pointer;
-    }
-
-    .btn_header {
-        background-color: #007bff;
-        color: white;
-        padding: 8px 15px;
-        border: none;
-        border-radius: 5px;
         cursor: pointer;
     }
 
@@ -135,10 +125,6 @@
         .nav-icon a {
             font-size: 14px; /* Reduce font size for links */
         }
-
-        .btn {
-            padding: 6px 12px; /* Adjust button size */
-        }
     }
 </style>
 
@@ -147,7 +133,7 @@
     <nav class="navbar">
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
-            <li><a href="#">Trang chủ</a></li>
+            <li><a href="productServlet">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
@@ -158,19 +144,16 @@
             </li>
         </ul>
         <ul class="nav-icon">
-            <li><a href="/profileServlet"><i class="account-icon"><img
+            <li><a href="/view/home.jsp"><i class="account-icon"><img
                     src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png"></i></a></li>
             <li><i class="bell-icon"><img
                     src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"></i>
             </li>
-            <li>
-                <button class="btn_header">Liên hệ tư vấn</button>
             <li><a href="/loginServlet"><i class="logout-icon"><img
                     src="/img/logout-black.png"></i></a></li>
             </li>
         </ul>
     </nav>
-
 </div>
 
 
