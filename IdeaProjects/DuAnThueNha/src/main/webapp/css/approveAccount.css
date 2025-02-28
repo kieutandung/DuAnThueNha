@@ -1,0 +1,117 @@
+
+body {
+    background-color: #ffffff;
+}
+
+.table-main {
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+}
+
+.btn {
+    width: 150px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+img {
+    width: 35px;
+    height: 35px;
+}
+
+/* Đảm bảo modal không bị lồi */
+.modal-dialog {
+    max-width: 90%; /* Giới hạn chiều rộng tối đa */
+    margin: 1.75rem auto; /* Căn giữa modal */
+}
+
+/* Thay đổi kiểu dáng của modal */
+.modal-content {
+    border-radius: 0.5rem; /* Bo tròn góc */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Đổ bóng cho modal */
+}
+
+/* Định dạng tiêu đề modal */
+.modal-header {
+    background-color: #007bff; /* Màu nền tiêu đề */
+    color: white; /* Màu chữ tiêu đề */
+}
+
+/* Định dạng nút đóng */
+.close {
+    color: white; /* Màu chữ nút đóng */
+}
+
+/* Định dạng nội dung modal */
+.modal-body {
+    padding: 20px; /* Padding cho nội dung */
+}
+
+/* Định dạng bảng trong modal */
+.table {
+    width: 100%; /* Chiều rộng bảng 100% */
+    border-collapse: collapse; /* Gộp viền bảng */
+}
+
+.table th, .table td {
+    padding: 12px; /* Padding cho ô bảng */
+    border-bottom: 1px solid #ddd; /* Viền dưới cho ô bảng */
+}
+
+/* Định dạng nút trong bảng */
+.response-btn {
+    padding: 5px 10px; /* Padding cho nút */
+    border-radius: 0.25rem; /* Bo tròn góc nút */
+}
+
+/* Định dạng nút gửi */
+.btn-primary {
+    background-color: #007bff; /* Màu nền nút gửi */
+    border-color: #007bff; /* Màu viền nút gửi */
+}
+
+/* Định dạng nút hủy */
+.btn-secondary {
+    background-color: #6c757d; /* Màu nền nút hủy */
+    border-color: #6c757d; /* Màu viền nút hủy */
+}
+
+.status-column {
+    align-items: center;
+}

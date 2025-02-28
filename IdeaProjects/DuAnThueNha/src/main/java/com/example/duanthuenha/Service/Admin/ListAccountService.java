@@ -16,4 +16,7 @@ public interface ListAccountService {
     void updateUser(String username, String fullName, String phone, String email, String password, String role, String status,int idUser);
     Users getUserById(int id);
     List<Verification> getAllVerification();
+    List<Verification> getVerificationsByUserId(int idUser);
+    boolean promoteUser(int idUser);
+    boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
 }

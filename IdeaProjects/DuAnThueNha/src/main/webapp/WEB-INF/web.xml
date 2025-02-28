@@ -6,4 +6,7 @@
     <welcome-file-list>
         <welcome-file>adminServlet</welcome-file>
     </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>view/browseProfile.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
 </web-app>

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 0;
 }
 
@@ -34,12 +34,8 @@ th {
     color: white;
 }
 
-img {
-    width: 50px; /* Kích thước ảnh */
-    height: 50px; /* Kích thước ảnh */
-}
-
 .button {
+    border-radius: 5px;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
@@ -149,5 +145,10 @@ img {
 #status{
     text-align: center;
 }
+.img-status {
+    width: 35px;
+    height: 35px;
+}
+
 
 

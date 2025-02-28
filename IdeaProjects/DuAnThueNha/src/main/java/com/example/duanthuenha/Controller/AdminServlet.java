@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
@@ -42,6 +45,9 @@ public class AdminServlet extends HttpServlet {
                 case "approveAccount":
                     listApproveAccount(req, resp);
                     break;
+                case "browseProfile":
+                    listBrowseProfileView(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -49,14 +55,6 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Verification> verificationList = listAccountService.getAllVerification();
-        req.setAttribute("verifications", verificationList);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
-        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -85,12 +83,79 @@ public class AdminServlet extends HttpServlet {
                 case "approveAccount":
                     listApproveAccount(req, resp);
                     break;
+                case "promoteUser":
+                    handlePromoteUser(req, resp);
+                    break;
+                case "profileFeedback":
+                    handleProfileFeedback(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
             }
         } catch (ServletException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void handleProfileFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
+        String status = req.getParameter("status");
+        String rejectionReason = req.getParameter("rejectionReason");
+
+        boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
+
+        req.setAttribute("feedbackSuccess", success);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/feedbackResult.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Verification> verificationList = listAccountService.getAllVerification();
+        req.setAttribute("verifications", verificationList);
+
+        List<Users> users = listAccountService.getAllUser();
+        List<Users> filteredUsers = new ArrayList<>();
+
+        Set<Integer> userIdsWithDocuments = new HashSet<>();
+        for (Verification verification : verificationList) {
+            userIdsWithDocuments.add(verification.getIdUser());
+        }
+
+        for (Users user : users) {
+            if ("user".equals(user.getRole()) && userIdsWithDocuments.contains(user.getIdUser())) {
+                filteredUsers.add(user);
+            }
+        }
+
+        req.setAttribute("users", filteredUsers);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void listBrowseProfileView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUser = Integer.parseInt(req.getParameter("userId"));
+        List<Verification> verifications = listAccountService.getVerificationsByUserId(idUser);
+        req.setAttribute("verifications", verifications);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/browseProfileTable.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+
+
+    private void handlePromoteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int idUser = Integer.parseInt(req.getParameter("idUser"));
+        boolean success = listAccountService.promoteUser(idUser);
+
+        if (success) {
+            // Nếu phê duyệt thành công, chuyển hướng đến trang listApproveAccount
+            resp.sendRedirect("view/approveAccount.jsp");
+        } else {
+            // Nếu có lỗi, có thể hiển thị thông báo lỗi
+            req.setAttribute("errorMessage", "Không thể phê duyệt người dùng.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp"); // Chuyển đến trang lỗi hoặc trang khác
+            dispatcher.forward(req, resp);
         }
     }
 
@@ -106,6 +171,7 @@ public class AdminServlet extends HttpServlet {
         List<Users> users = listAccountService.getAllUser();
         users.add(0, newUser);
         req.setAttribute("users", users);
+        req.setAttribute("addUserSuccess", true);
         listAccountView(req, resp);
     }
 
@@ -120,23 +186,22 @@ public class AdminServlet extends HttpServlet {
         int idUser = Integer.parseInt(req.getParameter("idUser"));
 
         listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+        req.setAttribute("editUserSuccess", true);
         listAccountView(req, resp);
     }
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
         dispatcher.forward(req, resp);
     }
 
-
     private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUser = Integer.parseInt(req.getParameter("idUser"));
         listAccountService.deleteUser(idUser);
-        resp.getWriter().write("success");
+        req.setAttribute("deleteSuccess", true);
+        listAccountView(req, resp);
     }
 
     private void searchUsers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -170,5 +235,4 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
         dispatcher.forward(req, resp);
     }
-
 }
