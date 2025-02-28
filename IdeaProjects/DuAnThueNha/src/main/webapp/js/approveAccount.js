@@ -1,16 +1,20 @@
 function openModal(userId) {
+    console.log("Opening modal for userId:", userId); // Debug
+
     $.ajax({
         url: "adminServlet?action=browseProfile&userId=" + userId,
         method: "GET",
         success: function(response) {
-            $("#verificationBody").html(response); // Cập nhật nội dung hồ sơ
+            $("#documentList").html(response); // Load dữ liệu từ AJAX vào modal
             $("#userProfilesModal").modal("show"); // Hiển thị modal
         },
         error: function() {
-            alert("Lỗi khi tải dữ liệu!");
+            alert("Không thể tải dữ liệu!");
         }
     });
 }
+
+
 function promoteUser(userId) {
     if (confirm("Bạn có chắc muốn thăng chức người dùng này không?")) {
         $.ajax({

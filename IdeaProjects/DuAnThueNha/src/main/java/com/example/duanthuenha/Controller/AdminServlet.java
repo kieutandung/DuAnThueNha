@@ -134,13 +134,18 @@ public class AdminServlet extends HttpServlet {
     }
 
     private void listBrowseProfileView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idUser = Integer.parseInt(req.getParameter("userId"));
-        List<Verification> verifications = listAccountService.getVerificationsByUserId(idUser);
+        int userId = Integer.parseInt(req.getParameter("userId")); // Nhận userId từ request
+
+        // Lấy danh sách hồ sơ của userId từ bảng verificationdocument
+        List<Verification> verifications = listAccountService.getVerificationsByUserId(userId);
+
+        // Gửi danh sách hồ sơ đến JSP
         req.setAttribute("verifications", verifications);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/browseProfileTable.jsp");
         dispatcher.forward(req, resp);
     }
+
 
 
 
