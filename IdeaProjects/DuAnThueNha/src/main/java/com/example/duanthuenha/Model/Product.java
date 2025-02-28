@@ -40,8 +40,6 @@ public class Product {
         this.image = image;
     }
 
-
-
     public int getIdUser() {
         return idUser;
     }
