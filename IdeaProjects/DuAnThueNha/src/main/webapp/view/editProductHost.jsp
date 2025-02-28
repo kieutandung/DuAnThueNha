@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-    <title>Đăng ký bất động sản</title>
+    <title>Sửa sản phẩm</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="../css/addNewHouse.css">
@@ -47,82 +49,118 @@
         <i class="fa-solid fa-triangle-exclamation"></i>
         Vui lòng chọn tối đa 8 ảnh !
     </div>
+
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col">
                 <div class="card card-registration my-4">
                     <div class="row g-0">
                         <div class="col-xl-6 d-none d-xl-block border-end">
-                            <div class="text-center style" id="previewContainerText" style="display: none">
+                            <div class="text-center style" id="previewContainerText">
                                 <label class="mt-4 form-label">Ảnh chính</label>
                             </div>
-                            <div class="py-4 text-center" id="previewContainer" style="display: none;">
-                                <img id="previewImage" src="" alt="Ảnh xem trước"
+                            <div class="py-4 text-center" id="previewContainer">
+                                <img id="previewImage" src="img/${product.image}" alt="Ảnh xem trước"
                                      style="max-width: 200px; padding: 5px;">
                             </div>
-                            <div class="px-4" style="display: none" id="additionalPreviewContainerText">
+                            <div class="px-4" id="additionalPreviewContainerText">
                                 <label class="mt-4 form-label">Ảnh phụ</label>
+                            </div>
+
+                            <div id="additionalPreviewContainerEdit" class="px-4" style="margin-bottom: 20px;">
+                                <div id="additionalPreviewGridEdit"
+                                     style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                                    <c:forEach var="img" items="${imagesProduct}">
+                                        <div class="image-box" id="imageBox_${img.idImage}">
+                                            <img src="img/${img.img}" alt="Ảnh phụ"
+                                                 style="width:100%; height:auto; padding: 5px;">
+
+                                            <button type="button" class="delete-btn"
+                                                    onclick="deleteImageFromDB('${img.idImage}')">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                            <div class="px-4" id="additionalPreviewContainerTextDown" style="display: none">
+                                <label class="mt-4 form-label">Ảnh bổ sung</label>
                             </div>
                             <div class="px-4" id="additionalPreviewContainer"
                                  style="display: none; margin-bottom: 20px;">
                                 <div id="additionalPreviewGrid"
                                      style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;"></div>
                             </div>
-
                         </div>
                         <div class="col-xl-6">
-                            <form action="productServlet" method="post" enctype="multipart/form-data">
+                            <form action="editProductHostServlet?action=updateProductHost&idProduct=${product.idProduct}"
+                                  method="post" enctype="multipart/form-data">
                                 <div class="card-body p-md-5 text-black">
-                                    <h3 class="mb-5 text-uppercase">Thêm mới nhà</h3>
+                                    <h3 class="mb-5 text-uppercase">Sửa thông tin nhà</h3>
                                     <input type="hidden" name="action" value="addProduct">
 
                                     <div class="mb-4">
-                                        <label class="form-label">Tải ảnh chính</label>
-                                        <input type="file" required id="image" name="imageProduct" class="form-control"
+                                        <label class="form-label">Chỉnh sửa ảnh chính</label>
+                                        <input type="file" id="image" name="imageProduct" class="form-control"
                                                accept="image/*">
+                                        <input type="hidden" name="image" value="${product.image}">
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label">Tải ảnh phụ (tối đa 8 ảnh)</label>
+                                        <label class="form-label">Chỉnh sửa ảnh phụ (tối đa 8 ảnh)</label>
                                         <input type="file" id="additionalImages" name="images" class="form-control"
                                                multiple
                                                accept="image/*">
                                     </div>
 
-                                    <div class="mb-4">
-                                        <div class="form-floating">
-                                            <input type="text" id="nameProduct" name="nameProduct"
-                                                   class="form-control" placeholder="Tên bất động sản" required>
-                                            <label for="nameProduct">Tên bất động sản</label>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-floating">
+                                                <input type="text" id="nameProduct" name="nameProduct"
+                                                       class="form-control" placeholder="Tên bất động sản" required
+                                                       value="${product.nameProduct}">
+                                                <label for="nameProduct">Tên bất động sản</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-floating">
+                                                <select required id="statusProduct" name="statusProduct" class="form-select">
+                                                    <option value="active" ${product.status eq 'active' ? 'selected' : ''}>Cho thuê</option>
+                                                    <option value="for rent" ${product.status eq 'pending' ? 'selected' : ''}>Đã được thuê</option>
+                                                    <option value="sold out" ${product.status eq 'blocked' ? 'selected' : ''}>Hết chỗ</option>
+                                                </select>
+                                                <label for="statusProduct">Trạng thái</label>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <div class="form-floating">
                                             <input type="number" id="price" name="price" class="form-control"
-                                                   placeholder="Mức giá" required  >
+                                                   placeholder="Mức giá" required value="${product.price}">
                                             <label for="price">Mức giá (Vnd)</label>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <input required  type="text" id="address" name="address" class="form-control"
-                                                   placeholder="Địa chỉ">
+                                            <input required type="text" id="address" name="address" class="form-control"
+                                                   placeholder="Địa chỉ" value="${product.address}">
                                             <label for="address">Địa chỉ</label>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <textarea required  id="productDescription" name="productDescription"
+                                            <textarea required id="productDescription" name="productDescription"
                                                       class="form-control" placeholder="Mô tả"
-                                                      style="height: 100px"></textarea>
+                                                      style="height: 100px"> ${product.productDescription}</textarea>
                                             <label for="productDescription">Mô tả</label>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
-                                        <button type="submit" class="btn btn-light btn-lg">Đăng tin</button>
+                                        <button type="submit" class="btn btn-light btn-lg">Sửa thông tin</button>
                                         <button type="reset" class="btn btn-warning btn-lg ms-2" onclick="window.location.href='listProductHostServlet'">Hủy</button>
                                     </div>
                                 </div>
@@ -144,9 +182,6 @@
             // Gán URL cho thẻ img preview
             var previewImage = document.getElementById('previewImage');
             previewImage.src = imageUrl;
-            // Hiển thị container chứa preview
-            document.getElementById('previewContainerText').style.display = 'block';
-            document.getElementById('previewContainer').style.display = 'block';
         }
     });
 
@@ -158,7 +193,7 @@
         const files = Array.from(this.files);
 
         // Kiểm tra số lượng file được chọn (tối đa 8)
-        if (files.length > 8) {
+        if (files.length + ${imagesProduct.size()} > 8 ) {
             showMaxImagesAlert();
             this.value = ""; // Reset file input
             selectedImages = [];
@@ -177,8 +212,8 @@
 
         // Hiển thị hoặc ẩn container preview dựa trên số ảnh được chọn
         if (selectedImages.length > 0) {
+            document.getElementById('additionalPreviewContainerTextDown').style.display = 'block';
             document.getElementById('additionalPreviewContainer').style.display = 'block';
-            document.getElementById('additionalPreviewContainerText').style.display = 'block';
         } else {
             document.getElementById('additionalPreviewContainer').style.display = 'none';
         }
@@ -193,13 +228,11 @@
             imgElem.src = imageUrl;
             imgElem.alt = "Ảnh phụ " + (index + 1);
 
-            // Tạo nút xóa (dùng textContent để tránh sự cố với innerHTML và icon)
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-btn');
-            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';  // Hoặc bạn có thể dùng innerHTML với <i class="fas fa-times"></i>
+            deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
             deleteBtn.addEventListener('click', function (e) {
                 e.stopPropagation();
-                console.log("Deleting image at index: " + index);
                 selectedImages.splice(index, 1);
                 updateFileInput();
                 renderAdditionalPreviewGrid();
@@ -227,6 +260,26 @@
         }, 3000); // 3 giây
     }
 
+    function deleteImageFromDB(imageId) {
+        fetch('editProductHostServlet?imageId=' + encodeURIComponent(imageId) + '&action=deleteImage', {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    var imageBox = document.getElementById('imageBox_' + imageId);
+                    if (imageBox) {
+                        imageBox.remove();
+                    }
+                } else {
+                    alert("Xóa ảnh thất bại: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi AJAX:", error);
+                alert("Đã xảy ra lỗi khi xóa ảnh.");
+            });
+    }
 </script>
 </body>
 </html>

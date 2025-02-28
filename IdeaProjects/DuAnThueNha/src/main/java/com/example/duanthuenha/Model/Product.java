@@ -2,10 +2,20 @@ package com.example.duanthuenha.Model;
 
 public class Product {
     private int idUser;
+    private int idProduct;
     private String nameProduct;
     private String productDescription;
     private Double price;
     private String address;
+
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
+
     private String status;
     private String image;
 
@@ -18,6 +28,19 @@ public class Product {
         this.status = status;
         this.image = image;
     }
+
+    public Product(int idUser, int idProduct, String nameProduct, String productDescription, Double price, String address, String status, String image) {
+        this.idUser = idUser;
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+        this.image = image;
+    }
+
+
 
     public int getIdUser() {
         return idUser;

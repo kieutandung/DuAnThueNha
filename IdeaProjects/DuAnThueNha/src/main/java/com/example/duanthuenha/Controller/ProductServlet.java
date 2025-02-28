@@ -66,7 +66,8 @@ public class ProductServlet extends HttpServlet {
         Double price = Double.valueOf(req.getParameter("price"));
         String address = req.getParameter("address");
         String status = "active";
-        String image = req.getParameter("imageProduct");
+        Part imagePart = req.getPart("imageProduct");
+        String image = imagePart.getSubmittedFileName();
         Product product = new Product(userID, nameProduct, productDescription, price, address, status, image);
         int productId = productService.addProduct(product);
         String uploadDir = getServletContext().getRealPath("") + File.separator + "img";
@@ -79,7 +80,7 @@ public class ProductServlet extends HttpServlet {
                 productService.addImage(imageAdd);
             }
         }
-        resp.sendRedirect("/view/addNewHouse.jsp");
+        resp.sendRedirect("listProductHostServlet");
     }
 }
 

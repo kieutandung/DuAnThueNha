@@ -157,9 +157,8 @@
                         </h2>
                     </div>
                     <c:if test="${sessionScope.role == 'host'}">
-                    <div style="padding-left: 130px">
-                        <a href="productServlet"><i class="shop-icon"><img
-                                src="/img/iconShop.png" style="width: 55px"></i></a>
+                    <div style="padding-left: 55px">
+                        <a href="listProductHostServlet"><img src="/img/large-removebg-preview.png" style="width: 150px"></a>
                     </div>
                     </c:if>
                 </c:when>
@@ -313,14 +312,14 @@
             editBtn.textContent = "Chỉnh sửa";
         }
     }
-    function formatDateBeforeSubmit() {
-        let dateInput = document.getElementById("birthDate").value;
-        if (dateInput) {
-            let parts = dateInput.split("-"); // Tách YYYY-MM-DD
-            let formattedDate = parts[2] + "/" + parts[1] + "/" + parts[0]; // Đổi thành DD/MM/YYYY
-            document.getElementById("formattedBirthDate").value = formattedDate; // Gán vào input hidden
-        }
-    }
+    // function formatDateBeforeSubmit() {
+    //     let dateInput = document.getElementById("birthDate").value;
+    //     if (dateInput) {
+    //         let parts = dateInput.split("-"); // Tách YYYY-MM-DD
+    //         let formattedDate = parts[2] + "/" + parts[1] + "/" + parts[0]; // Đổi thành DD/MM/YYYY
+    //         document.getElementById("formattedBirthDate").value = formattedDate; // Gán vào input hidden
+    //     }
+    // }
     document.getElementById('image').addEventListener('change', function(event) {
         const file = this.files[0];
         if (file) {
