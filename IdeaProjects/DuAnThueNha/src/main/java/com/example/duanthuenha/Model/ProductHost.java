@@ -1,6 +1,6 @@
 package com.example.duanthuenha.Model;
 
-public class Product {
+public class ProductHost {
     private int idUser;
     private int idProduct;
     private String nameProduct;
@@ -19,7 +19,7 @@ public class Product {
     private String status;
     private String image;
 
-    public Product(int idUser, String nameProduct, String productDescription, Double price, String address, String status, String image) {
+    public ProductHost(int idUser, String nameProduct, String productDescription, Double price, String address, String status, String image) {
         this.idUser = idUser;
         this.nameProduct = nameProduct;
         this.productDescription = productDescription;
@@ -29,7 +29,7 @@ public class Product {
         this.image = image;
     }
 
-    public Product(int idUser, int idProduct, String nameProduct, String productDescription, Double price, String address, String status, String image) {
+    public ProductHost(int idUser, int idProduct, String nameProduct, String productDescription, Double price, String address, String status, String image) {
         this.idUser = idUser;
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;

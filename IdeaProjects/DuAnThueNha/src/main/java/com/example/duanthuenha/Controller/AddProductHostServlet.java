@@ -1,7 +1,7 @@
 package com.example.duanthuenha.Controller;
 
 import com.example.duanthuenha.Model.Image;
-import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +20,7 @@ import java.util.Collection;
         maxRequestSize = 1024 * 1024 * 50     // 50MB: kích thước tối đa của toàn bộ request
 )
 @WebServlet("/productServlet")
-public class ProductServlet extends HttpServlet {
+public class AddProductHostServlet extends HttpServlet {
     private ProductImpl productService = new ProductImpl();
 
     @Override
@@ -68,7 +68,7 @@ public class ProductServlet extends HttpServlet {
         String status = "active";
         Part imagePart = req.getPart("imageProduct");
         String image = imagePart.getSubmittedFileName();
-        Product product = new Product(userID, nameProduct, productDescription, price, address, status, image);
+        ProductHost product = new ProductHost(userID, nameProduct, productDescription, price, address, status, image);
         int productId = productService.addProduct(product);
         String uploadDir = getServletContext().getRealPath("") + File.separator + "img";
         Collection<Part> parts = req.getParts();

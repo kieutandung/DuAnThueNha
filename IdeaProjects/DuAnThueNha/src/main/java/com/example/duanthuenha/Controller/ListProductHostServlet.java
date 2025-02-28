@@ -1,6 +1,6 @@
 package com.example.duanthuenha.Controller;
 
-import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -72,7 +72,7 @@ public class ListProductHostServlet extends HttpServlet {
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
         String keyword = req.getParameter("searchProductHost");
-        List<Product> products = productService.getAllProductsWithKeyword(userID, keyword);
+        List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/listProductHost.jsp");
         dispatcher.forward(req, resp);
@@ -82,7 +82,7 @@ public class ListProductHostServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
-        List<Product> products = productService.getAllProductsById(userID);
+        List<ProductHost> products = productService.getAllProductsById(userID);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/listProductHost.jsp");
         dispatcher.forward(req, resp);

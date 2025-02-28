@@ -1,7 +1,7 @@
 package com.example.duanthuenha.Controller;
 
 import com.example.duanthuenha.Model.Image;
-import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 import org.json.JSONObject;
 
@@ -76,7 +76,7 @@ public class EditProductHostServlet extends HttpServlet {
 
     private void formEditProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idProduct = Integer.parseInt(req.getParameter("productId"));
-        Product product = productService.getProduct(idProduct);
+        ProductHost product = productService.getProduct(idProduct);
         List<Image> images = productService.getImagesByProductId(idProduct);
         req.setAttribute("product", product);
         req.setAttribute("imagesProduct", images);
@@ -96,7 +96,7 @@ public class EditProductHostServlet extends HttpServlet {
         if (imageProduct == "") {
             imageProduct = req.getParameter("image");
         }
-        Product product = new Product(idProduct, nameProduct, productDescription, price, address, status, imageProduct);
+        ProductHost product = new ProductHost(idProduct, nameProduct, productDescription, price, address, status, imageProduct);
         productService.editProduct(product);
         String uploadDir = getServletContext().getRealPath("") + File.separator + "img";
         Collection<Part> parts = req.getParts();

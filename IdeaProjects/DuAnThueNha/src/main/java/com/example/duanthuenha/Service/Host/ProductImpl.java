@@ -2,7 +2,7 @@ package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Image;
-import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class ProductImpl implements ProductService {
     private ConnectDB connectDB = new ConnectDB();
 
     @Override
-    public int addProduct(Product product) {
+    public int addProduct(ProductHost product) {
         int productId = -1;
         String query = "INSERT INTO products (idUser, nameProduct, productDescription, price, address, status,image) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = connectDB.getConnection();
@@ -51,9 +51,9 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(int id) {
+    public ProductHost getProduct(int id) {
         String selectProductSQL = "SELECT * FROM products WHERE idProduct = ?";
-        Product product = null;
+        ProductHost product = null;
         try {
             Connection connection = connectDB.getConnection();
             PreparedStatement pstm = connection.prepareStatement(selectProductSQL);
@@ -78,7 +78,7 @@ public class ProductImpl implements ProductService {
                             status = "Hết chỗ";
                         }
                         String image = rs.getString("image");
-                        product = new Product(userId, id, nameProduct, productDescription, price, address, status, image);
+                        product = new ProductHost(userId, id, nameProduct, productDescription, price, address, status, image);
                         return product;
                     }
                 }
@@ -127,7 +127,7 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public void editProduct(Product product) {
+    public void editProduct(ProductHost product) {
         String editProduct = "update Products set nameProduct = ?, productDescription = ?, price = ?, address = ?, status = ?, image = ? where idProduct  = ?";
 
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(editProduct)) {
@@ -146,9 +146,9 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProductsWithKeyword(int idUser, String keyword) {
+    public List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword) {
         String sql = "SELECT * FROM products WHERE nameProduct LIKE ? OR address LIKE ? order by idProduct desc";
-        List<Product> products = new ArrayList<>();
+        List<ProductHost> products = new ArrayList<>();
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, "%" + keyword + "%");
             preparedStatement.setString(2, "%" + keyword + "%");
@@ -171,7 +171,7 @@ public class ProductImpl implements ProductService {
                 }
 
                 String image = rs.getString("image");
-                Product product = new Product(idUser, idProduct, nameProduct, productDescription, price, address, status, image);
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image);
 
                 products.add(product);
             }
@@ -202,8 +202,8 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProductsById(int id) {
-        List<Product> products = new ArrayList<>();
+    public List<ProductHost> getAllProductsById(int id) {
+        List<ProductHost> products = new ArrayList<>();
         String selectProductSQL = "SELECT * FROM products WHERE idUser = ? order by idProduct desc ";
         try {
             Connection connection = connectDB.getConnection();
@@ -230,7 +230,7 @@ public class ProductImpl implements ProductService {
                         }
 
                         String image = rs.getString("image");
-                        Product product = new Product(id, idProduct, nameProduct, productDescription, price, address, status, image);
+                        ProductHost product = new ProductHost(id, idProduct, nameProduct, productDescription, price, address, status, image);
 
                         products.add(product);
                     }
