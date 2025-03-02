@@ -18,7 +18,7 @@
         <c:forEach items="${verifications}" var="verification">
             <tr>
                 <td>
-                    <img src="img/${verification.documentImage}" alt="Document Image" width="80" height="80">
+                    <img src="img/${verification.documentImage != null && !verification.documentImage.isEmpty() ? verification.documentImage : 'id-card.png'}" alt="Document Image" width="80" height="80">
                 </td>
                 <td>${verification.documentType}</td>
                 <td>${verification.documentNumber}</td>
