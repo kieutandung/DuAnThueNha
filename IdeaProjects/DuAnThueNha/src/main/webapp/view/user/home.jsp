@@ -15,6 +15,24 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
+<section class="hero">
+    <h2>We Bare Bears.vn xứng đáng với lựa chọn của bạn</h2>
+    <div class="search-bar">
+        <select>
+            <option selected>Loại nhà đất</option>
+            <option>Căn hộ</option>
+            <option>Biệt thự</option>
+            <option>Chung cư</option>
+        </select>
+        <input type="text" placeholder="Nhập địa điểm hoặc từ khóa"
+               style="border: 2px solid #c4c5bc;
+              border-radius: 5px;
+              padding: 8px;
+              width: 250px;
+              background-color: transparent;">
+        <button><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM</button>
+    </div>
+</section>
 <div class="container my-5">
     <h2 class="mb-4">Danh sách sản phẩm</h2>
     <div class="row">
