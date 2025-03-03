@@ -1,6 +1,7 @@
 package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
+import com.example.duanthuenha.Model.Image;
 import com.example.duanthuenha.Model.Product;
 
 import java.sql.Connection;
@@ -89,7 +90,6 @@ public class ProductUserImpl implements ProductUserService {
                 product.setStatus(rs.getString("status"));
                 product.setImage(rs.getString("mainImage"));
                 product.setOwnerName(rs.getString("fullName"));
-                ;
                 product.setOwnerImage(rs.getString("userImage"));
 
                 // Xử lý danh sách hình ảnh

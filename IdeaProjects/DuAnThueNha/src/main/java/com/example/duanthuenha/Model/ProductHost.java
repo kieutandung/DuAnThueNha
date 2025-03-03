@@ -1,5 +1,8 @@
 package com.example.duanthuenha.Model;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ProductHost {
     private int idUser;
     private int idProduct;
@@ -94,5 +97,10 @@ public class ProductHost {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getFormattedPrice() {
+        NumberFormat currencyFormatter = NumberFormat.getNumberInstance(new Locale("vi", "VN"));
+        return currencyFormatter.format(price) + " VNĐ";
     }
 }

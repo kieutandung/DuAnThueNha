@@ -24,9 +24,9 @@ body {
 }
 
 .price {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
-    color: red;
+    color: #f93434;
 }
 
 .status {

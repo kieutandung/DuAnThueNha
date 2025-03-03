@@ -23,5 +23,7 @@ public interface ProductService {
     List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword);
 
     void deleteProduct(int id);
+
+
 }
 

@@ -127,22 +127,26 @@
         }
     }
 </style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <div class="container-fluid" style="padding: 0">
 
     <nav class="navbar">
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
-            <li><a href="/homeUserServlet">Trang chủ</a></li>
+            <li><a href="#">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
             <li><a href="#">Sản phẩm</a></li>
-            <li><a href="#">Liên hệ</a></li>
+            <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
-        <ul class="nav-search">
-            <li>
-                <input type="text" placeholder="Tìm kiếm..." class="search-input">
-            </li>
-        </ul>
+        <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">
+            <ul class="nav-search">
+                <li>
+                    <input type="text" name="searchProductHost" placeholder="Tìm kiếm theo tên, địa chỉ"
+                           class="search-input">
+                </li>
+            </ul>
+        </form>
+
         <ul class="nav-icon">
             <li><a href="/profileServlet"><i class="account-icon"><img
                     src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png"></i></a></li>
@@ -155,5 +159,6 @@
         </ul>
     </nav>
 </div>
+
 
 
