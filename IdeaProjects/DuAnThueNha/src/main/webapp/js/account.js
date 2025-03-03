@@ -14,3 +14,10 @@ function deleteUser(id) {
     }
 }
 
+    setTimeout(function () {
+    document.querySelectorAll('.popup').forEach(el => el.style.display = 'none');
+}, 2000);
+
+    setTimeout(function () {
+    document.querySelectorAll('div[style*="background"]').forEach(el => el.style.display = 'none');
+}, 2000);

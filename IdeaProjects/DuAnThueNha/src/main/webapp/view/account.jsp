@@ -64,7 +64,8 @@
 </script>
 <div class="actions">
     <div class="left">
-        <button type="button" class="button add" data-toggle="modal" data-target="#addAccountModal">Thêm Người Dùng
+        <button type="button" class="custom-btn btn-11" data-toggle="modal" data-target="#addAccountModal">
+            <span>Thêm tài khoản</span>
         </button>
         <a href="adminServlet?action=sort" class="button sort">Sắp Xếp</a>
     </div>
@@ -73,22 +74,23 @@
             <input type="text" name="name" class="inputSearch" placeholder="Tìm Kiếm"
                    value="<%= request.getParameter("name") != null ? request.getParameter("name") : "" %>">
             <input type="hidden" name="action" value="search">
-            <button type="submit" class="button search">Tìm Kiếm</button>
+            <button type="submit" class="custom-btn btn-3">
+                <span>Tìm Kiếm</span>
+            </button>
         </form>
-
     </div>
 </div>
 <div class="table-main">
     <table>
         <thead>
         <tr>
-            <th id="avatar">Ảnh Đại Diện</th>
-            <th id="fullName">Tên Người Dùng</th>
-            <th id="email">Email</th>
-            <th id="phone">Số Điện Thoại</th>
-            <th id="role">Vai trò</th>
-            <th id="status">Trạng Thái</th>
-            <th id="action">Hành Động</th>
+            <th id="avatar-th">Ảnh Đại Diện</th>
+            <th id="fullName-th">Tên Người Dùng</th>
+            <th id="email-th">Email</th>
+            <th id="phone-th">Số Điện Thoại</th>
+            <th id="role-th">Vai trò</th>
+            <th id="status-th">Trạng Thái</th>
+            <th id="action-th">Hành Động</th>
         </tr>
         </thead>
         <tbody>
@@ -137,25 +139,16 @@
         </c:if>
         <c:forEach items="${users}" var="user">
             <tr>
-                <td>
+                <td id="avatar">
                     <img src="img/${user.image != null && user.image != '' ? user.image : 'man.png'}" alt="User Image"
                          width="50" height="50">
                 </td>
-                <td>${user.fullName}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.role}</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${user.status == 'active'}">
-                            <img class="img-status" src="img/checked.png" alt="Active" width="10" height="10">
-                        </c:when>
-                        <c:when test="${user.status == 'block'}">
-                            <img class="img-status" src="img/cancel.png" alt="Blocked" width="10" height="10">
-                        </c:when>
-                    </c:choose>
-                </td>
-                <td>
+                <td id="fullName">${user.fullName}</td>
+                <td id="email">${user.email}</td>
+                <td id="phone">${user.phone}</td>
+                <td id="role">${user.role}</td>
+                <td id="status">${user.status}</td>
+                <td id="action">
                     <button type="button" class="button edit"
                             onclick='openEditModal({"idUser": "${user.idUser}", "username": "${user.username}", "fullName": "${user.fullName}", "phone": "${user.phone}", "email": "${user.email}", "role": "${user.role}", "status": "${user.status}"})'>
                         <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>

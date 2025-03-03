@@ -9,11 +9,11 @@ body {
     max-width: 1200px;
     margin: auto;
     background: white;
-    border-radius: 8px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    border-color: #03D83E;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -21,19 +21,30 @@ table {
 
 td {
     color: #454545;
-}
-
-th, td {
     padding: 12px;
-    text-align: center;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
-
 th {
     background-color: #4CAF50;
     color: white;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
-
+th#avatar-th ,
+th#phone-th ,
+th#status-th ,
+th#action-th {
+    text-align: center;
+}
+td#fullName ,
+td#email ,
+td#role {
+    text-align: left;
+}
+.table-main tr:hover {
+    background-color: #e0f7fa; /* Màu nền khi hover */
+}
 .button {
     border-radius: 5px;
     padding: 10px 15px;
@@ -60,8 +71,14 @@ th {
     transition: background-color 0.3s ease, border-color 0.3s ease; /* Hiệu ứng chuyển tiếp */
 }
 
-.button-modal:hover {
+.button.modal:hover {
     background-color: #04A826; /* Màu nền khi hover */
+}
+.button.add:hover {
+    background-color: #04A826;
+}
+.inputSearch {
+    border-color: #AAECFF;
 }
 
 
@@ -75,20 +92,22 @@ th {
 
 .actions.left {
     display: flex; /* Căn giữa các nút bên trái */
-    justify-content: center; /* Căn giữa các nút bên trái */
+    justify-content: flex-start; /* Căn giữa các nút bên trái */
 }
 
 .actions.right {
     display: flex; /* Đảm bảo ô tìm kiếm và nút tìm kiếm trên cùng một dòng */
-    justify-content: flex-start;
-    text-align: center/* Căn trái cho phần tử bên phải */
+    justify-content: flex-start; /* Căn trái cho phần tử bên phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa các nút và ô tìm kiếm */
 }
+
+
 
 .inputSearch {
     width: 200px;
     height: 40px;
     padding-left: 20px;
-    font-size: 12px;
     margin: auto;
 }
 #search {
@@ -98,57 +117,146 @@ th {
     margin-right: 10px; /* Khoảng cách giữa ô tìm kiếm và nút tìm kiếm */
 }
 
-/* Nút thêm người dùng */
-.button.add {
-    background-color: #4CAF50; /* Màu nền cho nút thêm */
-}
-.button.edit {
-    background-color: #ffffff;
-}
-
 /* Nút sắp xếp */
 .button.sort {
-    background-color: #008CBA; /* Màu nền cho nút sắp xếp */
+    width: 90px;
+    height: 40px;
+    background-color: rgb(0,172,238);
+    text-decoration: none;
+
+}
+.button.sort:hover {
+    background:rgba(2,126,251,1);
+    color: white;
 }
 
-/* Nút thay đổi */
-.button.change {
-    background-color: #008CBA; /* Màu nền cho nút thay đổi */
-}
-
-.button.change:hover {
-    background-color: #005f73; /* Màu nền khi hover cho nút thay đổi */
-}
-
-
-.button.delete {
-    background-color: #ffffff; /* Màu nền cho nút xóa */
-}
-
-.button.search {
-    background-color: #06C12C; /* Màu nền cho nút tìm kiếm */
-}
-.button.search:hover {
-    background-color: #05AD27; /* Màu nền khi hover cho nút tìm kiếm */
-}
 .edit-icon {
     width: 20px; /* Kích thước ảnh */
     height: 20px; /* Kích thước ảnh */
     border-radius: 0; /* Bỏ bo góc */
 }
-#avatar,
-#fullName,
-#email,
-#action,
-#phone,
-#role,
-#status{
-    text-align: center;
-}
+
 .img-status {
     width: 35px;
     height: 35px;
 }
+.btn-3 {
+    background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    position: relative;
+    color: white;
+
+}
+.btn-3 span {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.btn-3:before,
+.btn-3:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+}
+.btn-3:before {
+    height: 0%;
+    width: 2px;
+}
+.btn-3:after {
+    width: 0%;
+    height: 2px;
+}
+.btn-3:hover{
+    background: transparent;
+    box-shadow: none;
+}
+.btn-3:hover:before {
+    height: 100%;
+}
+.btn-3:hover:after {
+    width: 100%;
+}
+.btn-3 span:hover{
+    color: rgba(2,126,251,1);
+}
+.btn-3 span:before,
+.btn-3 span:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    background: rgba(2,126,251,1);
+    transition: all 0.3s ease;
+}
+.btn-3 span:before {
+    width: 2px;
+    height: 0%;
+}
+.btn-3 span:after {
+    width: 0%;
+    height: 2px;
+}
+.btn-3 span:hover:before {
+    height: 100%;
+}
+.btn-3 span:hover:after {
+    width: 100%;
+}
+
+.btn-11 {
+    position: relative;
+    border: none;
+    background: rgb(251,33,117);
+    background: linear-gradient(0deg, rgba(251,33,117,1) 0%, rgba(234,76,137,1) 100%);
+    color: #fff;
+    overflow: hidden; /* Đảm bảo hiệu ứng không tràn ra ngoài */
+    width: 130px;
+    height: 40px;
+}
+
+.btn-11:hover {
+    text-decoration: none;
+    color: #fff;
+    opacity: 0.7; /* Đưa opacity vào đây để tránh trùng lặp */
+}
+
+.btn-11:before {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -180px; /* Có thể điều chỉnh giá trị này nếu cần */
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background-color: #fff;
+    animation: shiny-btn1 3s ease-in-out infinite;
+    z-index: 0; /* Đảm bảo nó nằm dưới nội dung của nút */
+}
+
+.btn-11:active {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+@-webkit-keyframes shiny-btn1 {
+    0% { -webkit-transform: scale(0) rotate(45deg); opacity: 0; }
+    80% { -webkit-transform: scale(0) rotate(45deg); opacity: 0.5; }
+    81% { -webkit-transform: scale(4) rotate(45deg); opacity: 1; }
+    100% { -webkit-transform: scale(50) rotate(45deg); opacity: 0; }
+}
+
+
 
 
 
