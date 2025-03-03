@@ -42,10 +42,12 @@
                     </c:forEach>
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
+                        data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
+                        data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             </div>
@@ -56,7 +58,8 @@
             </h2>
             <p><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> <%= product.getAddress() %>
             </p>
-            <p class="price"><i class="bi bi-cash"></i> Giá thuê: <%= product.getFormattedPrice() %></p>
+            <p class="price"><i class="bi bi-cash"></i> Giá thuê: <%= product.getFormattedPrice() %>
+            </p>
             <p><strong>Mô tả:</strong> <%= product.getProductDescription() %>
             </p>
             <p class="status"><i class="bi bi-check-circle"></i> Trạng thái: <%= product.getStatus() %>
@@ -68,13 +71,13 @@
                      alt="Ảnh chủ nhà">
                 <p><strong><%= product.getOwnerName() %>
                 </strong></p>
-
             </div>
 
             <a href="rentHouse.jsp?id=<%= product.getIdProduct() %>" class="btn btn-primary mt-3">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
-            <button class="btn btn-outline-danger mt-3" id="favoriteBtn" onclick="toggleFavorite(<%= product.getIdProduct() %>)">
+            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                    onclick="toggleFavorite(<%= product.getIdProduct() %>)">
                 <i id="favoriteIcon" class="bi bi-heart"></i> Yêu thích
             </button>
         </div>
@@ -89,6 +92,14 @@
                         <i class="bi bi-person-circle fs-2"></i>
                     </div>
                     <div>
+                        <div>
+                            <c:forEach begin="1" end="${comment.rating}">
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </c:forEach>
+                            <c:forEach begin="${comment.rating + 1}" end="5">
+                                <i class="bi bi-star text-secondary"></i>
+                            </c:forEach>
+                        </div>
                         <h6 class="mb-1">${comment.username}</h6>
                         <p class="mb-1">${comment.comment}</p>
                         <small class="text-muted"><i class="bi bi-clock"></i> ${comment.commentDate}</small>
@@ -97,19 +108,7 @@
             </c:forEach>
         </div>
     </div>
-
-    <div class="mt-4">
-        <h4>Thêm đánh giá</h4>
-        <form action="addComment.jsp" method="post">
-            <input type="hidden" name="idProduct" value="<%= productId %>">
-            <div class="mb-3">
-                <textarea name="comment" class="form-control" rows="3" required placeholder="Viết đánh giá của bạn..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Gửi đánh giá</button>
-        </form>
-    </div>
 </div>
-
 
 <footer class="mt-5 text-center">
     <jsp:include page="footer.jsp"/>
@@ -122,6 +121,5 @@
         mainImage.src = smallImg.src;
     }
 </script>
-
 </body>
 </html>
