@@ -32,9 +32,10 @@
                         <p><strong>Địa chỉ:</strong> ${p.address}</p>
                         <p><strong>Trạng thái:</strong> ${p.status}</p>
 
-                        <a href="/detailProductUser" class="btn-thue-ngay">
+                        <a href="/orderProductServlet?productId=${p.idProduct}" class="btn-thue-ngay">
                             <i class="bi bi-house-door-fill"></i> Thuê ngay
                         </a>
+
                     </div>
                 </div>
             </div>

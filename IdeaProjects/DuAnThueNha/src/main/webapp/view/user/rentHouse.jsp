@@ -1,20 +1,12 @@
-<%@ page import="com.example.duanthuenha.Model.Product" %>
-<%@ page import="com.example.duanthuenha.Service.Host.ProductImpl" %>
-<%@ page import="com.example.duanthuenha.Service.Host.ProductUserImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    String productId = request.getParameter("id");
-    ProductUserImpl productImpl = new ProductUserImpl();
-    Product product = productImpl.getAllProductsById(Integer.parseInt(productId));
-%>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Gửi yêu cầu nhà thuê</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rentHouse.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -25,6 +17,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .container {
             padding-top: 30px;
         }
@@ -34,8 +27,13 @@
             font-size: 18px;
             padding: 10px;
         }
-        .house-image { width: 100%; height: auto; border-radius: 10px;
+
+        .house-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
+
         .house-info {
             position: relative;
             padding-bottom: 50px;
@@ -79,29 +77,31 @@
 
         <label class="form-label mt-2">Ghi chú:</label>
         <textarea id="note" class="form-control" rows="3"></textarea>
-        <button type="button" class="btn btn-primary mt-3  btn-confirm" onclick="updateOrder()">Xác nhận</button>
+        <button type="button" class="btn btn-primary mt-5  btn-confirm" onclick="updateOrder()">Xác nhận</button>
     </div>
 
     <div class="separator-vertical"></div>
 
-    <div class="col-md-5 order-summary">
+    <div class="col-md-5 order-summary" >
         <h3 class="text-dark">Đơn hàng</h3>
         <div class="house-info position-relative">
-                <div class="house-info position-relative ">
-                    <img src="<%= product.getImage() %>" class="house-image" alt="Hình ảnh sản phẩm">
-                    <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out value="<%= product.getNameProduct() %>"/></span></p>
-                    <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="<%= product.getFormattedPrice() %>"/></span></p>
-                    <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
-                    <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
-                    <p><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VND</p>
+            <div class="house-info position-relative ">
+                <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
+                <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
+                        value="${product.nameProduct}"/></span></p>
+                <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span>
+                </p>
+                <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
+                <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
+                <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
-                    <button class="btn btn-success btn-rent">Thuê ngay</button>
-                </div>
-
+                <button class="btn btn-success btn-rent mt-5 ">Thuê ngay</button>
             </div>
+
         </div>
     </div>
 </div>
+
 
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>

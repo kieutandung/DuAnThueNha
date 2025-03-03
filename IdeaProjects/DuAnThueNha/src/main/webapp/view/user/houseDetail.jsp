@@ -47,7 +47,21 @@
             </h2>
             <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
             </p>
-            <p class="status"><i class="bi bi-check-circle"></i> Trạng thái: ${product.status}
+            <c:choose>
+                <c:when test="${product.status eq 'Hết chỗ'}">
+                    <p class="status" style="color: #f93434">
+                        <i class="bi bi-x-circle"></i> Trạng thái:
+                        <span style="color: red;">${product.status}</span>
+                    </p>
+                </c:when>
+                <c:otherwise>
+                    <p class="status" style="color: green">
+                        <i class="bi bi-check-circle"></i> Trạng thái:
+                        <span>${product.status}</span>
+                    </p>
+                </c:otherwise>
+            </c:choose>
+            <%--            <p class="status"><i class="bi bi-check-circle"></i> Trạng thái: ${product.status}--%>
             <p class="price py-2"><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
             </p>
 
@@ -60,7 +74,7 @@
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
-            <a href="rentHouse.jsp?id=" class="btn btn-primary mt-3 text-center">
+            <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
             <button class="btn btn-outline-danger mt-3" id="favoriteBtn" onclick="toggleFavorite()">
