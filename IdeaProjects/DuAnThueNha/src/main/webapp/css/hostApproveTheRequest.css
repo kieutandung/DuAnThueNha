@@ -1,6 +1,8 @@
 .container {
     width: 100% !important;
     max-width: 1400px !important;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 body {
@@ -208,7 +210,6 @@ table.table td i {
 }
 
 .btn {
-    border-radius: 30px;
     padding: 10px 20px;
     min-width: 50px;
     font-size: 16px;
