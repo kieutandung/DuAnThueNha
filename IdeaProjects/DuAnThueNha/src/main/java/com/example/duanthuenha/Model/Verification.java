@@ -23,6 +23,11 @@ public class Verification {
         this.updatedAt = updatedAt;
     }
 
+    public Verification() {
+
+    }
+
+
     public int getIdDocument() {
         return idDocument;
     }
