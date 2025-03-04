@@ -3,19 +3,33 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <title>Chủ nhà phê duyệt yêu cầu thuê </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- Link đến file CSS mới -->
     <link rel="stylesheet" href="css/hostApproveTheRequest.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- HEADER -->
+<header>
+    <nav class="navbar">
+        <div class="logo">WE Bare BEARS.vn</div>
+        <ul class="nav-links">
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">Sản phẩm</a></li>
+        </ul>
+        <div class="nav-icons">
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#"><i class="fas fa-bell"></i></a>
+            <button class="btn btn-primary">Liên hệ tư vấn</button>
+        </div>
+    </nav>
+</header>
 <div class="container">
     <div class="table-responsive">
         <div class="table-wrapper">
@@ -109,7 +123,7 @@
     </div>
 </div>
 <footer class="mt-5">
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="footer2.jsp"/>
 </footer>
 </body>
 </html>
