@@ -138,6 +138,7 @@
             <li><a href="listProductHostServlet">Sản phẩm</a></li>
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
+
         <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">
             <ul class="nav-search">
                 <li>

@@ -31,7 +31,8 @@
               padding: 8px;
               width: 250px;
               background-color: transparent;">
-            <button type="submit"><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM</button>
+            <button type="submit"><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM
+            </button>
         </div>
     </form>
 </section>
@@ -76,10 +77,12 @@
         <c:otherwise>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p style="color: red">Không tìm thấy sản phẩm với từ khóa  ${keywordUser}</p>
-                    <a  href="/homeUserServlet" class="btn-thue-ngay">
-                        <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
-                    </a>
+                    <p style="color: red">Không tìm thấy sản phẩm với từ khóa "${keywordUser}"
+                        <a href="/homeUserServlet">
+                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                        </a>
+                    </p>
+
                 </div>
             </div>
         </c:otherwise>

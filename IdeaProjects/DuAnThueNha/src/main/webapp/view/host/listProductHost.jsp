@@ -53,7 +53,7 @@
                                             <span class="label label-default"> ${p.status}</span>
                                         </td>
                                         <td>
-                                            <a href="#"> ${p.address}</a>
+                                            <a href="editProductHostServlet?productId=${p.idProduct}"> ${p.address}</a>
                                         </td>
                                         <td class="text-center" style="width: 20%;">
                                             <a href="editProductHostServlet?productId=${p.idProduct}"
@@ -76,7 +76,12 @@
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm ${keyword}</td>
+                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm với từ khóa
+                                        "${keyword}"
+                                        <a style=" padding-left: 5px"  href="/listProductHostServlet" class="btn-thue-ngay">
+                                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                                        </a>
+                                    </td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
