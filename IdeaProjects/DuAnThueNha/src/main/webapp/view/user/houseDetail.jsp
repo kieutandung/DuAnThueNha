@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
@@ -115,58 +116,8 @@
 <footer class="mt-5 text-center">
     <jsp:include page="../footer.jsp"/>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function changeImage(smallImg) {
-        let mainImage = document.getElementById("mainImage");
-        mainImage.src = smallImg.src;
-    }
-
-    function toggleFavorite() {
-        // Lấy product id từ thuộc tính data của nút
-        let favoriteBtn = document.getElementById("favoriteBtn");
-        let productId = favoriteBtn.getAttribute("data-product-id");
-        let icon = document.getElementById("favoriteIcon");
-
-        fetch('/detailProductUser?action=toggleFavorite', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: 'productId=' + encodeURIComponent(productId)
-        })
-            .then(response => response.text())
-            .then(data => {
-                data = data.trim();
-                if (data === "added") {
-                    // Nếu sản phẩm được thêm vào bộ sưu tập
-                    showNotification('Sản phẩm đã được thêm vào bộ sưu tập.', 'success');
-                    icon.classList.remove("bi-heart");
-                    icon.classList.add("bi-heart-fill", "text-danger");
-                } else if (data === "removed") {
-                    // Nếu sản phẩm đã bị gỡ khỏi bộ sưu tập
-                    showNotification('Sản phẩm đã được gỡ khỏi bộ sưu tập.', 'info');
-                    icon.classList.remove("bi-heart-fill", "text-danger");
-                    icon.classList.add("bi-heart");
-                } else {
-                    console.log(data);
-                    showNotification('Không thể cập nhật bộ sưu tập, thử lại sau.', 'error');
-                }
-            })
-            .catch(() => showNotification('Lỗi kết nối khi cập nhật bộ sưu tập!', 'error'));
-    }
-    function showNotification(message, type) {
-        Swal.fire({
-            toast: true,
-            position: 'top',
-            icon: type,
-            title: message,
-            showConfirmButton: false,
-            timer: 2500,
-            timerProgressBar: true
-        });
-    }
-
-</script>
+<script src="/js/favorite.js"></script>
 
 </body>
 </html>

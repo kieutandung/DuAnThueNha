@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class HomeUserServlet extends HttpServlet {
             dispatcher.forward(req, resp);
             return;
         }
-        List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword,category);
+        List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword, category);
         req.setAttribute("listProduct", products);
         req.setAttribute("keywordUser", keyword);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
@@ -56,9 +57,32 @@ public class HomeUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        List<ProductHost> products = productImpl.getAllProducts();
-        req.setAttribute("listProduct", products);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "showFavorite":
+                showFavorite(req, resp);
+                break;
+            default:
+                List<ProductHost> products = productImpl.getAllProducts();
+                req.setAttribute("listProduct", products);
+                RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
+                dispatcher.forward(req, resp);
+                break;
+        }
+
+    }
+
+    private void showFavorite(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userID = (String) session.getAttribute("userId");
+        List<Product> favoriteProducts = productUserImpl.getAllProductsByFavorite(Integer.parseInt(userID));
+        req.setAttribute("listProduct", favoriteProducts);
+        System.out.println(favoriteProducts);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/favorite.jsp");
         dispatcher.forward(req, resp);
     }
+
 }

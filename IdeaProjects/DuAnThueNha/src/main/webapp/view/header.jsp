@@ -91,6 +91,10 @@
         width: 25px;
         height: 25px;
     }
+    .icon-black {
+        filter: brightness(0) saturate(100%);
+    }
+
 
     /* Dropdown Styles */
     .dropdown-content {
@@ -171,17 +175,17 @@
             </li>
         </ul>
         <ul class="nav-icon">
-            <!-- Ví dụ các mục icon khác -->
             <li>
-                <a href="#" title="Bộ sưu tập" class="relative text-black text-2xl">
-                    <i class="fas fa-heart"></i>
+                <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl">
+                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Favorites" class="w-6 h-6 icon-black">
                 </a>
             </li>
             <li>
                 <i class="bell-icon">
-                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png" alt="Notifications">
+                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png" alt="Notifications" class="icon-black">
                 </i>
             </li>
+
             <!-- Dropdown cho Account -->
             <li class="dropdown">
                 <a href="/profileServlet">

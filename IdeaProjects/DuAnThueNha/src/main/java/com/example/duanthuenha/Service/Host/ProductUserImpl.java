@@ -65,7 +65,6 @@ public class ProductUserImpl implements ProductUserService {
     }
 
 
-
     @Override
     public Product getAllProductsById(int idProduct) {
         Product product = null;
@@ -111,6 +110,7 @@ public class ProductUserImpl implements ProductUserService {
         }
         return product;
     }
+
     @Override
     public boolean isFavorite(int userId, int productId) {
         String checkSql = "SELECT * FROM favorites WHERE userId = ? AND productId = ?";
@@ -149,15 +149,57 @@ public class ProductUserImpl implements ProductUserService {
             e.printStackTrace();
         }
     }
+
     @Override
     public boolean toggleFavorite(int userId, int productId) {
         if (isFavorite(userId, productId)) {
             removeFavorite(userId, productId);
-            return false; // Đã xóa khỏi danh sách yêu thích
+            return false;
         } else {
             addFavorite(userId, productId);
-            return true; // Đã thêm vào danh sách yêu thích
+            return true;
         }
     }
+
+    @Override
+    public List<Product> getAllProductsByFavorite(int idUser) {
+        List<Product> favoriteProducts = new ArrayList<>();
+        String sql = "SELECT p.idProduct, p.idUser, p.nameProduct, p.productDescription, p.price, " +
+                "p.address, p.status, p.image, p.category, p.area, COUNT(f.userId) AS totalLikes " +
+                "FROM products p " +
+                "JOIN favorites f ON p.idProduct = f.productId " +
+                "WHERE f.userId = ? " +
+                "GROUP BY p.idProduct, p.idUser, p.nameProduct, p.productDescription, p.price, " +
+                "p.address, p.status, p.image, p.category, p.area " +
+                "ORDER BY totalLikes DESC";
+
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUser);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("idProduct"),
+                        rs.getInt("idUser"),
+                        rs.getString("nameProduct"),
+                        rs.getString("productDescription"),
+                        rs.getBigDecimal("price"),
+                        rs.getString("address"),
+                        rs.getString("status"),
+                        rs.getString("image"),
+                        rs.getString("category"),
+                        rs.getDouble("area")
+                );
+                favoriteProducts.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return favoriteProducts;
+    }
+
 }
 

@@ -12,5 +12,5 @@ public interface ProductUserService {
     Product getAllProductsById(int idProduct);
     boolean isFavorite(int userId, int productId);
     boolean toggleFavorite(int idProduct, int idUser);
-
+    List<Product> getAllProductsByFavorite(int idUser);
 }
