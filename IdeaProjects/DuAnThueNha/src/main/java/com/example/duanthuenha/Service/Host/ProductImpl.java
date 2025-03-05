@@ -246,18 +246,23 @@ public class ProductImpl implements ProductService {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                ProductHost product = new ProductHost(
-                        rs.getInt("idUser"),
-                        rs.getInt("idProduct"),
-                        rs.getString("nameProduct"),
-                        rs.getString("productDescription"),
-                        rs.getDouble("price"),
-                        rs.getString("address"),
-                        rs.getString("status"),
-                        rs.getString("image"),
-                        rs.getString("category"),
-                        rs.getDouble("area")
-                );
+                int idUser = rs.getInt("idUser");
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                } else {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String category = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+
+                ProductHost product = new ProductHost(idUser,idProduct, nameProduct, productDescription, price, address, status, image, category, area);
                 productList.add(product);
             }
 
@@ -294,7 +299,7 @@ public class ProductImpl implements ProductService {
                 String image = rs.getString("image");
                 String categoryU = rs.getString("category");
                 double area = Double.parseDouble(rs.getString("area"));
-                ProductHost product = new ProductHost(idUser,idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
 
                 products.add(product);
             }

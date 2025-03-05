@@ -45,7 +45,9 @@
             <h2>
                 ${product.nameProduct}
             </h2>
-            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
+            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong>Địa chỉ:</strong> ${product.address}
+            </p>
+            <p class="my-2"><i><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px" src="img/areaOriginal.png" alt=""></i> <strong>Diện tích:</strong> ${product.area} m2
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
@@ -61,9 +63,7 @@
                     </p>
                 </c:otherwise>
             </c:choose>
-            <%--            <p class="status"><i class="bi bi-check-circle"></i> Trạng thái: ${product.status}--%>
-            <p class="price py-2"><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
-            </p>
+            <p class="price "><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
 
             <h5 class="mt-4">Chủ nhà: </h5>
             <div class="d-flex align-items-center py-4">

@@ -100,7 +100,7 @@
                                     <div class="mb-4">
                                         <div class="form-floating">
                                             <select required id="category" name="category" class="form-select">
-                                                <option selected>-- Chọn loại nhà đất --</option>
+                                                <option value="">-- Chọn loại nhà đất --</option>
                                                 <option value="Chung cư">
                                                     Chung cư
                                                 </option>
