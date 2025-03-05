@@ -111,4 +111,53 @@ public class ProductUserImpl implements ProductUserService {
         }
         return product;
     }
+    @Override
+    public boolean isFavorite(int userId, int productId) {
+        String checkSql = "SELECT * FROM favorites WHERE userId = ? AND productId = ?";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+            checkStmt.setInt(1, userId);
+            checkStmt.setInt(2, productId);
+            ResultSet rs = checkStmt.executeQuery();
+            return rs.next(); // Trả về true nếu sản phẩm đã có trong favorites
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void addFavorite(int userId, int productId) {
+        String insertSql = "INSERT INTO favorites (userId, productId) VALUES (?, ?)";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+            insertStmt.setInt(1, userId);
+            insertStmt.setInt(2, productId);
+            insertStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFavorite(int userId, int productId) {
+        String deleteSql = "DELETE FROM favorites WHERE userId = ? AND productId = ?";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+            deleteStmt.setInt(1, userId);
+            deleteStmt.setInt(2, productId);
+            deleteStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public boolean toggleFavorite(int userId, int productId) {
+        if (isFavorite(userId, productId)) {
+            removeFavorite(userId, productId);
+            return false; // Đã xóa khỏi danh sách yêu thích
+        } else {
+            addFavorite(userId, productId);
+            return true; // Đã thêm vào danh sách yêu thích
+        }
+    }
 }
+

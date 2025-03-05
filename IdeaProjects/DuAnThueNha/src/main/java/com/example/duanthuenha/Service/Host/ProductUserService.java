@@ -10,4 +10,7 @@ public interface ProductUserService {
     void addProduct(Product product);
     List<Product> getAllProducts();
     Product getAllProductsById(int idProduct);
+    boolean isFavorite(int userId, int productId);
+    boolean toggleFavorite(int idProduct, int idUser);
+
 }

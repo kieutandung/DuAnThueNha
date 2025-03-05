@@ -77,10 +77,10 @@
             <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
-            <button class="btn btn-outline-danger mt-3" id="favoriteBtn" onclick="toggleFavorite()">
-                <i id="favoriteIcon" class="bi bi-heart"></i> Yêu thích
+            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                    data-product-id="${product.idProduct}" onclick="toggleFavorite()">
+                <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
             </button>
-
         </div>
     </div>
 
@@ -116,12 +116,56 @@
     <jsp:include page="../footer.jsp"/>
 </footer>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function changeImage(smallImg) {
         let mainImage = document.getElementById("mainImage");
         mainImage.src = smallImg.src;
     }
+
+    function toggleFavorite() {
+        // Lấy product id từ thuộc tính data của nút
+        let favoriteBtn = document.getElementById("favoriteBtn");
+        let productId = favoriteBtn.getAttribute("data-product-id");
+        let icon = document.getElementById("favoriteIcon");
+
+        fetch('/detailProductUser?action=toggleFavorite', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'productId=' + encodeURIComponent(productId)
+        })
+            .then(response => response.text())
+            .then(data => {
+                data = data.trim();
+                if (data === "added") {
+                    // Nếu sản phẩm được thêm vào bộ sưu tập
+                    showNotification('Sản phẩm đã được thêm vào bộ sưu tập.', 'success');
+                    icon.classList.remove("bi-heart");
+                    icon.classList.add("bi-heart-fill", "text-danger");
+                } else if (data === "removed") {
+                    // Nếu sản phẩm đã bị gỡ khỏi bộ sưu tập
+                    showNotification('Sản phẩm đã được gỡ khỏi bộ sưu tập.', 'info');
+                    icon.classList.remove("bi-heart-fill", "text-danger");
+                    icon.classList.add("bi-heart");
+                } else {
+                    console.log(data);
+                    showNotification('Không thể cập nhật bộ sưu tập, thử lại sau.', 'error');
+                }
+            })
+            .catch(() => showNotification('Lỗi kết nối khi cập nhật bộ sưu tập!', 'error'));
+    }
+    function showNotification(message, type) {
+        Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+        });
+    }
+
 </script>
 
 </body>
