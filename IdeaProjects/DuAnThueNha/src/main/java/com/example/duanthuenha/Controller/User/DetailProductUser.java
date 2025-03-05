@@ -19,9 +19,6 @@ import java.util.List;
 public class DetailProductUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        String userIDS = (String) session.getAttribute("userId");
-        int userID = Integer.parseInt(userIDS);
         int productId = Integer.parseInt(req.getParameter("productId"));
         ProductImpl productImpl = new ProductImpl();
         ProfileImpl profileImpl = new ProfileImpl();
@@ -30,7 +27,7 @@ public class DetailProductUser extends HttpServlet {
         ProductHost product = productImpl.getProduct(productId);
         Image image = new Image(productId,product.getImage());
         listImage.add(0,image);
-        Users avtUser = profileImpl.getUserById(userID);
+        Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
         req.setAttribute("listImage", listImage);
         req.setAttribute("product", product);
