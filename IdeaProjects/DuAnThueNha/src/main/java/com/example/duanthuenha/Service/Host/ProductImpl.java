@@ -199,13 +199,14 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<ProductHost> getAllProductsWithKeywordUser(String keyword) {
-        String sql = "SELECT * FROM products WHERE nameProduct LIKE ? OR address LIKE ? OR area = ? order by idProduct desc";
+    public List<ProductHost> getAllProductsWithKeywordUser(String keyword, int page) {
+        String sql = "SELECT * FROM products WHERE nameProduct LIKE ? OR address LIKE ? OR area = ? order by idProduct desc LIMIT 10 OFFSET ?";
         List<ProductHost> products = new ArrayList<>();
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, "%" + keyword + "%");
             preparedStatement.setString(2, "%" + keyword + "%");
             preparedStatement.setString(3, keyword);
+            preparedStatement.setInt(4, (page - 1) * 10);
 
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -237,9 +238,10 @@ public class ProductImpl implements ProductService {
         return products;
     }
 
+    @Override
     public List<ProductHost> getAllProducts() {
         List<ProductHost> productList = new ArrayList<>();
-        String query = "SELECT * FROM products";
+        String query = "SELECT * FROM products order by idProduct desc ";
 
         try (Connection conn = connectDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
@@ -262,7 +264,7 @@ public class ProductImpl implements ProductService {
                 String category = rs.getString("category");
                 double area = Double.parseDouble(rs.getString("area"));
 
-                ProductHost product = new ProductHost(idUser,idProduct, nameProduct, productDescription, price, address, status, image, category, area);
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image, category, area);
                 productList.add(product);
             }
 
@@ -273,11 +275,12 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<ProductHost> getAllProductsWithCategoryUser(String category) {
-        String sql = "SELECT * FROM products WHERE category LIKE ? order by idProduct desc";
+    public List<ProductHost> getAllProductsWithCategoryUser(String category, int page) {
+        String sql = "SELECT * FROM products WHERE category LIKE ? order by idProduct desc LIMIT 10 OFFSET ?";
         List<ProductHost> products = new ArrayList<>();
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, "%" + category + "%");
+            preparedStatement.setInt(2, (page - 1) * 10);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idUser = 0;
@@ -310,16 +313,19 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<ProductHost> getAllProductsWithCategoryAndKeywordUser(String keyword, String category) {
-        String sql = "SELECT * FROM products WHERE category = ? and nameProduct LIKE ? OR address LIKE ? order by idProduct desc";
+    public List<ProductHost> getAllProductsWithCategoryAndKeywordUser(String keyword, String category, int page) {
+        String sql = "SELECT * FROM products WHERE category = ? and nameProduct LIKE ? OR address LIKE ? or area = ? order by idProduct desc LIMIT 10 OFFSET ?";
         List<ProductHost> products = new ArrayList<>();
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, category);
             preparedStatement.setString(2, "%" + keyword + "%");
             preparedStatement.setString(3, "%" + keyword + "%");
+            preparedStatement.setString(4, keyword);
+            preparedStatement.setInt(5, (page - 1) * 10);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
+                int idUser = 0;
                 int idProduct = rs.getInt("idProduct");
                 String nameProduct = rs.getString("nameProduct");
                 String productDescription = rs.getString("productDescription");
@@ -339,7 +345,7 @@ public class ProductImpl implements ProductService {
                 String categoryU = rs.getString("category");
                 double area = Double.parseDouble(rs.getString("area"));
 
-                ProductHost product = new ProductHost(idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
+                ProductHost product = new ProductHost(idUser,idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
 
                 products.add(product);
             }
@@ -347,6 +353,113 @@ public class ProductImpl implements ProductService {
             throw new RuntimeException(e);
         }
         return products;
+    }
+
+    @Override
+    public int getTotalProducts() {
+        String query = "SELECT count(*) FROM products";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalProductsCategory(String category) {
+        String query = "SELECT count(*) FROM products WHERE category = ? order by idProduct desc";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, category);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalProductsKeyword(String keyword) {
+        String query = "SELECT count(*) FROM products WHERE nameProduct LIKE ? OR address LIKE ? OR area = ? order by idProduct desc";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, "%" + keyword + "%");
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, keyword);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalProductsCategoryAndKeyword(String keyword, String category) {
+        String query = "SELECT count(*) FROM products WHERE category = ? and nameProduct LIKE ? OR address LIKE ? or area = ? order by idProduct desc";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, category);
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, "%" + keyword + "%");
+            preparedStatement.setString(4, keyword );
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public List<ProductHost> getProductsPage(int page) {
+        List<ProductHost> productList = new ArrayList<>();
+        String query = "SELECT * FROM products\n" +
+                "ORDER BY idProduct DESC\n" +
+                "LIMIT 10 OFFSET ?; ";
+
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+        ) {
+            stmt.setInt(1, (page - 1) * 10);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int idUser = rs.getInt("idUser");
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                } else {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String category = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image, category, area);
+                productList.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
     }
 
 

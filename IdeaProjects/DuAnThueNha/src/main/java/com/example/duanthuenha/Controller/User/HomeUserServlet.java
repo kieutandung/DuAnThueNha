@@ -1,6 +1,5 @@
 package com.example.duanthuenha.Controller.User;
 
-import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 import com.example.duanthuenha.Service.Host.ProductUserImpl;
@@ -26,27 +25,53 @@ public class HomeUserServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         String category = req.getParameter("category");
         String keyword = req.getParameter("keyword");
+        String pageString = req.getParameter("page");
+
+        if (pageString == null || pageString.isEmpty()) {
+            pageString = "1";
+        }
+
+        int page = Integer.parseInt(pageString);
         if (keyword.isEmpty()) {
-            List<ProductHost> products = productImpl.getAllProductsWithCategoryUser(category);
+            int count = productImpl.getTotalProductsCategory(category);
+            int endPage = count / 10;
+            if (count % 10 != 0) {
+                endPage++;
+            }
+            req.setAttribute("endPageUser", endPage);
+            List<ProductHost> products = productImpl.getAllProductsWithCategoryUser(category,page);
             req.setAttribute("listProduct", products);
+            req.setAttribute("tag", page);
             RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
             dispatcher.forward(req, resp);
             return;
         }
+
         if (category.isEmpty()) {
-            List<ProductHost> products = productImpl.getAllProductsWithKeywordUser(keyword);
-            for (ProductHost productHost : products) {
-                System.out.println(productHost.getIdProduct());
+            int count = productImpl.getTotalProductsKeyword(keyword);
+            int endPage = count / 10;
+            if (count % 10 != 0) {
+                endPage++;
             }
+            req.setAttribute("endPageUser", endPage);
+            List<ProductHost> products = productImpl.getAllProductsWithKeywordUser(keyword,page);
             req.setAttribute("listProduct", products);
             req.setAttribute("keywordUser", keyword);
+            req.setAttribute("tag", page);
             RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
             dispatcher.forward(req, resp);
             return;
         }
-        List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword,category);
+        int count = productImpl.getTotalProductsCategoryAndKeyword(keyword,category);
+        int endPage = count / 10;
+        if (count % 10 != 0) {
+            endPage++;
+        }
+        req.setAttribute("endPageUser", endPage);
+        List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword, category,page);
         req.setAttribute("listProduct", products);
         req.setAttribute("keywordUser", keyword);
+        req.setAttribute("tag", page);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
         dispatcher.forward(req, resp);
     }
@@ -56,8 +81,20 @@ public class HomeUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        List<ProductHost> products = productImpl.getAllProducts();
+        String pageString = req.getParameter("page");
+        if (pageString == null || pageString.isEmpty()) {
+            pageString = "1";
+        }
+        int page = Integer.parseInt(pageString);
+        int count = productImpl.getTotalProducts();
+        int endPage = count / 10;
+        if (count % 10 != 0) {
+            endPage++;
+        }
+        req.setAttribute("endPageUser", endPage);
+        List<ProductHost> products = productImpl.getProductsPage(page);
         req.setAttribute("listProduct", products);
+        req.setAttribute("tag", page);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
         dispatcher.forward(req, resp);
     }
