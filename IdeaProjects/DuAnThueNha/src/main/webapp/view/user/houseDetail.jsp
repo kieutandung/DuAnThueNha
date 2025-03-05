@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-md-5">
-            <h2 class ="pb-3">
+            <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
