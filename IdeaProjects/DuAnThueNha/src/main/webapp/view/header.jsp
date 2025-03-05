@@ -1,204 +1,159 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 <style>
-    .nav-icons a {
-        margin-left: 15px;
-        font-size: 20px;
-        color: #007bff !important;
-        text-decoration: none;
-    }
-
-    .nav-icons a:visited {
-        color: #007bff !important;
-    }
-
-    .nav-icons a:hover {
-        color: #0056b3 !important;
-    }
-
     * {
-        margin: 0;
+        margin-left: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: 'Arial', sans-serif;
+        font-family: Arial, sans-serif;
     }
-
 
     body {
-        background-color: #f8f9fa;
+        background-color: #f5f5f5;
     }
 
-    header {
+    header, .navbar {
         width: 100%;
-        background: white;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+
     }
 
+    /* Navbar */
     .navbar {
-        width: 100%;
         display: flex;
         justify-content: space-between;
-        align-items: center;
         padding: 15px 30px;
+        background: #fff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        align-items: center;
+        overflow: hidden; /* Prevents wrapping */
+        white-space: nowrap; /* Prevents items from breaking to the next line */
     }
 
     .logo {
         font-size: 25px;
         font-weight: bold;
         color: #007bff;
-        display: flex;
-        align-items: center;
-    }
-
-    .logo img {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
     }
 
     .nav-links {
+        padding-top: 15px;
+        margin-left: 50px;
         list-style: none;
         display: flex;
         align-items: center;
     }
 
-    .nav-links li {
-        margin: 10px 15px;
+    .nav-icon {
+        padding-top: 15px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-search {
+        padding-top: 15px;
+        list-style: none;
+        display: flex;
+        align-items: center; /* Align items vertically */
+        margin-left: 20px; /* Optional: Add some margin for spacing */
+    }
+
+    .search-input {
+        width: 250px;
+        padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-image: url('https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/search-3-512.png');
+        background-repeat: no-repeat;
+        background-position: right 10px center; /* Position the icon on the right */
+        background-size: 20px; /* Size of the icon */
+    }
+
+    .nav-links li,
+    .nav-icon li {
+        margin: 0 20px;
     }
 
     .nav-links a {
         text-decoration: none;
         color: #333;
-        font-size: 18px;
-        font-weight: normal;
-        display: inline-block;
-        position: relative;
-        top: 15px;
+        font-size: 20px;
+        transition: color 0.3s ease; /* Smooth transition for color change */
     }
 
     .nav-links a:hover {
         color: #007bff;
     }
 
-    .nav-icons {
-        display: flex;
-        align-items: center;
-    }
-
-    .nav-icons a, .nav-icons button {
-        margin-left: 15px;
-        font-size: 18px;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
-    }
-
-    .hero {
-        background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
-        background-size: cover;
-        background-position: center;
-        text-align: center;
-        color: white;
-        padding: 60px 20px;
-    }
-
-    .hero h2 {
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .search-bar {
-        display: flex;
-        justify-content: center;
-        background: white;
-        padding: 10px;
-        border-radius: 8px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        max-width: 800px;
-        margin: 20px auto;
-        align-items: center;
-    }
-
-    .search-bar select {
-        padding: 12px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        flex: 1;
-        max-width: 200px;
-        height: 45px;
-    }
-
-    .search-bar input {
-        flex: 2;
-        margin-left: 10px;
-        border: none;
-        outline: none;
-        height: 45px;
-        padding: 12px;
-        font-size: 16px;
-        background-color: transparent;
-    }
-
-    .search-bar button {
-        background-color: #2d64b3;
-        color: white;
-        border: none;
-        padding: 12px 25px;
-        margin-left: 10px;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: normal; /* Không in đậm */
+    .bell-icon {
+        font-size: 20px;
         cursor: pointer;
-        transition: background 0.3s;
-        display: flex;
-        align-items: center;
     }
 
-    .search-bar button:hover {
-        background-color: #1c4587;
+    .nav-icon img {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 10px 20px; /* Adjust padding for smaller screens */
+        }
+
+        .nav-links {
+            margin-left: 20px; /* Adjust margin for smaller screens */
+        }
+
+        .nav-icon {
+            margin-left: 20px; /* Adjust margin for smaller screens */
+        }
+
+        .nav-links li,
+        .nav-icon li {
+            margin: 0 10px; /* Adjust margin for smaller screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .logo {
+            font-size: 18px; /* Reduce logo size */
+        }
+
+        .nav-links a,
+        .nav-icon a {
+            font-size: 14px; /* Reduce font size for links */
+        }
     }
 </style>
 
-<header>
+<div class="container-fluid" style="padding: 0">
+
     <nav class="navbar">
-        <div class="logo">
-            <span>WE Bare BEARS.vn</span>
-        </div>
+        <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
-            <li><a href="#">Trang chủ</a></li>
+            <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
             <li><a href="#">Sản phẩm</a></li>
+            <li><a href="#">Liên hệ</a></li>
         </ul>
-        <div class="nav-icons">
-            <a href="#"><i class="fas fa-user"></i></a>
-            <a href="#"><i class="fas fa-bell"></i></a>
-            <button class="btn-primary">Liên hệ tư vấn</button>
-        </div>
+        <ul class="nav-search">
+            <li>
+                <input type="text" placeholder="Tìm kiếm..." class="search-input">
+            </li>
+        </ul>
+        <ul class="nav-icon">
+            <li><a href="/profileServlet"><i class="account-icon"><img
+                    src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png"></i></a></li>
+            <li><i class="bell-icon"><img
+                    src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"></i>
+            </li>
+            <li><a href="/loginServlet"><i class="logout-icon"><img
+                    src="/img/logout-black.png"></i></a></li>
+            </li>
+        </ul>
     </nav>
-</header>
+</div>
 
-<section class="hero">
-    <h2>We Bare Bears.vn xứng đáng với lựa chọn của bạn</h2>
-    <div class="search-bar">
-        <select>
-            <option selected>Loại nhà đất</option>
-            <option>Căn hộ</option>
-            <option>Biệt thự</option>
-            <option>Chung cư</option>
-        </select>
-        <input type="text" placeholder="Nhập địa điểm hoặc từ khóa"
-               style="border: 2px solid #c4c5bc;
-              border-radius: 5px;
-              padding: 8px;
-              width: 250px;
-              background-color: transparent;">
-        <button><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM</button>
-    </div>
-</section>
+
