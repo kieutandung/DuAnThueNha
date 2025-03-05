@@ -57,6 +57,8 @@ public class ListProductHostServlet extends HttpServlet {
                     req.setAttribute("successMessage", "Xóa thành công");
                     showListProductHost(req, resp);
                     break;
+                case "manageRentalRequests":
+                    showListManageRentalRequests(req,resp);
                 default:
                     showListProductHost(req, resp);
                     break;
@@ -65,6 +67,11 @@ public class ListProductHostServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void showListManageRentalRequests(HttpServletRequest req, HttpServletResponse resp) throws  ServletException , IOException{
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/hostApproveTheRequest.jsp");
+        dispatcher.forward(req,resp);
     }
 
     private void showListProductSearchHost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

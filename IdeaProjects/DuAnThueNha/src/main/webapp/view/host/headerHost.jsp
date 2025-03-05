@@ -96,6 +96,7 @@
         height: 25px;
     }
 
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         .navbar {
@@ -127,6 +128,7 @@
         }
     }
 </style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <div class="container-fluid" style="padding: 0">
 
@@ -134,7 +136,15 @@
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
             <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Giới thiệu</a></li>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    Quản lý
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" href="#">Quản lý sản phẩm</a></li>
+                    <li><a class="dropdown-item" href="#">Quản lý yêu cầu thuê nhà</a></li>
+                </ul>
+            </div>
             <li><a href="#">Sản phẩm</a></li>
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
