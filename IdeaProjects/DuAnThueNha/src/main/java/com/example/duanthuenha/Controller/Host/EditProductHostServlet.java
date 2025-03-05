@@ -96,7 +96,9 @@ public class EditProductHostServlet extends HttpServlet {
         if (imageProduct == "") {
             imageProduct = req.getParameter("image");
         }
-        ProductHost product = new ProductHost(idProduct, nameProduct, productDescription, price, address, status, imageProduct);
+        String category = req.getParameter("category");
+        double area = Double.parseDouble(req.getParameter("area"));
+        ProductHost product = new ProductHost(idProduct, nameProduct, productDescription, price, address, status, imageProduct,category,area);
         productService.editProduct(product);
         String uploadDir = getServletContext().getRealPath("") + File.separator + "img";
         Collection<Part> parts = req.getParts();

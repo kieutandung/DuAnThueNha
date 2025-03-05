@@ -10,6 +10,60 @@ public class ProductHost {
     private String productDescription;
     private Double price;
     private String address;
+    private String category;
+    private double area;
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+
+    public ProductHost(int idUser, String nameProduct, String productDescription, Double price, String address, String status, String image, String category) {
+        this.idUser = idUser;
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+        this.image = image;
+        this.category = category;
+    }
+    public ProductHost(int idUser, String nameProduct, String productDescription, Double price, String address, String status, String image, String category, double area) {
+        this.idUser = idUser;
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+        this.image = image;
+        this.category = category;
+        this.area = area;
+    }
+
+    public ProductHost(int idUser, int idProduct, String nameProduct, String productDescription, Double price, String address, String status, String image, String category, double area) {
+        this.idUser = idUser;
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.address = address;
+        this.status = status;
+        this.image = image;
+        this.category = category;
+        this.area = area;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public int getIdProduct() {
         return idProduct;

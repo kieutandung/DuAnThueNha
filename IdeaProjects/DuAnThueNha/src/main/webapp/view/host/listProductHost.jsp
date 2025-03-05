@@ -13,12 +13,12 @@
 <body>
 
 <div class="container">
-    <div class="row">
+    <div class="row mb-6">
         <div class="col-lg-12 mt-5">
 
             <div id="alertDivSuc" class="alert alert-success" role="alert"
                  style="display: ${not empty successMessage ? 'block' : 'none'};">
-                <strong>Thành công!</strong> ${successMessage}
+                <strong>${successMessage}</strong>
             </div>
 
             <div class="main-box clearfix">
@@ -27,55 +27,60 @@
                         <thead>
                         <tr>
                             <th><span>Sản phẩm</span></th>
-                            <th><span>Giá</span></th>
+                            <th class="text-center"><span>Giá</span></th>
                             <th class="text-center"><span>Trạng thái</span></th>
-                            <th><span>Địa chỉ</span></th>
-                            <th>&nbsp;</th>
+                            <th class="text-center"><span>Địa chỉ</span></th>
+                            <th class="text-center"><span>Hành động</span></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="p" items="${listProduct}">
+                        <c:choose>
+                            <c:when test="${not empty listProduct}">
+                                <c:forEach var="p" items="${listProduct}">
+                                    <input type="hidden" name="productId" value="${p.idProduct}">
+                                    <tr>
+                                        <td>
+                                            <img src="img/${p.image}" alt=""
+                                                 onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
+                                            <a href="editProductHostServlet?productId=${p.idProduct}"
+                                               class="user-link">${p.nameProduct}</a>
+                                            <span class="user-subhead">Admin</span>
+                                        </td>
+                                        <td>
+                                                ${p.price} VNĐ
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="label label-default"> ${p.status}</span>
+                                        </td>
+                                        <td>
+                                            <a href="#"> ${p.address}</a>
+                                        </td>
+                                        <td class="text-center" style="width: 20%;">
+                                            <a href="editProductHostServlet?productId=${p.idProduct}"
+                                               class="table-link">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                                            </a>
+                                            <a href="#" class="table-link danger"
+                                               onclick="showDeleteModal('${p.idProduct}'); return false;">
+                        <span class="fa-stack">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm ${keyword}</td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
 
-                            <input type="hidden" name="productId" value="${p.idProduct}">
-                            <tr>
-                                <td>
-                                    <img src="img/${p.image}" alt=""
-                                         onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
-                                    <a href="editProductHostServlet?productId=${p.idProduct}" class="user-link">${p.nameProduct}</a>
-                                    <span class="user-subhead">Admin</span>
-                                </td>
-                                <td>
-                                        ${p.price} VNĐ
-                                </td>
-                                <td class="text-center">
-                                    <span class="label label-default"> ${p.status}</span>
-                                </td>
-                                <td>
-                                    <a href="#"> ${p.address}</a>
-                                </td>
-                                <td style="width: 20%;">
-<%--                                    <a href="addProductHostServlet" class="table-link">--%>
-<%--									<span class="fa-stack">--%>
-<%--										<i class="fa fa-square fa-stack-2x"></i>--%>
-<%--										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>--%>
-<%--									</span>--%>
-<%--                                    </a>--%>
-                                    <a href="editProductHostServlet?productId=${p.idProduct}" class="table-link">
-									<span class="fa-stack">
-										<i class="fa fa-square fa-stack-2x"></i>
-										<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-									</span>
-                                    </a>
-                                    <a href="#" class="table-link danger"
-                                       onclick="showDeleteModal('${p.idProduct}'); return false;">
-                                                  <span class="fa-stack">
-                                                      <i class="fa fa-square fa-stack-2x"></i>
-                                                      <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                                  </span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </c:forEach>
                         <div class="modal fade" id="deleteConfirmModal" tabindex="-1"
                              aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">

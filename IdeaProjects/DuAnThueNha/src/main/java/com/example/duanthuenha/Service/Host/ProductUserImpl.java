@@ -3,6 +3,7 @@ package com.example.duanthuenha.Service.Host;
 import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Image;
 import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,7 +51,9 @@ public class ProductUserImpl implements ProductUserService {
                         rs.getBigDecimal("price"),
                         rs.getString("address"),
                         rs.getString("status"),
-                        rs.getString("image")
+                        rs.getString("image"),
+                        rs.getString("category"),
+                        rs.getDouble("area")
                 );
                 productList.add(product);
             }
@@ -60,6 +63,8 @@ public class ProductUserImpl implements ProductUserService {
         }
         return productList;
     }
+
+
 
     @Override
     public Product getAllProductsById(int idProduct) {

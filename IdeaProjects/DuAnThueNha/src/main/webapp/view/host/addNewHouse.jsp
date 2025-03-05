@@ -99,15 +99,44 @@
 
                                     <div class="mb-4">
                                         <div class="form-floating">
+                                            <select required id="category" name="category" class="form-select">
+                                                <option selected>-- Chọn loại nhà đất --</option>
+                                                <option value="Chung cư">
+                                                    Chung cư
+                                                </option>
+                                                <option value="Căn hộ" >
+                                                    Căn hộ
+                                                </option>
+                                                <option value="Khu nghỉ dưỡng">
+                                                    Khu nghỉ dưỡng
+                                                </option>
+                                                <option value="Biêt thự">
+                                                    Biệt thự
+                                                </option>
+                                            </select>
+                                            <label for="category">Loại nhà đất</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <input min="20"  type="number" id="area" name="area" class="form-control"
+                                                   placeholder="Diện tích (m2)" required >
+                                            <label for="area">Diện tích (m2)</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating" min="0">
                                             <input type="number" id="price" name="price" class="form-control"
-                                                   placeholder="Mức giá" required  >
+                                                   placeholder="Mức giá" required>
                                             <label for="price">Mức giá (Vnd)</label>
                                         </div>
                                     </div>
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <input required  type="text" id="address" name="address" class="form-control"
+                                            <input required type="text" id="address" name="address" class="form-control"
                                                    placeholder="Địa chỉ">
                                             <label for="address">Địa chỉ</label>
                                         </div>
@@ -115,7 +144,7 @@
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <textarea required  id="productDescription" name="productDescription"
+                                            <textarea required id="productDescription" name="productDescription"
                                                       class="form-control" placeholder="Mô tả"
                                                       style="height: 100px"></textarea>
                                             <label for="productDescription">Mô tả</label>
@@ -123,7 +152,9 @@
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
                                         <button type="submit" class="btn btn-light btn-lg">Đăng tin</button>
-                                        <button type="reset" class="btn btn-warning btn-lg ms-2" onclick="window.location.href='listProductHostServlet'">Hủy</button>
+                                        <button type="reset" class="btn btn-warning btn-lg ms-2"
+                                                onclick="window.location.href='listProductHostServlet'">Hủy
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -185,13 +216,26 @@
 
         selectedImages.forEach((file, index) => {
             const imageUrl = URL.createObjectURL(file);
+
+            // Tạo box chứa có kích thước cố định 131x131px
             const box = document.createElement('div');
             box.classList.add('image-box');
+            box.style.width = "131px";
+            box.style.height = "131px";
+            box.style.display = "flex";
+            box.style.justifyContent = "center";
+            box.style.alignItems = "center";
+            box.style.position = "relative";
+            box.style.overflow = "hidden";
 
-            // Tạo thẻ <img> để hiển thị ảnh
+            // Tạo thẻ <img> hiển thị ảnh
             const imgElem = document.createElement('img');
             imgElem.src = imageUrl;
             imgElem.alt = "Ảnh phụ " + (index + 1);
+            // Đặt kích thước cố định và sử dụng object-fit: cover để ảnh bao phủ toàn bộ box
+            imgElem.style.width = "131px";
+            imgElem.style.height = "131px";
+            imgElem.style.objectFit = "cover";
 
             // Tạo nút xóa (dùng textContent để tránh sự cố với innerHTML và icon)
             const deleteBtn = document.createElement('button');

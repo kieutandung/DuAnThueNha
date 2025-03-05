@@ -71,18 +71,20 @@
                                 <div id="additionalPreviewGridEdit"
                                      style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
                                     <c:forEach var="img" items="${imagesProduct}">
-                                        <div class="image-box" id="imageBox_${img.idImage}">
+                                        <div class="image-box" id="imageBox_${img.idImage}"
+                                             style="width: 131px; height: 131px; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden;">
                                             <img src="img/${img.img}" alt="Ảnh phụ"
-                                                 style="width:100%; height:auto; padding: 5px;">
-
+                                                 style="width: 131px; height: 131px; object-fit: cover;">
                                             <button type="button" class="delete-btn"
-                                                    onclick="deleteImageFromDB('${img.idImage}')">
+                                                    onclick="deleteImageFromDB('${img.idImage}')"
+                                                    style="position: absolute; top: 5px; right: 5px;">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
                                     </c:forEach>
                                 </div>
                             </div>
+
                             <div class="px-4" id="additionalPreviewContainerTextDown" style="display: none">
                                 <label class="mt-4 form-label">Ảnh bổ sung</label>
                             </div>
@@ -105,12 +107,39 @@
                                                accept="image/*">
                                         <input type="hidden" name="image" value="${product.image}">
                                     </div>
-
                                     <div class="mb-4">
                                         <label class="form-label">Chỉnh sửa ảnh phụ (tối đa 8 ảnh)</label>
                                         <input type="file" id="additionalImages" name="images" class="form-control"
                                                multiple
                                                accept="image/*">
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <select required id="category" name="category" class="form-select">
+                                                <option value="Chung cư" ${product.category eq 'Chung cư' ? 'selected' : ''}>
+                                                    Chung cư
+                                                </option>
+                                                <option value="Căn hộ" ${product.category eq 'Căn hộ' ? 'selected' : ''}>
+                                                    Căn hộ
+                                                </option>
+                                                <option value="Khu nghỉ dưỡng" ${product.category eq 'Khu nghỉ dưỡng' ? 'selected' : ''}>
+                                                    Khu nghỉ dưỡng
+                                                </option>
+                                                <option value="Biêt thự" ${product.category eq 'Biệt thự' ? 'selected' : ''}>
+                                                    Biệt thự
+                                                </option>
+                                            </select>
+                                            <label for="category">Loại nhà đất</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <input  type="number" id="area" name="area" class="form-control"
+                                                   placeholder="Diện tích (m2)" required value="${product.area}" >
+                                            <label for="area">Diện tích (m2)</label>
+                                        </div>
                                     </div>
 
                                     <div class="row">
@@ -125,10 +154,14 @@
 
                                         <div class="col-md-6 mb-4">
                                             <div class="form-floating">
-                                                <select required id="statusProduct" name="statusProduct" class="form-select">
-                                                    <option value="active" ${product.status eq 'active' ? 'selected' : ''}>Cho thuê</option>
-                                                    <option value="for rent" ${product.status eq 'pending' ? 'selected' : ''}>Đã được thuê</option>
-                                                    <option value="sold out" ${product.status eq 'blocked' ? 'selected' : ''}>Hết chỗ</option>
+                                                <select required id="statusProduct" name="statusProduct"
+                                                        class="form-select">
+                                                    <option value="active" ${product.status eq 'active' ? 'selected' : ''}>
+                                                        Cho thuê
+                                                    </option>
+                                                    <option value="sold out" ${product.status eq 'blocked' ? 'selected' : ''}>
+                                                        Hết chỗ
+                                                    </option>
                                                 </select>
                                                 <label for="statusProduct">Trạng thái</label>
                                             </div>
@@ -137,7 +170,7 @@
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <input type="number" id="price" name="price" class="form-control"
+                                            <input min="0" type="number" id="price" name="price" class="form-control"
                                                    placeholder="Mức giá" required value="${product.price}">
                                             <label for="price">Mức giá (Vnd)</label>
                                         </div>
@@ -161,7 +194,9 @@
                                     </div>
                                     <div class="d-flex justify-content-end pt-3">
                                         <button type="submit" class="btn btn-light btn-lg">Sửa thông tin</button>
-                                        <button type="reset" class="btn btn-warning btn-lg ms-2" onclick="window.location.href='listProductHostServlet'">Hủy</button>
+                                        <button type="reset" class="btn btn-warning btn-lg ms-2"
+                                                onclick="window.location.href='listProductHostServlet'">Hủy
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -193,7 +228,7 @@
         const files = Array.from(this.files);
 
         // Kiểm tra số lượng file được chọn (tối đa 8)
-        if (files.length + ${imagesProduct.size()} > 8 ) {
+        if (files.length + ${imagesProduct.size()} > 8) {
             showMaxImagesAlert();
             this.value = ""; // Reset file input
             selectedImages = [];
@@ -220,13 +255,26 @@
 
         selectedImages.forEach((file, index) => {
             const imageUrl = URL.createObjectURL(file);
+
+            // Tạo box chứa có kích thước cố định 131x131px
             const box = document.createElement('div');
             box.classList.add('image-box');
+            box.style.width = "131px";
+            box.style.height = "131px";
+            box.style.display = "flex";
+            box.style.justifyContent = "center";
+            box.style.alignItems = "center";
+            box.style.position = "relative";
+            box.style.overflow = "hidden";
 
-            // Tạo thẻ <img> để hiển thị ảnh
+            // Tạo thẻ <img> hiển thị ảnh
             const imgElem = document.createElement('img');
             imgElem.src = imageUrl;
             imgElem.alt = "Ảnh phụ " + (index + 1);
+            // Đặt kích thước cố định và sử dụng object-fit: cover để ảnh bao phủ toàn bộ box
+            imgElem.style.width = "131px";
+            imgElem.style.height = "131px";
+            imgElem.style.objectFit = "cover";
 
             const deleteBtn = document.createElement('button');
             deleteBtn.classList.add('delete-btn');
