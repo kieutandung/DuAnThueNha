@@ -1,4 +1,9 @@
-body{margin-top:20px;}
+* {
+    z-index: 1;
+}
+
+body{margin-top:20px;
+}
 
 
 /* USER LIST TABLE */
