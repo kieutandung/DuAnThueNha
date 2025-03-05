@@ -74,10 +74,10 @@ body {
     width: 350px;
 }
 #complaintBtn {
-    background-color: #FFC107; /* Màu vàng */
+    background-color: #FFC107;
     color: black;
-    padding: 5px 10px; /* Giảm kích thước padding */
-    font-size: 14px; /* Giảm kích thước chữ */
+    padding: 5px 10px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -89,12 +89,12 @@ body {
     position: absolute;
     top: 125px;
     right: 315px;
-    height: 32px; /* Giảm chiều cao nút */
-    width: auto; /* Để chiều rộng tự động theo nội dung */
+    height: 32px;
+    width: auto;
 }
 
 #complaintBtn i {
-    font-size: 12px; /* Giảm kích thước icon */
+    font-size: 12px;
 }
 
 
@@ -111,12 +111,12 @@ body {
 }
 
 #submit-complaint:hover {
-    background-color: #218838; /* Màu đậm hơn khi hover */
+    background-color: #218838;
 }
 
 /* Nút "Đóng" */
 #close-popup {
-    background-color: #dc3545; /* Đỏ */
+    background-color: #dc3545;
     color: white;
     border: none;
     padding: 8px 12px;

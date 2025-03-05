@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const otherReason = document.getElementById("otherReason");
     const otherReasonText = document.getElementById("otherReasonText");
 
-    // Kiểm tra nếu các phần tử tồn tại trước khi gán sự kiện
     if (complaintBtn && complaintPopup && closePopup) {
-        // Khi nhấn nút Khiếu Nại → Hiện hộp khiếu nại
         complaintBtn.addEventListener("click", function() {
             complaintPopup.style.display = "block";
         });
@@ -55,11 +53,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     otherReason.addEventListener("click", function() {
         if (otherReasonText.style.display === "none" || otherReasonText.style.display === "") {
-            otherReasonText.style.display = "block"; // Hiện ô nhập
+            otherReasonText.style.display = "block";
         } else {
-            otherReasonText.style.display = "none"; // Ẩn ô nhập
+            otherReasonText.style.display = "none";
             otherReasonText.value = ""; // Xóa nội dung khi ẩn
-            otherReason.checked = false; // Bỏ chọn radio button
+            otherReason.checked = false;
         }
     });
 });
