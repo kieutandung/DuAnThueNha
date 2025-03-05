@@ -17,8 +17,26 @@ public class Product {
     private String ownerName;
     private String ownerImage;
     private List<String> additionalImages;
+    private String category;
+    private double area;
 
-    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status, String image) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
+    }
+
+    public Product(int idProduct, int idUser, String nameProduct, String productDescription, BigDecimal price, String address, String status, String image,String category, double area) {
         this.idProduct = idProduct;
         this.idUser = idUser;
         this.nameProduct = nameProduct;
@@ -27,6 +45,8 @@ public class Product {
         this.address = address;
         this.status = status;
         this.image = image;
+        this.category = category;
+        this.area = area;
     }
 
 

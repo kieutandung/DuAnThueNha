@@ -38,6 +38,7 @@
             align-items: center;
             margin-bottom: 20px;
         }
+
         .required::after {
             content: " *";
             color: red;
@@ -149,7 +150,8 @@
             <c:choose>
                 <c:when test="${not empty user}">
                     <!-- Ảnh đại diện -->
-                    <img id="preview" src="img/${user.image}" alt="ảnh người dùng" class="profile-pic" onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
+                    <img id="preview" src="img/${user.image}" alt="ảnh người dùng" class="profile-pic"
+                         onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
                     <div>
                         <h1>Thông tin tài khoản </h1>
                         <h2>
@@ -157,9 +159,9 @@
                         </h2>
                     </div>
                     <c:if test="${sessionScope.role == 'host'}">
-                    <div style="padding-left: 55px">
-                        <a href="listProductHostServlet"><img src="/img/large-removebg-preview.png" style="width: 150px"></a>
-                    </div>
+                        <div style="padding-left: 55px">
+                            <a href="listProductHostServlet"><img src="/img/LogoHost.png" style="width: 150px"></a>
+                        </div>
                     </c:if>
                 </c:when>
                 <c:otherwise>
@@ -178,9 +180,12 @@
                 </div>
                 <!-- Cột bên phải: thêm 3 hàng thông tin nữa -->
                 <div class="col-md-6">
-                    <div class="info-item"><b>Ngày sinh:</b> ${not empty user.birthDate ? user.birthDate : "Chưa cập nhật"}</div>
-                    <div class="info-item"><b>Địa chỉ:</b> ${not empty user.address ? user.address : "Chưa cập nhật"}</div>
-                    <div class="info-item"><b>Giới tính:</b> ${not empty user.gender ? user.gender : "Chưa cập nhật"}</div>
+                    <div class="info-item"><b>Ngày
+                        sinh:</b> ${not empty birthDateUser ? birthDateUser : "Chưa cập nhật"}</div>
+                    <div class="info-item"><b>Địa chỉ:</b> ${not empty user.address ? user.address : "Chưa cập nhật"}
+                    </div>
+                    <div class="info-item"><b>Giới tính:</b> ${not empty user.gender ? user.gender : "Chưa cập nhật"}
+                    </div>
                 </div>
 
             </div>
@@ -190,7 +195,8 @@
         <!-- 2 nút nằm ngang: "Chỉnh sửa" & "Đăng ký" -->
         <div class="button-row">
             <button id="editBtn" type="button" onclick="toggleEditForm()">Chỉnh sửa</button>
-            <button id="registerBtn" class="btn btn-success" type="button" onclick="window.location.href='userToHostServlet'">Đăng kí làm chủ nhà
+            <button id="registerBtn" class="btn btn-success" type="button"
+                    onclick="window.location.href='userToHostServlet'">Đăng kí làm chủ nhà
             </button>
         </div>
 
@@ -230,7 +236,9 @@
 
                 <!-- Ô hiển thị ảnh (preview) -->
                 <div style="margin-top: 10px;">
-                    <img id="imagePreview" src="img/${user.image != null && user.image != ''  ? user.image : 'defaultImg-removebg-preview.png'}" alt="Ảnh đại diện"  style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
+                    <img id="imagePreview"
+                         src="img/${user.image != null && user.image != ''  ? user.image : 'defaultImg-removebg-preview.png'}"
+                         alt="Ảnh đại diện" style="max-width: 200px; border: 1px solid #ccc; padding: 5px;">
                 </div>
 
                 <button type="button" class="btn btn-primary mt-2" onclick="document.getElementById('image').click();">
@@ -239,18 +247,18 @@
             </div>
 
             <!-- Họ và Tên -->
-            <label for="fullName" class="required" >Họ và Tên:</label>
+            <label for="fullName" class="required">Họ và Tên:</label>
             <input type="text" id="fullName" name="fullName" value="${user.fullName}" required
                    pattern="^[A-ZÀ-Ỹ][a-zà-ỹ]+(?: [A-ZÀ-Ỹ][a-zà-ỹ]+)*$"
                    title="Tên phải viết hoa chữ cái đầu, không chứa số hoặc ký tự đặc biệt ">
 
             <!-- Điện thoại -->
-            <label for="phone" class="required" >Điện thoại:</label>
+            <label for="phone" class="required">Điện thoại:</label>
             <input type="text" id="phone" name="phone" value="${user.phone}" required pattern="^(?:\+84|0)\d{9}$"
                    title="Gồm 10 số">
 
             <!-- Email -->
-            <label for="email" class="required" >Email:</label>
+            <label for="email" class="required">Email:</label>
             <input type="email" id="email" name="email" value="${user.email}" required>
 
 
@@ -267,11 +275,11 @@
 
             <!-- Giới tính -->
             <label for="gender">Giới tính:</label>
-            <select id="gender" name="gender">
-                <option value="${user.gender}">-- Chọn giới tính --</option>
-                <option value="male" ${user.gender eq 'male' ? 'selected' : ''}>Nam</option>
-                <option value="female" ${user.gender eq 'female' ? 'selected' : ''}>Nữ</option>
-                <option value="other" ${user.gender eq 'other' ? 'selected' : ''}>Khác</option>
+            <select name="gender" id="gender">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="male" ${user.gender eq 'Nam' ? 'selected' : ''}>Nam</option>
+                <option value="female" ${user.gender eq 'Nữ' ? 'selected' : ''}>Nữ</option>
+                <option value="other" ${user.gender eq 'Khác' ? 'selected' : ''}>Khác</option>
             </select>
 
             <!-- Password -->
@@ -293,12 +301,13 @@
 
 <!-- Toggle Form CHỈNH SỬA -->
 <script>
-    document.getElementById('editForm').addEventListener('keydown', function(event) {
+    document.getElementById('editForm').addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             event.preventDefault();
             return false;
         }
     });
+
     function toggleEditForm() {
         let editForm = document.getElementById("editForm");
         let editBtn = document.getElementById("editBtn");
@@ -312,15 +321,8 @@
             editBtn.textContent = "Chỉnh sửa";
         }
     }
-    // function formatDateBeforeSubmit() {
-    //     let dateInput = document.getElementById("birthDate").value;
-    //     if (dateInput) {
-    //         let parts = dateInput.split("-"); // Tách YYYY-MM-DD
-    //         let formattedDate = parts[2] + "/" + parts[1] + "/" + parts[0]; // Đổi thành DD/MM/YYYY
-    //         document.getElementById("formattedBirthDate").value = formattedDate; // Gán vào input hidden
-    //     }
-    // }
-    document.getElementById('image').addEventListener('change', function(event) {
+
+    document.getElementById('image').addEventListener('change', function (event) {
         const file = this.files[0];
         if (file) {
             const preview = document.getElementById('imagePreview');

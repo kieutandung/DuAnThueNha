@@ -14,7 +14,7 @@ public class ProductImpl implements ProductService {
     @Override
     public int addProduct(ProductHost product) {
         int productId = -1;
-        String query = "INSERT INTO products (idUser, nameProduct, productDescription, price, address, status,image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO products (idUser, nameProduct, productDescription, price, address, status,image,category,area) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, product.getIdUser());
@@ -24,6 +24,8 @@ public class ProductImpl implements ProductService {
             ps.setString(5, product.getAddress());
             ps.setString(6, product.getStatus());
             ps.setString(7, product.getImage());
+            ps.setString(8, product.getCategory());
+            ps.setDouble(9, product.getArea());
             int checkRow = ps.executeUpdate();
             if (checkRow > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
@@ -78,7 +80,9 @@ public class ProductImpl implements ProductService {
                             status = "Hết chỗ";
                         }
                         String image = rs.getString("image");
-                        product = new ProductHost(userId, id, nameProduct, productDescription, price, address, status, image);
+                        String category = rs.getString("category");
+                        double area = Double.parseDouble(rs.getString("area"));
+                        product = new ProductHost(userId, id, nameProduct, productDescription, price, address, status, image, category, area);
                         return product;
                     }
                 }
@@ -128,7 +132,7 @@ public class ProductImpl implements ProductService {
 
     @Override
     public void editProduct(ProductHost product) {
-        String editProduct = "update Products set nameProduct = ?, productDescription = ?, price = ?, address = ?, status = ?, image = ? where idProduct  = ?";
+        String editProduct = "update Products set nameProduct = ?, productDescription = ?, price = ?, address = ?, status = ?, image = ?, category = ? where idProduct  = ?";
 
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(editProduct)) {
             preparedStatement.setString(1, product.getNameProduct());
@@ -137,7 +141,8 @@ public class ProductImpl implements ProductService {
             preparedStatement.setString(4, product.getAddress());
             preparedStatement.setString(5, product.getStatus());
             preparedStatement.setString(6, product.getImage());
-            preparedStatement.setInt(7, product.getIdUser());
+            preparedStatement.setString(7, product.getCategory());
+            preparedStatement.setInt(8, product.getIdUser());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -181,6 +186,7 @@ public class ProductImpl implements ProductService {
         return products;
     }
 
+
     @Override
     public void deleteProduct(int id) {
         String sql = "DELETE FROM products WHERE idProduct = ?";
@@ -191,6 +197,159 @@ public class ProductImpl implements ProductService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<ProductHost> getAllProductsWithKeywordUser(String keyword) {
+        String sql = "SELECT * FROM products WHERE nameProduct LIKE ? OR address LIKE ? OR area = ? order by idProduct desc";
+        List<ProductHost> products = new ArrayList<>();
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, "%" + keyword + "%");
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, keyword);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idUser = 0;
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                }
+                if (status.equals("for rent")) {
+                    status = "Đang được cho thuê";
+                }
+                if (status.equals("sold out")) {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String category = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image, category, area);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+    }
+
+    public List<ProductHost> getAllProducts() {
+        List<ProductHost> productList = new ArrayList<>();
+        String query = "SELECT * FROM products";
+
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int idUser = rs.getInt("idUser");
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                } else {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String category = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+
+                ProductHost product = new ProductHost(idUser,idProduct, nameProduct, productDescription, price, address, status, image, category, area);
+                productList.add(product);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+
+    @Override
+    public List<ProductHost> getAllProductsWithCategoryUser(String category) {
+        String sql = "SELECT * FROM products WHERE category LIKE ? order by idProduct desc";
+        List<ProductHost> products = new ArrayList<>();
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, "%" + category + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idUser = 0;
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                }
+                if (status.equals("for rent")) {
+                    status = "Đang được cho thuê";
+                }
+                if (status.equals("sold out")) {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String categoryU = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+                ProductHost product = new ProductHost(idUser, idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
+
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+    }
+
+    @Override
+    public List<ProductHost> getAllProductsWithCategoryAndKeywordUser(String keyword, String category) {
+        String sql = "SELECT * FROM products WHERE category = ? and nameProduct LIKE ? OR address LIKE ? order by idProduct desc";
+        List<ProductHost> products = new ArrayList<>();
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, category);
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, "%" + keyword + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idProduct = rs.getInt("idProduct");
+                String nameProduct = rs.getString("nameProduct");
+                String productDescription = rs.getString("productDescription");
+                Double price = Double.valueOf(rs.getString("price"));
+                String address = rs.getString("address");
+                String status = rs.getString("status");
+                if (status.equals("active")) {
+                    status = "Có thể thuê";
+                }
+                if (status.equals("for rent")) {
+                    status = "Đang được cho thuê";
+                }
+                if (status.equals("sold out")) {
+                    status = "Hết chỗ";
+                }
+                String image = rs.getString("image");
+                String categoryU = rs.getString("category");
+                double area = Double.parseDouble(rs.getString("area"));
+
+                ProductHost product = new ProductHost(idProduct, nameProduct, productDescription, price, address, status, image, categoryU, area);
+
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+    }
+
+
     public void deleteImages(int idProduct) {
         String sql = "DELETE FROM images WHERE idProduct = ?";
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

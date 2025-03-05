@@ -68,7 +68,9 @@ public class AddProductHostServlet extends HttpServlet {
         String status = "active";
         Part imagePart = req.getPart("imageProduct");
         String image = imagePart.getSubmittedFileName();
-        ProductHost product = new ProductHost(userID, nameProduct, productDescription, price, address, status, image);
+        String category = req.getParameter("category");
+        double area = Double.parseDouble(req.getParameter("area"));
+        ProductHost product = new ProductHost(userID,nameProduct,productDescription,price,address,status,image,category,area);
         int productId = productService.addProduct(product);
         String uploadDir = getServletContext().getRealPath("") + File.separator + "img";
         Collection<Part> parts = req.getParts();

@@ -175,6 +175,7 @@
     <nav class="navbar">
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
+<<<<<<< HEAD
             <li><a href="#">Trang chủ</a></li>
             <li class="dropdown">
                 <a href="#" class="nav-link">Quản lý</a>
@@ -184,13 +185,19 @@
                 </div>
             </li>
             <li><a href="#">Sản phẩm</a></li>
+=======
+            <li><a href="homeUserServlet">Trang chủ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="listProductHostServlet">Sản phẩm</a></li>
+>>>>>>> c038e02b897207b9a42639c15a5b474699ff376a
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
+
         <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">
             <ul class="nav-search">
                 <li>
-                    <input type="text" name="searchProductHost" placeholder="Tìm kiếm theo tên, địa chỉ"
-                           class="search-input">
+                    <input id="searchProductHost" type="text" name="searchProductHost" placeholder="Tìm kiếm theo tên, địa chỉ"
+                           class="search-input" value="${keyword}">
                 </li>
             </ul>
         </form>

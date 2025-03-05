@@ -23,6 +23,13 @@ body{margin-top:20px;
     font-size: 0.875em;
     font-style: italic;
 }
+.main-box {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
 /* TABLES */
 .table {

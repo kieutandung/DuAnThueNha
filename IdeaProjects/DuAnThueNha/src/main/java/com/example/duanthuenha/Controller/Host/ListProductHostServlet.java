@@ -80,6 +80,7 @@ public class ListProductHostServlet extends HttpServlet {
         int userID = Integer.parseInt(userIDS);
         String keyword = req.getParameter("searchProductHost");
         List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword);
+        req.setAttribute("keyword", keyword);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
         dispatcher.forward(req, resp);
