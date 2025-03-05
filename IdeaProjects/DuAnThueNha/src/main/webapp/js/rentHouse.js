@@ -1,21 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("startDate");
-    const numDaysInput = document.getElementById("numDays");
+    const endDateInput = document.getElementById("endDate");
     const confirmButton = document.querySelector(".btn-confirm");
     const rentButton = document.querySelector(".btn-rent");
     const pricePerDay = parseInt(document.getElementById("pricePerDay").innerText.replace(/\D/g, "")) || 0;
 
-    // Xử lý khi ấn vào các nút số ngày
-    document.querySelectorAll(".duration-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            numDaysInput.value = this.dataset.days;
-        });
-    });
-
     // Xử lý khi ấn "Xác nhận"
     confirmButton.addEventListener("click", function () {
         const startDate = startDateInput.value;
-        const rentalDays = parseInt(numDaysInput.value) || 0;
+        const endDate = endDateInput.value;
 
         if (!startDate) {
             startDateInput.classList.add("is-invalid");
@@ -25,27 +18,29 @@ document.addEventListener("DOMContentLoaded", function () {
             startDateInput.classList.remove("is-invalid");
         }
 
+        if (!endDate) {
+            endDateInput.classList.add("is-invalid");
+            alert("Vui lòng chọn ngày kết thúc!");
+            return;
+        } else {
+            endDateInput.classList.remove("is-invalid");
+        }
+
+        // Tính tổng tiền
+        const startDateObj = new Date(startDate);
+        const endDateObj = new Date(endDate);
+        const rentalDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24) + 1; // Số ngày thuê
+
         if (rentalDays <= 0) {
-            alert("Vui lòng nhập số ngày hợp lệ!");
+            alert("Ngày kết thúc phải sau ngày bắt đầu!");
             return;
         }
 
-        // Tính toán ngày kết thúc
-        let startDateObj = new Date(startDate);
-        let endDateObj = new Date(startDateObj);
-        endDateObj.setDate(startDateObj.getDate() + rentalDays - 1);
-
-        // Định dạng ngày (dd/mm/yyyy)
-        const formatDate = (date) => {
-            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        };
-
-        // Tính tổng tiền
         const totalPrice = rentalDays * pricePerDay;
 
         // Cập nhật giao diện "Đơn hàng"
-        document.getElementById("orderDate").innerText = formatDate(startDateObj);
-        document.getElementById("endDate").innerText = formatDate(endDateObj);
+        document.getElementById("orderDate").innerText = startDate; // Ngày bắt đầu
+        document.getElementById("displayEndDate").innerText = endDate; // Ngày kết thúc
         document.getElementById("totalAmount").innerText = totalPrice.toLocaleString();
     });
 
@@ -62,6 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
     startDateInput.addEventListener("input", function () {
         if (startDateInput.value) {
             startDateInput.classList.remove("is-invalid");
+        }
+    });
+
+    // Khi người dùng nhập ngày kết thúc, bỏ cảnh báo lỗi
+    endDateInput.addEventListener("input", function () {
+        if (endDateInput.value) {
+            endDateInput.classList.remove("is-invalid");
         }
     });
 });
