@@ -1,67 +1,87 @@
+// Hàm hiển thị alert lỗi
+function showAlert(message) {
+    const alertBox = document.getElementById("errorAlert");
+    const alertMessage = document.getElementById("errorMessage");
+
+    alertMessage.innerText = message;
+    alertBox.classList.remove("d-none"); // Hiện thông báo
+
+    // Tự động ẩn sau 3 giây
+    setTimeout(() => {
+        alertBox.classList.add("d-none");
+    }, 3000);
+}
+
+// Hàm hiển thị alert thành công
+function showSuccess(message) {
+    const successBox = document.getElementById("successAlert");
+    const successMessage = document.getElementById("successMessage");
+
+    successMessage.innerText = message;
+    successBox.classList.remove("d-none"); // Hiện thông báo
+
+    // Tự động ẩn sau 3 giây
+    setTimeout(() => {
+        successBox.classList.add("d-none");
+    }, 3000);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("startDate");
-    const numDaysInput = document.getElementById("numDays");
+    const endDateInput = document.getElementById("endDate");
     const confirmButton = document.querySelector(".btn-confirm");
     const rentButton = document.querySelector(".btn-rent");
-    const pricePerDay = parseInt(document.getElementById("pricePerDay").innerText.replace(/\D/g, "")) || 0;
 
-    // Xử lý khi ấn vào các nút số ngày
-    document.querySelectorAll(".duration-btn").forEach(button => {
-        button.addEventListener("click", function () {
-            numDaysInput.value = this.dataset.days;
-        });
-    });
-
-    // Xử lý khi ấn "Xác nhận"
     confirmButton.addEventListener("click", function () {
         const startDate = startDateInput.value;
-        const rentalDays = parseInt(numDaysInput.value) || 0;
+        const endDate = endDateInput.value;
 
         if (!startDate) {
-            startDateInput.classList.add("is-invalid");
-            alert("Vui lòng chọn ngày bắt đầu!");
-            return;
-        } else {
-            startDateInput.classList.remove("is-invalid");
-        }
-
-        if (rentalDays <= 0) {
-            alert("Vui lòng nhập số ngày hợp lệ!");
+            showAlert("Vui lòng chọn ngày bắt đầu!");
             return;
         }
 
-        // Tính toán ngày kết thúc
-        let startDateObj = new Date(startDate);
-        let endDateObj = new Date(startDateObj);
-        endDateObj.setDate(startDateObj.getDate() + rentalDays - 1);
+        if (!endDate) {
+            showAlert("Vui lòng chọn ngày kết thúc!");
+            return;
+        }
 
-        // Định dạng ngày (dd/mm/yyyy)
-        const formatDate = (date) => {
-            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-        };
+        // Chuyển đổi sang đối tượng Date
+        const startDateObj = new Date(startDate);
+        const endDateObj = new Date(endDate);
+        const rentalDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24);
 
-        // Tính tổng tiền
-        const totalPrice = rentalDays * pricePerDay;
+        if (rentalDays < 1) {
+            showAlert("Ngày kết thúc phải sau ngày bắt đầu ít nhất 1 đêm!");
+            return;
+        }
 
-        // Cập nhật giao diện "Đơn hàng"
-        document.getElementById("orderDate").innerText = formatDate(startDateObj);
-        document.getElementById("endDate").innerText = formatDate(endDateObj);
-        document.getElementById("totalAmount").innerText = totalPrice.toLocaleString();
+        // Cập nhật đơn hàng
+        document.getElementById("orderDate").innerText = startDate;
+        document.getElementById("displayEndDate").innerText = endDate;
+        document.getElementById("totalAmount").innerText = ((rentalDays + 1) * 350000).toLocaleString("vi-VN");
     });
 
-    // Xử lý khi ấn "Thuê ngay"
-    rentButton.addEventListener("click", function () {
-        if (document.getElementById("totalAmount").innerText === "0") {
-            alert("Vui lòng nhập thông tin và xác nhận trước khi thuê!");
-        } else {
-            alert("Bạn đã thuê thành công!");
-        }
-    });
+    // Xử lý thuê nhà
+    rentButton.addEventListener("click", function (event) {
+        const startDate = document.getElementById("orderDate").innerText;
+        const endDate = document.getElementById("displayEndDate").innerText;
 
-    // Khi người dùng nhập ngày bắt đầu, bỏ cảnh báo lỗi
-    startDateInput.addEventListener("input", function () {
-        if (startDateInput.value) {
-            startDateInput.classList.remove("is-invalid");
+        if (startDate === "-" || endDate === "-") {
+            showAlert("Vui lòng xác nhận thông tin trước khi thuê!");
+            event.preventDefault(); // Ngăn chặn submit nếu chưa nhập thông tin
+            return;
         }
+
+        // Hiển thị thông báo thuê thành công
+        showSuccess("Thuê nhà thành công! Chúc bạn có kỳ nghỉ vui vẻ!");
+
+        // Ngăn form submit ngay lập tức để hiển thị thông báo
+        event.preventDefault();
+
+        // Sau 3 giây mới submit form
+        setTimeout(() => {
+            document.querySelector("form").submit();
+        }, 3000);
     });
 });

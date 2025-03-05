@@ -141,11 +141,11 @@ public class Product {
     public String getStatus() {
         switch (this.status) {
             case "active":
-                return "Đang hoạt động";
+                return "Có thể thuê";
             case "for rent":
-                return "Cho thuê";
+                return "Đã cho thuê";
             case "sold out":
-                return "Đã bán";
+                return "Hết chỗ";
             default:
                 return "Không xác định";
         }

@@ -9,16 +9,30 @@ public class Comment {
     private String username;
     private String comment;
     private LocalDateTime commentDate;
-    // Constructors
-    public Comment() {}
+    private int rating;
 
-    public Comment(int idComment, int idProduct, int userId, String username, String comment, LocalDateTime commentDate) {
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    // Constructors
+    public Comment() {
+
+    }
+
+
+    public Comment(int idComment, int idProduct, int userId, String username, String comment, LocalDateTime commentDate, int rating) {
         this.idComment = idComment;
         this.idProduct = idProduct;
         this.userId = userId;
         this.username = username;
         this.comment = comment;
         this.commentDate = commentDate;
+        this.rating = rating;
     }
 
     public int getIdComment() { return idComment; }

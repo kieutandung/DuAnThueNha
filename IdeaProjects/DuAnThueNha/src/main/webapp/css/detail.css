@@ -24,15 +24,14 @@ body {
 }
 
 .price {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
-    color: red;
+    color:  #2a9dcc;
 }
 
 .status {
     font-weight: bold;
     font-size: 16px;
-    color: green;
 }
 
 .btn-rent {
