@@ -42,7 +42,8 @@ public class RentHouseImpl implements RentHouseService {
                     int idOrder = generatedKeys.getInt(1);
                     LocalDateTime orderDate = LocalDateTime.now(); // Thời gian hiện tại
 
-                    return new Order(idOrder, idUser, idProduct, orderDate, startDateTime.atStartOfDay(), endDateTime.atStartOfDay(), notes, numPeople, "pending");
+                    // ✅ Sử dụng startDateTime và endDateTime đã chuyển đổi
+                    return new Order(idOrder, idUser, idProduct, orderDate, startDateTime, endDateTime, notes, numPeople, "pending");
                 } else {
                     throw new SQLException("Creating order failed, no ID obtained.");
                 }

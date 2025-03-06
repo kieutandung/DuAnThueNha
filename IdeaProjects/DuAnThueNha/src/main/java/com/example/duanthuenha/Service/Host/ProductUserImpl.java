@@ -119,7 +119,7 @@ public class ProductUserImpl implements ProductUserService {
             checkStmt.setInt(1, userId);
             checkStmt.setInt(2, productId);
             ResultSet rs = checkStmt.executeQuery();
-            return rs.next(); // Trả về true nếu sản phẩm đã có trong favorites
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }

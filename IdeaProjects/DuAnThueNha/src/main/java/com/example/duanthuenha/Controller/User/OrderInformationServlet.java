@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @WebServlet(value = "/orderInformationServlet")
@@ -33,16 +34,16 @@ public class OrderInformationServlet extends HttpServlet {
 
         int idUser = Integer.parseInt(userIDObj.toString());
         List<Order> orders = orderInformationService.getAllOrder(idUser);
-        req.setAttribute("orders", orders);
 
-        // Debug dữ liệu
-        System.out.println("Danh sách đơn đặt: " + orders.size());
         for (Order order : orders) {
-            System.out.println("Order ID: " + order.getIdOrder() + ", Product: " + order.getNameProduct() + ", Image: " + order.getImage());
+            double totalPrice = order.calculateTotalPrice();
+            order.setTotalPrice(totalPrice);
         }
 
+        req.setAttribute("orders", orders);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/view/user/orderInformation.jsp");
         dispatcher.forward(req, resp);
     }
 }
+
 

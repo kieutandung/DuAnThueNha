@@ -48,7 +48,7 @@
     </div>
 </div>
 <footer class="mt-5 text-center">
-    <jsp:include page="../footer.jsp"/>
+    <jsp:include page="../footer2.jsp"/>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/favorite.js"></script>

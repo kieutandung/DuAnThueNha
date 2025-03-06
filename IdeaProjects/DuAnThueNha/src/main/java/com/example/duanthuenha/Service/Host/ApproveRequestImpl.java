@@ -33,8 +33,8 @@ public class ApproveRequestImpl implements ApproveRequestService{
                 order.setIdUser(rs.getInt("idUser"));
                 order.setIdProduct(rs.getInt("idProduct"));
                 order.setOrderDate(rs.getTimestamp("orderDate").toLocalDateTime());
-                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime());
-                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime());
+                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
+                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
                 order.setNotes(rs.getString("notes"));
                 order.setNumPeople(rs.getInt("numPeople"));
                 order.setPaymentStatus(rs.getString("paymentStatus"));

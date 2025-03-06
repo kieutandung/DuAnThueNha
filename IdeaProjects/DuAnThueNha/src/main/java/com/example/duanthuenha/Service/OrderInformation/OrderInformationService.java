@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface OrderInformationService {
     List<Order> getAllOrder(int idUser);
+    void cancelOrder(int idOrder);
 }

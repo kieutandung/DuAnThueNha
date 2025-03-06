@@ -84,7 +84,7 @@
             <h3 class="text-dark">Đơn hàng</h3>
             <div class="house-info position-relative">
                 <div class="house-info position-relative ">
-                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
+                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm" width="410px">
                     <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                             value="${product.nameProduct}"/></span></p>
                     <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>

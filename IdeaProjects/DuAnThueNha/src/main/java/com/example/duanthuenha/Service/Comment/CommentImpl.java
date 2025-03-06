@@ -43,14 +43,15 @@ public class CommentImpl implements CommentService {
         return comments;
     }
 
-
-    public boolean addComment(int userId, int productId, String comment) {
-        String sql = "INSERT INTO commentproduct (userId, idProduct, comment, commentDate) VALUES (?, ?, ?, NOW())";
+    @Override
+    public boolean addComment(int userId, int productId, String comment, int rating) {
+        String sql = "INSERT INTO commentproduct (userId, idProduct, comment, rating, commentDate) VALUES (?, ?, ?, ?, NOW())";
         try (Connection conn = connectDB.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             stmt.setInt(2, productId);
             stmt.setString(3, comment);
+            stmt.setInt(4, rating);
 
             int rowsInserted = stmt.executeUpdate();
             return rowsInserted > 0;

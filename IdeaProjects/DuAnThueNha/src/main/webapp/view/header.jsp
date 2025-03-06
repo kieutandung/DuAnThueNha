@@ -199,7 +199,7 @@
 
                 <div class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
-                    <a href="/orderServlet">Lịch sử thuê nhà</a>
+                    <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>
                 </div>
             </li>
