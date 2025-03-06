@@ -1,0 +1,13 @@
+.hero {
+    background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    padding: 60px 20px;
+}
+
+.hero h2 {
+    font-size: 28px;
+    font-weight: bold;
+}

@@ -11,6 +11,5 @@ public interface ProfileService {
 
     void addVerification(int idUser, String documentType, String documentNumber, String documentImage);
 
-
 }
 
