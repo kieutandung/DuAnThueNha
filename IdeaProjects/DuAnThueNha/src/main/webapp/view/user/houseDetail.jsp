@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
@@ -77,10 +78,10 @@
             <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
-            <button class="btn btn-outline-danger mt-3" id="favoriteBtn" onclick="toggleFavorite()">
-                <i id="favoriteIcon" class="bi bi-heart"></i> Yêu thích
+            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                    data-product-id="${product.idProduct}" onclick="toggleFavorite()">
+                <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
             </button>
-
         </div>
     </div>
 
@@ -115,14 +116,8 @@
 <footer class="mt-5 text-center">
     <jsp:include page="../footer.jsp"/>
 </footer>
-
-
-<script>
-    function changeImage(smallImg) {
-        let mainImage = document.getElementById("mainImage");
-        mainImage.src = smallImg.src;
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/favorite.js"></script>
 
 </body>
 </html>

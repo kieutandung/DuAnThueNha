@@ -65,7 +65,6 @@ public class ProductUserImpl implements ProductUserService {
     }
 
 
-
     @Override
     public Product getAllProductsById(int idProduct) {
         Product product = null;
@@ -111,4 +110,96 @@ public class ProductUserImpl implements ProductUserService {
         }
         return product;
     }
+
+    @Override
+    public boolean isFavorite(int userId, int productId) {
+        String checkSql = "SELECT * FROM favorites WHERE userId = ? AND productId = ?";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+            checkStmt.setInt(1, userId);
+            checkStmt.setInt(2, productId);
+            ResultSet rs = checkStmt.executeQuery();
+            return rs.next(); // Trả về true nếu sản phẩm đã có trong favorites
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void addFavorite(int userId, int productId) {
+        String insertSql = "INSERT INTO favorites (userId, productId) VALUES (?, ?)";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+            insertStmt.setInt(1, userId);
+            insertStmt.setInt(2, productId);
+            insertStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFavorite(int userId, int productId) {
+        String deleteSql = "DELETE FROM favorites WHERE userId = ? AND productId = ?";
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement deleteStmt = conn.prepareStatement(deleteSql)) {
+            deleteStmt.setInt(1, userId);
+            deleteStmt.setInt(2, productId);
+            deleteStmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean toggleFavorite(int userId, int productId) {
+        if (isFavorite(userId, productId)) {
+            removeFavorite(userId, productId);
+            return false;
+        } else {
+            addFavorite(userId, productId);
+            return true;
+        }
+    }
+
+    @Override
+    public List<Product> getAllProductsByFavorite(int idUser) {
+        List<Product> favoriteProducts = new ArrayList<>();
+        String sql = "SELECT p.idProduct, p.idUser, p.nameProduct, p.productDescription, p.price, " +
+                "p.address, p.status, p.image, p.category, p.area, COUNT(f.userId) AS totalLikes " +
+                "FROM products p " +
+                "JOIN favorites f ON p.idProduct = f.productId " +
+                "WHERE f.userId = ? " +
+                "GROUP BY p.idProduct, p.idUser, p.nameProduct, p.productDescription, p.price, " +
+                "p.address, p.status, p.image, p.category, p.area " +
+                "ORDER BY totalLikes DESC";
+
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idUser);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("idProduct"),
+                        rs.getInt("idUser"),
+                        rs.getString("nameProduct"),
+                        rs.getString("productDescription"),
+                        rs.getBigDecimal("price"),
+                        rs.getString("address"),
+                        rs.getString("status"),
+                        rs.getString("image"),
+                        rs.getString("category"),
+                        rs.getDouble("area")
+                );
+                favoriteProducts.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return favoriteProducts;
+    }
+
 }
+
