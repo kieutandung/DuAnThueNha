@@ -150,7 +150,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         req.setAttribute("users", filteredUsers);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/approveAccount.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -163,7 +163,7 @@ public class AdminServlet extends HttpServlet {
         // Gửi danh sách hồ sơ đến JSP
         req.setAttribute("verifications", verifications);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/browseProfileTable.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/browseProfileTable.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -230,7 +230,7 @@ public class AdminServlet extends HttpServlet {
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -245,7 +245,7 @@ public class AdminServlet extends HttpServlet {
         String name = req.getParameter("name");
         List<Users> users = listAccountService.searchUsersByName(name);
         req.setAttribute("users", users);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -261,7 +261,7 @@ public class AdminServlet extends HttpServlet {
             req.setAttribute("users", users);
             session.setAttribute("isSorted", false);
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -269,7 +269,7 @@ public class AdminServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("idUser")); // Get the user ID to edit
         Users user = listAccountService.getUserById(id); // Fetch user details from the service
         req.setAttribute("user", user); // Set user details to request attribute
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/editAccount.jsp");
         dispatcher.forward(req, resp);
     }
     private void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
