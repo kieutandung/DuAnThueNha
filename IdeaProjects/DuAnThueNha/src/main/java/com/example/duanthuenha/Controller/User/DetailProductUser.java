@@ -28,10 +28,12 @@ public class DetailProductUser extends HttpServlet {
         CommentImpl commentService = new CommentImpl();
         List<Image> listImage = productImpl.getImagesByProductId(productId);
         ProductHost product = productImpl.getProduct(productId);
+
         Image image = new Image(productId,product.getImage());
         listImage.add(0,image);
         Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
+
         boolean isFavorite = productUserService.isFavorite(product.getIdUser(),productId);
         req.setAttribute("isFavorite", isFavorite);
         req.setAttribute("listImage", listImage);
@@ -61,12 +63,17 @@ public class DetailProductUser extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         boolean isNowFavorite = productUserService.toggleFavorite(Integer.parseInt(userID),Integer.parseInt(productId));
-
+        List<Product> products = productUserService.getAllProductsByFavorite(Integer.parseInt(userID));
         resp.setContentType("text/plain");
-        if (isNowFavorite) {
-            resp.getWriter().write("added");
-        } else {
-            resp.getWriter().write("removed");
+        if(products.size() > 10) {
+            resp.getWriter().write("error");
+        }else{
+            if (isNowFavorite) {
+                resp.getWriter().write("added");
+            } else{
+                resp.getWriter().write("removed");
+            }
         }
+
     }
 }

@@ -45,6 +45,7 @@ public class HomeUserServlet extends HttpServlet {
             return;
         }
 
+
         showProductWithCategoryAndKeyword(req, resp, category, keyword, page);
     }
 
@@ -107,9 +108,9 @@ public class HomeUserServlet extends HttpServlet {
                 break;
             default:
                 showListProductPage(req, resp);
-
         }
     }
+
 
     private void showListProductPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pageString = req.getParameter("page");

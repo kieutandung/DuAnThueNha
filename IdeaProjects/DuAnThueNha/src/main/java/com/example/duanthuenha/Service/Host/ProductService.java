@@ -12,7 +12,7 @@ public interface ProductService {
 
     ProductHost getProduct(int id);
 
-    List<ProductHost> getAllProductsById(int id);
+    List<ProductHost> getAllProductsById(int id, int page);
 
     List<Image> getImagesByProductId(int productId);
 
@@ -20,7 +20,7 @@ public interface ProductService {
 
     void editProduct(ProductHost product);
 
-    List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword);
+    List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword, int page);
 
     void deleteProduct(int id);
 
@@ -39,6 +39,10 @@ public interface ProductService {
     int getTotalProductsKeyword(String keyword);
 
     int getTotalProductsCategoryAndKeyword(String keyword, String category);
+
+    int getTotalProductsHost(int idUser);
+
+     int getTotalProductsSearchHost(int idUser, String keyword);
 
     List<ProductHost> getProductsPage(int page);
 }
