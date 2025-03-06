@@ -91,6 +91,7 @@
         width: 25px;
         height: 25px;
     }
+
     .icon-black {
         filter: brightness(0) saturate(100%);
     }
@@ -177,22 +178,24 @@
         <ul class="nav-icon">
             <li>
                 <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl">
-                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Favorites" class="w-6 h-6 icon-black">
+                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Favorites"
+                         class="w-6 h-6 icon-black">
                 </a>
             </li>
             <li>
                 <i class="bell-icon">
-                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png" alt="Notifications" class="icon-black">
+                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"
+                         alt="Notifications" class="icon-black">
                 </i>
             </li>
 
             <!-- Dropdown cho Account -->
             <li class="dropdown">
-                <a href="/profileServlet">
-                    <i class="account-icon">
-                        <img src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png" alt="Account">
-                    </i>
-                </a>
+
+                <i class="account-icon">
+                    <img src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png" alt="Account">
+                </i>
+
                 <div class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
                     <a href="/orderServlet">Lịch sử thuê nhà</a>

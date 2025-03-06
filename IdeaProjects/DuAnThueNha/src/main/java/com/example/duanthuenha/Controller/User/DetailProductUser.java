@@ -33,7 +33,8 @@ public class DetailProductUser extends HttpServlet {
         listImage.add(0,image);
         Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
-        boolean isFavorite = productUserService.isFavorite(Integer.parseInt(req.getSession().getAttribute("userId").toString()),productId);
+
+        boolean isFavorite = productUserService.isFavorite(product.getIdUser(),productId);
         req.setAttribute("isFavorite", isFavorite);
         req.setAttribute("listImage", listImage);
         req.setAttribute("product", product);
