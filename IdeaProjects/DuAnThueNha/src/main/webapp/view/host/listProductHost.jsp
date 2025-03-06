@@ -53,7 +53,7 @@
                                             <span class="label label-default"> ${p.status}</span>
                                         </td>
                                         <td>
-                                            <a href="#"> ${p.address}</a>
+                                            <a href="editProductHostServlet?productId=${p.idProduct}"> ${p.address}</a>
                                         </td>
                                         <td class="text-center" style="width: 20%;">
                                             <a href="editProductHostServlet?productId=${p.idProduct}"
@@ -76,7 +76,12 @@
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm ${keyword}</td>
+                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm với từ khóa
+                                        "${keyword}"
+                                        <a style=" padding-left: 5px"  href="/listProductHostServlet" class="btn-thue-ngay">
+                                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                                        </a>
+                                    </td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
@@ -105,15 +110,15 @@
                     </table>
                 </div>
 
-                <%--                <ul class="pagination pull-right">--%>
-                <%--                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>--%>
-                <%--                    <li><a href="#">1</a></li>--%>
-                <%--                    <li><a href="#">2</a></li>--%>
-                <%--                    <li><a href="#">3</a></li>--%>
-                <%--                    <li><a href="#">4</a></li>--%>
-                <%--                    <li><a href="#">5</a></li>--%>
-                <%--                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>--%>
-                <%--                </ul>--%>
+                                <ul class="pagination pull-right">
+                                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                                </ul>
             </div>
         </div>
     </div>

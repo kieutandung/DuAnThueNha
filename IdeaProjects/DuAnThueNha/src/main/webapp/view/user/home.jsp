@@ -31,12 +31,13 @@
               padding: 8px;
               width: 250px;
               background-color: transparent;">
-            <button type="submit"><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM</button>
+            <button type="submit"><i class="fas fa-search" style="color: white; margin-right: 5px;"></i> TÌM KIẾM
+            </button>
         </div>
     </form>
 </section>
 <div class="container my-5">
-    <h2 class="mb-4">Danh sách sản phẩm</h2>
+    <h2 class="mb-4" style="font-weight: bold">Danh sách sản phẩm</h2>
     <c:choose>
         <c:when test="${not empty listProduct}">
             <div class="row">
@@ -76,14 +77,29 @@
         <c:otherwise>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p style="color: red">Không tìm thấy sản phẩm với từ khóa  ${keywordUser}</p>
-                    <a  href="/homeUserServlet" class="btn-thue-ngay">
-                        <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
-                    </a>
+                    <p style="color: red">Không tìm thấy sản phẩm với từ khóa "${keywordUser}"
+                        <a href="/homeUserServlet">
+                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                        </a>
+                    </p>
+
                 </div>
             </div>
         </c:otherwise>
     </c:choose>
+    <ul class="pagination">
+        <c:if test="${tag > 1}">
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}">Trước</a></li>
+        </c:if>
+        <c:forEach var="i" begin="1" end="${endPageUser}">
+            <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
+            </li>
+        </c:forEach>
+        <c:if test="${tag < endPageUser}">
+        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+        </c:if>
+    </ul>
+
 </div>
 <script>
     function redirectToDetail(productId) {

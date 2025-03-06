@@ -43,31 +43,31 @@
         </div>
 
         <div class="col-md-5">
-            <h2>
+            <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
+            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
+            </p>
+            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
-                    <p class="status" style="color: #f93434">
-                        <i class="bi bi-x-circle"></i> Trạng thái:
-                        <span style="color: red;">${product.status}</span>
+                    <p class="status">
+                        <i class="bi bi-x-circle" style="color: #f93434"></i> Trạng thái:
+                        <span style="color: #f93434;">${product.status}</span>
                     </p>
                 </c:when>
                 <c:otherwise>
-                    <p class="status" style="color: green">
-                        <i class="bi bi-check-circle"></i> Trạng thái:
-                        <span>${product.status}</span>
+                    <p class="status">
+                        <i class="bi bi-check-circle" style="color: #0dac0d"></i> Trạng thái:
+                        <span style="color: #0dac0d">${product.status}</span>
                     </p>
                 </c:otherwise>
             </c:choose>
-            <%--            <p class="status"><i class="bi bi-check-circle"></i> Trạng thái: ${product.status}--%>
-            <p class="price py-2"><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
-            </p>
+            <p class="price "><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
 
             <h5 class="mt-4">Chủ nhà: </h5>
-            <div class="d-flex align-items-center py-4">
+            <div class="d-flex align-items-center py-2">
                 <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60"
                      alt="Ảnh chủ nhà">
                 <div class="px-3">

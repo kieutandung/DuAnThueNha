@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="" />
+    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/area.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/areaOriginal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/icons8-area-50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/ProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/ProfileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/addNewHouse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/addNewHouse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/headerHost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/headerHost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/listProductHost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/listProductHost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/profile.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,26 +68,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build DuAnThueNha.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 9.0.97.executor&quot;: &quot;Run&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/user/create__ui__favorite&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ADMON/IdeaProjects/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build DuAnThueNha.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Tomcat Server.Tomcat 9.0.97.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "Merging feature/user/create__ui__favorite",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ADMON/IdeaProjects/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ADMON\IdeaProjects\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\img" />
@@ -192,6 +212,7 @@
       <workItem from="1740470371522" duration="5720000" />
       <workItem from="1740532471622" duration="2502000" />
       <workItem from="1741137219456" duration="25129000" />
+      <workItem from="1741224306005" duration="1293000" />
     </task>
     <servers />
   </component>

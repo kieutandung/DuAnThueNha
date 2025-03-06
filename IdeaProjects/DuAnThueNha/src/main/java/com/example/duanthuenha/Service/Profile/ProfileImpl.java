@@ -8,7 +8,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ProfileImpl implements ProfileService {
@@ -33,6 +38,7 @@ public class ProfileImpl implements ProfileService {
                         String email = rs.getString("email");
                         String image = rs.getString("image");
                         String birthDate = rs.getString("birthDate");
+
                         String address = rs.getString("address");
                         String gender = rs.getString("gender");
                         if (gender != null && gender.equals("male")) {
@@ -60,7 +66,7 @@ public class ProfileImpl implements ProfileService {
 
     @Override
     public void UpdateInformation(Users users) {
-        String query = "UPDATE users SET fullName = ?, phone = ?, email = ?, birthDate = ?, address = ? , gender = ? ,image = ? ,password = ? WHERE idUser = ?";
+        String query = "UPDATE users SET fullName = ?, phone = ?, email = ?, birthDate = ?, address = ? , gender = ? ,image = ? ,password = ?  WHERE idUser = ?";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, users.getFullName());

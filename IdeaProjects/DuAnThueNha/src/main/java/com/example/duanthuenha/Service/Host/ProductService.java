@@ -24,11 +24,22 @@ public interface ProductService {
 
     void deleteProduct(int id);
 
-    List<ProductHost> getAllProductsWithKeywordUser(String keyword);
+    List<ProductHost> getAllProductsWithKeywordUser(String keyword, int page);
 
-    List<ProductHost> getAllProductsWithCategoryUser(String category);
+    List<ProductHost> getAllProductsWithCategoryUser(String category, int page);
 
-    List<ProductHost> getAllProductsWithCategoryAndKeywordUser(String keyword, String category);
+    List<ProductHost> getAllProductsWithCategoryAndKeywordUser(String keyword, String category, int page);
 
+    List<ProductHost> getAllProducts();
+
+    int getTotalProducts();
+
+    int getTotalProductsCategory(String category);
+
+    int getTotalProductsKeyword(String keyword);
+
+    int getTotalProductsCategoryAndKeyword(String keyword, String category);
+
+    List<ProductHost> getProductsPage(int page);
 }
 
