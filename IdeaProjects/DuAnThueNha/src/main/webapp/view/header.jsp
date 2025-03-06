@@ -167,7 +167,7 @@
         <ul class="nav-links">
             <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
-            <li><a href="#">Sản phẩm</a></li>
+            <li><a href="/orderInformationServlet">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
         </ul>
         <ul class="nav-search">
@@ -198,7 +198,7 @@
 
                 <div class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
-                    <a href="/orderServlet">Lịch sử thuê nhà</a>
+                    <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>
                 </div>
             </li>

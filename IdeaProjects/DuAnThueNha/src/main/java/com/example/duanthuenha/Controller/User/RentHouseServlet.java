@@ -3,6 +3,7 @@ package com.example.duanthuenha.Controller.User;
 import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Service.RentHouse.RentHouseImpl;
 import com.example.duanthuenha.Service.RentHouse.RentHouseService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +20,10 @@ public class RentHouseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
+
         resp.setCharacterEncoding("UTF-8");
         try {
+
             HttpSession session = req.getSession();
             String userIDS = (String) session.getAttribute("userId");
             int idUser = Integer.parseInt(userIDS);
