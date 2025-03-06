@@ -49,26 +49,6 @@
             <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-            <!-- Nút Khiếu Nại -->
-            <button id="complaintBtn">
-                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-            </button>
-
-            <!-- Hộp thoại Khiếu Nại -->
-            <div id="complaint-popup" class="hidden">
-                <h4>Gửi Khiếu Nại</h4>
-                <ul>
-                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
-                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
-                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
-                </ul>
-                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
-
-                <div class="complaint-buttons">
-                    <button id="submit-complaint">Gửi khiếu nại</button>
-                    <button id="close-popup">Đóng</button>
-                </div>
-            </div>
 
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
             </p>
@@ -108,6 +88,24 @@
                     data-product-id="${product.idProduct}" onclick="toggleFavorite()">
                 <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
             </button>
+            <button id="complaintBtn" class="btn btn-warning">
+                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+            </button>
+            <!-- Hộp thoại Khiếu Nại -->
+            <div id="complaint-popup" class="hidden">
+                <h4>Gửi Khiếu Nại</h4>
+                <ul>
+                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
+                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
+                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
+                </ul>
+                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
+
+                <div class="complaint-buttons">
+                    <button id="submit-complaint">Gửi khiếu nại</button>
+                    <button id="close-popup">Đóng</button>
+                </div>
+            </div>
         </div>
     </div>
 
