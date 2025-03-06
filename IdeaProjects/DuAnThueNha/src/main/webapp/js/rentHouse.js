@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         orderDateElement.innerText = formatDate(startDateObj);
         endDateElement.innerText = formatDate(endDateObj);
         const totalPrice = selectedDays * pricePerDay;
-        totalAmountElement.innerText = totalPrice.toLocaleString() + " VNĐ";
+        totalAmountElement.innerText = totalPrice.toLocaleString();
 
         // Cập nhật input ngày kết thúc
         endDateInput.value = endDateObj.toISOString().split("T")[0];

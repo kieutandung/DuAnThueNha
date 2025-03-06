@@ -48,34 +48,11 @@
             <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-<<<<<<< HEAD
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
-=======
-            <button id="complaintBtn">
-                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-            </button>
-
-            <!-- Hộp khiếu nại (Ẩn mặc định) -->
-            <div id="complaint-popup" class="hidden">
-                <h3>Lý do:</h3>
-                <ul>
-                    <li><input type="radio" name="reason" value="quality"> Không hài lòng về chất lượng phòng thực tế</li>
-                    <li><input type="radio" name="reason" value="service"> Thái độ phục vụ của nhân viên</li>
-                    <li><input type="radio" name="reason" value="equipment"> Chất lượng các trang thiết bị trong phòng</li>
-                    <li><input type="radio" name="reason" value="noise"> Tiếng ồn xung quanh làm bạn không ngủ được</li>
-                    <li>
-                        <input type="radio" name="reason" value="other" id="otherReason"> Lý do khác
-                        <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do của bạn...">
-                    </li>
-                </ul>
-                <button id="submit-complaint">Gửi khiếu nại</button>
-                <button id="close-popup">Đóng</button>
-            </div>
 
             <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
->>>>>>> a1d5f971b170afb1d9a986691f48fe142e66ea96
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
