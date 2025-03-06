@@ -37,7 +37,7 @@
     </form>
 </section>
 <div class="container my-5">
-    <h2 class="mb-4">Danh sách sản phẩm</h2>
+    <h2 class="mb-4" style="font-weight: bold">Danh sách sản phẩm</h2>
     <c:choose>
         <c:when test="${not empty listProduct}">
             <div class="row">
@@ -87,6 +87,19 @@
             </div>
         </c:otherwise>
     </c:choose>
+    <ul class="pagination">
+        <c:if test="${tag > 1}">
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}">Trước</a></li>
+        </c:if>
+        <c:forEach var="i" begin="1" end="${endPageUser}">
+            <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
+            </li>
+        </c:forEach>
+        <c:if test="${tag < endPageUser}">
+        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+        </c:if>
+    </ul>
+
 </div>
 <script>
     function redirectToDetail(productId) {

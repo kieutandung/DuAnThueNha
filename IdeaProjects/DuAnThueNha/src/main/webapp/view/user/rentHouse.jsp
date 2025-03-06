@@ -49,42 +49,49 @@
 </header>
 
 <form action="rentHouseServlet" method="post">
-    <input type="hidden" name="idProduct" value="${product.idProduct}">
-
     <div class="main-container">
         <div class="col-md-5 rental-info">
             <h3 class="text-primary">Thông tin thuê nhà</h3>
+            <input type="hidden" name="idProduct" value="${product.idProduct}">
 
             <label for="startDate" class="form-label">Ngày bắt đầu:</label>
             <input type="date" id="startDate" name="startDate" class="form-control" required>
 
-            <label for="endDate" class="form-label mt-2">Ngày kết thúc:</label>
-            <input type="date" id="endDate" name="endDate" class="form-control mt-2" required>
+            <label class="form-label mt-2">Đặt ngày:</label>
+            <div class="date-buttons">
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
+            </div>
+
+            <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>
+            <input type="date" id="endDatePicker" name="endDate" class="form-control mt-2" required>
 
             <label class="form-label mt-2">Số người thuê:</label>
-            <input type="number" id="numPeople" name="numPeople" class="form-control" min="1" placeholder="Nhập số người" required>
+            <input type="number" id="numPeople" name="numPeople" class="form-control" min="1" placeholder="Nhập số người">
 
             <label class="form-label mt-2">Ghi chú:</label>
             <textarea id="note" name="notes" class="form-control" rows="3"></textarea>
-
-            <button type="button" class="btn btn-primary mt-4 btn-confirm">Xác nhận</button>
         </div>
 
         <div class="separator-vertical"></div>
 
-        <div class="col-md-5 order-summary">
+        <div class="col-md-5 order-summary" >
             <h3 class="text-dark">Đơn hàng</h3>
             <div class="house-info position-relative">
-                <img src="img/${product.image}" class="house-image" alt="Hình ảnh sản phẩm">
-                <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out value="${product.nameProduct}"/></span></p>
-                <p><strong>Giá/ngày: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
-                <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
-                <p><strong>Ngày kết thúc: </strong> <span id="displayEndDate">-</span></p>
-                <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
+                <div class="house-info position-relative ">
+                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
+                    <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
+                            value="${product.nameProduct}"/></span></p>
+                    <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
+                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
+                    <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
+                    <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
+                    <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
-                <button type="button" class="btn btn-success btn-rent mt-5" id="openModalButton">
-                    Thuê ngay
-                </button>
+                    <button type="button" class="btn btn-success btn-rent mt-5 ">Thuê ngay</button>
+                </div>
             </div>
         </div>
     </div>

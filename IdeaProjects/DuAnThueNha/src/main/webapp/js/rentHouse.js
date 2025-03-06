@@ -1,98 +1,103 @@
 document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("startDate");
-    const endDateInput = document.getElementById("endDate");
+    const endDateInput = document.getElementById("endDatePicker");
     const numPeopleInput = document.getElementById("numPeople");
-    const confirmButton = document.querySelector(".btn-confirm");
     const rentButton = document.querySelector(".btn-rent");
     const confirmRentButton = document.getElementById("confirmRent");
     const modalElement = document.getElementById("exampleModalCenter");
     const pricePerDayElement = document.getElementById("pricePerDay");
     const totalAmountElement = document.getElementById("totalAmount");
+    const orderDateElement = document.getElementById("orderDate");
+    const endDateElement = document.getElementById("endDate");
+    const numPeopleOrderElement = document.getElementById("numPeopleOrder");
     const form = document.querySelector("form");
 
-    let isConfirmed = false;
+    let selectedDays = 0;
 
     // Lấy giá/ngày từ giao diện
     const pricePerDay = parseInt(pricePerDayElement.innerText.replace(/\D/g, "")) || 0;
 
-    // Khi bấm "Xác nhận"
-    confirmButton.addEventListener("click", function () {
-        const startDate = startDateInput.value.trim();
-        const endDate = endDateInput.value.trim();
-        const numPeople = numPeopleInput.value.trim();
-
-        // Kiểm tra ngày bắt đầu
-        if (!startDate) {
-            alert("Vui lòng chọn ngày bắt đầu!");
-            startDateInput.classList.add("is-invalid");
-            return;
-        } else {
-            startDateInput.classList.remove("is-invalid");
-        }
-
-        // Kiểm tra ngày kết thúc
-        if (!endDate) {
-            alert("Vui lòng chọn ngày kết thúc!");
-            endDateInput.classList.add("is-invalid");
-            return;
-        } else {
-            endDateInput.classList.remove("is-invalid");
-        }
-
-        // Kiểm tra ngày hợp lệ
-        const startDateObj = new Date(startDate);
-        const endDateObj = new Date(endDate);
-        if (endDateObj <= startDateObj) {
-            alert("Ngày kết thúc phải sau ngày bắt đầu!");
+    // Hàm cập nhật đơn hàng
+    function updateOrder() {
+        const startDate = startDateInput.value;
+        if (!startDate || selectedDays <= 0) {
+            orderDateElement.innerText = "-";
+            endDateElement.innerText = "-";
+            totalAmountElement.innerText = "0";
+            numPeopleOrderElement.innerText = "-";
             return;
         }
 
-        // Kiểm tra số người thuê
-        if (!numPeople || parseInt(numPeople) <= 0) {
-            alert("Vui lòng nhập số người thuê hợp lệ!");
-            numPeopleInput.classList.add("is-invalid");
-            return;
-        } else {
-            numPeopleInput.classList.remove("is-invalid");
-        }
+        let startDateObj = new Date(startDate);
+        let endDateObj = new Date(startDateObj);
+        endDateObj.setDate(startDateObj.getDate() + selectedDays - 1);
 
-        // Tính tổng tiền thuê
-        const rentalDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24) + 1;
-        const totalPrice = rentalDays * pricePerDay;
+        const formatDate = (date) => {
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        };
 
-        // Hiển thị thông tin đơn hàng
-        document.getElementById("orderDate").innerText = startDate;
-        document.getElementById("displayEndDate").innerText = endDate;
-        totalAmountElement.innerText = totalPrice.toLocaleString();
+        // Cập nhật thông tin đơn hàng
+        orderDateElement.innerText = formatDate(startDateObj);
+        endDateElement.innerText = formatDate(endDateObj);
+        const totalPrice = selectedDays * pricePerDay;
+        totalAmountElement.innerText = totalPrice.toLocaleString() + " VNĐ";
 
-        isConfirmed = true;
-        alert("Thông tin đã được xác nhận!");
+        // Cập nhật input ngày kết thúc
+        endDateInput.value = endDateObj.toISOString().split("T")[0];
+
+        // Cập nhật số người thuê
+        const numPeopleValue = numPeopleInput.value;
+        numPeopleOrderElement.innerText = numPeopleValue ? numPeopleValue : "-";
+    }
+
+    // Khi người dùng click vào nút "đặt ngày"
+    document.querySelectorAll(".duration-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            selectedDays = parseInt(this.dataset.days);
+            if (startDateInput.value) {
+                updateOrder();
+            }
+        });
     });
 
-    // Khi bấm "Thuê ngay"
-    rentButton.addEventListener("click", function () {
-        if (!isConfirmed) {
-            alert("Vui lòng bấm 'Xác nhận' trước khi thuê!");
+    // Khi người dùng thay đổi ngày bắt đầu
+    startDateInput.addEventListener("change", function () {
+        if (selectedDays > 0) {
+            updateOrder();
+        }
+    });
+
+    // Khi số người thuê thay đổi
+    numPeopleInput.addEventListener("input", function () {
+        updateOrder();
+    });
+
+    // Khi nhấn "Thuê ngay"
+    rentButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Ngăn form submit ngay lập tức
+
+        if (!startDateInput.value) {
+            alert("Vui lòng chọn ngày bắt đầu!");
             return;
         }
 
-        // Mở modal xác nhận
+        if (selectedDays <= 0) {
+            alert("Vui lòng chọn số ngày thuê!");
+            return;
+        }
+
+        if (!numPeopleInput.value || numPeopleInput.value <= 0) {
+            alert("Vui lòng nhập số người thuê!");
+            return;
+        }
+
+        // Nếu hợp lệ, mở modal xác nhận
         const modal = new bootstrap.Modal(modalElement);
         modal.show();
     });
 
     // Khi nhấn "Đồng ý" trong modal, submit form về servlet
     confirmRentButton.addEventListener("click", function () {
-        if (!isConfirmed) {
-            alert("Bạn chưa xác nhận thông tin!");
-            return;
-        }
-        console.log("Form đang submit...");
         form.submit();
     });
-
-    // Khi nhập ngày, bỏ cảnh báo lỗi
-    startDateInput.addEventListener("input", () => startDateInput.classList.remove("is-invalid"));
-    endDateInput.addEventListener("input", () => endDateInput.classList.remove("is-invalid"));
-    numPeopleInput.addEventListener("input", () => numPeopleInput.classList.remove("is-invalid"));
 });
