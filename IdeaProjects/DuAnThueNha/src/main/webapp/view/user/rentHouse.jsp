@@ -47,6 +47,17 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
+<!-- Thông báo lỗi -->
+<div id="errorAlert" class="alert alert-danger position-fixed top-0 start-50 translate-middle-x d-none" style="z-index: 1050; width: auto;" role="alert">
+    <span id="errorMessage"></span>
+</div>
+
+<!-- Thông báo thành công -->
+<div id="successAlert" class="alert alert-success position-fixed top-0 start-50 translate-middle-x d-none" style="z-index: 1050; width: auto;" role="alert">
+    <span id="successMessage"></span>
+</div>
+
+
 
 <form action="rentHouseServlet" method="post">
     <div class="main-container">
