@@ -16,28 +16,23 @@
         body {
             background-color: #f8f9fa;
         }
-
         .container {
             padding-top: 30px;
         }
-
         .btn-rent {
             width: 100%;
             font-size: 18px;
             padding: 10px;
         }
-
         .house-image {
             width: 100%;
             height: auto;
             border-radius: 10px;
         }
-
         .house-info {
             position: relative;
             padding-bottom: 50px;
         }
-
         .btn-rent {
             position: absolute;
             bottom: 10px;
@@ -52,16 +47,26 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
+<!-- Thông báo lỗi -->
+<div id="errorAlert" class="alert alert-danger position-fixed top-0 start-50 translate-middle-x d-none" style="z-index: 1050; width: auto;" role="alert">
+    <span id="errorMessage"></span>
+</div>
+
+<!-- Thông báo thành công -->
+<div id="successAlert" class="alert alert-success position-fixed top-0 start-50 translate-middle-x d-none" style="z-index: 1050; width: auto;" role="alert">
+    <span id="successMessage"></span>
+</div>
+
+
 
 <form action="rentHouseServlet" method="post">
-    <input type="hidden" name="idProduct" value="${product.idProduct}">
-
     <div class="main-container">
         <div class="col-md-5 rental-info">
             <h3 class="text-primary">Thông tin thuê nhà</h3>
+            <input type="hidden" name="idProduct" value="${product.idProduct}">
 
             <label for="startDate" class="form-label">Ngày bắt đầu:</label>
-            <input type="date" id="startDate" class="form-control" required>
+            <input type="date" id="startDate" name="startDate" class="form-control" required>
 
             <label class="form-label mt-2">Đặt ngày:</label>
             <div class="date-buttons">
@@ -72,36 +77,31 @@
             </div>
 
             <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>
-            <input type="date" id="endDatePicker" class="form-control mt-2" required>
+            <input type="date" id="endDatePicker" name="endDate" class="form-control mt-2" required>
 
             <label class="form-label mt-2">Số người thuê:</label>
-            <input type="number" id="numPeople" name="numPeople" class="form-control" min="1"
-                   placeholder="Nhập số người" required>
+            <input type="number" id="numPeople" name="numPeople" class="form-control" min="1" placeholder="Nhập số người">
 
             <label class="form-label mt-2">Ghi chú:</label>
             <textarea id="note" name="notes" class="form-control" rows="3"></textarea>
-
-            <%--            <button type="button" class="btn btn-primary mt-4 btn-confirm">Xác nhận</button>--%>
         </div>
-<%--        <div class="separator-vertical"></div>--%>
 
-<%--        <div class="separator-vertical"></div>--%>
+        <div class="separator-vertical"></div>
 
-        <div class="col-md-5 order-summary">
+        <div class="col-md-5 order-summary" >
             <h3 class="text-dark">Đơn hàng</h3>
             <div class="house-info position-relative">
-                <div class="house-info position-relative">
-                    <img src="img/${product.image}" class="house-image" alt="Hình ảnh sản phẩm">
+                <div class="house-info position-relative ">
+                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
                     <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                             value="${product.nameProduct}"/></span></p>
-                    <p><strong>Giá: </strong><span id="pricePerDay"><c:out
-                            value="${product.getFormattedPrice()}"/></span></p>
+                    <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
+                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                     <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
-                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
-                    <button class="btn btn-success btn-rent mt-5">Thuê ngay</button>
+                    <button type="button" class="btn btn-success btn-rent mt-5 ">Thuê ngay</button>
                 </div>
             </div>
         </div>
@@ -109,27 +109,29 @@
 </form>
 
 
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<!-- Modal Xác Nhận Thuê Nhà -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmModalTitle">Xác nhận đặt thuê</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title">Xác nhận thuê nhà</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Bạn có chắc chắn muốn thuê nhà này không?</p>
+                <p>Bạn có chắc chắn muốn thuê nhà?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
                 <button type="button" class="btn btn-primary" id="confirmRent">Đồng ý</button>
+                <!-- Không dùng type="submit" để xử lý bằng JavaScript -->
             </div>
         </div>
     </div>
 </div>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>

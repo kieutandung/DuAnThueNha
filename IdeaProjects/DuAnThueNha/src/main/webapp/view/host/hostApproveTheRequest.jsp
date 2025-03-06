@@ -13,8 +13,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+    th#phone ,
+    th#startDate ,
+    th#endDate ,
+    th#action ,
+    td#status ,
+    td#numPeople{
+        text-align: center;
+
+    }
+</style>
 <body>
-<!-- HEADER -->
 <header>
     <jsp:include page="headerHost.jsp"/>
 </header>
@@ -34,25 +44,25 @@
                     <th></th>
                     <th>Tên nhà thuê</th>
                     <th>Tên người thuê</th>
-                    <th>Điện thoại</th>
-                    <th>Ngày bắt đầu</th>
-                    <th>Ngày kết thúc</th>
+                    <th id="phone">Điện thoại</th>
+                    <th id="startDate">Ngày bắt đầu</th>
+                    <th id="endDate">Ngày kết thúc</th>
                     <th>Số người thuê</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
+                    <th id="action">Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="order" items="${rentalRequests}">
                     <tr>
-                        <td><img src="${order.image}" alt="Ảnh nhà thuê" width="50"></td>
+                        <td><img src="img/${order.image}" alt="Ảnh nhà thuê" width="50"></td>
                         <td>${order.nameProduct}</td>
                         <td>${order.fullName}</td>
                         <td>${order.phone}</td>
                         <td>${order.startDate}</td>
                         <td>${order.endDate}</td>
-                        <td>${order.numPeople}</td>
-                        <td>${order.paymentStatus}</td>
+                        <td id="numPeople">${order.numPeople}</td>
+                        <td id="status">${order.paymentStatus}</td>
                         <td>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-success">Xác nhận</button>

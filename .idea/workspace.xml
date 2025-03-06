@@ -7,6 +7,7 @@
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/area.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/areaOriginal.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/icons8-area-50.png" afterDir="false" />
@@ -147,6 +148,45 @@
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/rentHouse.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/userToHost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/userToHost.jsp" afterDir="false" />
 >>>>>>> bdc5c74c0245d74499fab4d97596d909f78a320f
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/hostApproveTheRequest.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/hostApproveTheRequest.jsp" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/area.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/areaOriginal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/icons8-area-50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/ProfileServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/ProfileServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Profile/ProfileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/addNewHouse.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/addNewHouse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/headerHost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/headerHost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/listProductHost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/listProductHost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/profile.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/profile.jsp" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/favorite.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/favorite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/favorite.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
+>>>>>>> 23b6c7882e9e431b790f5be57006cbdbe43ae09a
+>>>>>>> f8ae6f215a31a0962fb3fdb46df6c53d671efc22
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,9 +205,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="Jsp File" />
         <option value="Class" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -198,17 +238,26 @@
     "WebServerToolWindowFactoryState": "false",
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    "git-widget-placeholder": "feature/host/approve__the__request",
+=======
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
+<<<<<<< HEAD
     "com.codeium.enabled": "true",
 =======
 >>>>>>> 23b6c7882e9e431b790f5be57006cbdbe43ae09a
     "git-widget-placeholder": "Merging feature/user/create__ui__favorite",
+>>>>>>> f8ae6f215a31a0962fb3fdb46df6c53d671efc22
     "ignore.virus.scanning.warn.message": "true",
+<<<<<<< HEAD
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
     "list.type.of.created.stylesheet": "CSS",
 =======
     "git-widget-placeholder": "Merging feature/host/approve__the__request",
 >>>>>>> bdc5c74c0245d74499fab4d97596d909f78a320f
+=======
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -217,18 +266,18 @@
   }
 }]]></component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\img" />
-      <recent name="C:\Users\Admin\IdeaProjects\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\img" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\admin" />
-      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\host" />
-      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\user" />
-      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\authenticate" />
+      <recent name="C:\Users\Admin\IdeaProjects\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\host" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.972" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+=======
 <<<<<<< HEAD
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
     <configuration name="test.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/test.jsp">
@@ -257,6 +306,7 @@
 >>>>>>> 23b6c7882e9e431b790f5be57006cbdbe43ae09a
     </configuration>
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+<<<<<<< HEAD
 =======
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
@@ -274,6 +324,9 @@
     </configuration>
     <configuration name="Tomcat 9.0.972" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.972" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
 >>>>>>> bdc5c74c0245d74499fab4d97596d909f78a320f
+=======
+>>>>>>> f8ae6f215a31a0962fb3fdb46df6c53d671efc22
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="Gradle : com.example : DuAnThueNha-1.0-SNAPSHOT.war">
@@ -352,16 +405,6 @@
           <option name="VM_PARAMETERS" value="" />
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcUsernameDB" />
-          <option name="VALUE" value="root" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
-        <EnvironmentVariables>
-          <option name="NAME" value="jdbcPasswordDB" />
-          <option name="VALUE" value="Fangxing38" />
-          <option name="IS_PREDEFINED" value="false" />
-        </EnvironmentVariables>
       </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -405,6 +448,14 @@
       <option name="presentableId" value="Default" />
       <updated>1740378224712</updated>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <workItem from="1741055113756" duration="18633000" />
+      <workItem from="1741137433019" duration="25994000" />
+      <workItem from="1741180644123" duration="1215000" />
+      <workItem from="1741225170064" duration="2799000" />
+=======
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
       <workItem from="1740378225843" duration="22000" />
       <workItem from="1740412007020" duration="5287000" />
       <workItem from="1740446564157" duration="4266000" />
@@ -432,10 +483,14 @@
       <workItem from="1741137676538" duration="24465000" />
       <workItem from="1741224309231" duration="1353000" />
 >>>>>>> 23b6c7882e9e431b790f5be57006cbdbe43ae09a
+<<<<<<< HEAD
 =======
       <workItem from="1741055113756" duration="18633000" />
       <workItem from="1741137433019" duration="6683000" />
 >>>>>>> bdc5c74c0245d74499fab4d97596d909f78a320f
+=======
+>>>>>>> f8ae6f215a31a0962fb3fdb46df6c53d671efc22
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
     </task>
     <servers />
   </component>
@@ -443,6 +498,10 @@
     <option name="version" value="3" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -555,6 +614,10 @@
     </watches-manager>
   </component>
 >>>>>>> 23b6c7882e9e431b790f5be57006cbdbe43ae09a
+<<<<<<< HEAD
 =======
 >>>>>>> bdc5c74c0245d74499fab4d97596d909f78a320f
+=======
+>>>>>>> f8ae6f215a31a0962fb3fdb46df6c53d671efc22
+>>>>>>> a6ef3e47d2d798961ee67d0181f2886867ad3b47
 </project>
