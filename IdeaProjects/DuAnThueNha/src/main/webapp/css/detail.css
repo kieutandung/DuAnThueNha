@@ -86,7 +86,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 5px;
-    position: absolute;
+    position: fixed;
     top: 518px;
     right: 300px;
     height: 38px;
@@ -95,6 +95,7 @@ body {
 
 #complaintBtn i {
     font-size: 12px;
+
 }
 
 
@@ -126,7 +127,7 @@ body {
 }
 
 #close-popup:hover {
-    background-color: #c82333; /* Đậm hơn khi hover */
+    background-color: #c82333;
 }
 #complaint-popup ul {
     list-style-type: none;
@@ -134,10 +135,11 @@ body {
     margin: 0;
 }
 #otherReasonText {
-    margin-bottom: 20px; /* Tạo khoảng cách giữa ô nhập và các nút */
+    margin-bottom: 20px;
 }
 .complaint-buttons {
-    margin-top: 15px; /* Đẩy 2 nút xuống dưới */
+    margin-top: 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 10px;
 }
