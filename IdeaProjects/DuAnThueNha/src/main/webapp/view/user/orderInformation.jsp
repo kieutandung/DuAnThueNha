@@ -70,14 +70,14 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-right: 50px;
         }
 
-        .text-muted.mb-0 {
+        .text-muted.mb-0 span{
             color: #c91515;
         }
         .mt-3.d-flex {
             padding-bottom: 15px;
+            margin-left: 840px;
         }
     </style>
 </head>
@@ -137,15 +137,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3 d-flex justify-content-end">
-                    <div class="total-price">
-                        <p class="text-muted fw-semibold mb-1">Tổng tiền:</p>
-                        <p class="text-muted mb-0">
-                            <span id="total-price-${order.idOrder}">
-    <fmt:formatNumber value="${order.calculateTotalPrice()}" type="number"/>
-</span> VNĐ
-                        </p>
-                    </div>
+            <div class="mt-3 d-flex justify-content-between">
+                <div class="total-price">
+                    <p class="text-muted fw-semibold mb-1">Tổng tiền:</p>
+                    <p class="text-muted mb-0">
+            <span id="total-price-${order.idOrder}">
+                <fmt:formatNumber value="${order.calculateTotalPrice()}" type="number"/>
+            </span> VNĐ
+                    </p>
+                </div>
                     <c:choose>
                         <c:when test="${order.paymentStatus eq 'completed'}">
                             <a href="commentServlet?productId=${order.idProduct}"

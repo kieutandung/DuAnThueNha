@@ -78,7 +78,8 @@
                                 <tr>
                                     <td colspan="5" class="text-center">Không tìm thấy sản phẩm với từ khóa
                                         "${keyword}"
-                                        <a style=" padding-left: 5px"  href="/listProductHostServlet" class="btn-thue-ngay">
+                                        <a style=" padding-left: 5px" href="/listProductHostServlet"
+                                           class="btn-thue-ngay">
                                             <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
                                         </a>
                                     </td>
@@ -109,16 +110,20 @@
                         </tbody>
                     </table>
                 </div>
+                <ul class="pagination" style="display: flex;justify-content: center;">
 
-                                <ul class="pagination pull-right">
-                                    <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                                </ul>
+                    <c:if test="${tag > 1}">
+                        <li class="page-item disabled"><a href="listProductHostServlet?page=${tag - 1}">Trước</a></li>
+                    </c:if>
+                    <c:forEach var="i" begin="1" end="${endPageUser}">
+                        <li class="page-item ${tag == i?"active":""}"><a href="listProductHostServlet?page=${i}"
+                                                                         class="page-link">${i}</a>
+                        </li>
+                    </c:forEach>
+                    <c:if test="${tag < endPageUser}">
+                        <li class="page-item"><a href="listProductHostServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+                    </c:if>
+                </ul>
             </div>
         </div>
     </div>

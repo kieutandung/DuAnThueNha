@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="" />
+=======
+    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +32,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="JavaScript File" />
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
         <option value="CSS File" />
         <option value="Jsp File" />
         <option value="Jsp File" />
@@ -49,9 +59,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectColorInfo">{&quot;associatedIndex&quot;: 4}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2tTZqsKnY6xxVtJC9bpcX9nXykw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -60,10 +72,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build DuAnThueNha.executor": "Run",
+    "Gradle.DuAnThueNha [:ProductImpl.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "fix__bug",
+=======
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 9.0.97.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature/user/create__ui__favorite",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -74,13 +98,46 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\img" />
+      <recent name="C:\Users\Admin\IdeaProjects\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
       <recent name="C:\Users\Admin\IdeaProjects\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\user" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
     <configuration name="test.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/view/test.jsp">
       <method v="2" />
+=======
+      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\admin" />
+      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\host" />
+      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\user" />
+      <recent name="C:\Users\SAM\IdeaProjects\DuAnWeb\DuAnThueNha\IdeaProjects\DuAnThueNha\src\main\webapp\view\authenticate" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.97">
+    <configuration name="ProductImpl" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.duanthuenha.Service.Host.ProductImpl" />
+      <module name="DuAnThueNha.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.duanthuenha.Service.Host.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
     </configuration>
     <configuration name="Tomcat 9.0.97" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.97" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -92,7 +149,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="c09652ff-2bc8-43a1-a2dc-fb003f0c2f61" />
+        <option name="BASE_DIRECTORY_NAME" value="11283be4-ffef-40ea-a2bc-59e5b168f371" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -100,7 +157,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="59868" />
+        <option name="DEBUG_PORT" value="60935" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -179,15 +236,24 @@
         </option>
       </method>
     </configuration>
+<<<<<<< HEAD
     <list>
       <item itemvalue="JavaScript Debug.test.jsp" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.97" />
     </list>
+=======
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ProductImpl" />
+      </list>
+    </recent_temporary>
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -218,8 +284,12 @@
       <workItem from="1740990868842" duration="4045000" />
       <workItem from="1741051520188" duration="23024000" />
       <workItem from="1741137676538" duration="24465000" />
+<<<<<<< HEAD
       <workItem from="1741224309231" duration="1353000" />
       <workItem from="1741266133101" duration="18123000" />
+=======
+      <workItem from="1741224309231" duration="2641000" />
+>>>>>>> 66ae7ed2498c7bd9e968e1b3ddf28bacc9d3c627
     </task>
     <servers />
   </component>

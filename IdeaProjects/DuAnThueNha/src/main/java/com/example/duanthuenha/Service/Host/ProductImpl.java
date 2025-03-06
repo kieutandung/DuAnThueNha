@@ -151,12 +151,14 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword) {
-        String sql = "SELECT * FROM products WHERE nameProduct LIKE ? OR address LIKE ? order by idProduct desc";
+    public List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword, int page) {
+        String sql = "SELECT * FROM products WHERE idUser = ? and (nameProduct LIKE ? OR address LIKE ?) order by idProduct desc LIMIT 10 OFFSET ? ";
         List<ProductHost> products = new ArrayList<>();
         try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, "%" + keyword + "%");
             preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, "%" + keyword + "%");
+            preparedStatement.setInt(4, page);
+            preparedStatement.setInt(1, idUser);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idProduct = rs.getInt("idProduct");
@@ -424,6 +426,40 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
+    public int getTotalProductsHost(int idUser) {
+       String query = "SELECT count(*) FROM products WHERE idUser = ? order by idProduct desc";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, idUser);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalProductsSearchHost(int idUser, String keyword) {
+       String query = "SELECT count(*) FROM products WHERE idUser = ? and  (nameProduct LIKE ? OR address LIKE ?) order by idProduct desc";
+        try (Connection connection = connectDB.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, idUser);
+            preparedStatement.setString(2, "%" + keyword + "%");
+            preparedStatement.setString(3, "%" + keyword + "%");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
     public List<ProductHost> getProductsPage(int page) {
         List<ProductHost> productList = new ArrayList<>();
         String query = "SELECT * FROM products\n" +
@@ -474,13 +510,14 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public List<ProductHost> getAllProductsById(int id) {
+    public List<ProductHost> getAllProductsById(int id, int page) {
         List<ProductHost> products = new ArrayList<>();
-        String selectProductSQL = "SELECT * FROM products WHERE idUser = ? order by idProduct desc ";
+        String selectProductSQL = "SELECT * FROM products WHERE idUser = ? order by idProduct desc LIMIT 10 OFFSET ?; ";
         try {
             Connection connection = connectDB.getConnection();
             PreparedStatement pstm = connection.prepareStatement(selectProductSQL);
             pstm.setInt(1, id);
+            pstm.setInt(2, (page - 1) * 10);
             try {
                 ResultSet rs = pstm.executeQuery();
                 {

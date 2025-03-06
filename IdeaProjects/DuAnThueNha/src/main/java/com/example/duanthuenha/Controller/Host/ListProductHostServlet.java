@@ -30,8 +30,8 @@ public class ListProductHostServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -70,6 +70,9 @@ public class ListProductHostServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         String action = req.getParameter("action");
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         if (action == null) {
             action = "";
         }
@@ -116,7 +119,20 @@ public class ListProductHostServlet extends HttpServlet {
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
         String keyword = req.getParameter("searchProductHost");
-        List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword);
+
+        String pageString = req.getParameter("page");
+        if (pageString == null || pageString.isEmpty()) {
+            pageString = "1";
+        }
+        int page = Integer.parseInt(pageString);
+        int count = productService.getTotalProductsSearchHost(userID,keyword);
+        int endPage = count / 10;
+        if (count % 10 != 0) {
+            endPage++;
+        }
+        req.setAttribute("endPageUser", endPage);
+        req.setAttribute("tag", page);
+        List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword,page);
         req.setAttribute("keyword", keyword);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
@@ -127,7 +143,20 @@ public class ListProductHostServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
-        List<ProductHost> products = productService.getAllProductsById(userID);
+
+        String pageString = req.getParameter("page");
+        if (pageString == null || pageString.isEmpty()) {
+            pageString = "1";
+        }
+        int page = Integer.parseInt(pageString);
+        int count = productService.getTotalProductsHost(userID);
+        int endPage = count / 10;
+        if (count % 10 != 0) {
+            endPage++;
+        }
+        req.setAttribute("endPageUser", endPage);
+        req.setAttribute("tag", page);
+        List<ProductHost> products = productService.getAllProductsById(userID,page);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
         dispatcher.forward(req, resp);
