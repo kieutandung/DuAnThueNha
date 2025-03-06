@@ -24,6 +24,7 @@
           <element id="library" level="project" name="Gradle: at.favre.lib:bcrypt:0.9.0" />
           <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java:3.11.4" />
           <element id="library" level="project" name="Gradle: at.favre.lib:bytes:1.3.0" />
+          <element id="library" level="project" name="Gradle: org.json:json:20210307" />
         </element>
       </element>
     </root>

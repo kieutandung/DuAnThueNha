@@ -16,7 +16,7 @@ public class CommentImpl implements CommentService {
     @Override
     public List<Comment> getCommentsByProductId(int idProduct) {
         List<Comment> comments = new ArrayList<>();
-        String sql = "SELECT c.idComment, c.comment, c.commentDate, u.username " +
+        String sql = "SELECT c.idComment, c.comment, c.commentDate, c.rating, u.username " +
                 "FROM commentproduct c " +
                 "JOIN users u ON c.userId = u.idUser " +
                 "WHERE c.idProduct = ? " +
@@ -33,6 +33,8 @@ public class CommentImpl implements CommentService {
                 comment.setUsername(rs.getString("username"));
                 comment.setComment(rs.getString("comment"));
                 comment.setCommentDate(rs.getTimestamp("commentDate").toLocalDateTime());
+                comment.setRating(rs.getInt("rating"));
+
                 comments.add(comment);
             }
         } catch (SQLException e) {
@@ -40,6 +42,7 @@ public class CommentImpl implements CommentService {
         }
         return comments;
     }
+
 
     public boolean addComment(int userId, int productId, String comment) {
         String sql = "INSERT INTO commentproduct (userId, idProduct, comment, commentDate) VALUES (?, ?, ?, NOW())";
