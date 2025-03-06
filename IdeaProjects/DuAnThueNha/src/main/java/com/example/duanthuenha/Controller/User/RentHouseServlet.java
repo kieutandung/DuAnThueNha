@@ -17,7 +17,9 @@ public class RentHouseServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8"); try {
             HttpSession session = req.getSession();
             String userIDS = (String) session.getAttribute("userId");
             int idUser = Integer.parseInt(userIDS);
