@@ -1,6 +1,9 @@
 package com.example.duanthuenha.Controller.Host;
 
+import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.ProductHost;
+import com.example.duanthuenha.Service.Host.ApproveRequestImpl;
+import com.example.duanthuenha.Service.Host.ApproveRequestService;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -21,7 +24,8 @@ import java.util.List;
 )
 @WebServlet(value = "/listProductHostServlet")
 public class ListProductHostServlet extends HttpServlet {
-    private ProductImpl productService = new ProductImpl();
+    private final ProductImpl productService = new ProductImpl();
+    private final ApproveRequestImpl approveRequestService  = new ApproveRequestImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,6 +61,9 @@ public class ListProductHostServlet extends HttpServlet {
                     req.setAttribute("successMessage", "Xóa thành công");
                     showListProductHost(req, resp);
                     break;
+                case "manageRentalRequests":
+                    showListManageRentalRequests(req,resp);
+                    break;
                 default:
                     showListProductHost(req, resp);
                     break;
@@ -66,6 +73,21 @@ public class ListProductHostServlet extends HttpServlet {
         }
 
     }
+
+    private void showListManageRentalRequests(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
+
+        // Lấy danh sách yêu cầu thuê từ MySQL
+        List<Order> rentalRequests = approveRequestService.getAllRentalRequestsByHost(userID);
+
+        // Gửi danh sách đến JSP
+        req.setAttribute("rentalRequests", rentalRequests);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/hostApproveTheRequest.jsp");
+        dispatcher.forward(req, resp);
+    }
+
 
     private void showListProductSearchHost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
