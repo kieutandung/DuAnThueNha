@@ -16,18 +16,10 @@
         body {
             background-color: #f8f9fa;
         }
-        .container {
-            padding-top: 30px;
-        }
         .btn-rent {
             width: 100%;
             font-size: 18px;
             padding: 10px;
-        }
-        .house-image {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
         }
         .house-info {
             position: relative;

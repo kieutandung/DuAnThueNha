@@ -29,6 +29,9 @@ public class ListProductHostServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -39,14 +42,33 @@ public class ListProductHostServlet extends HttpServlet {
                 case "search":
                     showListProductSearchHost(req, resp);
                     break;
+                case "updateStatus":
+                    updateOrderStatus(req, resp);
+                    break;
             }
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private void updateOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int idOrder = Integer.parseInt(req.getParameter("idOrder"));
+        String status = req.getParameter("status");
+
+        System.out.println("orderId nhận được: " + idOrder);
+        System.out.println("Trạng thái mới: " + status);
+
+        approveRequestService.updateStatus(idOrder, status);
+
+        resp.sendRedirect(req.getContextPath() + "/listProductHostServlet?action=manageRentalRequests");
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";

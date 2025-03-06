@@ -118,6 +118,7 @@
         display: block;
         font-size: 16px;
         transition: background-color 0.3s ease;
+        z-index: 99999 !important;
     }
 
     .dropdown-content a:hover {
