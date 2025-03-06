@@ -22,6 +22,8 @@ public class DetailProductUser extends HttpServlet {
     ProductUserService productUserService = new ProductUserImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userID = (String) session.getAttribute("userId");
         int productId = Integer.parseInt(req.getParameter("productId"));
         ProductImpl productImpl = new ProductImpl();
         ProfileImpl profileImpl = new ProfileImpl();
@@ -34,7 +36,8 @@ public class DetailProductUser extends HttpServlet {
         Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
 
-        boolean isFavorite = productUserService.isFavorite(product.getIdUser(),productId);
+        boolean isFavorite = productUserService.isFavorite(Integer.parseInt(userID), productId);
+
         req.setAttribute("isFavorite", isFavorite);
         req.setAttribute("listImage", listImage);
         req.setAttribute("product", product);
@@ -54,26 +57,29 @@ public class DetailProductUser extends HttpServlet {
             case "toggleFavorite":
                 toggleFavorite(req, resp);
                 break;
-           
+
         }
     }
 
     private void toggleFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String productId = req.getParameter("productId");
+        int productId = Integer.parseInt(req.getParameter("productId"));
         HttpSession session = req.getSession();
-        String userID = (String) session.getAttribute("userId");
-        boolean isNowFavorite = productUserService.toggleFavorite(Integer.parseInt(userID),Integer.parseInt(productId));
-        List<Product> products = productUserService.getAllProductsByFavorite(Integer.parseInt(userID));
-        resp.setContentType("text/plain");
-        if(products.size() > 10) {
-            resp.getWriter().write("error");
-        }else{
-            if (isNowFavorite) {
-                resp.getWriter().write("added");
-            } else{
-                resp.getWriter().write("removed");
+        int userId = Integer.parseInt((String) session.getAttribute("userId"));
+        if (!productUserService.isFavorite(userId, productId)) {
+            List<Product> favorites = productUserService.getAllProductsByFavorite(userId);
+            if (favorites.size() >= 10) {
+                resp.setContentType("text/plain");
+                resp.getWriter().write("error");
+                return;
             }
         }
-
+        boolean isNowFavorite = productUserService.toggleFavorite(userId, productId);
+        resp.setContentType("text/plain");
+        if (isNowFavorite) {
+            resp.getWriter().write("added");
+        } else {
+            resp.getWriter().write("removed");
+        }
     }
+
 }
