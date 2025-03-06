@@ -1,84 +1,103 @@
 document.addEventListener("DOMContentLoaded", function () {
     const startDateInput = document.getElementById("startDate");
-    const endDateInput = document.getElementById("endDate");
-    const confirmButton = document.querySelector(".btn-confirm");
+    const endDateInput = document.getElementById("endDatePicker");
+    const numPeopleInput = document.getElementById("numPeople");
     const rentButton = document.querySelector(".btn-rent");
     const confirmRentButton = document.getElementById("confirmRent");
+    const modalElement = document.getElementById("exampleModalCenter");
     const pricePerDayElement = document.getElementById("pricePerDay");
+    const totalAmountElement = document.getElementById("totalAmount");
+    const orderDateElement = document.getElementById("orderDate");
+    const endDateElement = document.getElementById("endDate");
+    const numPeopleOrderElement = document.getElementById("numPeopleOrder");
+    const form = document.querySelector("form");
+
+    let selectedDays = 0;
 
     // Lấy giá/ngày từ giao diện
     const pricePerDay = parseInt(pricePerDayElement.innerText.replace(/\D/g, "")) || 0;
 
-    // Xử lý khi ấn "Xác nhận"
-    confirmButton.addEventListener("click", function () {
+    // Hàm cập nhật đơn hàng
+    function updateOrder() {
         const startDate = startDateInput.value;
-        const endDate = endDateInput.value;
-
-        if (!startDate) {
-            alert("Vui lòng chọn ngày bắt đầu!");
-            startDateInput.classList.add("is-invalid");
-            return;
-        } else {
-            startDateInput.classList.remove("is-invalid");
-        }
-
-        if (!endDate) {
-            alert("Vui lòng chọn ngày kết thúc!");
-            endDateInput.classList.add("is-invalid");
-            return;
-        } else {
-            endDateInput.classList.remove("is-invalid");
-        }
-
-        // Tính tổng tiền
-        const startDateObj = new Date(startDate);
-        const endDateObj = new Date(endDate);
-        const rentalDays = (endDateObj - startDateObj) / (1000 * 60 * 60 * 24) + 1; // Số ngày thuê
-
-        if (rentalDays <= 0) {
-            alert("Ngày kết thúc phải sau ngày bắt đầu!");
+        if (!startDate || selectedDays <= 0) {
+            orderDateElement.innerText = "-";
+            endDateElement.innerText = "-";
+            totalAmountElement.innerText = "0";
+            numPeopleOrderElement.innerText = "-";
             return;
         }
 
-        const totalPrice = rentalDays * pricePerDay;
+        let startDateObj = new Date(startDate);
+        let endDateObj = new Date(startDateObj);
+        endDateObj.setDate(startDateObj.getDate() + selectedDays - 1);
 
-        // Cập nhật giao diện "Đơn hàng"
-        document.getElementById("orderDate").innerText = startDate;
-        document.getElementById("displayEndDate").innerText = endDate;
-        document.getElementById("totalAmount").innerText = totalPrice.toLocaleString() + " VNĐ";
+        const formatDate = (date) => {
+            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        };
 
-        // Cho phép nhấn "Thuê ngay"
-        rentButton.disabled = false;
-    });
+        // Cập nhật thông tin đơn hàng
+        orderDateElement.innerText = formatDate(startDateObj);
+        endDateElement.innerText = formatDate(endDateObj);
+        const totalPrice = selectedDays * pricePerDay;
+        totalAmountElement.innerText = totalPrice.toLocaleString();
 
-    // Xử lý khi ấn "Thuê ngay" (mở modal xác nhận)
-    rentButton.addEventListener("click", function () {
-        if (document.getElementById("totalAmount").innerText === "0 VNĐ") {
-            alert("Vui lòng nhập thông tin và xác nhận trước khi thuê!");
-        } else {
-            $("#confirmModal").modal("show"); // Hiển thị modal xác nhận
-        }
-    });
+        // Cập nhật input ngày kết thúc
+        endDateInput.value = endDateObj.toISOString().split("T")[0];
 
-    // Khi nhấn "Đồng ý" trong modal, tiến hành submit form
-    confirmRentButton.addEventListener("click", function () {
-        document.querySelector("form").submit();
-    });
-
-    // Khi người dùng nhập ngày bắt đầu, bỏ cảnh báo lỗi
-    startDateInput.addEventListener("input", function () {
-        startDateInput.classList.remove("is-invalid");
-    });
-
-    // Khi người dùng nhập ngày kết thúc, bỏ cảnh báo lỗi
-    endDateInput.addEventListener("input", function () {
-        endDateInput.classList.remove("is-invalid");
-    });
-
-    // Kiểm tra nếu form được submit thành công (quay về trang chủ)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has("success")) {
-        alert("Thuê nhà thành công!");
-        window.location.href = "homeUserServlet";
+        // Cập nhật số người thuê
+        const numPeopleValue = numPeopleInput.value;
+        numPeopleOrderElement.innerText = numPeopleValue ? numPeopleValue : "-";
     }
+
+    // Khi người dùng click vào nút "đặt ngày"
+    document.querySelectorAll(".duration-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            selectedDays = parseInt(this.dataset.days);
+            if (startDateInput.value) {
+                updateOrder();
+            }
+        });
+    });
+
+    // Khi người dùng thay đổi ngày bắt đầu
+    startDateInput.addEventListener("change", function () {
+        if (selectedDays > 0) {
+            updateOrder();
+        }
+    });
+
+    // Khi số người thuê thay đổi
+    numPeopleInput.addEventListener("input", function () {
+        updateOrder();
+    });
+
+    // Khi nhấn "Thuê ngay"
+    rentButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Ngăn form submit ngay lập tức
+
+        if (!startDateInput.value) {
+            alert("Vui lòng chọn ngày bắt đầu!");
+            return;
+        }
+
+        if (selectedDays <= 0) {
+            alert("Vui lòng chọn số ngày thuê!");
+            return;
+        }
+
+        if (!numPeopleInput.value || numPeopleInput.value <= 0) {
+            alert("Vui lòng nhập số người thuê!");
+            return;
+        }
+
+        // Nếu hợp lệ, mở modal xác nhận
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    });
+
+    // Khi nhấn "Đồng ý" trong modal, submit form về servlet
+    confirmRentButton.addEventListener("click", function () {
+        form.submit();
+    });
 });

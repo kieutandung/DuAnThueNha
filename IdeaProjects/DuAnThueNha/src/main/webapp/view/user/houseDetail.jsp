@@ -7,11 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chi tiết nhà thuê</title>
     <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/houseDetail.js"></script>
 </head>
 <body>
+
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
@@ -48,6 +51,8 @@
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
+
+            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
@@ -77,10 +82,10 @@
             <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
-            <button class="btn btn-outline-danger mt-3" id="favoriteBtn" onclick="toggleFavorite()">
-                <i id="favoriteIcon" class="bi bi-heart"></i> Yêu thích
+            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                    data-product-id="${product.idProduct}" onclick="toggleFavorite()">
+                <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
             </button>
-
         </div>
     </div>
 
@@ -115,14 +120,8 @@
 <footer class="mt-5 text-center">
     <jsp:include page="../footer.jsp"/>
 </footer>
-
-
-<script>
-    function changeImage(smallImg) {
-        let mainImage = document.getElementById("mainImage");
-        mainImage.src = smallImg.src;
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/favorite.js"></script>
 
 </body>
 </html>
