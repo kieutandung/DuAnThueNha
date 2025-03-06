@@ -70,14 +70,15 @@
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
             <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
         </div>
-        <input type="number" id="numDays" class="form-control mt-2" placeholder="Nhập số ngày" required>
+
+        <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>
+        <input type="date" id="endDatePicker" class="form-control mt-2" required>
 
         <label class="form-label mt-2">Số người thuê:</label>
         <input type="number" id="numPeople" class="form-control" min="1" placeholder="Nhập số người">
 
         <label class="form-label mt-2">Ghi chú:</label>
         <textarea id="note" class="form-control" rows="3"></textarea>
-        <button type="button" class="btn btn-primary mt-5  btn-confirm" onclick="updateOrder()">Xác nhận</button>
     </div>
 
     <div class="separator-vertical"></div>
@@ -89,8 +90,8 @@
                 <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
                 <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                         value="${product.nameProduct}"/></span></p>
-                <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span>
-                </p>
+                <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
+                <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                 <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                 <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
                 <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>

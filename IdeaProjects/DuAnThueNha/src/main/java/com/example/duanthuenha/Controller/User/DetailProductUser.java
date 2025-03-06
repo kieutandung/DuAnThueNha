@@ -63,12 +63,17 @@ public class DetailProductUser extends HttpServlet {
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         boolean isNowFavorite = productUserService.toggleFavorite(Integer.parseInt(userID),Integer.parseInt(productId));
-
+        List<Product> products = productUserService.getAllProductsByFavorite(Integer.parseInt(userID));
         resp.setContentType("text/plain");
-        if (isNowFavorite) {
-            resp.getWriter().write("added");
-        } else {
-            resp.getWriter().write("removed");
+        if(products.size() > 10) {
+            resp.getWriter().write("error");
+        }else{
+            if (isNowFavorite) {
+                resp.getWriter().write("added");
+            } else{
+                resp.getWriter().write("removed");
+            }
         }
+
     }
 }
