@@ -109,7 +109,7 @@
                 <div class="mt-3 d-flex justify-content-end">
                     <c:choose>
                         <c:when test="${order.paymentStatus eq 'completed'}">
-                            <a href="commentServlet?productId=${product.idProduct}" class="btn btn-danger custom-btn me-2">
+                            <a href="commentServlet?productId=${order.idProduct}" class="btn btn-danger custom-btn me-2">
                                 Viết đánh giá</a>
                         </c:when>
                         <c:otherwise>
