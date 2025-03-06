@@ -173,7 +173,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <footer class="mt-5">
-    <jsp:include page="footer.jsp"/>
+    <jsp:include page="footer2.jsp"/>
 </footer>
 
 </body>
