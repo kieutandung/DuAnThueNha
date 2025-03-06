@@ -24,20 +24,27 @@ public class HomeUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
+
         String category = req.getParameter("category");
         String keyword = req.getParameter("keyword");
-        if (keyword.isEmpty()) {
+
+        // Kiểm tra null trước khi gọi isEmpty()
+        if (keyword == null || keyword.trim().isEmpty()) {
             List<ProductHost> products = productImpl.getAllProductsWithCategoryUser(category);
             req.setAttribute("listProduct", products);
             RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
             dispatcher.forward(req, resp);
             return;
         }
-        if (category.isEmpty()) {
+
+        if (category == null || category.trim().isEmpty()) {
             List<ProductHost> products = productImpl.getAllProductsWithKeywordUser(keyword);
+
+            // Debug kiểm tra dữ liệu
             for (ProductHost productHost : products) {
-                System.out.println(productHost.getIdProduct());
+                System.out.println("Product ID: " + productHost.getIdProduct());
             }
+
             req.setAttribute("listProduct", products);
             req.setAttribute("keywordUser", keyword);
             RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");

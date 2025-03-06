@@ -77,12 +77,12 @@
             <div class="house-info position-relative">
                 <img src="img/${product.image}" class="house-image" alt="Hình ảnh sản phẩm">
                 <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out value="${product.nameProduct}"/></span></p>
-                <p><strong>Giá/ngày: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span> VNĐ</p>
+                <p><strong>Giá/ngày: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
                 <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                 <p><strong>Ngày kết thúc: </strong> <span id="displayEndDate">-</span></p>
                 <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
-                <button type="button" class="btn btn-success btn-rent mt-5" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                <button type="button" class="btn btn-success btn-rent mt-5" id="openModalButton">
                     Thuê ngay
                 </button>
             </div>
@@ -91,26 +91,29 @@
 </form>
 
 
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<!-- Modal Xác Nhận Thuê Nhà -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmModalTitle">Xác nhận đặt thuê</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title">Xác nhận thuê nhà</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Bạn có chắc chắn muốn thuê nhà này không?</p>
+                <p>Bạn có chắc chắn muốn thuê nhà?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
                 <button type="button" class="btn btn-primary" id="confirmRent">Đồng ý</button>
+                <!-- Không dùng type="submit" để xử lý bằng JavaScript -->
             </div>
         </div>
     </div>
 </div>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>
