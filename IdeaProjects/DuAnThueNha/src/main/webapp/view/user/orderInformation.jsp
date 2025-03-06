@@ -14,7 +14,7 @@
             border-radius: 5px;
         }
         .booking-code {
-            font-size: 20px; /* Tăng kích thước chữ mã */
+            font-size: 20px;
             font-weight: bold;
         }
         .custom-card {
@@ -22,12 +22,16 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .custom-badge-confirmed {
-            background-color: #ccffcc !important; /* Màu nền xanh cốm nhạt */
-            color: #008000 !important; /* Màu chữ xanh đậm */
+            background-color: #ccffcc !important;
+            color: #008000 !important;
             font-weight: bold;
-            padding: 8px 15px;
+            padding: 4px 10px;
+            font-size: 14px;
             border-radius: 5px;
+            position: relative;
+            top: -7px;
         }
+
         .custom-btn {
             padding: 6px 12px;
             font-size: 14px;
@@ -104,7 +108,7 @@
                 </div>
                 <div class="mt-3 d-flex justify-content-end">
                     <button class="btn btn-danger custom-btn me-2">Hủy</button>
-                    <button class="btn btn-primary custom-btn">Quản lý đặt phòng</button>
+<%--                    <button class="btn btn-primary custom-btn">Quản lý đặt phòng</button>--%>
                 </div>
             </div>
         </div>
@@ -114,7 +118,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <footer class="mt-5">
-    <jsp:include page="../footer.jsp"/>
+    <jsp:include page="../footer2.jsp"/>
 </footer>
 
 </body>
