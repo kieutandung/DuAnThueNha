@@ -58,4 +58,86 @@ body {
     object-fit: cover;
     border-radius: 10px;
 }
+/*css của hộp thoai khiếu nại*/
+.hidden {
+    display: none;
+}
+#complaint-popup {
+    position: absolute;
+    top: 130px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(124, 124, 124, 0.3);
+    z-index: 1000;
+    width: 350px;
+}
+#complaintBtn {
+    background-color: #FFC107;
+    color: black;
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: absolute;
+    top: 518px;
+    right: 300px;
+    height: 38px;
+    width: auto;
+}
 
+#complaintBtn i {
+    font-size: 12px;
+}
+
+
+
+/* Nút "Gửi khiếu nại" */
+#submit-complaint {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#submit-complaint:hover {
+    background-color: #218838;
+}
+
+/* Nút "Đóng" */
+#close-popup {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#close-popup:hover {
+    background-color: #c82333; /* Đậm hơn khi hover */
+}
+#complaint-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#otherReasonText {
+    margin-bottom: 20px; /* Tạo khoảng cách giữa ô nhập và các nút */
+}
+.complaint-buttons {
+    margin-top: 15px; /* Đẩy 2 nút xuống dưới */
+    display: flex;
+    justify-content: space-between;
+}

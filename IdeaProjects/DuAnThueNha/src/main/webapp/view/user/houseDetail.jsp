@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chi tiết nhà thuê</title>
     <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/houseDetail.js"></script>
 </head>
 <body>
 
@@ -46,9 +48,32 @@
             <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
+            <!-- Nút Khiếu Nại -->
+            <button id="complaintBtn">
+                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+            </button>
+
+            <!-- Hộp thoại Khiếu Nại -->
+            <div id="complaint-popup" class="hidden">
+                <h4>Gửi Khiếu Nại</h4>
+                <ul>
+                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
+                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
+                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
+                </ul>
+                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
+
+                <div class="complaint-buttons">
+                    <button id="submit-complaint">Gửi khiếu nại</button>
+                    <button id="close-popup">Đóng</button>
+                </div>
+            </div>
+
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
+
+            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">

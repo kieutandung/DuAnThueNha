@@ -13,17 +13,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<style>
-    th#phone ,
-    th#startDate ,
-    th#endDate ,
-    th#action ,
-    td#status ,
-    td#numPeople{
-        text-align: center;
-
-    }
-</style>
 <body>
 <header>
     <jsp:include page="headerHost.jsp"/>
@@ -65,8 +54,8 @@
                         <td id="status">${order.paymentStatus}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success">Xác nhận</button>
-                                <button type="button" class="btn btn-danger">Từ chối</button>
+                                <button class="btn btn-success" onclick="confirmAction('${order.idOrder}', 'completed')">Xác nhận</button>
+                                <button class="btn btn-danger" onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối</button>
                             </div>
                         </td>
                     </tr>
@@ -76,6 +65,38 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Xác nhận -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận hành động</h5>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn thực hiện hành động này?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="confirmForm" action="listProductHostServlet" method="post">
+                    <input type="hidden" name="action" value="updateStatus">
+                    <input type="hidden" name="idOrder" id="orderId">
+                    <input type="hidden" name="status" id="orderStatus">
+                    <button type="submit" class="btn btn-success1">Xác nhận</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmAction(orderId, status) {
+        document.getElementById('orderId').value = orderId;
+        document.getElementById('orderStatus').value = status;
+        $('#confirmModal').modal('show');
+    }
+</script>
+
 <footer>
     <jsp:include page="../footer2.jsp"/>
 </footer>

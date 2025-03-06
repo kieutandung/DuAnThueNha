@@ -19,7 +19,7 @@ public class ApproveRequestImpl implements ApproveRequestService{
                 "FROM orders o " +
                 "JOIN users u ON o.idUser = u.idUser " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
-                "WHERE p.idUser = ?"; // Chỉ lấy các đơn hàng của chủ nhà (host)
+                "WHERE p.idUser = ?";
 
         Connection connection = connectDB.getConnection();
         try {
@@ -29,11 +29,12 @@ public class ApproveRequestImpl implements ApproveRequestService{
 
             while (rs.next()) {
                 Order order = new Order();
+                order.setIdOrder(rs.getInt("idOrder"));
                 order.setIdUser(rs.getInt("idUser"));
                 order.setIdProduct(rs.getInt("idProduct"));
                 order.setOrderDate(rs.getTimestamp("orderDate").toLocalDateTime());
-                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime());
-                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime());
+                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
+                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
                 order.setNotes(rs.getString("notes"));
                 order.setNumPeople(rs.getInt("numPeople"));
                 order.setPaymentStatus(rs.getString("paymentStatus"));
@@ -56,5 +57,29 @@ public class ApproveRequestImpl implements ApproveRequestService{
             }
         }
         return rentalRequests;
+    }
+
+    @Override
+    public void updateStatus(int idOrder, String newStatus) {
+        String sql = "UPDATE orders SET paymentStatus = ? WHERE idOrder = ?";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, newStatus);
+            ps.setInt(2, idOrder);
+
+            int rowsUpdated = ps.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Cập nhật thành công đơn hàng ID: " + idOrder);
+            } else {
+                System.out.println("Không tìm thấy đơn hàng để cập nhật.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi cập nhật trạng thái đơn hàng", e);
+        }
     }
 }
