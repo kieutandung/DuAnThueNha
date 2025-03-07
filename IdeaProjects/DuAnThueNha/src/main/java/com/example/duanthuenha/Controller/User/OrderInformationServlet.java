@@ -23,7 +23,32 @@ public class OrderInformationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
+        HttpSession session = req.getSession();
+        Object userIDObj = session.getAttribute("userId");
 
+        if (userIDObj == null) {
+            resp.sendRedirect("loginServlet");
+            return;
+        }
+
+        int idUser = Integer.parseInt(userIDObj.toString());
+        List<Order> orders = orderInformationService.getAllOrder(idUser);
+
+        for (Order order : orders) {
+            double totalPrice = order.calculateTotalPrice();
+            order.setTotalPrice(totalPrice);
+        }
+
+        req.setAttribute("orders", orders);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/user/orderInformation.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         Object userIDObj = session.getAttribute("userId");
 
