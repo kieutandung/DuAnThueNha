@@ -1,0 +1,155 @@
+body {
+    background-color: #F2F2F2;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menubar {
+    display: block;
+    height: 60px;
+    background-color: rgba(37, 117, 252, 1);
+    box-shadow: 2px 5px 5px 0 rgba(0,0,0,.12);
+    text-align: center;
+}
+
+.menubar span {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 300;
+    font-size: 2em;
+    line-height: 60px;
+}
+
+#hambmenu {
+    position: relative;
+    width: 40px;
+    height: 45px;
+    float: left;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+
+#hambmenu span {
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    vertical-align: middle;
+    margin: 20px 0 0 15px;
+    background: white;
+    border-radius: 8px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    padding: 0px;
+}
+
+.hambclicker {
+    content: '';
+    height: 48px;
+    width: 55px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    cursor: pointer;
+    z-index: 9;
+}
+
+#hambmenu span:nth-child(1) {
+    top: 0px;
+}
+
+#hambmenu span:nth-child(2),
+#hambmenu span:nth-child(3) {
+    top: 10px;
+}
+
+#hambmenu span:nth-child(4) {
+    top: 20px;
+}
+
+#hambmenu.isopen span:nth-child(1) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+    opacity: 0;
+}
+
+#hambmenu.isopen span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+#hambmenu.isopen span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+#hambmenu.isopen span:nth-child(4) {
+    top: 18px;
+    width: 0%;
+    left: 50%;
+    opacity: 0;
+}
+
+#menu {
+    position: absolute;
+    height: calc(100vh - 60px);
+    width: 210px;
+    background-color: white;
+    transform: translateX(-100%);
+    transition: transform 300ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space items evenly */
+}
+
+#menu ul {
+    margin-top: 0px;
+    padding: 0px;
+    color: black;
+    list-style-type: none;
+    text-align: left;
+    flex-grow: 1; /* Allow the list to grow and take available space */
+}
+
+#menu li {
+    padding: 30px 20px; /* Adjust padding for all items */
+    font-size: 1.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, .14);
+}
+
+#menu li:last-child {
+    border-bottom: none;
+}
+
+/* Link styling */
+#menu a {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Default link color */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+#menu a:hover {
+    color: rgba(37, 117, 252, 1); /* Change color on hover */
+}
+
+/* Logout styling */
+.logout-item {
+    margin-top: auto; /* Push logout to the bottom */
+    padding: 15px 20px; /* Add padding for better appearance */
+    text-align: right; /* Align text to the right */
+    background-color: rgba(0, 0, 0, 0.05); /* Light background for contrast */
+    border-top: 1px solid rgba(0, 0, 0, 0.14); /* Divider above logout */
+}
+
+.logout-icon img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle; /* Align the icon vertically */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+#menu.isopen {
+    transform: none;
+}

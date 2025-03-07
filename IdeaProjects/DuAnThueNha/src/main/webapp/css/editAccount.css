@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto 0;
+
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Đảm bảo khung chiếm 100% chiều rộng của màn hình nhỏ */
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse; /* Xóa khoảng cách giữa các ô */
+}
+
+td {
+    padding: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng */
+}
+
+input[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+    color: green;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px; /* Giảm padding cho màn hình nhỏ */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Giảm kích thước font cho tiêu đề */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        padding: 8px; /* Giảm padding cho các trường nhập liệu */
+    }
+
+    input[type="submit"] {
+        padding: 8px; /* Giảm padding cho nút gửi */
+    }
+}
+.button {
+    display: inline-block; /* Để thẻ a giống như nút */
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none; /* Xóa gạch chân */
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #4cae4c; /* Màu khi hover */
+}
+
