@@ -22,7 +22,8 @@ public class OrderInformationImpl implements OrderInformationService {
         String sql = "SELECT o.*, p.nameProduct, p.image, p.price " +
                 "FROM orders o " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
-                "WHERE o.idUser = ?";
+                "WHERE o.idUser = ? " +
+                "ORDER BY o.idOrder DESC ";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {

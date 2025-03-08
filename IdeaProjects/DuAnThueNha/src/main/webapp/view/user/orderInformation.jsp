@@ -14,6 +14,9 @@
             object-fit: cover;
             border-radius: 5px;
         }
+        .card-body{
+            margin-top: 20px;
+        }
 
         .custom-card {
             border-radius: 10px;
@@ -108,6 +111,9 @@
                         </c:when>
                         <c:when test="${order.paymentStatus eq 'cancelled'}">
                             <span class="badge bg-danger">Đã hủy</span>
+                        </c:when>
+                        <c:when test="${order.paymentStatus eq 'waiting'}">
+                            <span class="badge bg-danger">Ch thanh toán</span>
                         </c:when>
                         <c:when test="${order.paymentStatus eq 'completed'}">
                             <span class="badge bg-success">Hoàn thành</span>

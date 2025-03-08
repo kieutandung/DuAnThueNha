@@ -15,11 +15,12 @@ public class ApproveRequestImpl implements ApproveRequestService{
     @Override
     public List<Order> getAllRentalRequestsByHost(int userID) {
         List<Order> rentalRequests = new ArrayList<>();
-        String sql = "SELECT o.*, u.fullName, u.phone ,p.nameProduct ,p.image " +
+        String sql = "SELECT o.*, u.fullName, u.phone, p.nameProduct, p.image " +
                 "FROM orders o " +
                 "JOIN users u ON o.idUser = u.idUser " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
-                "WHERE p.idUser = ?";
+                "WHERE p.idUser = ? " +
+                "AND o.paymentStatus != 'completed'";
 
         Connection connection = connectDB.getConnection();
         try {
