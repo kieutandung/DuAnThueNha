@@ -26,9 +26,14 @@
         <div class="card-body">
             <div class="mb-4">
                 <h5 class="mb-3 text-center"><strong>Thông tin đơn hàng</strong></h5>
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <img src="img/${product.image}" alt="${product.nameProduct}" class="img-fluid rounded">
+                <div class="row align-items-stretch">
+                    <div class="col-md-4 d-flex">
+                        <img
+                                src="img/${product.image}"
+                                alt="${product.nameProduct}"
+                                class="img-fluid w-100 align-self-stretch rounded"
+                                style="object-fit: cover;"
+                        >
                     </div>
                     <div class="col-md-8 d-flex flex-column justify-content-center">
                         <p><strong>Tên sản phẩm:</strong> ${product.nameProduct}</p>
@@ -42,11 +47,12 @@
                 </div>
             </div>
 
+
             <form action="commentServlet" method="post">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">
                 <input type="hidden" name="productId" value="${param.productId}">
 
-                <div class="input-group mb-3">
+                <div class="input-group mt-3 mb-3">
                     <span class="input-group-text text-center" id="rating-label">Chất lượng nhà:</span>
                     <select name="rating" id="rating" class="form-select" required>
                         <option value="">Chọn số sao</option>
