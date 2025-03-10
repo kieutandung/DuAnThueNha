@@ -9,7 +9,6 @@
     <title>Sản phẩm yêu thích</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-
     <link rel="stylesheet" href="/css/favorite.css">
 </head>
 
@@ -30,19 +29,20 @@
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <c:forEach var="p" items="${listProduct}">
-            <div class="border rounded-lg shadow-lg p-4 bg-white relative mt-5">
+            <div class="border rounded-lg shadow-lg p-4 bg-white relative mt-4">
                 <div class="relative h-48">
                     <img src="img/${p.image}" alt="Ảnh" onclick="redirectToDetail('${p.idProduct}')"
                          class="w-full h-full object-cover mx-auto block">
                 </div>
-                <h2 class="text-lg font-semibold mt-2">${p.nameProduct}</h2>
-                <p class="text-gray-600">${p.address}</p>
-                <p class="text-gray-600">Giá: <fmt:formatNumber value="${p.price}" pattern="#,###"/>VND</p>
+                <h2 class="text-lg font-semibold mt-4 truncate">${p.nameProduct}</h2>
+                <p class="text-gray-600 truncate">${p.address}</p>
+                <p class="text-gray-600">Giá: <fmt:formatNumber value="${p.price}" pattern="#,###"/> VNĐ</p>
                 <p class="text-gray-600 mb-3">
                     Diện tích: ${p.area} m<sup>2</sup>
                 </p>
-                <i class="fas fa-heart text-red-500 absolute bottom-2 right-2">
-                </i>
+                <div class="flex justify-end">
+                    <i class="fas fa-heart text-red-500 text-2xl cursor-pointer"></i>
+                </div>
             </div>
         </c:forEach>
     </div>
