@@ -23,6 +23,25 @@
 
 <div class="container review-card mt-5">
     <div class="card">
+        <div class="card-body">
+            <div class="mb-4">
+                <h5 class="mb-3 text-center"><strong>Thông tin đơn hàng</strong></h5>
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <img src="img/${product.image}" alt="${product.nameProduct}" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8 d-flex flex-column justify-content-center">
+                        <p><strong>Tên sản phẩm:</strong> ${product.nameProduct}</p>
+                        <p><strong>Địa chỉ:</strong> ${product.address}</p>
+                        <p><strong>Giá thuê:</strong> <fmt:formatNumber value="${product.price}" pattern="#,###"/> VNĐ</p>
+                        <p><strong>Số người thuê:</strong> ${order.numPeople}</p>
+                        <p><strong>Ngày thuê:</strong> ${order.startDate}</p>
+                        <p><strong>Ngày trả:</strong> ${order.endDate}</p>
+                        <p><strong>Diện tích:</strong> ${product.area}<sup>2</sup></p>
+                    </div>
+                </div>
+            </div>
+
             <form action="commentServlet" method="post">
                 <input type="hidden" name="userId" value="${sessionScope.userId}">
                 <input type="hidden" name="productId" value="${param.productId}">
@@ -46,7 +65,6 @@
 
                 <button type="submit" class="btn btn-primary">Gửi đánh giá</button>
             </form>
-
         </div>
     </div>
 </div>

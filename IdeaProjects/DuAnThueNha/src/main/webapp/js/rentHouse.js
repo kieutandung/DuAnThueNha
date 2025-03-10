@@ -30,10 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let startDateObj = new Date(startDate);
         let endDateObj = new Date(startDateObj);
-        endDateObj.setDate(startDateObj.getDate() + selectedDays - 1);
+        endDateObj.setDate(startDateObj.getDate() + selectedDays);
 
         const formatDate = (date) => {
-            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            return `${dd}/${mm}/${yyyy}`;
         };
 
         // Cập nhật thông tin đơn hàng

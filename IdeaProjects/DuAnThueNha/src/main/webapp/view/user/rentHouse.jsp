@@ -61,10 +61,10 @@
 
             <label class="form-label mt-2">Đặt ngày:</label>
             <div class="date-buttons">
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="1">1 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="2">2 ngày</button>
                 <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="5">5 ngày</button>
             </div>
 
             <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>
