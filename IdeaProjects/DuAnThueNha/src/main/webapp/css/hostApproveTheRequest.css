@@ -297,9 +297,7 @@ header {
  th#endDate ,
  th#action ,
  td#status ,
- td#numPeople{
+ td#numPeople {
      text-align: center;
-
  }
-
 

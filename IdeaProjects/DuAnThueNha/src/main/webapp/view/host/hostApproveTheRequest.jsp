@@ -30,7 +30,8 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>STT</th>
+                    <th>Ảnh</th>
                     <th>Tên nhà thuê</th>
                     <th>Tên người thuê</th>
                     <th id="phone">Điện thoại</th>
@@ -42,8 +43,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="order" items="${rentalRequests}">
+                <c:forEach var="order" items="${rentalRequests}" varStatus="status">
                     <tr>
+                        <td class="stt">${status.index + 1}</td>
                         <td><img src="img/${order.image}" alt="Ảnh nhà thuê" width="50"></td>
                         <td>${order.nameProduct}</td>
                         <td>${order.fullName}</td>
@@ -52,11 +54,18 @@
                         <td>${order.endDate}</td>
                         <td id="numPeople">${order.numPeople}</td>
                         <td id="status">${order.paymentStatus}</td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-success" onclick="confirmAction('${order.idOrder}', 'completed')">Xác nhận</button>
-                                <button class="btn btn-danger" onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối</button>
-                            </div>
+                        <td class="text-center">
+                            <c:choose>
+                                <c:when test="${order.paymentStatus == 'completed' or order.paymentStatus == 'cancelled'}">
+                                    <span class="text-success fw-bold d-inline-block">Đã duyệt</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="btn-group d-flex justify-content-center gap-2" role="group">
+                                        <button class="btn btn-success" onclick="confirmAction('${order.idOrder}', 'waiting')">Xác nhận</button>
+                                        <button class="btn btn-danger" onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối</button>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:forEach>
@@ -78,12 +87,12 @@
             </div>
             <div class="modal-footer">
                 <form id="confirmForm" action="listProductHostServlet" method="post">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
                     <input type="hidden" name="action" value="updateStatus">
                     <input type="hidden" name="idOrder" id="orderId">
                     <input type="hidden" name="status" id="orderStatus">
                     <button type="submit" class="btn btn-success1">Xác nhận</button>
                 </form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
             </div>
         </div>
     </div>

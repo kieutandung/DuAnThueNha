@@ -49,25 +49,6 @@
             <h2 class="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-<<<<<<< HEAD
-=======
-
-            <!-- Hộp thoại Khiếu Nại -->
-            <div id="complaint-popup" class="hidden">
-                <h4>Gửi Khiếu Nại</h4>
-                <ul>
-                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
-                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
-                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
-                </ul>
-                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
-
-                <div class="complaint-buttons">
-                    <button id="submit-complaint">Gửi khiếu nại</button>
-                    <button id="close-popup">Đóng</button>
-                </div>
-            </div>
->>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
 
             <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">
                 Địa chỉ:</strong> ${product.address}
@@ -100,7 +81,6 @@
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
-<<<<<<< HEAD
             <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                 <i class="bi bi-house-door-fill"></i> Thuê ngay
             </a>
@@ -125,18 +105,6 @@
                     <button id="submit-complaint">Gửi khiếu nại</button>
                     <button id="close-popup">Đóng</button>
                 </div>
-=======
-            <div class="action-buttons mt-3">
-                <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary">
-                    <i class="bi bi-house-door-fill"></i> Thuê ngay
-                </a>
-                <button id="favoriteBtn" data-product-id="${product.idProduct}" onclick="toggleFavorite()" class="btn btn-outline-danger">
-                    <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill text-danger' : 'bi-heart text-white'}"></i> Yêu thích
-                </button>
-                <button id="complaintBtn">
-                    <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-                </button>
->>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
             </div>
         </div>
     </div>
