@@ -78,4 +78,24 @@ public class OrderInformationImpl implements OrderInformationService {
         }
     }
 
+    @Override
+    public void updateStatus(int idOrder, String notes) {
+        String sql = "UPDATE orders SET paymentStatus = 'paid', notes = COALESCE(NULLIF(?, ''), notes) WHERE idOrder = ?";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setString(1, notes); // Nếu notes rỗng, giữ nguyên giá trị cũ
+            ps.setInt(2, idOrder);
+            int rowsUpdated = ps.executeUpdate();
+
+            if (rowsUpdated == 0) {
+                throw new RuntimeException("Không tìm thấy đơn hàng");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi cập nhật đơn hàng", e);
+        }
+    }
+
 }

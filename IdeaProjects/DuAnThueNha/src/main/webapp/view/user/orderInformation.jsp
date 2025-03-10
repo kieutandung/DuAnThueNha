@@ -107,11 +107,11 @@
                         <c:when test="${order.paymentStatus eq 'pending'}">
                             <span class="badge bg-secondary">Chờ xác nhận</span>
                         </c:when>
-                        <c:when test="${order.paymentStatus eq 'cancelled'}">
-                            <span class="badge bg-danger">Đã hủy</span>
-                        </c:when>
                         <c:when test="${order.paymentStatus eq 'waiting'}">
                             <span class="badge bg-danger">Chưa thanh toán</span>
+                        </c:when>
+                        <c:when test="${order.paymentStatus eq 'cancelled'}">
+                            <span class="badge bg-danger">Đã huỷ</span>
                         </c:when>
                         <c:when test="${order.paymentStatus eq 'completed'}">
                             <span class="badge bg-success">Đã hoàn thành</span>
@@ -167,7 +167,7 @@
                     </c:when>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${order.paymentStatus eq 'completed'}">
+                    <c:when test="${order.paymentStatus eq 'completed' or order.paymentStatus eq 'cancelled'}">
                         <a href="commentServlet?productId=${order.idProduct}"
                            class="btn btn-danger custom-btn">
                             Viết đánh giá
@@ -196,7 +196,7 @@
                 <p>Bạn có chắc chắn muốn hủy đơn hàng này không?</p>
             </div>
             <div class="modal-footer">
-                <form id="confirmForm" action="cancelOrder" method="post">
+                <form id="confirmForm" action="/cancelOrderServlet" method="post">
                     <input type="hidden" name="idOrder" id="orderId">
                     <button type="submit" class="btn btn-danger">Xác nhận</button>
                 </form>
@@ -207,7 +207,7 @@
 </div>
 
 <div class="modal fade" id="orderPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document"> <!-- Thêm modal-dialog-centered -->
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="Title">Thanh toán đơn hàng</h5>
@@ -221,7 +221,7 @@
                 <div class="d-flex justify-content-between align-items-start mt-3">
                     <div class="text-left">
                         <p>Ghi chú</p>
-                        <textarea placeholder="Thêm ghi chú cho đơn hàng" class="form-control" rows="1"></textarea>
+                        <textarea id="notes" name="notes" placeholder="Thêm ghi chú cho đơn hàng" class="form-control" rows="1"></textarea>
                     </div>
                     <div class="text-right">
                         <div class="d-flex flex-column gap-2">
@@ -243,14 +243,16 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Xác nhận</button>
+                <form id="PayOrder" action="/updateOrderStatusServlet" method="post">
+                    <input type="hidden" name="idOrder" id="idOrder">
+                    <input type="hidden" name="notes" id="hiddenNotes"> <!-- Trường ẩn để gửi ghi chú -->
+                    <button type="submit" class="btn btn-danger">Xác nhận</button>
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
             </div>
         </div>
     </div>
 </div>
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -275,16 +277,26 @@
                 const numDate = this.getAttribute("data-numDate");
                 const totalPrice = this.getAttribute("data-totalPrice");
 
+                // Cập nhật nội dung modal
                 document.querySelector("#orderPayment .room-image").src = image;
                 document.querySelector("#orderPayment .room-title").textContent = nameProduct;
                 document.querySelector("#orderPayment .price").textContent = price + " đ";
                 document.querySelector("#orderPayment .numDate").textContent = numDate + " Ngày";
                 document.querySelector("#orderPayment .totalPrice").textContent = totalPrice + " đ";
 
+                // Cập nhật giá trị idOrder và notes
+                document.getElementById("idOrder").value = idOrder;
+
+                // Hiển thị modal
                 var myModal = new bootstrap.Modal(document.getElementById("orderPayment"));
                 myModal.show();
             });
         });
+
+        document.getElementById("PayOrder").addEventListener("submit", function () {
+            const notes = document.getElementById("notes").value; // Lấy giá trị ghi chú
+            document.getElementById("hiddenNotes").value = notes; // Cập nhật giá trị vào trường ẩn
+    });
     });
 </script>
 
