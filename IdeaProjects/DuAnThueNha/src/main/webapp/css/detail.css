@@ -58,20 +58,9 @@ body {
     object-fit: cover;
     border-radius: 10px;
 }
-/*css của hộp thoai khiếu nại*/
+
 .hidden {
     display: none;
-}
-#complaint-popup {
-    position: absolute;
-    top: 130px;
-    right: 10px;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(124, 124, 124, 0.3);
-    z-index: 1000;
-    width: 350px;
 }
 #complaintBtn {
     position: absolute;
@@ -79,21 +68,33 @@ body {
     right: 280px;
     background-color: #FFC107;
     color: black;
+<<<<<<< HEAD
     padding: 9px 13px;
     font-size: 16px;
+=======
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 12px;
+>>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
+<<<<<<< HEAD
     height: 40px;
     width: auto;
     z-index: 10;
     margin-top: 500px;
 
+=======
+}
+
+#complaintBtn:hover {
+    background-color: #e0a800;
+>>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
 }
 
 #complaintBtn i {
@@ -101,9 +102,6 @@ body {
 
 }
 
-
-
-/* Nút "Gửi khiếu nại" */
 #submit-complaint {
     background-color: #28a745;
     color: white;
@@ -118,7 +116,6 @@ body {
     background-color: #218838;
 }
 
-/* Nút "Đóng" */
 #close-popup {
     background-color: #dc3545;
     color: white;
@@ -146,3 +143,34 @@ body {
     justify-content: flex-start;
     gap: 10px;
 }
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.action-buttons a,
+.action-buttons button {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 12px;
+}
+#favoriteBtn {
+    cursor: pointer;
+}
+
+#favoriteBtn:hover {
+    background-color: #f52538;
+    border-color: #f52538;
+    color: #ffffff;
+}
+
+#favoriteBtn:hover i {
+    color: #ffffff !important;
+}
+.action-buttons a.btn-primary:hover {
+    background-color: #4199f8;
+    border-color: #4199f8;
+}
+

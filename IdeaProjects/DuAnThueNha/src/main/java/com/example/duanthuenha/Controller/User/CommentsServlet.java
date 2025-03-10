@@ -38,7 +38,7 @@ public class CommentsServlet extends HttpServlet {
         try {
             int userId = Integer.parseInt(request.getParameter("userId"));
             int productId = Integer.parseInt(request.getParameter("productId"));
-            int rating = Integer.parseInt(request.getParameter("rating")); // Ép kiểu rating thành int
+            int rating = Integer.parseInt(request.getParameter("rating"));
             String reviewText = request.getParameter("reviewText");
 
             if (reviewText == null || reviewText.trim().isEmpty()) {
