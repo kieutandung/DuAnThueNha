@@ -10,28 +10,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rentHouse.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .btn-rent {
-            width: 100%;
-            font-size: 18px;
-            padding: 10px;
-        }
-        .house-info {
-            position: relative;
-            padding-bottom: 50px;
-        }
-        .btn-rent {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: auto;
-            padding: 10px 20px;
-        }
-    </style>
 </head>
 
 <body>
@@ -61,10 +39,10 @@
 
             <label class="form-label mt-2">Đặt ngày:</label>
             <div class="date-buttons">
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="1">1 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="2">2 ngày</button>
                 <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="5">5 ngày</button>
             </div>
 
             <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>

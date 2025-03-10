@@ -7,6 +7,9 @@
     <title>Đơn đặt chỗ</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         .room-image {
             width: 150px;
@@ -51,6 +54,7 @@
             gap: 50px;
             margin-top: 20px;
             margin-left: -10px;
+            text-align: center;
         }
 
         .checkin-info, .checkout-info {
@@ -69,18 +73,12 @@
             align-items: center;
         }
 
-        .total-price {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
         .text-muted.mb-0 span{
             color: #c91515;
         }
-        .mt-3.d-flex {
-            padding-bottom: 15px;
-            margin-left: 840px;
+        .form-control{
+            width: 250px;
+            margin-top: -20px;
         }
     </style>
 </head>
@@ -113,10 +111,13 @@
                             <span class="badge bg-danger">Đã hủy</span>
                         </c:when>
                         <c:when test="${order.paymentStatus eq 'waiting'}">
-                            <span class="badge bg-danger">Ch thanh toán</span>
+                            <span class="badge bg-danger">Chưa thanh toán</span>
                         </c:when>
                         <c:when test="${order.paymentStatus eq 'completed'}">
-                            <span class="badge bg-success">Hoàn thành</span>
+                            <span class="badge bg-success">Đã hoàn thành</span>
+                        </c:when>
+                        <c:when test="${order.paymentStatus eq 'paid'}">
+                            <span class="badge bg-success">Đã thanh toán</span>
                         </c:when>
                         <c:otherwise>
                             <span class="badge bg-dark">${order.paymentStatus}</span>
@@ -140,33 +141,46 @@
                                 <p class="text-muted fw-semibold mb-1">Số người thuê</p>
                                 <p class="text-muted mb-0">${order.numPeople}</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            <div class="mt-3 d-flex justify-content-between">
-                <div class="total-price">
-                    <p class="text-muted fw-semibold mb-1">Tổng tiền:</p>
-                    <p class="text-muted mb-0">
+                            <div class="total-price">
+                                <p class="text-muted fw-semibold mb-1">Tổng tiền</p>
+                                <p class="text-muted mb-0">
             <span id="total-price-${order.idOrder}">
                 <fmt:formatNumber value="${order.calculateTotalPrice()}" type="number"/>
             </span> VNĐ
-                    </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                    <c:choose>
-                        <c:when test="${order.paymentStatus eq 'completed'}">
-                            <a href="commentServlet?productId=${order.idProduct}"
-                               class="btn btn-danger custom-btn me-2">
-                                Viết đánh giá</a>
-                        </c:when>
-                        <c:otherwise>
-                            <button type="button" class="btn btn-danger custom-btn me-2" onclick="confirmCancel(${order.idOrder})">
-                                Hủy
-                            </button>
-                        </c:otherwise>
-                    </c:choose>
-                        <%--<button class="btn btn-primary custom-btn">Quản lý đặt phòng</button>--%>
-                </div>
+            <div class="mt-3 d-flex justify-content-end gap-2 p-2">
+                <c:choose>
+                    <c:when test="${order.paymentStatus eq 'waiting'}">
+                        <button class="btn btn-primary btn-payment"
+                                data-idOrder="${order.idOrder}"
+                                data-image="img/${order.image}"
+                                data-nameProduct="${order.nameProduct}"
+                                data-price="${order.price}"
+                                data-numDate="${order.calculateDays()}"
+                                data-totalPrice="${order.calculateTotalPrice()}">
+                            Thanh toán
+                        </button>
+                    </c:when>
+                </c:choose>
+                <c:choose>
+                    <c:when test="${order.paymentStatus eq 'completed'}">
+                        <a href="commentServlet?productId=${order.idProduct}"
+                           class="btn btn-danger custom-btn">
+                            Viết đánh giá
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <button type="button" class="btn btn-danger custom-btn" onclick="confirmCancel(${order.idOrder})">
+                            Hủy
+                        </button>
+                    </c:otherwise>
+                </c:choose>
             </div>
+        </div>
         </div>
     </c:forEach>
 
@@ -192,6 +206,52 @@
     </div>
 </div>
 
+<div class="modal fade" id="orderPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"> <!-- Thêm modal-dialog-centered -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Title">Thanh toán đơn hàng</h5>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center gap-3">
+                    <img class="room-image" style="width: 100px; height: 70px; object-fit: cover;">
+                    <p class="room-title flex-grow-1"></p>
+                </div>
+                <hr class="my-2">
+                <div class="d-flex justify-content-between align-items-start mt-3">
+                    <div class="text-left">
+                        <p>Ghi chú</p>
+                        <textarea placeholder="Thêm ghi chú cho đơn hàng" class="form-control" rows="1"></textarea>
+                    </div>
+                    <div class="text-right">
+                        <div class="d-flex flex-column gap-2">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Giá/ngày:</span>
+                                <span class="fw-bold price ms-4"></span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold">Số ngày:</span>
+                                <span class="fw-bold numDate ms-4"></span>
+                            </div>
+                            <div class="d-flex justify-content-between border-top pt-2">
+                                <span class="fw-bold">Tổng cộng:</span>
+                                <span class="fw-bold text-danger totalPrice ms-4"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Xác nhận</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <footer class="mt-5">
@@ -203,6 +263,29 @@
         var myModal = new bootstrap.Modal(document.getElementById("confirmModal"));
         myModal.show();
     }
+    document.addEventListener("DOMContentLoaded", function () {
+        const paymentButtons = document.querySelectorAll(".btn-payment");
+
+        paymentButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const idOrder = this.getAttribute("data-idOrder");
+                const image = this.getAttribute("data-image");
+                const nameProduct = this.getAttribute("data-nameProduct");
+                const price = this.getAttribute("data-price");
+                const numDate = this.getAttribute("data-numDate");
+                const totalPrice = this.getAttribute("data-totalPrice");
+
+                document.querySelector("#orderPayment .room-image").src = image;
+                document.querySelector("#orderPayment .room-title").textContent = nameProduct;
+                document.querySelector("#orderPayment .price").textContent = price + " đ";
+                document.querySelector("#orderPayment .numDate").textContent = numDate + " Ngày";
+                document.querySelector("#orderPayment .totalPrice").textContent = totalPrice + " đ";
+
+                var myModal = new bootstrap.Modal(document.getElementById("orderPayment"));
+                myModal.show();
+            });
+        });
+    });
 </script>
 
 </body>
