@@ -99,10 +99,12 @@
     .dropdown {
         position: relative;
         display: inline-block;
-        z-index: 1010;
+        z-index: 9999;
     }
 
     .dropdown-content {
+        padding: 0;
+        margin: 0;
         position: absolute;
         top: 100%;
         left: 0;
@@ -110,13 +112,15 @@
         background-color: white;
         min-width: 160px;
         box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 1050; /* Đặt cao để nổi lên trên */
+        z-index: 9999 !important;
     }
+
     .dropdown-content a {
         display: flex;
         align-items: center;
         white-space: nowrap;
         padding: 10px 15px;
+        text-align: left;
     }
 
     .dropdown:hover .dropdown-content {

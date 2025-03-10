@@ -108,7 +108,6 @@ public class HomeUserServlet extends HttpServlet {
                 break;
             default:
                 showListProductPage(req, resp);
-
         }
     }
 

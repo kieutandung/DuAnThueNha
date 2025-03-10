@@ -3,6 +3,8 @@ package com.example.duanthuenha.Controller.User;
 import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Service.RentHouse.RentHouseImpl;
 import com.example.duanthuenha.Service.RentHouse.RentHouseService;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +19,12 @@ public class RentHouseServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+
+        resp.setCharacterEncoding("UTF-8");
         try {
+
             HttpSession session = req.getSession();
             String userIDS = (String) session.getAttribute("userId");
             int idUser = Integer.parseInt(userIDS);
@@ -32,7 +39,8 @@ public class RentHouseServlet extends HttpServlet {
             Order order = rentHouseService.addRentHouse(idUser, idProduct, startDate, endDate, notes, numPeople);
 
             req.setAttribute("order", order);
-            req.getRequestDispatcher("view/user/home.jsp").forward(req, resp);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/orderInformationServlet");
+            dispatcher.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Lỗi khi thuê nhà!");

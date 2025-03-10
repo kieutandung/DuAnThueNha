@@ -10,24 +10,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rentHouse.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="/js/rentHouse.js"></script>
 
     <style>
         body {
             background-color: #f8f9fa;
         }
-        .container {
-            padding-top: 30px;
-        }
         .btn-rent {
             width: 100%;
             font-size: 18px;
             padding: 10px;
-        }
-        .house-image {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
         }
         .house-info {
             position: relative;
@@ -92,7 +83,7 @@
             <h3 class="text-dark">Đơn hàng</h3>
             <div class="house-info position-relative">
                 <div class="house-info position-relative ">
-                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm">
+                    <img src=img/${product.image} class="house-image" alt="Hình ảnh sản phẩm" width="410px">
                     <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                             value="${product.nameProduct}"/></span></p>
                     <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
@@ -129,8 +120,7 @@
     </div>
 </div>
 
-
-
+<script src="/js/rentHouse.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <footer class="mt-5">
