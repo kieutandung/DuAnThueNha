@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/houseDetail.js"></script>
 </head>
@@ -45,33 +46,15 @@
         </div>
 
         <div class="col-md-5">
-            <h2 class ="my-3" style="font-weight: bold">
+            <h2 class="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-            <!-- Nút Khiếu Nại -->
-            <button id="complaintBtn">
-                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-            </button>
 
-            <!-- Hộp thoại Khiếu Nại -->
-            <div id="complaint-popup" class="hidden">
-                <h4>Gửi Khiếu Nại</h4>
-                <ul>
-                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
-                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
-                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
-                </ul>
-                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
-
-                <div class="complaint-buttons">
-                    <button id="submit-complaint">Gửi khiếu nại</button>
-                    <button id="close-popup">Đóng</button>
-                </div>
-            </div>
-
-            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
+            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">
+                Địa chỉ:</strong> ${product.address}
             </p>
-            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
+            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;"
+                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m2
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
@@ -105,6 +88,24 @@
                     data-product-id="${product.idProduct}" onclick="toggleFavorite()">
                 <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
             </button>
+            <button id="complaintBtn" class="btn btn-warning">
+                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+            </button>
+            <!-- Hộp thoại Khiếu Nại -->
+            <div id="complaint-popup" class="hidden">
+                <h4>Gửi Khiếu Nại</h4>
+                <ul>
+                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
+                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
+                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
+                </ul>
+                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
+
+                <div class="complaint-buttons">
+                    <button id="submit-complaint">Gửi khiếu nại</button>
+                    <button id="close-popup">Đóng</button>
+                </div>
+            </div>
         </div>
     </div>
 

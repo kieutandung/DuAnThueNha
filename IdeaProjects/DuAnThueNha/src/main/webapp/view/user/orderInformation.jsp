@@ -24,6 +24,8 @@
         .custom-card {
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px; /* Tăng padding để tạo khoảng trống */
+            margin-bottom: 20px; /* Tăng khoảng cách giữa các đơn */
         }
 
         .custom-badge-confirmed {
@@ -45,14 +47,14 @@
         .room-title {
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Giảm khoảng cách với phần tiếp theo */
         }
 
         .checkin-checkout {
             display: flex;
             justify-content: flex-start; /* Căn trái */
-            gap: 50px;
-            margin-top: 20px;
+            gap: 80px;
+            margin-top: 30px;
             margin-left: -10px;
             text-align: center;
         }
@@ -93,8 +95,6 @@
 <%--        <li class="nav-item"><a class="nav-link" href="#">Hoàn tất</a></li>--%>
 <%--        <li class="nav-item"><a class="nav-link" href="#">Đã hủy</a></li>--%>
     </ul>
-
-
     <c:forEach var="order" items="${orders}">
         <div class="custom-card"
              data-id="${order.idOrder}"
