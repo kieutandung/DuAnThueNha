@@ -13,20 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector("form");
 
     let selectedDays = 0;
+
+    // Lấy giá/ngày từ giao diện
     const pricePerDay = parseInt(pricePerDayElement.innerText.replace(/\D/g, "")) || 0;
 
-    // Hàm định dạng ngày theo định dạng dd/mm/yyyy
-    const formatDate = (date) => {
-        const dd = String(date.getDate()).padStart(2, '0');
-        const mm = String(date.getMonth() + 1).padStart(2, '0');
-        const yyyy = date.getFullYear();
-        return `${dd}/${mm}/${yyyy}`;
-    };
-
-    // Hàm cập nhật thông tin đơn hàng dựa trên ngày bắt đầu và ngày kết thúc hiện có
+    // Hàm cập nhật đơn hàng
     function updateOrder() {
         const startDate = startDateInput.value;
-        if (!startDate) {
+        if (!startDate || selectedDays <= 0) {
             orderDateElement.innerText = "-";
             endDateElement.innerText = "-";
             totalAmountElement.innerText = "0";
@@ -35,31 +29,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let startDateObj = new Date(startDate);
-        let endDateObj = null;
+        let endDateObj = new Date(startDateObj);
+        endDateObj.setDate(startDateObj.getDate() + selectedDays);
 
-        if (endDateInput.value) {
-            // Nếu người dùng đã chọn ngày kết thúc thủ công, dùng giá trị đó
-            endDateObj = new Date(endDateInput.value);
-            // Tính số ngày thuê từ hiệu số giữa ngày kết thúc và ngày bắt đầu (cộng 1)
-            let diffTime = endDateObj.getTime() - startDateObj.getTime();
-            selectedDays = Math.floor(diffTime / (1000 * 3600 * 24)) + 1;
-        } else if (selectedDays > 0) {
-            // Nếu chưa có ngày kết thúc được chọn thủ công, tính tự động dựa trên số ngày thuê từ nút "đặt ngày"
-            endDateObj = new Date(startDateObj);
-            endDateObj.setDate(startDateObj.getDate() + selectedDays - 1);
-            // Cập nhật lại input ngày kết thúc tự động
-            endDateInput.value = endDateObj.toISOString().split("T")[0];
-        }
-
-        // Cập nhật hiển thị ngày (giữ nguyên giá trị đã chọn)
+        const formatDate = (date) => {
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            return `${dd}/${mm}/${yyyy}`;
+        };
+        // Cập nhật thông tin đơn hàng
         orderDateElement.innerText = formatDate(startDateObj);
-        endDateElement.innerText = endDateObj ? formatDate(endDateObj) : "-";
-
-        // Tính và cập nhật tổng tiền dựa trên số ngày thuê và giá/ngày
+        endDateElement.innerText = formatDate(endDateObj);
         const totalPrice = selectedDays * pricePerDay;
         totalAmountElement.innerText = totalPrice.toLocaleString();
 
-        // Cập nhật số người thuê hiển thị
+        // Cập nhật input ngày kết thúc
+        endDateInput.value = endDateObj.toISOString().split("T")[0];
+
+        // Cập nhật số người thuê
         const numPeopleValue = numPeopleInput.value;
         numPeopleOrderElement.innerText = numPeopleValue ? numPeopleValue : "-";
     }
@@ -67,36 +55,33 @@ document.addEventListener("DOMContentLoaded", function () {
     // Khi người dùng click vào nút "đặt ngày"
     document.querySelectorAll(".duration-btn").forEach(button => {
         button.addEventListener("click", function () {
-            // Cập nhật selectedDays dựa trên nút được chọn (ví dụ: 1,2,3,5)
             selectedDays = parseInt(this.dataset.days);
-            // Nếu đã có ngày bắt đầu, cập nhật đơn hàng; nếu chưa, updateOrder sẽ hiển thị "-" cho ngày kết thúc
             if (startDateInput.value) {
                 updateOrder();
             }
         });
     });
-
-    // Khi người dùng thay đổi ngày bắt đầu
     startDateInput.addEventListener("change", function () {
         if (startDateInput.value) {
-            // Nếu ngày kết thúc đã được chọn, giữ nguyên ngày đó và tính lại số ngày thuê
             if (endDateInput.value) {
-                let startDateObj = new Date(startDateInput.value);
-                let endDateObj = new Date(endDateInput.value);
-                let diffTime = endDateObj.getTime() - startDateObj.getTime();
-                selectedDays = Math.floor(diffTime / (1000 * 3600 * 24)) + 1;
+                endDateInput.value = "";
+                endDateElement.innerText = "-";
+                selectedDays = 0;
+                numPeopleInput.value = "";
+                numPeopleOrderElement.innerText = "-";
             }
             updateOrder();
         }
     });
 
-    // Khi người dùng thay đổi ngày kết thúc thủ công
+
+    // Khi người dùng thay đổi ngày kết thúc thủ công, cập nhật lại selectedDays và thông tin đơn hàng
     endDateInput.addEventListener("change", function () {
         if (startDateInput.value && endDateInput.value) {
             let startDateObj = new Date(startDateInput.value);
             let endDateObj = new Date(endDateInput.value);
             let diffTime = endDateObj.getTime() - startDateObj.getTime();
-            selectedDays = Math.floor(diffTime / (1000 * 3600 * 24)) + 1;
+            selectedDays = Math.floor(diffTime / (1000 * 3600 * 24));
             updateOrder();
         } else {
             endDateElement.innerText = "-";
@@ -108,23 +93,38 @@ document.addEventListener("DOMContentLoaded", function () {
         updateOrder();
     });
 
+    function showNotification(message, type) {
+        Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+        });
+    }
+
     // Khi nhấn "Thuê ngay"
     rentButton.addEventListener("click", function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Ngăn form submit ngay lập tức
 
         if (!startDateInput.value) {
-            alert("Vui lòng chọn ngày bắt đầu!");
-            return;
-        }
-        if (selectedDays <= 0) {
-            alert("Vui lòng chọn số ngày thuê!");
-            return;
-        }
-        if (!numPeopleInput.value || numPeopleInput.value <= 0) {
-            alert("Vui lòng nhập số người thuê!");
+            showNotification("Vui lòng chọn ngày bắt đầu!", "warning");
             return;
         }
 
+        if (selectedDays <= 0) {
+            showNotification("Vui lòng chọn số ngày thuê!", "warning");
+            return;
+        }
+
+        if (!numPeopleInput.value || numPeopleInput.value <= 0) {
+            showNotification("Vui lòng nhập số người thuê!", "warning");
+            return;
+        }
+
+        // Nếu hợp lệ, mở modal xác nhận
         const modal = new bootstrap.Modal(modalElement);
         modal.show();
     });
@@ -133,4 +133,5 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmRentButton.addEventListener("click", function () {
         form.submit();
     });
+
 });
