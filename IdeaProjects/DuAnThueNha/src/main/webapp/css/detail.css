@@ -62,41 +62,40 @@ body {
 .hidden {
     display: none;
 }
-#complaintBtn {
+#complaint-popup {
     position: absolute;
-    top: 10px;
-    right: 280px;
+    top: 130px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(124, 124, 124, 0.3);
+    z-index: 1000;
+    width: 350px;
+}
+#complaintBtn {
     background-color: #FFC107;
     color: black;
-<<<<<<< HEAD
-    padding: 9px 13px;
-    font-size: 16px;
-=======
-    font-size: 15px;
-    font-weight: 600;
-    padding: 8px 12px;
->>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
+    padding: 5px 10px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-<<<<<<< HEAD
-    height: 40px;
+    position: absolute;
+    top: 485px;
+    right: 370px;
+    height: 38px;
     width: auto;
-    z-index: 10;
-    margin-top: 500px;
-
-=======
 }
 
-#complaintBtn:hover {
-    background-color: #e0a800;
->>>>>>> 40299907f2424804fe7c25b0071f98e4c06c2099
+#complaintBtn i {
+    font-size: 12px;
 }
-
 #complaintBtn i {
     font-size: 12px;
 
