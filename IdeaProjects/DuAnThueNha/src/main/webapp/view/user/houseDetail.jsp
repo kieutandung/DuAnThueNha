@@ -73,7 +73,6 @@
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
 
-            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
