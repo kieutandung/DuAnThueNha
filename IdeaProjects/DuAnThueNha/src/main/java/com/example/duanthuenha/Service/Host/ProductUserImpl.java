@@ -1,9 +1,8 @@
 package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
-import com.example.duanthuenha.Model.Image;
 import com.example.duanthuenha.Model.Product;
-import com.example.duanthuenha.Model.ProductHost;
+import com.example.duanthuenha.Model.Report;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +14,20 @@ import java.util.List;
 
 public class ProductUserImpl implements ProductUserService {
     private ConnectDB connectDB = new ConnectDB();
+
+
+    public void addReport(Report report) {
+        String query = "INSERT INTO report (idProduct, idUser,description) VALUES (?, ?, ?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, report.getIdProduct());
+            ps.setInt(2, report.getIdUser());
+            ps.setString(3,report.getDescription());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+        }
+    }
 
     @Override
     public void addProduct(Product product) {

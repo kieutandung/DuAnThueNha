@@ -6,16 +6,31 @@ public class Report {
     private int idReport;
     private int idProduct;
     private int idUser;
+    private String description;
     private String status;
 
-    public Report(int idReport, int idProduct, int idUser, String status, LocalDate reportDate) {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Report(int idReport, int idProduct, int idUser, String description, String status, LocalDate reportDate) {
         this.idReport = idReport;
         this.idProduct = idProduct;
         this.idUser = idUser;
+        this.description = description;
         this.status = status;
         this.reportDate = reportDate;
     }
 
+    public Report(int idProduct, int idUser, String description) {
+        this.idProduct = idProduct;
+        this.idUser = idUser;
+        this.description = description;
+    }
 
     public LocalDate getReportDate() {
         return reportDate;

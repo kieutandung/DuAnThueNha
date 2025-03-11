@@ -20,14 +20,14 @@ import java.util.List;
 @WebServlet(value = "/detailProductUser")
 public class DetailProductUser extends HttpServlet {
     ProductUserService productUserService = new ProductUserImpl();
+    ProductImpl productImpl = new ProductImpl();
+    ProfileImpl profileImpl = new ProfileImpl();
+    CommentImpl commentService = new CommentImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         int productId = Integer.parseInt(req.getParameter("productId"));
-        ProductImpl productImpl = new ProductImpl();
-        ProfileImpl profileImpl = new ProfileImpl();
-        CommentImpl commentService = new CommentImpl();
         List<Image> listImage = productImpl.getImagesByProductId(productId);
         ProductHost product = productImpl.getProduct(productId);
 
