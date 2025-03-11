@@ -10,12 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="367b84d9-3789-4360-bad5-573c60810623" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Report.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/detail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/houseDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/houseDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/addComments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/addComments.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -73,6 +73,7 @@ body {
     z-index: 1000;
     width: 350px;
 }
+
 #complaintBtn {
     background-color: #FFC107;
     color: black;
@@ -134,7 +135,7 @@ body {
 .complaint-buttons {
     margin-top: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -167,4 +168,3 @@ body {
     background-color: #4199f8;
     border-color: #4199f8;
 }
-
