@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller.Admin;
 
+import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Model.Users;
@@ -48,6 +49,9 @@ public class AdminServlet extends HttpServlet {
                 case "browseProfile":
                     listBrowseProfileView(req, resp);
                     break;
+                case "revenueChart":
+                    revenueChart(req,resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -55,6 +59,13 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void revenueChart(HttpServletRequest req, HttpServletResponse resp) throws ServletException , IOException{
+        List<Order> orders = listAccountService.getAllOrder();
+        req.setAttribute("orders", orders);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/revenue.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override

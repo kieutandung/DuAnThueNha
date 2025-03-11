@@ -325,9 +325,49 @@ public class ListAccountImpl implements ListAccountService {
 
     @Override
     public List<Order> getAllOrder() {
-        List<Order> orderList = new ArrayList<>();
-        String sql = "";
-        return orderList;
+        List<Order> rentalRequests = new ArrayList<>();
+        String sql = "SELECT o.*, u.fullName, u.phone, p.nameProduct, p.image, p.price " +
+                "FROM orders o " +
+                "JOIN users u ON o.idUser = u.idUser " +
+                "JOIN products p ON o.idProduct = p.idProduct " +
+                "WHERE o.paymentStatus = 'completed'";
+
+        Connection connection = connectDB.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Order order = new Order();
+                order.setIdOrder(rs.getInt("idOrder"));
+                order.setIdUser(rs.getInt("idUser"));
+                order.setIdProduct(rs.getInt("idProduct"));
+                order.setOrderDate(rs.getTimestamp("orderDate").toLocalDateTime());
+                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
+                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
+                order.setNotes(rs.getString("notes"));
+                order.setNumPeople(rs.getInt("numPeople"));
+                order.setPaymentStatus(rs.getString("paymentStatus"));
+
+                // Thêm thông tin user
+                order.setFullName(rs.getString("fullName"));
+                order.setPhone(rs.getString("phone"));
+                order.setImage(rs.getString("image"));
+                order.setNameProduct(rs.getString("nameProduct"));
+                order.setPrice(rs.getDouble("price"));
+
+                rentalRequests.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rentalRequests;
     }
 
 }
