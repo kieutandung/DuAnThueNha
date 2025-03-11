@@ -24,9 +24,15 @@
         border: none;
     }
     .footer {
-        background: rgba(0, 0, 0, 0.7);
+        background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         color: white;
         padding: 40px 0;
+        font-family: Arial, sans-serif;
+
     }
 
     .container {
@@ -39,13 +45,6 @@
         justify-content: space-between;
         flex-wrap: wrap;
     }
-    .footer {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 40px 0;
-        font-family: Arial, sans-serif;
-    }
-
     .container {
         width: 80%;
         margin: auto;
@@ -53,20 +52,31 @@
 
     .footer-content {
         display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
-        justify-content: space-between; /* Căn giữa theo chiều ngang */
-        align-items: center;    /* Căn giữa theo chiều dọc */
-    }
+        align-items: flex-start; /* Căn trên để các phần thẳng hàng */
 
+    }
     .footer-section {
-        width: 22%;
+        width: 25%; /* Đảm bảo các cột có kích thước bằng nhau */
         margin-bottom: 20px;
         padding: 10px;
+        display: flex;
+        flex-direction: column; /* Giữ nội dung theo chiều dọc */
+        text-align: left; /* Căn trái nội dung */
     }
 
-    .footer-section h2, .footer-section h3 {
-        color: #0099FF;
+    .footer-section h2 {
+        margin-top: 5px; /* Điều chỉnh khoảng cách lùi xuống */
+    }
+
+    .footer-section h3 {
+        color: #ffffff;
         margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        margin: 10px 0; /* Cách đều các dòng thông tin */
     }
 
     .footer-section ul {
@@ -138,9 +148,60 @@
             padding-top: 20px;
         }
     }
-
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .item {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: end;
+        padding: 10px;
+        height: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .item.large {
+        grid-column: span 1;
+        height: 200px;
+    }
+    .item.tall {
+        grid-row: span 2;
+        height: 410px;
+    }
+    .gallery {
+        margin-bottom: 50px;
+    }
+    h2 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+    h2 span {
+        text-align: left;
+        font-size: 20px;
+    }
 
 </style>
+<body>
+<div class="container">
+    <h2><span> Các dự án đã triển khai tại một số thành phố</span></h2>
+    <div class="gallery">
+        <div class="item large" style="background-image: url('https://docs.portal.danang.gov.vn/images/image/anhdanang_1490838715897.jpg');" >Đà Nẵng</div>
+        <div class="item large" style="background-image: url('https://kenh14cdn.com/2019/11/1/snimek-obrazovky-2017-04-16-v-184239-1038x576-15726007989411418593991.png');">Hà Nội</div>
+        <div class="item tall" style="background-image: url('https://khachsandalat.pro/wp-content/uploads/2016/08/thanh-pho-da-lat-3.jpg');">Đà Lạt</div>
+        <div class="item" style="background-image: url('https://btnmt.1cdn.vn/2022/01/28/hcm.jpg');">Hồ Chí Minh</div>
+        <div class="item" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Khu_trung_t%C3%A2m_th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh%2C_nh%C3%ACn_t%E1%BB%AB_ph%C3%ADa_qu%E1%BA%ADn_2.JPG/2560px-Khu_trung_t%C3%A2m_th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh%2C_nh%C3%ACn_t%E1%BB%AB_ph%C3%ADa_qu%E1%BA%ADn_2.JPG');">Hà Đông</div>
+    </div>
+</div>
 
 <footer class="footer">
     <div class="container">
