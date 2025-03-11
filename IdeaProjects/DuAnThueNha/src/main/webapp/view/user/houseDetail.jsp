@@ -125,26 +125,33 @@
     <div class="mt-4">
         <h4><i class="bi bi-chat-left-text"></i> Đánh giá sản phẩm</h4>
         <div class="list-group">
-            <c:forEach var="cmt" items="${comments}">
-                <div class="list-group-item d-flex align-items-start">
-                    <div class="me-3">
-                        <i class="bi bi-person-circle fs-2"></i>
-                    </div>
-                    <div>
-                        <div>
-                            <c:forEach begin="1" end="${cmt.rating}">
-                                <i class="bi bi-star-fill text-warning"></i>
-                            </c:forEach>
-                            <c:forEach begin="${cmt.rating + 1}" end="5">
-                                <i class="bi bi-star text-secondary"></i>
-                            </c:forEach>
+            <c:choose>
+                <c:when test="${empty comments}">
+                        <strong style="text-align: center;font-size: 20px">Không có đánh giá nào</strong>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="cmt" items="${comments}">
+                        <div class="list-group-item d-flex align-items-start">
+                            <div class="me-3">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </div>
+                            <div>
+                                <div>
+                                    <c:forEach begin="1" end="${cmt.rating}">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </c:forEach>
+                                    <c:forEach begin="${cmt.rating + 1}" end="5">
+                                        <i class="bi bi-star text-secondary"></i>
+                                    </c:forEach>
+                                </div>
+                                <h6 class="mb-1">${cmt.username}</h6>
+                                <p class="mb-1">${cmt.comment}</p>
+                                <small class="text-muted"><i class="bi bi-clock"></i> ${cmt.commentDate}</small>
+                            </div>
                         </div>
-                        <h6 class="mb-1">${cmt.username}</h6>
-                        <p class="mb-1">${cmt.comment}</p>
-                        <small class="text-muted"><i class="bi bi-clock"></i> ${cmt.commentDate}</small>
-                    </div>
-                </div>
-            </c:forEach>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>
