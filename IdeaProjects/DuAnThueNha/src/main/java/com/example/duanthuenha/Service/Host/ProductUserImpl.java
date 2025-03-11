@@ -201,5 +201,22 @@ public class ProductUserImpl implements ProductUserService {
         return favoriteProducts;
     }
 
+    @Override
+    public void complaint(int idUser, int idProduct, String description) {
+        String sql = "INSERT INTO complaints (idUser, idProduct, complaintDate, description, status) " +
+                "VALUES (?, ?, NOW(), ?, 'pending')";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idUser);
+            ps.setInt(2, idProduct);
+            ps.setString(3, description);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi gửi khiếu nại", e);
+        }
+    }
 }
 

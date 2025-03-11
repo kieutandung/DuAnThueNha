@@ -78,25 +78,24 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p style="color: red">Không tìm thấy sản phẩm với từ khóa "${keywordUser}"
-                        <a href="/homeUserServlet">
-                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
-                        </a>
                     </p>
-
+                    <a href="/homeUserServlet">
+                        <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                    </a>
                 </div>
             </div>
         </c:otherwise>
     </c:choose>
     <ul class="pagination">
         <c:if test="${tag > 1}">
-            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}">Trước</a></li>
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}" class="page-link"> Trước </a></li>
         </c:if>
         <c:forEach var="i" begin="1" end="${endPageUser}">
             <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
             </li>
         </c:forEach>
         <c:if test="${tag < endPageUser}">
-        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
         </c:if>
     </ul>
 

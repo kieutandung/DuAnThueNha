@@ -179,7 +179,7 @@
         <ul class="nav-icon">
             <li>
                 <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
-                    <img src="https://cdn1.iconfinder.com/data/icons/heroicons-ui/24/chat-1024.png" alt="Favorites"
+                    <img src="img/chat (1).png" alt="Char"
                          class="w-6 h-6 icon-black">
                 </a>
             </li>

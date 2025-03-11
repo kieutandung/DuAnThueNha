@@ -57,8 +57,13 @@ public class DetailProductUser extends HttpServlet {
             case "toggleFavorite":
                 toggleFavorite(req, resp);
                 break;
-
+            case "report":
+                reportHost(req,resp);
         }
+    }
+
+    private void reportHost(HttpServletRequest req, HttpServletResponse resp) {
+
     }
 
     private void toggleFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -67,7 +72,7 @@ public class DetailProductUser extends HttpServlet {
         int userId = Integer.parseInt((String) session.getAttribute("userId"));
         if (!productUserService.isFavorite(userId, productId)) {
             List<Product> favorites = productUserService.getAllProductsByFavorite(userId);
-            if (favorites.size() >= 10) {
+            if (favorites.size() >= 12) {
                 resp.setContentType("text/plain");
                 resp.getWriter().write("error");
                 return;

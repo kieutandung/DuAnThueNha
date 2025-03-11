@@ -62,7 +62,7 @@ public class ProfileServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        req.setAttribute("birthDateUser",formattedBirthDate);
+        req.setAttribute("birthDateUser", formattedBirthDate);
         req.setAttribute("user", user);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/profile.jsp");
         dispatcher.forward(req, resp);
@@ -97,6 +97,10 @@ public class ProfileServlet extends HttpServlet {
         String phone = req.getParameter("phone");
         String email = req.getParameter("email");
         String image = req.getParameter("image");
+
+        if (image.isEmpty()) {
+            image = userPassAndUsername.getImage();
+        }
 
         String birthDate = req.getParameter("birthDate");
 

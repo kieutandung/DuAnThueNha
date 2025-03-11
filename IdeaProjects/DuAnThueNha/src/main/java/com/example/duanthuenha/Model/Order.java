@@ -115,9 +115,11 @@ public class Order {
     }
 
     public double calculateTotalPrice() {
-        long days = ChronoUnit.DAYS.between(startDate, endDate);
-        days = Math.max(days, 1); // Đảm bảo ít nhất 1 ngày
+        long days = calculateDays();
+        days = Math.max(days, 1);
         return days * price;
     }
-
+    public long calculateDays() {
+        return ChronoUnit.DAYS.between(startDate, endDate);
+    }
 }

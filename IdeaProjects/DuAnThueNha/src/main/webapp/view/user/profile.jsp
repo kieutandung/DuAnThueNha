@@ -233,7 +233,7 @@
 
                 <!-- Ẩn file input mặc định -->
                 <input type="file" id="image" name="image" accept="image/*" style="display: none;">
-
+                <input type="hidden" name = "imageJoker" value="img/${user.image}">
                 <!-- Ô hiển thị ảnh (preview) -->
                 <div style="margin-top: 10px;">
                     <img id="imagePreview"

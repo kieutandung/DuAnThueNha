@@ -49,7 +49,9 @@
                 ${product.nameProduct}
             </h2>
             <!-- Nút Khiếu Nại -->
-
+            <button id="complaintBtn">
+                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+            </button>
 
             <!-- Hộp thoại Khiếu Nại -->
             <div id="complaint-popup" class="hidden">
@@ -71,6 +73,8 @@
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
 
+            <p class="my-2"><i class="bi bi-geo-alt-fill"></i> <strong>Địa chỉ:</strong> ${product.address}
+            </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
                     <p class="status">
@@ -89,14 +93,10 @@
 
             <h5 class="mt-4">Chủ nhà: </h5>
             <div class="d-flex align-items-center py-2">
-                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60" alt="Ảnh chủ nhà">
-                <div class="px-3 flex-grow-1">
-                    <div class="d-flex align-items-center">
-                        <h5 class="mb-0">${avtUser.fullName}</h5>
-                        <c:if test="${idUser ne avtUser.idUser}">
-                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}" class="ms-4 text-decoration-none">Liên hệ</a>
-                        </c:if>
-                    </div>
+                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60"
+                     alt="Ảnh chủ nhà">
+                <div class="px-3">
+                    <h5 class="mb-0">${avtUser.fullName}</h5>
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
@@ -106,9 +106,6 @@
             <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
                     data-product-id="${product.idProduct}" onclick="toggleFavorite()">
                 <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
-            </button>
-            <button id="complaintBtn">
-                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
             </button>
         </div>
     </div>
