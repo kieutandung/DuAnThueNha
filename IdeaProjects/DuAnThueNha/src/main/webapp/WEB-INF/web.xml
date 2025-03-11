@@ -6,4 +6,8 @@
     <welcome-file-list>
         <welcome-file>loginServlet</welcome-file>
     </welcome-file-list>
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>view/user/chat.jsp</welcome-file>-->
+<!--    </welcome-file-list>-->
+
 </web-app>

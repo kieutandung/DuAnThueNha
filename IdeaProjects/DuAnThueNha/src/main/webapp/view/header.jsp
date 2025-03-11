@@ -178,8 +178,8 @@
         </ul>
         <ul class="nav-icon">
             <li>
-                <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl">
-                    <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" alt="Favorites"
+                <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
+                    <img src="https://cdn1.iconfinder.com/data/icons/heroicons-ui/24/chat-1024.png" alt="Favorites"
                          class="w-6 h-6 icon-black">
                 </a>
             </li>
@@ -199,8 +199,11 @@
 
                 <div class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
+                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl"> Bộ sưu tập
+                    </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>
+
                 </div>
             </li>
         </ul>

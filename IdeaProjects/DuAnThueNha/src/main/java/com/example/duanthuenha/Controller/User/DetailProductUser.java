@@ -35,13 +35,13 @@ public class DetailProductUser extends HttpServlet {
         listImage.add(0,image);
         Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
-
         boolean isFavorite = productUserService.isFavorite(Integer.parseInt(userID), productId);
 
         req.setAttribute("isFavorite", isFavorite);
         req.setAttribute("listImage", listImage);
         req.setAttribute("product", product);
         req.setAttribute("avtUser", avtUser);
+        req.setAttribute("idUser",userID);
 
         req.setAttribute("comments", comments);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/houseDetail.jsp");
