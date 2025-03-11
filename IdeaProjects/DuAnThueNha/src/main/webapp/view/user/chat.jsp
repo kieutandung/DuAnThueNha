@@ -25,14 +25,14 @@
 
                                 <div class="p-3">
 
-                                    <div class="input-group rounded mb-3">
-                                        <input type="search" class="form-control rounded" placeholder="Search"
-                                               aria-label="Search"
-                                               aria-describedby="search-addon"/>
-                                        <span class="input-group-text border-0" id="search-addon">
-                      <i class="fas fa-search"></i>
-                    </span>
-                                    </div>
+                                    <%--                                    <div class="input-group rounded mb-3">--%>
+                                    <%--                                        <input type="search" class="form-control rounded" placeholder="Search"--%>
+                                    <%--                                               aria-label="Search"--%>
+                                    <%--                                               aria-describedby="search-addon"/>--%>
+                                    <%--                                        <span class="input-group-text border-0" id="search-addon">--%>
+                                    <%--                      <i class="fas fa-search"></i>--%>
+                                    <%--                    </span>--%>
+                                    <%--                                    </div>--%>
 
                                     <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
                                         <c:forEach var="c" items="${allChat}">
@@ -44,11 +44,11 @@
                                                         <div class="d-flex flex-row">
                                                             <div>
                                                                 <img
-                                                                     src="img/${c.image}"
-                                                                     alt="avatar"
-                                                                     class="rounded-circle d-flex align-self-center me-3"
-                                                                     width="60">
-<%--                                                                <span class="badge bg-success badge-dot"></span>--%>
+                                                                        src="img/${c.image}"
+                                                                        alt="avatar"
+                                                                        class="rounded-circle d-flex align-self-center me-3"
+                                                                        width="60">
+                                                                    <%--                                                                <span class="badge bg-success badge-dot"></span>--%>
                                                             </div>
                                                             <div class="pt-1">
                                                                 <p class="fw-bold mb-0">${c.fullName}</p>
@@ -71,50 +71,53 @@
 
                                 <div id="chat-container" class="pt-3 pe-3"
                                      style="position: relative; height: 400px; overflow-y: auto; scrollbar-width: none">
-                                    <c:forEach var="c" items="${chat}">
-                                        <c:choose>
-
-                                            <c:when test="${c.idReceiver eq myProfile.idUser}">
-                                                <div class="d-flex flex-row justify-content-start">
-                                                    <img class="rounded-circle" src="img/${c.image}" alt="avatar"
-                                                         style="width: 45px; height: 100%;">
-                                                    <div>
-                                                        <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
-                                                           style="background-color: #e0e0e0">${c.text}</p>
-                                                        <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00
-                                                            PM | Aug 13</p>
-                                                    </div>
-                                                </div>
-                                            </c:when>
-
-                                            <c:otherwise>
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <div>
-                                                        <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${c.text}</p>
-                                                        <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug
-                                                            13</p>
-                                                    </div>
-                                                    <img class="rounded-circle" src="img/${myProfile.image}" alt="avatar"
-                                                         style="width: 45px; height: 100%;">
-                                                </div>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
+                                    <c:choose>
+                                        <c:when test="${not empty chat}">
+                                            <c:forEach var="c" items="${chat}">
+                                                <c:choose>
+                                                    <c:when test="${c.idReceiver eq myProfile.idUser}">
+                                                        <div class="d-flex flex-row justify-content-start">
+                                                            <img class="rounded-circle" src="img/${c.image}"
+                                                                 alt="avatar"
+                                                                 style="width: 45px; height: 100%;">
+                                                            <div>
+                                                                <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
+                                                                   style="background-color: #e0e0e0">${c.text}</p>
+                                                                    <%-- <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p> --%>
+                                                            </div>
+                                                        </div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="d-flex flex-row justify-content-end">
+                                                            <div>
+                                                                <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${c.text}</p>
+                                                                    <%-- <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p> --%>
+                                                            </div>
+                                                            <img class="rounded-circle" src="img/${myProfile.image}"
+                                                                 alt="avatar"
+                                                                 style="width: 45px; height: 100%;">
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p class="text-center" style="margin-top: 30px">Vui lòng chọn người liên hệ</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
-                                <form id="chat-form" action="chatServlet?action=sendMess&idHost=${idHost}"
-                                      method="post">
-                                    <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                                        <img class="rounded-circle" src="img/${myProfile.image}"
-                                             alt="avatar 3" style="width: 40px; height: 100%;">
-                                        <input style="background-color: #eeeeee" type="text"
-                                               class="form-control form-control-lg"
-                                               id="exampleFormControlInput2"
-                                               placeholder="Nhập tin nhắn" name="sendMess">
-                                        <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
-                                        <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-                                        <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a>
-                                    </div>
-                                </form>
+                                <c:if test="${not empty chat}">
+                                    <form id="chat-form" action="chatServlet?action=sendMess&idHost=${idHost}" method="post">
+                                        <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                                            <img class="rounded-circle" src="img/${myProfile.image}" alt="avatar 3" style="width: 40px; height: 100%;">
+                                            <input style="background-color: #eeeeee" type="text" class="form-control form-control-lg"
+                                                   id="exampleFormControlInput2" placeholder="Nhập tin nhắn" name="sendMess">
+                                            <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
+                                            <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
+                                            <a class="ms-3" href="" ><i class="fas fa-paper-plane"></i></a>
+                                        </div>
+                                    </form>
+                                </c:if>
                             </div>
                         </div>
 
@@ -139,8 +142,8 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('#chat-form').on('submit', function(e){
+    $(document).ready(function () {
+        $('#chat-form').on('submit', function (e) {
             e.preventDefault(); // Ngăn form gửi truyền thống
 
             var formData = $(this).serialize();
@@ -148,7 +151,7 @@
                 url: $(this).attr('action'),
                 type: 'POST',
                 data: formData,
-                success: function(response){
+                success: function (response) {
                     // Append HTML fragment của tin nhắn mới (trả về từ chatItem.jsp)
                     $('#chat-container').append(response);
                     // Cuộn container xuống cuối
@@ -157,7 +160,7 @@
                     // Xóa trường nhập tin nhắn
                     $('#exampleFormControlInput2').val('');
                 },
-                error: function(xhr, status, error){
+                error: function (xhr, status, error) {
                     console.error("Lỗi khi gửi tin nhắn: ", error);
                 }
             });

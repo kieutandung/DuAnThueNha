@@ -124,7 +124,7 @@
 
     <div class="mt-4">
         <h4><i class="bi bi-chat-left-text"></i> Đánh giá sản phẩm</h4>
-        <div class="list-group">
+        <div class="list-group" style="overflow-y: auto; max-height: 500px" >
             <c:forEach var="cmt" items="${comments}">
                 <div class="list-group-item d-flex align-items-start">
                     <div class="me-3">

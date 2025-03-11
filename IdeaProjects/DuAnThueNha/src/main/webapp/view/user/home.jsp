@@ -88,7 +88,7 @@
     </c:choose>
     <ul class="pagination">
         <c:if test="${tag > 1}">
-            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}" class="page-link"> Trước </a></li>
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}"> Trước </a></li>
         </c:if>
         <c:forEach var="i" begin="1" end="${endPageUser}">
             <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
