@@ -8,6 +8,15 @@ public class Report {
     private int idUser;
     private String description;
     private String status;
+    private String reason;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public String getDescription() {
         return description;
@@ -26,9 +35,10 @@ public class Report {
         this.reportDate = reportDate;
     }
 
-    public Report(int idProduct, int idUser, String description) {
+    public Report(int idProduct, int idUser,String reason ,String description) {
         this.idProduct = idProduct;
         this.idUser = idUser;
+        this.reason = reason;
         this.description = description;
     }
 

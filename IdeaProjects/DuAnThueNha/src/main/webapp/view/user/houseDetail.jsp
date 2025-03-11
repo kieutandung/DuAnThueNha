@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chi tiết nhà thuê</title>
-    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="/css/detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -45,33 +45,40 @@
         </div>
 
         <div class="col-md-5">
-            <h2 class ="my-3" style="font-weight: bold">
+            <h2 class="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
-            <!-- Nút Khiếu Nại -->
-            <button id="complaintBtn">
-                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-            </button>
 
-            <!-- Hộp thoại Khiếu Nại -->
+
             <div id="complaint-popup" class="hidden">
                 <h4>Gửi Khiếu Nại</h4>
-                <ul>
-                    <li><input type="radio" name="reason" value="quality"> Chất lượng không đúng</li>
-                    <li><input type="radio" name="reason" value="service"> Dịch vụ kém</li>
-                    <li><input type="radio" id="otherReason" name="reason" value="other"> Lý do khác</li>
-                </ul>
-                <input type="text" id="otherReasonText" class="hidden" placeholder="Nhập lý do khác...">
+                <form action="detailProductUser?action=report&productId=${product.idProduct}" method="post">
+                    <ul>
+                        <li>
+                            <input type="radio" name="reason" value="Chất lượng không đúng"> Chất lượng không đúng
+                        </li>
+                        <li>
+                            <input type="radio" name="reason" value="Dịch vụ kém"> Dịch vụ kém
+                        </li>
+                        <li>
+                            <input type="radio" id="otherReason" name="reason" value="Lý do khác"> Lý do khác
+                        </li>
+                    </ul>
 
-                <div class="complaint-buttons">
-                    <button id="submit-complaint">Gửi khiếu nại</button>
-                    <button id="close-popup">Đóng</button>
-                </div>
+                    <textarea id="reasonDetails" name="reasonDetails" placeholder="Nhập chi tiết lý do..." rows="4" style="width: 100%; margin-top: 10px;"></textarea>
+
+                    <div class="complaint-buttons">
+                        <button id="submit-complaint">Gửi khiếu nại</button>
+                        <button id="close-popup">Đóng</button>
+                    </div>
+                </form>
             </div>
 
-            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
+            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">
+                Địa chỉ:</strong> ${product.address}
             </p>
-            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
+            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;"
+                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m2
 
             </p>
             <c:choose>
@@ -99,13 +106,19 @@
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
-            <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
-                <i class="bi bi-house-door-fill"></i> Thuê ngay
-            </a>
-            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
-                    data-product-id="${product.idProduct}" onclick="toggleFavorite()">
-                <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
-            </button>
+            <div class="action-buttons mt-3">
+                <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
+                    <i class="bi bi-house-door-fill"></i> Thuê ngay
+                </a>
+                <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                        data-product-id="${product.idProduct}" onclick="toggleFavorite()">
+                    <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
+                </button>
+                <button class="btn btn-outline-danger mt-3"  id="complaintBtn"  >
+                    <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+                </button>
+            </div>
+
         </div>
     </div>
 

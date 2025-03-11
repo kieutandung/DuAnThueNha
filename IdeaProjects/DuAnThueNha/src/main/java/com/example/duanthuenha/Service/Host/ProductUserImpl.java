@@ -17,12 +17,13 @@ public class ProductUserImpl implements ProductUserService {
 
 
     public void addReport(Report report) {
-        String query = "INSERT INTO report (idProduct, idUser,description) VALUES (?, ?, ?)";
+        String query = "INSERT INTO report (idProduct, idUser,reason,description) VALUES (?, ?, ?, ?)";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(1, report.getIdProduct());
             ps.setInt(2, report.getIdUser());
-            ps.setString(3,report.getDescription());
+            ps.setString(3, report.getReason());
+            ps.setString(4,report.getDescription());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
