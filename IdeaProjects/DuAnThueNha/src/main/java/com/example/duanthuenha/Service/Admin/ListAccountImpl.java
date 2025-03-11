@@ -1,6 +1,7 @@
 package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
+import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 
@@ -14,7 +15,7 @@ public class ListAccountImpl implements ListAccountService {
     @Override
     public List<Users> getAllUser() {
         List<Users> users = new ArrayList<>();
-        String query = "select * from users order by fullName desc";
+        String query = "select * from users order by idUser desc";
         try (Connection connection = connectDB.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -322,6 +323,12 @@ public class ListAccountImpl implements ListAccountService {
         }
     }
 
+    @Override
+    public List<Order> getAllOrder() {
+        List<Order> orderList = new ArrayList<>();
+        String sql = "";
+        return orderList;
+    }
 
 }
 

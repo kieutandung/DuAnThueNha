@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Service.Admin;
 
+import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 
@@ -21,4 +22,5 @@ public interface ListAccountService {
     boolean updateStatus(int idDocument, String status, String rejectionReason);
     Verification getVerificationByIdDocument(int idDocument);
     boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
+    List<Order> getAllOrder();
 }
