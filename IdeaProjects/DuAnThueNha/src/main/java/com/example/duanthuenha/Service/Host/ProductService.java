@@ -42,7 +42,7 @@ public interface ProductService {
 
     int getTotalProductsHost(int idUser);
 
-     int getTotalProductsSearchHost(int idUser, String keyword);
+    int getTotalProductsSearchHost(int idUser, String keyword);
 
     List<ProductHost> getProductsPage(int page);
 }

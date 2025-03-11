@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.main.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DuAnThueNha.test.iml" filepath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.test.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.main.iml" />
->>>>>>> 4f761737beb0065010d95b8f36c849b26fddde54
     </modules>
   </component>
 </project>

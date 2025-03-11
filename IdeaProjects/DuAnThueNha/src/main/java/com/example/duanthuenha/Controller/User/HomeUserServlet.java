@@ -45,7 +45,6 @@ public class HomeUserServlet extends HttpServlet {
             return;
         }
 
-
         showProductWithCategoryAndKeyword(req, resp, category, keyword, page);
     }
 

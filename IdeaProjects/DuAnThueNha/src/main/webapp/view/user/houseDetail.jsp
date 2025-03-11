@@ -45,9 +45,11 @@
         </div>
 
         <div class="col-md-5">
-            <h2 class="my-3" style="font-weight: bold">
+            <h2 class ="my-3" style="font-weight: bold">
                 ${product.nameProduct}
             </h2>
+            <!-- Nút Khiếu Nại -->
+
 
             <!-- Hộp thoại Khiếu Nại -->
             <div id="complaint-popup" class="hidden">
@@ -65,49 +67,49 @@
                 </div>
             </div>
 
-            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">
-                Địa chỉ:</strong> ${product.address}
+            <p class="my-2"><i class="bi bi-geo-alt-fill" style="color: #f93434"></i> <strong style="padding-left: 2px">   Địa chỉ:</strong> ${product.address}
             </p>
-            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;"
-                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m2
+            <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;" src="img/icons8-area-50.png"  alt=""> <strong> Diện tích:</strong> ${product.area} m2
 
-            </p>
-            <c:choose>
+                <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
-                    <p class="status">
-                        <i class="bi bi-x-circle" style="color: #f93434"></i> Trạng thái:
-                        <span style="color: #f93434;">${product.status}</span>
-                    </p>
-                </c:when>
-                <c:otherwise>
-                    <p class="status">
-                        <i class="bi bi-check-circle" style="color: #0dac0d"></i> Trạng thái:
-                        <span style="color: #0dac0d">${product.status}</span>
-                    </p>
-                </c:otherwise>
+            <p class="status">
+                <i class="bi bi-x-circle" style="color: #f93434"></i> Trạng thái:
+                <span style="color: #f93434;">${product.status}</span>
+            </p>
+            </c:when>
+            <c:otherwise>
+                <p class="status">
+                    <i class="bi bi-check-circle" style="color: #0dac0d"></i> Trạng thái:
+                    <span style="color: #0dac0d">${product.status}</span>
+                </p>
+            </c:otherwise>
             </c:choose>
             <p class="price "><i class="bi bi-wallet2"></i> Giá thuê: ${product.getFormattedPrice()}</p>
 
             <h5 class="mt-4">Chủ nhà: </h5>
             <div class="d-flex align-items-center py-2">
-                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60"
-                     alt="Ảnh chủ nhà">
-                <div class="px-3">
-                    <h5 class="mb-0">${avtUser.fullName}</h5>
+                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60" alt="Ảnh chủ nhà">
+                <div class="px-3 flex-grow-1">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0">${avtUser.fullName}</h5>
+                        <c:if test="${idUser ne avtUser.idUser}">
+                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}" class="ms-4 text-decoration-none">Liên hệ</a>
+                        </c:if>
+                    </div>
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
-            <div class="action-buttons mt-3">
-                <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary">
-                    <i class="bi bi-house-door-fill"></i> Thuê ngay
-                </a>
-                <button id="favoriteBtn" data-product-id="${product.idProduct}" onclick="toggleFavorite()" class="btn btn-outline-danger">
-                    <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill text-danger' : 'bi-heart text-white'}"></i> Yêu thích
-                </button>
-                <button id="complaintBtn">
-                    <i class="fas fa-exclamation-triangle"></i> Khiếu nại
-                </button>
-            </div>
+            <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
+                <i class="bi bi-house-door-fill"></i> Thuê ngay
+            </a>
+            <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
+                    data-product-id="${product.idProduct}" onclick="toggleFavorite()">
+                <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
+            </button>
+            <button id="complaintBtn">
+                <i class="fas fa-exclamation-triangle"></i> Khiếu nại
+            </button>
         </div>
     </div>
 

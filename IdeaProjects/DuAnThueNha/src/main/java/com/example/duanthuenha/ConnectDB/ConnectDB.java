@@ -12,6 +12,7 @@ public class ConnectDB {
 
     private String username = "root";
     private String password = "1234";
+
     public Connection getConnection() {
         Connection connection = null;
         try {
