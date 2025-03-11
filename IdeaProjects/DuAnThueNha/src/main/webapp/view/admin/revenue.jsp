@@ -29,7 +29,7 @@
                 <div><span class="blue"></span> Đơn đã thanh toán</div>
             </div>
             <div class="pie-chart-container">
-                <p>Biểu đồ đơn hàng</p>
+                <p>Biểu đồ đơn hàng cho thuê</p>
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
