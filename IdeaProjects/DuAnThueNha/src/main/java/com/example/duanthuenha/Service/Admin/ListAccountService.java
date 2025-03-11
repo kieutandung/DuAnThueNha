@@ -1,10 +1,12 @@
 package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.Model.Order;
+import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ListAccountService {
     List<Users> getAllUser();
@@ -22,5 +24,8 @@ public interface ListAccountService {
     boolean updateStatus(int idDocument, String status, String rejectionReason);
     Verification getVerificationByIdDocument(int idDocument);
     boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
+    Map<Integer, Double> getRevenueByMonth();
     List<Order> getAllOrder();
+    Map<String, Integer> getOrderStatusCount();
+    List<Product> getTopRentedProducts();
 }

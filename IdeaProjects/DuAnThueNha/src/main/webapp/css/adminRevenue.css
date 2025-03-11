@@ -48,9 +48,11 @@
     display: inline-block;
     border-radius: 3px;
 }
-.green { background: green; }
-.yellow { background: yellow; }
-.red { background: red; }
+.gray { background: #757575; }
+.blue { background: #2626d7; }
+.green { background: #5dd95d; }
+.yellow { background: #dede3f; }
+.red { background: #f10f0f; }
 .top-houses {
     padding: 15px;
 }
@@ -68,7 +70,7 @@
 }
 .house-card img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
 }
 .house-details {
