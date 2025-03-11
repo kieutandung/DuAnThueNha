@@ -47,7 +47,6 @@
                 <div class="mb-3">
                     <label for="rating" class="form-label">Chất lượng nhà:</label>
                     <select name="rating" id="rating" class="form-select" required>
-                        <option value="">Chọn số sao</option>
                         <option value="5">⭐⭐⭐⭐⭐ (5 sao)</option>
                         <option value="4">⭐⭐⭐⭐ (4 sao)</option>
                         <option value="3">⭐⭐⭐ (3 sao)</option>
