@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/hostApproveTheRequest.css">
+    <link rel="stylesheet" href="css/paymentManagement.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -35,11 +35,10 @@
                     <th>Tên nhà thuê</th>
                     <th>Tên người thuê</th>
                     <th id="phone">Điện thoại</th>
-                    <th id="startDate">Ngày bắt đầu</th>
-                    <th id="endDate">Ngày kết thúc</th>
                     <th>Số người thuê</th>
+                    <th>Số ngày thuê</th>
+                    <th>Tổng tiền</th>
                     <th>Trạng thái</th>
-                    <th id="action">Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,20 +49,16 @@
                         <td>${order.nameProduct}</td>
                         <td>${order.fullName}</td>
                         <td>${order.phone}</td>
-                        <td>${order.startDate}</td>
-                        <td>${order.endDate}</td>
                         <td id="numPeople">${order.numPeople}</td>
-                        <td id="status">${order.paymentStatus}</td>
-                        <td class="text-center">
+                        <td>${order.calculateDays()}</td>
+                        <td>${order.totalPrice}</td>
+                        <td id="status">
                             <c:choose>
-                                <c:when test="${order.paymentStatus == 'paid' or order.paymentStatus == 'cancelled'}">
-                                    <span class="text-success fw-bold d-inline-block">Đã duyệt</span>
+                                <c:when test="${order.paymentStatus eq 'completed'}">
+                                    <span class="text-success">Đã thanh toán</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <div class="btn-group d-flex justify-content-center gap-2" role="group">
-                                        <button class="btn btn-success" onclick="confirmAction('${order.idOrder}', 'waiting')">Xác nhận</button>
-                                        <button class="btn btn-danger" onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối</button>
-                                    </div>
+                                    <span class="text-danger">Chưa thanh toán</span>
                                 </c:otherwise>
                             </c:choose>
                         </td>

@@ -185,6 +185,7 @@
                 <div class="dropdown-content">
                     <a href="/listProductHostServlet?action=manageRentalRequests">Quản lý yêu cầu thuê</a>
                     <a href="listProductHostServlet">Quản lý sản phẩm</a>
+                    <a href="paymentManagementServlet">Quản lý thanh toán</a>
                 </div>
             </li>
             <li><a href="#">Sản phẩm</a></li>
