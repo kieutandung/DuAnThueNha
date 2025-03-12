@@ -30,12 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let startDateObj = new Date(startDate);
         let endDateObj = new Date(startDateObj);
-        endDateObj.setDate(startDateObj.getDate() + selectedDays - 1);
+        endDateObj.setDate(startDateObj.getDate() + selectedDays);
 
         const formatDate = (date) => {
-            return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+            const dd = String(date.getDate()).padStart(2, '0');
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const yyyy = date.getFullYear();
+            return `${dd}/${mm}/${yyyy}`;
         };
-
         // Cập nhật thông tin đơn hàng
         orderDateElement.innerText = formatDate(startDateObj);
         endDateElement.innerText = formatDate(endDateObj);
@@ -59,11 +61,30 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
-    // Khi người dùng thay đổi ngày bắt đầu
     startDateInput.addEventListener("change", function () {
-        if (selectedDays > 0) {
+        if (startDateInput.value) {
+            if (endDateInput.value) {
+                endDateInput.value = "";
+                endDateElement.innerText = "-";
+                selectedDays = 0;
+                numPeopleInput.value = "";
+                numPeopleOrderElement.innerText = "-";
+            }
             updateOrder();
+        }
+    });
+
+
+    // Khi người dùng thay đổi ngày kết thúc thủ công, cập nhật lại selectedDays và thông tin đơn hàng
+    endDateInput.addEventListener("change", function () {
+        if (startDateInput.value && endDateInput.value) {
+            let startDateObj = new Date(startDateInput.value);
+            let endDateObj = new Date(endDateInput.value);
+            let diffTime = endDateObj.getTime() - startDateObj.getTime();
+            selectedDays = Math.floor(diffTime / (1000 * 3600 * 24));
+            updateOrder();
+        } else {
+            endDateElement.innerText = "-";
         }
     });
 
@@ -72,22 +93,34 @@ document.addEventListener("DOMContentLoaded", function () {
         updateOrder();
     });
 
+    function showNotification(message, type) {
+        Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+        });
+    }
+
     // Khi nhấn "Thuê ngay"
     rentButton.addEventListener("click", function (event) {
         event.preventDefault(); // Ngăn form submit ngay lập tức
 
         if (!startDateInput.value) {
-            alert("Vui lòng chọn ngày bắt đầu!");
+            showNotification("Vui lòng chọn ngày bắt đầu!", "warning");
             return;
         }
 
         if (selectedDays <= 0) {
-            alert("Vui lòng chọn số ngày thuê!");
+            showNotification("Vui lòng chọn số ngày thuê!", "warning");
             return;
         }
 
         if (!numPeopleInput.value || numPeopleInput.value <= 0) {
-            alert("Vui lòng nhập số người thuê!");
+            showNotification("Vui lòng nhập số người thuê!", "warning");
             return;
         }
 
@@ -100,4 +133,5 @@ document.addEventListener("DOMContentLoaded", function () {
     confirmRentButton.addEventListener("click", function () {
         form.submit();
     });
+
 });

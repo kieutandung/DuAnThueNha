@@ -45,7 +45,6 @@ public class DetailProductUser extends HttpServlet {
         req.setAttribute("product", product);
         req.setAttribute("avtUser", avtUser);
         req.setAttribute("idUser", userID);
-
         req.setAttribute("comments", comments);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/houseDetail.jsp");
         dispatcher.forward(req, resp);

@@ -102,19 +102,27 @@
                                             </c:forEach>
                                         </c:when>
                                         <c:otherwise>
-                                            <p class="text-center" style="margin-top: 30px">Vui lòng chọn người liên hệ</p>
+                                            <p class="text-center" style="margin-top: 30px">Vui lòng chọn người liên
+                                                hệ</p>
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
                                 <c:if test="${not empty chat}">
-                                    <form id="chat-form" action="chatServlet?action=sendMess&idHost=${idHost}" method="post">
+                                    <form id="chat-form" action="chatServlet?action=sendMess&idHost=${idHost}"
+                                          method="post">
                                         <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
-                                            <img class="rounded-circle" src="img/${myProfile.image}" alt="avatar 3" style="width: 40px; height: 100%;">
-                                            <input style="background-color: #eeeeee" type="text" class="form-control form-control-lg"
-                                                   id="exampleFormControlInput2" placeholder="Nhập tin nhắn" name="sendMess">
+                                            <img class="rounded-circle" src="img/${myProfile.image}"
+                                                 alt="avatar 3" style="width: 40px; height: 100%;">
+                                            <input required style="background-color: #eeeeee" type="text"
+                                                   class="form-control form-control-lg"
+                                                   id="exampleFormControlInput2"
+                                                   placeholder="Nhập tin nhắn" name="sendMess">
                                             <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
                                             <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-                                            <a class="ms-3" href="" ><i class="fas fa-paper-plane"></i></a>
+                                            <button class="ms-3" type="submit" style="border: none; margin: 0; background: none;">
+                                              <i class="fa-solid fa-paper-plane" style="color: #007ce0;"></i>
+                                            </button>
+
                                         </div>
                                     </form>
                                 </c:if>

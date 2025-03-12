@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const otherReason = document.getElementById("otherReason");
     const otherReasonText = document.getElementById("otherReasonText");
 
+    function showNotification(message, type) {
+        Swal.fire({
+            toast: true,
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true
+        });
+    }
+
     if (complaintBtn && complaintPopup && closePopup) {
         complaintBtn.addEventListener("click", function() {
             complaintPopup.style.display = "block";
@@ -46,22 +58,23 @@ document.addEventListener("DOMContentLoaded", function() {
             // Kiểm tra xem đã chọn lý do khiếu nại chưa
             let selectedReason = document.querySelector('input[name="reason"]:checked');
             if (!selectedReason) {
-                alert("Vui lòng chọn một lý do khiếu nại!");
+                showNotification("Vui lòng chọn một lý do khiếu nại!","error");
                 return;
             }
 
             // Kiểm tra xem textarea nhập chi tiết lý do có được nhập không
             if (reasonDetails.value.trim() === "") {
-                alert("Vui lòng nhập chi tiết lý do khiếu nại!");
+                showNotification("Vui lòng nhập chi tiết lý do khiếu nại!","error");
                 return;
             }
 
             // Nếu đủ điều kiện, hiển thị thông báo thành công và submit form
-            alert("Khiếu nại đã được gửi thành công!");
+            showNotification("Khiếu nại đã được gửi thành công!","success");
             complaintPopup.style.display = "none";
 
             // Submit form (form sẽ được submit tới ReportServlet với action=report)
             document.querySelector('#complaint-popup form').submit();
+
         });
 
     }

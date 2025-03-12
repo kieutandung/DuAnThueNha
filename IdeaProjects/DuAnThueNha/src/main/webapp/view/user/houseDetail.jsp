@@ -99,13 +99,18 @@
 
             <h5 class="mt-4">Chủ nhà: </h5>
             <div class="d-flex align-items-center py-2">
-                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60"
-                     alt="Ảnh chủ nhà">
-                <div class="px-3">
-                    <h5 class="mb-0">${avtUser.fullName}</h5>
+                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60" alt="Ảnh chủ nhà">
+                <div class="px-3 flex-grow-1">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0">${avtUser.fullName}</h5>
+                        <c:if test="${idUser ne avtUser.idUser}">
+                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}" class="ms-4 text-decoration-none">Liên hệ</a>
+                        </c:if>
+                    </div>
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
+
             <div class="action-buttons mt-3">
                 <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                     <i class="bi bi-house-door-fill"></i> Thuê ngay
@@ -124,27 +129,34 @@
 
     <div class="mt-4">
         <h4><i class="bi bi-chat-left-text"></i> Đánh giá sản phẩm</h4>
-        <div class="list-group" style="overflow-y: auto; max-height: 500px" >
-            <c:forEach var="cmt" items="${comments}">
-                <div class="list-group-item d-flex align-items-start">
-                    <div class="me-3">
-                        <i class="bi bi-person-circle fs-2"></i>
-                    </div>
-                    <div>
-                        <div>
-                            <c:forEach begin="1" end="${cmt.rating}">
-                                <i class="bi bi-star-fill text-warning"></i>
-                            </c:forEach>
-                            <c:forEach begin="${cmt.rating + 1}" end="5">
-                                <i class="bi bi-star text-secondary"></i>
-                            </c:forEach>
+        <div class="list-group">
+            <c:choose>
+                <c:when test="${empty comments}">
+                        <strong style="text-align: center;font-size: 20px">Không có đánh giá nào</strong>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="cmt" items="${comments}">
+                        <div class="list-group-item d-flex align-items-start">
+                            <div class="me-3">
+                                <i class="bi bi-person-circle fs-2"></i>
+                            </div>
+                            <div>
+                                <div>
+                                    <c:forEach begin="1" end="${cmt.rating}">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                    </c:forEach>
+                                    <c:forEach begin="${cmt.rating + 1}" end="5">
+                                        <i class="bi bi-star text-secondary"></i>
+                                    </c:forEach>
+                                </div>
+                                <h6 class="mb-1">${cmt.username}</h6>
+                                <p class="mb-1">${cmt.comment}</p>
+                                <small class="text-muted"><i class="bi bi-clock"></i> ${cmt.commentDate}</small>
+                            </div>
                         </div>
-                        <h6 class="mb-1">${cmt.username}</h6>
-                        <p class="mb-1">${cmt.comment}</p>
-                        <small class="text-muted"><i class="bi bi-clock"></i> ${cmt.commentDate}</small>
-                    </div>
-                </div>
-            </c:forEach>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </div>

@@ -49,22 +49,6 @@
         align-items: center;
     }
 
-    .nav-search {
-        margin-left: 20px; /* Optional: Add some margin for spacing */
-    }
-
-    .search-input {
-        width: 250px;
-        padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-image: url('https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/search-3-512.png');
-        background-repeat: no-repeat;
-        background-position: right 10px center; /* Position the icon on the right */
-        background-size: 20px; /* Size of the icon */
-    }
-
     .nav-links li,
     .nav-icon li {
         margin: 0 20px;
@@ -185,7 +169,7 @@
             </li>
             <li>
                 <i class="bell-icon">
-                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"
+                    <img src="img/bell.png"
                          alt="Notifications" class="icon-black">
                 </i>
             </li>
@@ -194,7 +178,7 @@
             <li class="dropdown">
 
                 <i class="account-icon">
-                    <img src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png" alt="Account">
+                    <img src="img/userIcon.png" alt="Account">
                 </i>
 
                 <div class="dropdown-content">
@@ -203,7 +187,6 @@
                     </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>
-
                 </div>
             </li>
         </ul>
