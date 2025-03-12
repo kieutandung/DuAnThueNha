@@ -50,7 +50,7 @@
                                 <h5 class="card-title">${p.nameProduct}</h5>
                                 <p><strong>Giá:</strong> ${p.getFormattedPrice()}</p>
                                 <p><strong>Địa chỉ:</strong> ${p.address}</p>
-                                <p><strong>Diện tích</strong> ${p.area} m2</p>
+                                <p><strong>Diện tích</strong> ${p.area} m<sup>2</sup></p>
                                 <c:choose>
                                     <c:when test="${p.status eq 'Hết chỗ'}">
                                         <p class="status" style="color: #f93434">

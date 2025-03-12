@@ -77,6 +77,11 @@ public class DetailProductUser extends HttpServlet {
         String reasonDetails = req.getParameter("reasonDetails");
         Report report = new Report(productId, idUser, reason, reasonDetails);
         productUserService.addReport(report);
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("/detailProductUser?productId=" + productId);
     }
 
