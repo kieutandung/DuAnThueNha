@@ -136,6 +136,7 @@
                                 <i class="bi bi-person-circle fs-2"></i>
                             </div>
                             <div>
+                                <h6 class="mb-1">${cmt.username}</h6>
                                 <div>
                                     <c:forEach begin="1" end="${cmt.rating}">
                                         <i class="bi bi-star-fill text-warning"></i>
@@ -144,9 +145,7 @@
                                         <i class="bi bi-star text-secondary"></i>
                                     </c:forEach>
                                 </div>
-                                <h6 class="mb-1">${cmt.username}</h6>
                                 <p class="mb-1">${cmt.comment}</p>
-                                <small class="text-muted"><i class="bi bi-clock"></i> ${cmt.commentDate}</small>
                             </div>
                         </div>
                     </c:forEach>
