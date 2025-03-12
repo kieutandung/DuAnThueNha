@@ -8,7 +8,7 @@
     }
 
     body {
-        background-color: #f5f5f5;
+        padding-top: 70px;
     }
 
     header, .navbar {
@@ -16,12 +16,18 @@
         margin: 0 auto;
     }
 
+
     /* Navbar */
     .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000; /* Đảm bảo hiển thị trên cùng */
         display: flex;
         justify-content: space-between;
         padding: 15px 30px;
-        background: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         align-items: center;
         overflow: visible; /* Đã chuyển từ hidden sang visible */

@@ -8,25 +8,30 @@
     }
 
     body {
-        background-color: #f5f5f5;
+        padding-top: 70px;
     }
 
     header, .navbar {
         width: 100%;
         margin: 0 auto;
-
     }
 
+
+    /* Navbar */
     .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000; /* Đảm bảo hiển thị trên cùng */
         display: flex;
         justify-content: space-between;
         padding: 15px 30px;
-        background: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         align-items: center;
-        overflow: visible; /* Cho phép dropdown hiển thị đầy đủ */
-        position: relative;
-        z-index: 1000; /* Giữ navbar trên cùng */
+        overflow: visible; /* Đã chuyển từ hidden sang visible */
+        white-space: nowrap; /* Prevents items from breaking to the next line */
     }
 
     .logo {
@@ -43,13 +48,12 @@
         align-items: center;
     }
 
-    .nav-icon {
+    .nav-icon, .nav-search {
         padding-top: 15px;
         list-style: none;
         display: flex;
         align-items: center;
     }
-
     .nav-search {
         padding-top: 15px;
         list-style: none;
@@ -64,7 +68,6 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
-        background-image: url('https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/search-3-512.png');
         background-repeat: no-repeat;
         background-position: right 10px center; /* Position the icon on the right */
         background-size: 20px; /* Size of the icon */
@@ -73,16 +76,17 @@
     .nav-links li,
     .nav-icon li {
         margin: 0 20px;
+        position: relative;
     }
 
-    .nav-links a {
+    .nav-links a, .nav-icon a {
         text-decoration: none;
         color: #333;
         font-size: 20px;
         transition: color 0.3s ease; /* Smooth transition for color change */
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-icon a:hover {
         color: #007bff;
     }
 
@@ -96,49 +100,44 @@
         height: 25px;
     }
 
-    .dropdown {
-        position: relative;
-        display: inline-block;
-        z-index: 9999;
+    .icon-black {
+        filter: brightness(0) saturate(100%);
     }
 
+
+    /* Dropdown Styles */
     .dropdown-content {
-        padding: 0;
-        margin: 0;
+        display: none;
         position: absolute;
         top: 100%;
-        left: 0;
-        display: none;
-        background-color: white;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 9999 !important;
+        right: 0;
+        background-color: #fff;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 99999 !important; /* Z-index cao để đảm bảo hiển thị trên cùng */
+        border-radius: 4px;
+        overflow: hidden;
     }
 
     .dropdown-content a {
-        display: flex;
-        align-items: center;
-        white-space: nowrap;
-        padding: 10px 15px;
-        text-align: left;
+        color: #333;
+        padding: 10px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        z-index: 99999 !important;
     }
 
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Hiển thị dropdown khi hover */
     .dropdown:hover .dropdown-content {
         display: block;
     }
 
-    /* Định dạng link bên trong dropdown */
-    .dropdown-content a {
-        color: black;
-        padding: 10px 15px;
-        text-decoration: none;
-        display: block;
-    }
-
-    /* Hiệu ứng khi hover vào các mục */
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
 
 
     /* Responsive Styles */
@@ -179,7 +178,7 @@
     <nav class="navbar">
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
-            <li><a href="#">Trang chủ</a></li>
+            <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li class="dropdown">
                 <a href="#" class="nav-link">Quản lý</a>
                 <div class="dropdown-content">
@@ -188,7 +187,7 @@
                     <a href="paymentManagementServlet">Quản lý thanh toán</a>
                 </div>
             </li>
-            <li><a href="#">Sản phẩm</a></li>
+<%--            <li><a href="#">Sản phẩm</a></li>--%>
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
 
@@ -202,13 +201,33 @@
         </form>
 
         <ul class="nav-icon">
-            <li><a href="/profileServlet"><i class="account-icon"><img
-                    src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png"></i></a></li>
-            <li><i class="bell-icon"><img
-                    src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"></i>
+            <li>
+                <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
+                    <img src="img/chat (1).png" alt="Char"
+                         class="w-6 h-6 icon-black">
+                </a>
             </li>
-            <li><a href="/loginServlet"><i class="logout-icon"><img
-                    src="/img/logout-black.png"></i></a></li>
+            <li>
+                <i class="bell-icon">
+                    <img src="img/bell.png"
+                         alt="Notifications" class="icon-black">
+                </i>
+            </li>
+
+            <!-- Dropdown cho Account -->
+            <li class="dropdown">
+
+                <i class="account-icon">
+                    <img src="img/userIcon.png" alt="Account">
+                </i>
+
+                <div class="dropdown-content">
+                    <a href="/profileServlet">Thông tin cá nhân</a>
+                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl"> Bộ sưu tập
+                    </a>
+                    <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
+                    <a href="/loginServlet">Đăng xuất</a>
+                </div>
             </li>
         </ul>
     </nav>

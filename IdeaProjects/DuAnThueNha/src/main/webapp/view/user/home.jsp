@@ -21,9 +21,9 @@
         <div class="search-bar">
             <select name="category">
                 <option value="">Loại nhà đất</option>
-                <option>Căn hộ</option>
-                <option>Biệt thự</option>
-                <option>Chung cư</option>
+                <option ${category eq 'Căn hộ' ? 'selected' : ''} >Căn hộ</option>
+                <option ${category eq 'Biệt thự' ? 'selected' : ''} >Biệt thự</option>
+                <option ${category eq 'Chung cư' ? 'selected' : ''} >Chung cư</option>
             </select>
             <input value="${keywordUser}" name="keyword" type="text" placeholder="Nhập địa điểm, diện tích hoặc từ khóa"
                    style="border: 2px solid #c4c5bc;
@@ -95,7 +95,7 @@
             </li>
         </c:forEach>
         <c:if test="${tag < endPageUser}">
-        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
+            <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
         </c:if>
     </ul>
 

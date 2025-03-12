@@ -29,6 +29,8 @@ public class HomeUserServlet extends HttpServlet {
         String keyword = req.getParameter("keyword");
         String pageString = req.getParameter("page");
 
+        req.setAttribute("category", category);
+
         if (pageString == null || pageString.isEmpty()) {
             pageString = "1";
         }
@@ -44,7 +46,6 @@ public class HomeUserServlet extends HttpServlet {
             showProductWithKeyword(req, resp, keyword, page);
             return;
         }
-
         showProductWithCategoryAndKeyword(req, resp, category, keyword, page);
     }
 
