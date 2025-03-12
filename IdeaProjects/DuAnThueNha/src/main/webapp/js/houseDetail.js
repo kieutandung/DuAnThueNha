@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             icon: type,
             title: message,
             showConfirmButton: false,
-            timer: 2500,
+            timer: 1000,
             timerProgressBar: true
         });
     }

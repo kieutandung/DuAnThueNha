@@ -78,7 +78,7 @@ public class DetailProductUser extends HttpServlet {
         Report report = new Report(productId, idUser, reason, reasonDetails);
         productUserService.addReport(report);
         try {
-            Thread.sleep(2500);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
