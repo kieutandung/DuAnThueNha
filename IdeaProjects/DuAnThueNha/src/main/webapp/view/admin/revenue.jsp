@@ -22,6 +22,7 @@
         </div>
         <div class="pie-chart">
             <div class="legend">
+                <h3>Số lượng đơn thuê</h3>
                 <div><span class="gray"></span> Đơn chờ xử lý</div>
                 <div><span class="red"></span> Đơn bị hủy</div>
                 <div><span class="green"></span> Đơn hoàn thành</div>
@@ -29,13 +30,12 @@
                 <div><span class="blue"></span> Đơn đã thanh toán</div>
             </div>
             <div class="pie-chart-container">
-                <p>Biểu đồ đơn hàng cho thuê</p>
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
     </div>
     <div class="top-houses">
-        <h3>Top nhà được thuê nhiều nhất</h3>
+        <h3>Top 2 nhà được thuê nhiều nhất</h3>
         ${topProductsHtml}
     </div>
 </div>
@@ -52,7 +52,7 @@
                 <%= request.getAttribute("waitingCount") %>,
                 <%= request.getAttribute("paidCount") %>
             ],
-            backgroundColor: ['gray', 'red', 'green', 'yellow', 'blue']
+            backgroundColor: ['#989898', '#ff0000', '#0fd925', '#d7f111', '#1450ea']
         }]
     };
 
