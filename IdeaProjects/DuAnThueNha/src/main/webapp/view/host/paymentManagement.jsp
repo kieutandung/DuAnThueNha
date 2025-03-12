@@ -23,7 +23,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-6">
-                        <h2>Danh sách yêu cầu thuê</h2>
+                        <h2>Quản lí thanh toán</h2>
                     </div>
                 </div>
             </div>

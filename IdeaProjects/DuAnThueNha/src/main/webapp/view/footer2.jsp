@@ -203,7 +203,7 @@
         font-size: 20px;
     }
 
-</style>
+</style> 
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
