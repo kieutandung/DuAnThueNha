@@ -10,6 +10,7 @@
 
     <script src="/js/home.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+
 </head>
 <body>
 <header>

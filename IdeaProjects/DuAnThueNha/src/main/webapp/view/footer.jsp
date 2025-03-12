@@ -204,7 +204,6 @@
     }
 
 </style>
-<body>
 <div class="container">
     <h2><span> Các dự án đã triển khai tại một số thành phố</span></h2>
     <div class="gallery">

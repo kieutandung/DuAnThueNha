@@ -12,7 +12,7 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<section>
+<section style="background-color: #3b71ca" >
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
