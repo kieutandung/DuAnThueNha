@@ -12,7 +12,7 @@
 </div>
 <div id="menu" class="">
     <ul>
-        <li><i class=""></i><a href="#">Mục lục</a></li>
+        <li><i class=""></i><a href="/adminServlet?action=revenueChart">Doanh thu</a></li>
         <li><i class=""></i><a href="/adminServlet">Danh sách tài khoản</a></li>
         <li><i class=""></i><a href="/adminServlet?action=approveAccount">Hợp đồng</a></li>
         <li class="logout-item">

@@ -30,7 +30,7 @@
 }
 .date-buttons {
     display: flex;
-    gap: 28px;
+    gap: 35px;
     margin-top: -10px;
 }
 
@@ -44,4 +44,24 @@
 
 #note {
     resize: none;
-    height: 200px; }
+    height: 200px;
+}
+ body {
+     background-color: #f8f9fa;
+ }
+.btn-rent {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+}
+.house-info {
+    position: relative;
+    padding-bottom: 50px;
+}
+.btn-rent {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: auto;
+    padding: 10px 20px;
+}

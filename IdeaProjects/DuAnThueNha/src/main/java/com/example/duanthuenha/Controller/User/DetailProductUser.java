@@ -67,7 +67,7 @@ public class DetailProductUser extends HttpServlet {
         int userId = Integer.parseInt((String) session.getAttribute("userId"));
         if (!productUserService.isFavorite(userId, productId)) {
             List<Product> favorites = productUserService.getAllProductsByFavorite(userId);
-            if (favorites.size() >= 10) {
+            if (favorites.size() >= 12) {
                 resp.setContentType("text/plain");
                 resp.getWriter().write("error");
                 return;

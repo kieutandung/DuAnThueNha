@@ -1,12 +1,17 @@
 package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
+import com.example.duanthuenha.Model.Order;
+import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ListAccountImpl implements ListAccountService {
     private ConnectDB connectDB = new ConnectDB();
@@ -14,7 +19,7 @@ public class ListAccountImpl implements ListAccountService {
     @Override
     public List<Users> getAllUser() {
         List<Users> users = new ArrayList<>();
-        String query = "select * from users order by fullName desc";
+        String query = "select * from users order by idUser desc";
         try (Connection connection = connectDB.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -321,6 +326,126 @@ public class ListAccountImpl implements ListAccountService {
             return false;
         }
     }
+
+    @Override
+    public List<Order> getAllOrder() {
+        List<Order> rentalRequests = new ArrayList<>();
+        String sql = "SELECT o.*, u.fullName, u.phone, p.nameProduct, p.image, p.price " +
+                "FROM orders o " +
+                "JOIN users u ON o.idUser = u.idUser " +
+                "JOIN products p ON o.idProduct = p.idProduct " +
+                "WHERE o.paymentStatus = 'completed'";
+
+        Connection connection = connectDB.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Order order = new Order();
+                order.setIdOrder(rs.getInt("idOrder"));
+                order.setIdUser(rs.getInt("idUser"));
+                order.setIdProduct(rs.getInt("idProduct"));
+                order.setOrderDate(rs.getTimestamp("orderDate").toLocalDateTime());
+                order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
+                order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
+                order.setNotes(rs.getString("notes"));
+                order.setNumPeople(rs.getInt("numPeople"));
+                order.setPaymentStatus(rs.getString("paymentStatus"));
+
+                // Thêm thông tin user
+                order.setFullName(rs.getString("fullName"));
+                order.setPhone(rs.getString("phone"));
+                order.setImage(rs.getString("image"));
+                order.setNameProduct(rs.getString("nameProduct"));
+                order.setPrice(rs.getDouble("price"));
+
+                rentalRequests.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rentalRequests;
+    }
+    public Map<Integer, Double> getRevenueByMonth() {
+        Map<Integer, Double> revenueByMonth = new HashMap<>();
+        String sql = "SELECT MONTH(o.endDate) AS month, SUM(p.price) AS totalRevenue " +
+                "FROM orders o " +
+                "JOIN products p ON o.idProduct = p.idProduct " +
+                "WHERE o.paymentStatus = 'completed' " +
+                "GROUP BY MONTH(o.endDate)";
+
+        Connection connection = connectDB.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int month = rs.getInt("month");
+                double totalRevenue = rs.getDouble("totalRevenue");
+                revenueByMonth.put(month, totalRevenue);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return revenueByMonth;
+    }
+    public Map<String, Integer> getOrderStatusCount() {
+        Map<String, Integer> statusCount = new HashMap<>();
+        String sql = "SELECT paymentStatus, COUNT(*) AS count FROM orders GROUP BY paymentStatus";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                statusCount.put(rs.getString("paymentStatus"), rs.getInt("count"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return statusCount;
+    }
+    public List<Product> getTopRentedProducts() {  // Không cần tham số limit
+        List<Product> topProducts = new ArrayList<>();
+        String sql = "SELECT p.idProduct, p.nameProduct, p.image, p.price, COUNT(o.idOrder) AS rentalCount " +
+                "FROM orders o " +
+                "JOIN products p ON o.idProduct = p.idProduct " +
+                "WHERE o.paymentStatus = 'completed' " +
+                "GROUP BY p.idProduct " +
+                "ORDER BY rentalCount DESC " +
+                "LIMIT 2";  // Giữ nguyên LIMIT 2
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setIdProduct(rs.getInt("idProduct"));
+                product.setNameProduct(rs.getString("nameProduct"));
+                product.setImage(rs.getString("image"));
+                product.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
+                topProducts.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return topProducts;
+    }
+
 
 
 }

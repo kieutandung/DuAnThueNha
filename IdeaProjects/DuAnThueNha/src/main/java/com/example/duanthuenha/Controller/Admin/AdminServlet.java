@@ -1,5 +1,7 @@
 package com.example.duanthuenha.Controller.Admin;
 
+import com.example.duanthuenha.Model.Order;
+import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Model.Users;
@@ -12,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
@@ -48,6 +47,9 @@ public class AdminServlet extends HttpServlet {
                 case "browseProfile":
                     listBrowseProfileView(req, resp);
                     break;
+                case "revenueChart":
+                    revenueChart(req,resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -56,6 +58,48 @@ public class AdminServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
+    private void revenueChart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Order> orders = listAccountService.getAllOrder();
+        Map<Integer, Double> revenueByMonth = listAccountService.getRevenueByMonth();
+        Map<String, Integer> orderStatusCount = listAccountService.getOrderStatusCount();
+        List<Product> topProducts = listAccountService.getTopRentedProducts();
+
+        // Tính toán dữ liệu để gửi qua JSP
+        req.setAttribute("pendingCount", orderStatusCount.getOrDefault("pending", 0));
+        req.setAttribute("cancelledCount", orderStatusCount.getOrDefault("cancelled", 0));
+        req.setAttribute("completedCount", orderStatusCount.getOrDefault("completed", 0));
+        req.setAttribute("waitingCount", orderStatusCount.getOrDefault("waiting", 0));
+        req.setAttribute("paidCount", orderStatusCount.getOrDefault("paid", 0));
+
+        req.setAttribute("orders", orders);
+        req.setAttribute("revenueByMonth", revenueByMonth);
+
+        // Xử lý HTML của top sản phẩm trong Servlet
+        StringBuilder topProductsHtml = new StringBuilder();
+        if (topProducts != null && !topProducts.isEmpty()) {
+            for (Product product : topProducts) {
+                topProductsHtml.append("<div class='house-card'>")
+                        .append("<img src='img/").append(product.getImage()).append("'>")
+                        .append("<div class='house-details'>")
+                        .append("<p class='price'>").append(product.getPrice()).append(" VNĐ / Ngày</p>")
+                        .append("<p><strong><em>").append(product.getNameProduct()).append("</em></strong></p>")
+                        .append("</div>")
+                        .append("</div>");
+            }
+        } else {
+            topProductsHtml.append("<p>Không có dữ liệu.</p>");
+        }
+
+        req.setAttribute("topProductsHtml", topProductsHtml.toString());
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/revenue.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
