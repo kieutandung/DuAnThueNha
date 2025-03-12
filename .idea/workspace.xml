@@ -9,7 +9,125 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="?">
+=======
+    <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___DuAnThueNha_1_0_SNAPSHOT_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_example___DuAnThueNha_1_0_SNAPSHOT_war__exploded_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__at_favre_lib_bcrypt_0_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__at_favre_lib_bytes_1_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_3_11_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_javax_servlet_api_4_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_servlet_jstl_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__mysql_mysql_connector_java_8_0_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_json_json_20210307.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/DuAnThueNha.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/IdeaProjects.DuAnThueNha.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/com.example.DuAnThueNha.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Host/AddProductHostServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Host/EditProductHostServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Host/ListProductHostServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Host/ProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/CancelOrderServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/ChatServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/CommentsServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/HomeUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/OrderInformationServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/OrderProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/RentHouseServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Chat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Image.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/ProductHost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Chat/ChatImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Chat/ChatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Comment/CommentImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Comment/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ApproveRequestImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ApproveRequestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Host/ProductUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/OrderInformation/OrderInformationImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/OrderInformation/OrderInformationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/RentHouse/RentHouseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/RentHouse/RentHouseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/adminRevenue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/alert.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/approveAccount.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/chat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/favorite.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/hostApproveTheRequest.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/hostRevenue.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/listProductHost.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/rentHouse.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/LogoHost.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/OIP.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/P1Img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/area.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/areaOriginal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/checked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/iconShop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/icons8-area-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/large-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/p2img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/p3img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/p4img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/p5img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/p6img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/wall-clock.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459557113_306b245b02b5bbcfcaad13b45f00f9bf.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459577241_98734ac012f5b94a97eb57c576c2ea74.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459577245_ff49323e0467ab09892d503c3b5c53c6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459577415_68bcdd822c5286b5839b3dab141eeadd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459603942_26cab88e282da27b646dfa4216e02c21.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459604110_b9afc736740d09e1e9c31622ec100b11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459628096_6fab98adee08342166e7f4768fdf07e5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459628214_4cc11b12962b9cc5eee753ed11a8b55c.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/img/z6360459656171_45a0339623d37c73700deb527f06e61d.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/approveAccount.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/favorite.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/houseDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/js/rentHouse.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/approveAccount.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/browseProfileTable.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/revenue.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/footer2.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/header2.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/addNewHouse.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/editProductHost.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/headerHost.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/homeHost.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/hostApproveTheRequest.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/hostRevenue.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/host/listProductHost.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/addComments.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/chat.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/chatItem.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/favorite.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/home.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/orderInformation.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/rentHouse.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+>>>>>>> a3c456a42aef9fb2485e752a6569a5a6b4da4ec0
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,11 +146,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+<<<<<<< HEAD
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Jsp File" />
         <option value="Jsp File" />
         <option value="Class" />
+=======
+        <option value="Class" />
+        <option value="Jsp File" />
+        <option value="JavaScript File" />
+        <option value="Jsp File" />
+        <option value="CSS File" />
+>>>>>>> a3c456a42aef9fb2485e752a6569a5a6b4da4ec0
       </list>
     </option>
   </component>
@@ -69,10 +195,14 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 9.0.97.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
     "git-widget-placeholder": "feature/host/reveneu",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
+=======
+    "git-widget-placeholder": "Merging feature/host/revenue",
+>>>>>>> a3c456a42aef9fb2485e752a6569a5a6b4da4ec0
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -237,12 +367,21 @@
       <workItem from="1740990868842" duration="4045000" />
       <workItem from="1741051520188" duration="23024000" />
       <workItem from="1741137676538" duration="24465000" />
+<<<<<<< HEAD
       <workItem from="1741224309231" duration="2641000" />
       <workItem from="1741441309120" duration="6982000" />
       <workItem from="1741527198818" duration="5723000" />
       <workItem from="1741569463197" duration="12080000" />
       <workItem from="1741587477637" duration="13042000" />
       <workItem from="1741742477647" duration="2689000" />
+=======
+      <workItem from="1741224309231" duration="1353000" />
+      <workItem from="1741263859217" duration="4092000" />
+      <workItem from="1741314021793" duration="1413000" />
+      <workItem from="1741587635302" duration="3531000" />
+      <workItem from="1741663043584" duration="12899000" />
+      <workItem from="1741743026070" duration="4224000" />
+>>>>>>> a3c456a42aef9fb2485e752a6569a5a6b4da4ec0
     </task>
     <servers />
   </component>

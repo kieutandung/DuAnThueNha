@@ -188,7 +188,7 @@
                     <a href="paymentManagementServlet">Quản lý thanh toán</a>
                 </div>
             </li>
-            <li><a href="#">Sản phẩm</a></li>
+            <li><a href="#">Doanh thu</a></li>
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
 
