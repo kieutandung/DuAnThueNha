@@ -50,6 +50,7 @@ public class AdminServlet extends HttpServlet {
                     break;
                 case "reportView":
                     listReportView(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -151,6 +152,7 @@ public class AdminServlet extends HttpServlet {
                     break;
                 case "updateStatus":
                     updateStatus(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
