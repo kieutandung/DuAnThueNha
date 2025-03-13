@@ -10,15 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="367b84d9-3789-4360-bad5-573c60810623" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/report.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Admin/AdminServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/Admin/AdminServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Model/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Service/Admin/ListAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/menu.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/menu.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/report.css" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/report.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/report.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/report.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -253,7 +247,7 @@
       <workItem from="1741657841015" duration="3098000" />
       <workItem from="1741742571557" duration="20455000" />
       <workItem from="1741769683481" duration="615000" />
-      <workItem from="1741829319090" duration="11496000" />
+      <workItem from="1741829319090" duration="14179000" />
     </task>
     <servers />
   </component>

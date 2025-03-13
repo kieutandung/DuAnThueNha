@@ -12,13 +12,22 @@
     <jsp:include page="menu.jsp"/>
 </header>
 <body>
+
 <div class="gradient-custom-1 h-100">
     <div class="container-fluid" style="max-width: 90%; margin: 80px auto 0;">
         <div class="row justify-content-center">
             <div class="col-12">
-                <div class="table-responsive bg-white" style="max-height: 600px; overflow-y: auto;">
+                <div class="table-wrapper bg-white">
                     <table class="table mb-0">
-                        <thead>
+                        <colgroup>
+                            <col style="width:5%;">
+                            <col style="width:15%;">
+                            <col style="width:35%;">
+                            <col style="width:15%;">
+                            <col style="width:20%;">
+                            <col style="width:10%;">
+                        </colgroup>
+                        <thead class="table-header">
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Khiếu nại</th>
@@ -28,7 +37,7 @@
                             <th scope="col">Hành động</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-body">
                         <c:forEach var="r" items="${reportList}" varStatus="status">
                             <tr>
                                 <td>${status.index + 1}</td>
@@ -44,7 +53,7 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary">Action</button>
+                                    <button class="btn btn-sm btn-primary">Phản hồi</button>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -55,5 +64,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>

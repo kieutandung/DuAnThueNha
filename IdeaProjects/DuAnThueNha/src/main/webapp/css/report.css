@@ -25,3 +25,16 @@ tbody td {
     font-weight: 500;
     color: #999999;
 }
+.table-wrapper {
+    max-height: 600px;  /* Chiều cao tối đa của bảng */
+    overflow-y: auto;  /* Cho phép cuộn nội dung */
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.table-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+}
