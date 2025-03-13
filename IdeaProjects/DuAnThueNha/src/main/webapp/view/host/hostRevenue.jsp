@@ -10,6 +10,48 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/css/hostRevenue.css">
+    <style>
+        .table-container {
+            max-height: 190px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        .table-container thead {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+
+        .table-container tbody {
+            display: table;
+            width: 100%;
+        }
+
+
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        .table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+    </style>
 </head>
 <body>
 <header>
@@ -18,10 +60,6 @@
 <div class="header">
     <div class="breadcrumb">Thanh toán / doanh thu</div>
     <h2>Doanh thu</h2>
-    <div class="buttons">
-        <button class="button">Hàng tháng</button>
-        <button class="button">Doanh thu định kì <span class="close-btn">x</span></button>
-    </div>
 </div>
 <div class="container">
     <div>
@@ -42,9 +80,10 @@
             </div>
         </c:forEach>
     </div>
+
     <div class="customer-info">
         <h3>Bảng thông tin khách hàng</h3>
-        <div class="table-container">
+        <div class="table-container"> <!-- Đảm bảo bọc bảng trong div này -->
             <table class="table">
                 <thead>
                 <tr>
@@ -69,6 +108,7 @@
             </table>
         </div>
     </div>
+
 </div>
 <script>
     const revenueDataHost = [];
@@ -105,5 +145,9 @@
         }
     });
 </script>
+<footer>
+    <jsp:include page="../footer2.jsp"/>
+</footer>
 </body>
+
 </html>

@@ -54,20 +54,20 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        align-items: flex-start; /* Căn trên để các phần thẳng hàng */
+        align-items: flex-start;
 
     }
     .footer-section {
-        width: 25%; /* Đảm bảo các cột có kích thước bằng nhau */
+        width: 25%;
         margin-bottom: 20px;
         padding: 10px;
         display: flex;
-        flex-direction: column; /* Giữ nội dung theo chiều dọc */
-        text-align: left; /* Căn trái nội dung */
+        flex-direction: column;
+        text-align: left;
     }
 
     .footer-section h2 {
-        margin-top: 5px; /* Điều chỉnh khoảng cách lùi xuống */
+        margin-top: 5px;
     }
 
     .footer-section h3 {
@@ -76,7 +76,7 @@
     }
 
     .footer-section p {
-        margin: 10px 0; /* Cách đều các dòng thông tin */
+        margin: 10px 0;
     }
 
     .footer-section ul {
