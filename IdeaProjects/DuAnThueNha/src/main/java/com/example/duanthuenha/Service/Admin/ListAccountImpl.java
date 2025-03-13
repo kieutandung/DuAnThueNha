@@ -192,57 +192,33 @@ public class ListAccountImpl implements ListAccountService {
         return user;
     }
 
-    @Override
-    public List<Verification> getAllVerification() {
-        List<Verification> verificationList = new ArrayList<>();
-        String sql = "SELECT * FROM verificationdocument";
-
-        try (Connection connection = connectDB.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                int idDocument = rs.getInt("idDocument");
-                int idUser = rs.getInt("userId");
-                String documentType = rs.getString("documentType");
-                String documentNumber = rs.getString("documentNumber");
-                String documentImage = rs.getString("documentImage");
-                String status = rs.getString("status");
-                String rejectionReason = rs.getString("rejectionReason");
-                String createdAt = rs.getString("createdAt");
-                String updatedAt = rs.getString("updatedAt");
-                Verification verification = new Verification(idDocument, idUser, documentType, documentNumber, documentImage, status, rejectionReason, createdAt, updatedAt);
-                verificationList.add(verification);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return verificationList;
-    }
 
     public List<Verification> getVerificationsByUserId(int idUser) {
         List<Verification> verifications = new ArrayList<>();
-        String sql = "SELECT * FROM verificationdocument WHERE userId = ?"; // Chỉ cần idUser
+        String sql = "SELECT * FROM verificationdocument WHERE userId = ?";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, idUser); // Chỉ cần thiết lập idUser
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                Verification verification = new Verification();
-                verification.setIdDocument(resultSet.getInt("idDocument"));
-                verification.setIdUser(resultSet.getInt("userId"));
-                verification.setDocumentType(resultSet.getString("documentType"));
-                verification.setDocumentNumber(resultSet.getString("documentNumber"));
-                verification.setDocumentImage(resultSet.getString("documentImage"));
-                verification.setStatus(resultSet.getString("status"));
-                verification.setRejectionReason(resultSet.getString("rejectionReason"));
-                verification.setCreatedAt(String.valueOf(resultSet.getTimestamp("createdAt"))); // Giữ nguyên kiểu dữ liệu Timestamp
-                verifications.add(verification);
+            preparedStatement.setInt(1, idUser);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Verification verification = new Verification();
+                    verification.setIdDocument(resultSet.getInt("idDocument"));
+                    verification.setIdUser(resultSet.getInt("userId"));
+                    verification.setDocumentType(resultSet.getString("documentType"));
+                    verification.setDocumentNumber(resultSet.getString("documentNumber"));
+                    verification.setDocumentImage(resultSet.getString("documentImage"));
+                    verification.setStatus(resultSet.getString("status"));
+                    verification.setRejectionReason(resultSet.getString("rejectionReason"));
+                    verification.setCreatedAt(String.valueOf(resultSet.getTimestamp("createdAt").toLocalDateTime().toLocalDate()));
+                    verification.setUpdatedAt(String.valueOf(resultSet.getTimestamp("updatedAt").toLocalDateTime().toLocalDate()));
+
+                    verifications.add(verification);
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi lấy danh sách hồ sơ của người dùng: " + idUser, e);
         }
         return verifications;
     }
@@ -418,7 +394,7 @@ public class ListAccountImpl implements ListAccountService {
 
         return statusCount;
     }
-    public List<Product> getTopRentedProducts() {  // Không cần tham số limit
+    public List<Product> getTopRentedProducts() {
         List<Product> topProducts = new ArrayList<>();
         String sql = "SELECT p.idProduct, p.nameProduct, p.image, p.price, COUNT(o.idOrder) AS rentalCount " +
                 "FROM orders o " +
@@ -446,6 +422,39 @@ public class ListAccountImpl implements ListAccountService {
         return topProducts;
     }
 
+    @Override
+    public List<Users> getAllUserByIdDocument() {
+        List<Users> userList = new ArrayList<>();
+        String sql = "SELECT DISTINCT u.* FROM users u " +
+                "JOIN verificationdocument v ON u.idUser = v.userId";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int idUser = rs.getInt("idUser");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String fullName = rs.getString("fullName");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                String address = rs.getString("address");
+                String gender = rs.getString("gender");
+                String birthDate = rs.getString("birthDate");
+                String rejectionReason = rs.getString("rejectionReason");
+
+                Users user = new Users(idUser, username, password, fullName, phone, email, role, status, image, address, gender, birthDate, rejectionReason);
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi lấy danh sách người dùng có liên kết với idDocument", e);
+        }
+        return userList;
+    }
 
 
 }

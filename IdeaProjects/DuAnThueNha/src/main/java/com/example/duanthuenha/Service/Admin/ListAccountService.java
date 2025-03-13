@@ -18,7 +18,6 @@ public interface ListAccountService {
     List<Users> getAllUsersSortedByName();
     void updateUser(String username, String fullName, String phone, String email, String password, String role, String status,int idUser);
     Users getUserById(int id);
-    List<Verification> getAllVerification();
     List<Verification> getVerificationsByUserId(int idUser);
     boolean promoteUser(int idUser);
     boolean updateStatus(int idDocument, String status, String rejectionReason);
@@ -28,4 +27,5 @@ public interface ListAccountService {
     List<Order> getAllOrder();
     Map<String, Integer> getOrderStatusCount();
     List<Product> getTopRentedProducts();
+    List<Users> getAllUserByIdDocument();
 }

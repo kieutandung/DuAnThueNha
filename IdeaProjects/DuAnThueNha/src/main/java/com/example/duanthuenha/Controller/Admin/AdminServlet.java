@@ -41,12 +41,6 @@ public class AdminServlet extends HttpServlet {
                 case "editUser":
                     handleEditUserView(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
-                    break;
-                case "browseProfile":
-                    listBrowseProfileView(req, resp);
-                    break;
                 case "revenueChart":
                     revenueChart(req,resp);
                     break;
@@ -124,17 +118,11 @@ public class AdminServlet extends HttpServlet {
                 case "delete":
                     deleteUser(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
-                    break;
                 case "promoteUser":
                     handlePromoteUser(req, resp);
                     break;
                 case "profileFeedback":
                     handleProfileFeedback(req, resp);
-                    break;
-                case "getVerification":  // ✅ Thêm case này
-                    getVerificationInfo(req, resp);
                     break;
                 case "updateStatus":
                     updateStatus(req, resp);
@@ -144,21 +132,6 @@ public class AdminServlet extends HttpServlet {
             }
         } catch (ServletException e) {
             throw new RuntimeException(e);
-        }
-    }
-    private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
-        Verification verification = listAccountService.getVerificationByIdDocument(idDocument);
-
-        resp.setContentType("text/plain"); // Trả về dữ liệu dạng chuỗi, không dùng JSON
-        resp.setCharacterEncoding("UTF-8");
-
-        if (verification != null) {
-            String result = verification.getStatus() + "|" +
-                    (verification.getRejectionReason() != null ? verification.getRejectionReason() : "");
-            resp.getWriter().write(result);
-        } else {
-            resp.getWriter().write("error");
         }
     }
 
@@ -175,41 +148,7 @@ public class AdminServlet extends HttpServlet {
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
 
-    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Verification> verificationList = listAccountService.getAllVerification();
-        req.setAttribute("verifications", verificationList);
 
-        List<Users> users = listAccountService.getAllUser();
-        List<Users> filteredUsers = new ArrayList<>();
-
-        Set<Integer> userIdsWithDocuments = new HashSet<>();
-        for (Verification verification : verificationList) {
-            userIdsWithDocuments.add(verification.getIdUser());
-        }
-
-        for (Users user : users) {
-            if ("user".equals(user.getRole()) && userIdsWithDocuments.contains(user.getIdUser())) {
-                filteredUsers.add(user);
-            }
-        }
-
-        req.setAttribute("users", filteredUsers);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/approveAccount.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    private void listBrowseProfileView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId")); // Nhận userId từ request
-
-        // Lấy danh sách hồ sơ của userId từ bảng verificationdocument
-        List<Verification> verifications = listAccountService.getVerificationsByUserId(userId);
-
-        // Gửi danh sách hồ sơ đến JSP
-        req.setAttribute("verifications", verifications);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/browseProfileTable.jsp");
-        dispatcher.forward(req, resp);
-    }
 
 
 
