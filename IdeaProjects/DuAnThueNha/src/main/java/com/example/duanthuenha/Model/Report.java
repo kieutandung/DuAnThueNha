@@ -10,6 +10,17 @@ public class Report {
     private String status;
     private String reason;
 
+
+    public Report(int idReport, int idProduct, int idUser, String description, String status, String reason, LocalDate reportDate) {
+        this.idReport = idReport;
+        this.idProduct = idProduct;
+        this.idUser = idUser;
+        this.description = description;
+        this.status = status;
+        this.reason = reason;
+        this.reportDate = reportDate;
+    }
+
     public String getReason() {
         return reason;
     }

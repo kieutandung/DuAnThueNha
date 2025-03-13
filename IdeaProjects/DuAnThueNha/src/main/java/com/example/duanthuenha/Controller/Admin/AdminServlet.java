@@ -1,8 +1,11 @@
 package com.example.duanthuenha.Controller.Admin;
 
+import com.example.duanthuenha.Model.ProductHost;
+import com.example.duanthuenha.Model.Report;
+import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
-import com.example.duanthuenha.Model.Users;
+import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +23,7 @@ import java.util.Set;
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
     private ListAccountImpl listAccountService = new ListAccountImpl();
+    private ProductImpl productImpl = new ProductImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +52,8 @@ public class AdminServlet extends HttpServlet {
                 case "browseProfile":
                     listBrowseProfileView(req, resp);
                     break;
+                case "reportView":
+                    listReportView(req, resp);
                 default:
                     listAccountView(req, resp);
                     break;
@@ -55,6 +61,29 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void listReportView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Report> reportList = listAccountService.getAllReport();
+        List<Users> usersList = new ArrayList<>();
+        List<Users> hostList = new ArrayList<>();
+        List<ProductHost> productsList = new ArrayList<>();
+
+        for (Report report : reportList) {
+            Users user = listAccountService.getUserById(report.getIdUser());
+            Users host = listAccountService.getUserByidProduct(report.getIdProduct());
+            ProductHost productHost = productImpl.getProduct(report.getIdProduct());
+            usersList.add(user);
+            hostList.add(host);
+            productsList.add(productHost);
+        }
+
+        req.setAttribute("reportList", reportList);
+        req.setAttribute("hostList", hostList);
+        req.setAttribute("usersReport", usersList);
+        req.setAttribute("productsList", productsList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/report.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -102,6 +131,7 @@ public class AdminServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         Verification verification = listAccountService.getVerificationByIdDocument(idDocument);
@@ -168,8 +198,6 @@ public class AdminServlet extends HttpServlet {
     }
 
 
-
-
     private void handlePromoteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idUser = Integer.parseInt(req.getParameter("idUser"));
         boolean success = listAccountService.promoteUser(idUser);
@@ -226,7 +254,6 @@ public class AdminServlet extends HttpServlet {
     }
 
 
-
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
@@ -272,6 +299,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/editAccount.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         String status = req.getParameter("status");
