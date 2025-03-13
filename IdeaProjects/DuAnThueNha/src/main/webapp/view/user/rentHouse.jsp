@@ -10,6 +10,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rentHouse.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .btn-rent {
+            width: 100%;
+            font-size: 18px;
+            padding: 10px;
+        }
+        .house-info {
+            position: relative;
+            padding-bottom: 50px;
+        }
+        .btn-rent {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: auto;
+            padding: 10px 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -65,9 +87,9 @@
                     <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                             value="${product.nameProduct}"/></span></p>
                     <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
-                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                     <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
+                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
                     <button type="button" class="btn btn-success btn-rent mt-5 ">Thuê ngay</button>
@@ -98,12 +120,13 @@
     </div>
 </div>
 
-<script src="/js/rentHouse.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>
 </footer>
+
+<script src="/js/rentHouse.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

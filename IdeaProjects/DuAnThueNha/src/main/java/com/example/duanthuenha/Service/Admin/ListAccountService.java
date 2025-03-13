@@ -1,7 +1,11 @@
 package com.example.duanthuenha.Service.Admin;
 
+
 import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.Product;
+
+import com.example.duanthuenha.Model.Report;
+
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 
@@ -28,4 +32,6 @@ public interface ListAccountService {
     Map<String, Integer> getOrderStatusCount();
     List<Product> getTopRentedProducts();
     List<Users> getAllUserByIdDocument();
+    List<Report> getAllReport();
+    Users getUserByidProduct(int idProduct);
 }

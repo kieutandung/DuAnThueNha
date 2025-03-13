@@ -2,9 +2,12 @@ package com.example.duanthuenha.Controller.Admin;
 
 import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.Product;
+import com.example.duanthuenha.Model.ProductHost;
+import com.example.duanthuenha.Model.Report;
+import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
-import com.example.duanthuenha.Model.Users;
+import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import java.util.*;
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
     private ListAccountImpl listAccountService = new ListAccountImpl();
+    private ProductImpl productImpl = new ProductImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,6 +48,8 @@ public class AdminServlet extends HttpServlet {
                 case "revenueChart":
                     revenueChart(req,resp);
                     break;
+                case "reportView":
+                    listReportView(req, resp);
                 default:
                     listAccountView(req, resp);
                     break;
@@ -91,9 +97,28 @@ public class AdminServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void listReportView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Report> reportList = listAccountService.getAllReport();
+        List<Users> usersList = new ArrayList<>();
+        List<Users> hostList = new ArrayList<>();
+        List<ProductHost> productsList = new ArrayList<>();
 
+        for (Report report : reportList) {
+            Users user = listAccountService.getUserById(report.getIdUser());
+            Users host = listAccountService.getUserByidProduct(report.getIdProduct());
+            ProductHost productHost = productImpl.getProduct(report.getIdProduct());
+            usersList.add(user);
+            hostList.add(host);
+            productsList.add(productHost);
+        }
 
-
+        req.setAttribute("reportList", reportList);
+        req.setAttribute("hostList", hostList);
+        req.setAttribute("usersReport", usersList);
+        req.setAttribute("productsList", productsList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/report.jsp");
+        dispatcher.forward(req, resp);
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -135,6 +160,7 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+
     private void handleProfileFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         String status = req.getParameter("status");
@@ -147,8 +173,6 @@ public class AdminServlet extends HttpServlet {
         boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
-
-
 
 
 
@@ -209,7 +233,6 @@ public class AdminServlet extends HttpServlet {
     }
 
 
-
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
@@ -255,6 +278,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/editAccount.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         String status = req.getParameter("status");

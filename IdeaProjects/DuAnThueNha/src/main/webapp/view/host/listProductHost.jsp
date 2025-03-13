@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Toàn bộ nhà của bạn</title>
-    <link rel="stylesheet" href="css/listProductHost.css">
+    <link rel="stylesheet" href="/css/listProductHost.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet">
 </head>
@@ -26,6 +26,7 @@
                     <table class="table user-list">
                         <thead>
                         <tr>
+                            <th class="text-center"><span>STT</span></th>
                             <th><span>Sản phẩm</span></th>
                             <th class="text-center"><span>Giá</span></th>
                             <th class="text-center"><span>Trạng thái</span></th>
@@ -36,15 +37,17 @@
                         <tbody>
                         <c:choose>
                             <c:when test="${not empty listProduct}">
-                                <c:forEach var="p" items="${listProduct}">
+                                <c:forEach var="p" items="${listProduct}" varStatus="status">
                                     <input type="hidden" name="productId" value="${p.idProduct}">
                                     <tr>
+                                        <td class="text-center">
+                                                ${startIndex + status.index + 1}
+                                        </td>
                                         <td>
                                             <img src="img/${p.image}" alt=""
                                                  onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
                                             <a href="editProductHostServlet?productId=${p.idProduct}"
                                                class="user-link">${p.nameProduct}</a>
-                                            <span class="user-subhead">Admin</span>
                                         </td>
                                         <td>
                                                 ${p.price} VNĐ
@@ -121,7 +124,8 @@
                         </li>
                     </c:forEach>
                     <c:if test="${tag < endPageUser}">
-                        <li class="page-item"><a href="listProductHostServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+                        <li class="page-item"><a href="listProductHostServlet?page=${tag + 1}"
+                                                 class="page-link">Tiếp</a></li>
                     </c:if>
                 </ul>
             </div>

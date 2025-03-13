@@ -8,7 +8,7 @@
     }
 
     body {
-        background-color: #f5f5f5;
+        padding-top: 70px;
     }
 
     header, .navbar {
@@ -16,12 +16,18 @@
         margin: 0 auto;
     }
 
+
     /* Navbar */
     .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        z-index: 1000; /* Đảm bảo hiển thị trên cùng */
         display: flex;
         justify-content: space-between;
         padding: 15px 30px;
-        background: #fff;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         align-items: center;
         overflow: visible; /* Đã chuyển từ hidden sang visible */
@@ -47,22 +53,6 @@
         list-style: none;
         display: flex;
         align-items: center;
-    }
-
-    .nav-search {
-        margin-left: 20px; /* Optional: Add some margin for spacing */
-    }
-
-    .search-input {
-        width: 250px;
-        padding: 8px 30px 8px 8px; /* Add padding on the right for the icon */
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
-        background-image: url('https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/search-3-512.png');
-        background-repeat: no-repeat;
-        background-position: right 10px center; /* Position the icon on the right */
-        background-size: 20px; /* Size of the icon */
     }
 
     .nav-links li,
@@ -168,24 +158,24 @@
         <ul class="nav-links">
             <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li><a href="#">Giới thiệu</a></li>
-            <li><a href="/orderInformationServlet">Sản phẩm</a></li>
+            <li><a href="/orderInformationServlet">Đơn thuê</a></li>
             <li><a href="#">Liên hệ</a></li>
         </ul>
-        <ul class="nav-search">
-            <li>
-                <input type="text" placeholder="Tìm kiếm..." class="search-input">
-            </li>
-        </ul>
+<%--        <ul class="nav-search">--%>
+<%--            <li>--%>
+<%--                <input type="text" placeholder="Tìm kiếm..." class="search-input">--%>
+<%--            </li>--%>
+<%--        </ul>--%>
         <ul class="nav-icon">
             <li>
                 <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
-                    <img src="https://cdn1.iconfinder.com/data/icons/heroicons-ui/24/chat-1024.png" alt="Favorites"
+                    <img src="img/chat (1).png" alt="Char"
                          class="w-6 h-6 icon-black">
                 </a>
             </li>
             <li>
                 <i class="bell-icon">
-                    <img src="https://cdn2.iconfinder.com/data/icons/boxicons-solid-vol-1/24/bxs-bell-ring-512.png"
+                    <img src="img/bell.png"
                          alt="Notifications" class="icon-black">
                 </i>
             </li>
@@ -194,7 +184,7 @@
             <li class="dropdown">
 
                 <i class="account-icon">
-                    <img src="https://cdn0.iconfinder.com/data/icons/ui-3-1/512/user-512.png" alt="Account">
+                    <img src="img/userIcon.png" alt="Account">
                 </i>
 
                 <div class="dropdown-content">
@@ -203,7 +193,6 @@
                     </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>
-
                 </div>
             </li>
         </ul>
