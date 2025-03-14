@@ -35,9 +35,8 @@
                                     <%--                                    </div>--%>
 
                                     <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
-                                        <div id="allChatContainer" data-mdb-perfect-scrollbar-init
-                                             style="position: relative; height: 400px">
-                                            <c:forEach var="c" items="${allChat}">
+                                        <c:forEach var="c" items="${allChat}">
+                                            <c:if test="${not empty c.text}">
                                                 <ul class="list-unstyled mb-0">
                                                     <li class="p-2 border-bottom"
                                                         style="${(param.action eq 'showChat' and param.idHost eq c.idUser) ? 'background-color: #e0e0e0;' : ''}">
@@ -64,8 +63,8 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </c:forEach>
-                                        </div>
+                                            </c:if>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
@@ -79,22 +78,23 @@
                                             <c:forEach var="c" items="${chat}">
                                                 <c:choose>
                                                     <c:when test="${c.idReceiver eq myProfile.idUser}">
-                                                        <c:if test="${c.text != null and c.text != ''}">
-                                                            <div class="d-flex flex-row justify-content-start">
-                                                            <img class="rounded-circle" src="img/${c.image}"
-                                                                 alt="avatar"
-                                                                 style="width: 45px; height: 100%;">
-                                                            <div>
-                                                                <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
-                                                                   style="background-color: #e0e0e0">${c.text}</p>
-                                                                    <%-- <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p> --%>
-                                                            </div>
-                                                        </c:if>
+
+                                                        <div class="d-flex flex-row justify-content-start">
+                                                            <c:if test="${not empty c.text}">
+                                                                <img class="rounded-circle" src="img/${c.image}"
+                                                                     alt="avatar"
+                                                                     style="width: 45px; height: 100%;">
+                                                                <div>
+                                                                    <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
+                                                                       style="background-color: #e0e0e0">${c.text}</p>
+                                                                        <%-- <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p> --%>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:if test="${c.text != null and c.text != ''}">
-                                                            <div class="d-flex flex-row justify-content-end">
+                                                        <div class="d-flex flex-row justify-content-end">
+                                                            <c:if test="${not empty c.text}">
                                                                 <div>
                                                                     <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${c.text}</p>
                                                                         <%-- <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p> --%>
@@ -102,9 +102,8 @@
                                                                 <img class="rounded-circle" src="img/${myProfile.image}"
                                                                      alt="avatar"
                                                                      style="width: 45px; height: 100%;">
-                                                            </div>
-                                                        </c:if>
-
+                                                            </c:if>
+                                                        </div>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
@@ -131,15 +130,19 @@
                                                     style="border: none; margin: 0; background: none;">
                                                 <i class="fa-solid fa-paper-plane" style="color: #007ce0;"></i>
                                             </button>
+
                                         </div>
                                     </form>
                                 </c:if>
                             </div>
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
 </section>
 <footer class="mt-5">
@@ -173,8 +176,6 @@
                     // Xóa trường nhập tin nhắn
                     $('#exampleFormControlInput2').val('');
                 },
-
-
                 error: function (xhr, status, error) {
                     console.error("Lỗi khi gửi tin nhắn: ", error);
                 }
