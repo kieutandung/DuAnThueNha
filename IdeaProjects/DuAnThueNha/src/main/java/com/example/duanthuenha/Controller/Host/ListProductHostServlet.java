@@ -55,8 +55,6 @@ public class ListProductHostServlet extends HttpServlet {
         int idOrder = Integer.parseInt(req.getParameter("idOrder"));
         String status = req.getParameter("status");
 
-        System.out.println("orderId nhận được: " + idOrder);
-        System.out.println("Trạng thái mới: " + status);
 
         approveRequestService.updateStatus(idOrder, status);
 
@@ -125,11 +123,14 @@ public class ListProductHostServlet extends HttpServlet {
             pageString = "1";
         }
         int page = Integer.parseInt(pageString);
+        int itemsPerPage = 10;
+        int startIndex = (page - 1) * itemsPerPage;
         int count = productService.getTotalProductsSearchHost(userID,keyword);
         int endPage = count / 10;
         if (count % 10 != 0) {
             endPage++;
         }
+        req.setAttribute("startIndex", startIndex);
         req.setAttribute("endPageUser", endPage);
         req.setAttribute("tag", page);
         List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword,page);
@@ -149,11 +150,14 @@ public class ListProductHostServlet extends HttpServlet {
             pageString = "1";
         }
         int page = Integer.parseInt(pageString);
+        int itemsPerPage = 10;
+        int startIndex = (page - 1) * itemsPerPage;
         int count = productService.getTotalProductsHost(userID);
         int endPage = count / 10;
         if (count % 10 != 0) {
             endPage++;
         }
+        req.setAttribute("startIndex", startIndex);
         req.setAttribute("endPageUser", endPage);
         req.setAttribute("tag", page);
         List<ProductHost> products = productService.getAllProductsById(userID,page);

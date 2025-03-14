@@ -167,11 +167,14 @@
                     </c:when>
                 </c:choose>
                 <c:choose>
-                    <c:when test="${order.paymentStatus eq 'completed' or order.paymentStatus eq 'cancelled'}">
+                    <c:when test="${order.paymentStatus eq 'completed'}">
                         <a href="commentServlet?productId=${order.idProduct}"
                            class="btn btn-danger custom-btn">
                             Viết đánh giá
                         </a>
+                    </c:when>
+                    <c:when test="${order.paymentStatus eq 'cancelled'}">
+
                     </c:when>
                     <c:otherwise>
                         <button type="button" class="btn btn-danger custom-btn" onclick="confirmCancel(${order.idOrder})">

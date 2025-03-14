@@ -23,7 +23,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-xs-6">
-                        <h2>Danh sách <b>yêu cầu thuê</b></h2>
+                        <h2>Danh sách yêu cầu thuê</h2>
                     </div>
                 </div>
             </div>
@@ -61,8 +61,12 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div class="btn-group d-flex justify-content-center gap-2" role="group">
-                                        <button class="btn btn-success" onclick="confirmAction('${order.idOrder}', 'waiting')">Xác nhận</button>
-                                        <button class="btn btn-danger" onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối</button>
+                                        <button class="btn btn-success"
+                                                onclick="confirmAction('${order.idOrder}', 'waiting')">Xác nhận
+                                        </button>
+                                        <button class="btn btn-danger"
+                                                onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối
+                                        </button>
                                     </div>
                                 </c:otherwise>
                             </c:choose>

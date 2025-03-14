@@ -78,8 +78,7 @@
                 Địa chỉ:</strong> ${product.address}
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;"
-                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m2
-
+                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m<sup>2</sup>
             </p>
             <c:choose>
                 <c:when test="${product.status eq 'Hết chỗ'}">
@@ -99,13 +98,18 @@
 
             <h5 class="mt-4">Chủ nhà: </h5>
             <div class="d-flex align-items-center py-2">
-                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60"
-                     alt="Ảnh chủ nhà">
-                <div class="px-3">
-                    <h5 class="mb-0">${avtUser.fullName}</h5>
+                <img src="img/${avtUser.image}" class="rounded-circle me-2" width="60" height="60" alt="Ảnh chủ nhà">
+                <div class="px-3 flex-grow-1">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0">${avtUser.fullName}</h5>
+                        <c:if test="${idUser ne avtUser.idUser}">
+                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}" class="ms-4 text-decoration-none">Liên hệ</a>
+                        </c:if>
+                    </div>
                     <small class="text-muted">${avtUser.address}</small>
                 </div>
             </div>
+
             <div class="action-buttons mt-3">
                 <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
                     <i class="bi bi-house-door-fill"></i> Thuê ngay

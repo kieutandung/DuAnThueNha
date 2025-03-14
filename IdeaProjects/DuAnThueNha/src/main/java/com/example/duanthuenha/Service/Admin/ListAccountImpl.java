@@ -1,10 +1,13 @@
 package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
+import com.example.duanthuenha.Model.Report;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
+import com.sun.nio.sctp.Notification;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -322,6 +325,91 @@ public class ListAccountImpl implements ListAccountService {
         }
     }
 
+    @Override
+    public List<Report> getAllReport() {
+        List<Report> reportList = new ArrayList<>();
+        String sql = "SELECT *\n" +
+                "FROM report\n" +
+                "WHERE status = 'pending' order by idReport desc;";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int idReport = rs.getInt("idReport");
+                int idProduct = rs.getInt("idProduct");
+                int idUser = rs.getInt("idUser");
+                LocalDate reportDate = rs.getTimestamp("reportDate").toLocalDateTime().toLocalDate();
+
+                String description = rs.getString("description");
+                String reason = rs.getString("reason");
+                String status = rs.getString("status");
+
+                Report report = new Report(idReport,idProduct,idUser,description,status,reason,reportDate);
+                reportList.add(report);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return reportList;
+    }
+
+    @Override
+    public Users getUserByidProduct(int idProduct) {
+        Users user = null;
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "SELECT u.*\n" +
+                    "FROM Users u\n" +
+                    "JOIN Products p ON u.idUser = p.idUser\n" +
+                    "WHERE p.idProduct = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, idProduct);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int idUser = rs.getInt("idUser");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String fullName = rs.getString("fullName");
+                String phone = rs.getString("phone");
+                String email = rs.getString("email");
+                String role = rs.getString("role");
+                String status = rs.getString("status");
+                String image = rs.getString("image");
+                user = new Users(idUser, username, password, fullName, phone, email, role, status, image);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+    @Override
+    public void sendFeedback(com.example.duanthuenha.Model.Notification notification) {
+        String insertImageSQL = "INSERT INTO Notification (idUser, title, content) VALUES (?, ?, ?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(insertImageSQL)) {
+            ps.setInt(1, notification.getIdUser());
+            ps.setString(3, notification.getMessage());
+            ps.setString(2, notification.getTitle());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+        }
+    }
+
+    public void updateReportApproved(int idReport) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE report SET status = ? WHERE idReport = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(2, idReport);
+            ps.setString(1,"approved");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

@@ -10,6 +10,7 @@
 
     <script src="/js/home.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+
 </head>
 <body>
 <header>
@@ -21,9 +22,9 @@
         <div class="search-bar">
             <select name="category">
                 <option value="">Loại nhà đất</option>
-                <option>Căn hộ</option>
-                <option>Biệt thự</option>
-                <option>Chung cư</option>
+                <option ${category eq 'Căn hộ' ? 'selected' : ''} >Căn hộ</option>
+                <option ${category eq 'Biệt thự' ? 'selected' : ''} >Biệt thự</option>
+                <option ${category eq 'Chung cư' ? 'selected' : ''} >Chung cư</option>
             </select>
             <input value="${keywordUser}" name="keyword" type="text" placeholder="Nhập địa điểm, diện tích hoặc từ khóa"
                    style="border: 2px solid #c4c5bc;
@@ -50,7 +51,7 @@
                                 <h5 class="card-title">${p.nameProduct}</h5>
                                 <p><strong>Giá:</strong> ${p.getFormattedPrice()}</p>
                                 <p><strong>Địa chỉ:</strong> ${p.address}</p>
-                                <p><strong>Diện tích</strong> ${p.area} m2</p>
+                                <p><strong>Diện tích</strong> ${p.area} m<sup>2</sup></p>
                                 <c:choose>
                                     <c:when test="${p.status eq 'Hết chỗ'}">
                                         <p class="status" style="color: #f93434">
@@ -88,14 +89,14 @@
     </c:choose>
     <ul class="pagination">
         <c:if test="${tag > 1}">
-            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}" class="page-link"> Trước </a></li>
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}"> Trước </a></li>
         </c:if>
         <c:forEach var="i" begin="1" end="${endPageUser}">
             <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
             </li>
         </c:forEach>
         <c:if test="${tag < endPageUser}">
-        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
+            <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
         </c:if>
     </ul>
 

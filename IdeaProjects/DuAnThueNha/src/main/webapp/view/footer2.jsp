@@ -7,10 +7,6 @@
     <title>Thông tin cá nhân</title>
 </head>
 <style>
-     footer {
-        margin-top: 30px; /* Điều chỉnh khoảng cách giữa nội dung và footer */
-        padding-top: 20px;
-    }
     .footer-content h1 {
         font-size: 18px;
         margin-bottom: 10px;
@@ -27,8 +23,9 @@
         border-radius: 5px;
         border: none;
     }
+
     .footer {
-        background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+        background-image: url("../img/background.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -36,7 +33,6 @@
         color: white;
         padding: 40px 0;
         font-family: Arial, sans-serif;
-
     }
 
     .container {
@@ -49,6 +45,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
     }
+
     .container {
         width: 80%;
         margin: auto;
@@ -59,8 +56,8 @@
         justify-content: space-between;
         flex-wrap: wrap;
         align-items: flex-start; /* Căn trên để các phần thẳng hàng */
-
     }
+
     .footer-section {
         width: 25%; /* Đảm bảo các cột có kích thước bằng nhau */
         margin-bottom: 20px;
@@ -138,29 +135,36 @@
             flex-direction: column;
             align-items: center;
         }
+
         .footer-section {
             width: 100%;
             text-align: center;
         }
+
         .footer-section h2, .footer-section h3 {
             margin-bottom: 10px;
         }
+
         .footer-section ul li {
             margin: 5px 0;
         }
+
         .footer-bottom {
             padding-top: 20px;
         }
     }
+
     .container {
         max-width: 1200px;
         margin: auto;
     }
+
     .gallery {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
     }
+
     .item {
         position: relative;
         background-size: cover;
@@ -174,35 +178,39 @@
         height: 200px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
     .item.large {
         grid-column: span 1;
         height: 200px;
     }
+
     .item.tall {
         grid-row: span 2;
         height: 410px;
     }
+
     .gallery {
         margin-bottom: 50px;
     }
+
     h2 {
         font-size: 20px;
         font-weight: normal;
     }
+
     h2 span {
         text-align: left;
         font-size: 20px;
     }
 
-</style>
-<body>
-
+</style> 
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h2>WE Bare BEARS.vn</h2>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội
+                </p>
                 <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 1900 1011</p>
                 <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Chianhn567@gmail.com</p>
             </div>

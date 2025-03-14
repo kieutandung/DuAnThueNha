@@ -25,6 +25,9 @@ public class DetailProductUser extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         int productId = Integer.parseInt(req.getParameter("productId"));
@@ -42,13 +45,15 @@ public class DetailProductUser extends HttpServlet {
         req.setAttribute("product", product);
         req.setAttribute("avtUser", avtUser);
         req.setAttribute("idUser", userID);
-
         req.setAttribute("comments", comments);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/houseDetail.jsp");
         dispatcher.forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -72,6 +77,11 @@ public class DetailProductUser extends HttpServlet {
         String reasonDetails = req.getParameter("reasonDetails");
         Report report = new Report(productId, idUser, reason, reasonDetails);
         productUserService.addReport(report);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("/detailProductUser?productId=" + productId);
     }
 
