@@ -7,25 +7,28 @@
     <title>Thông tin cá nhân</title>
 </head>
 <style>
-    .footer-content h1 {
+    footer {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    .footer-container h1 {
         font-size: 18px;
         margin-bottom: 10px;
     }
 
-    .footer-content p {
+    .footer-container p {
         font-size: 14px;
     }
 
-    .footer-content input {
+    .footer-container input {
         padding: 8px;
         width: 250px;
         margin-top: 10px;
         border-radius: 5px;
         border: none;
     }
-
     .footer {
-        background-image: url("../img/background.jpg");
+        background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -35,7 +38,7 @@
         font-family: Arial, sans-serif;
     }
 
-    .container {
+    .footer-container {
         width: 80%;
         margin: auto;
     }
@@ -43,32 +46,21 @@
     .footer-content {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .container {
-        width: 80%;
-        margin: auto;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: flex-start; /* Căn trên để các phần thẳng hàng */
+        flex-wrap: nowrap !important;
+        align-items: flex-start;
     }
 
     .footer-section {
-        width: 25%; /* Đảm bảo các cột có kích thước bằng nhau */
+        width: 25%;
         margin-bottom: 20px;
         padding: 10px;
         display: flex;
-        flex-direction: column; /* Giữ nội dung theo chiều dọc */
-        text-align: left; /* Căn trái nội dung */
+        flex-direction: column;
+        text-align: left;
     }
 
     .footer-section h2 {
-        margin-top: 5px; /* Điều chỉnh khoảng cách lùi xuống */
+        margin-top: 5px;
     }
 
     .footer-section h3 {
@@ -77,7 +69,7 @@
     }
 
     .footer-section p {
-        margin: 10px 0; /* Cách đều các dòng thông tin */
+        margin: 10px 0;
     }
 
     .footer-section ul {
@@ -128,89 +120,34 @@
         color: #0099FF;
     }
 
-
     /* Điều chỉnh cho thiết bị di động */
     @media (max-width: 768px) {
         .footer-content {
             flex-direction: column;
             align-items: center;
         }
-
         .footer-section {
             width: 100%;
             text-align: center;
         }
-
         .footer-section h2, .footer-section h3 {
             margin-bottom: 10px;
         }
-
         .footer-section ul li {
             margin: 5px 0;
         }
-
         .footer-bottom {
             padding-top: 20px;
         }
     }
-
-    .container {
-        max-width: 1200px;
-        margin: auto;
-    }
-
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-
-    .item {
-        position: relative;
-        background-size: cover;
-        background-position: center;
-        border-radius: 8px;
-        color: white;
-        font-size: 18px;
-        display: flex;
-        align-items: end;
-        padding: 10px;
-        height: 200px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .item.large {
-        grid-column: span 1;
-        height: 200px;
-    }
-
-    .item.tall {
-        grid-row: span 2;
-        height: 410px;
-    }
-
-    .gallery {
-        margin-bottom: 50px;
-    }
-
-    h2 {
-        font-size: 20px;
-        font-weight: normal;
-    }
-
-    h2 span {
-        text-align: left;
-        font-size: 20px;
-    }
-
-</style> 
+</style>
+<body>
 <footer class="footer">
-    <div class="container">
+    <div class="footer-container">
         <div class="footer-content">
             <div class="footer-section">
                 <h2>WE Bare BEARS.vn</h2>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội
-                </p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội</p>
                 <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 1900 1011</p>
                 <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Chianhn567@gmail.com</p>
             </div>

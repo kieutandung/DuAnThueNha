@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
@@ -43,11 +40,8 @@ public class AdminServlet extends HttpServlet {
                 case "editUser":
                     handleEditUserView(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
-                    break;
-                case "browseProfile":
-                    listBrowseProfileView(req, resp);
+                case "revenueChart":
+                    revenueChart(req,resp);
                     break;
                 case "reportView":
                     listReportView(req, resp);
@@ -59,6 +53,44 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void revenueChart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Order> orders = listAccountService.getAllOrder();
+        Map<Integer, Double> revenueByMonth = listAccountService.getRevenueByMonth();
+        Map<String, Integer> orderStatusCount = listAccountService.getOrderStatusCount();
+        List<Product> topProducts = listAccountService.getTopRentedProducts();
+
+        // Tính toán dữ liệu để gửi qua JSP
+        req.setAttribute("pendingCount", orderStatusCount.getOrDefault("pending", 0));
+        req.setAttribute("cancelledCount", orderStatusCount.getOrDefault("cancelled", 0));
+        req.setAttribute("completedCount", orderStatusCount.getOrDefault("completed", 0));
+        req.setAttribute("waitingCount", orderStatusCount.getOrDefault("waiting", 0));
+        req.setAttribute("paidCount", orderStatusCount.getOrDefault("paid", 0));
+
+        req.setAttribute("orders", orders);
+        req.setAttribute("revenueByMonth", revenueByMonth);
+
+        // Xử lý HTML của top sản phẩm trong Servlet
+        StringBuilder topProductsHtml = new StringBuilder();
+        if (topProducts != null && !topProducts.isEmpty()) {
+            for (Product product : topProducts) {
+                topProductsHtml.append("<div class='house-card'>")
+                        .append("<img src='img/").append(product.getImage()).append("'>")
+                        .append("<div class='house-details'>")
+                        .append("<p class='price'>").append(product.getPrice()).append(" VNĐ / Ngày</p>")
+                        .append("<p><strong><em>").append(product.getNameProduct()).append("</em></strong></p>")
+                        .append("</div>")
+                        .append("</div>");
+            }
+        } else {
+            topProductsHtml.append("<p>Không có dữ liệu.</p>");
+        }
+
+        req.setAttribute("topProductsHtml", topProductsHtml.toString());
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/revenue.jsp");
+        dispatcher.forward(req, resp);
     }
 
     private void listReportView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -107,17 +139,11 @@ public class AdminServlet extends HttpServlet {
                 case "delete":
                     deleteUser(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
-                    break;
                 case "promoteUser":
                     handlePromoteUser(req, resp);
                     break;
                 case "profileFeedback":
                     handleProfileFeedback(req, resp);
-                    break;
-                case "getVerification":  // ✅ Thêm case này
-                    getVerificationInfo(req, resp);
                     break;
                 case "updateStatus":
                     updateStatus(req, resp);
@@ -148,21 +174,6 @@ public class AdminServlet extends HttpServlet {
         listReportView(req, resp);
     }
 
-    private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
-        Verification verification = listAccountService.getVerificationByIdDocument(idDocument);
-
-        resp.setContentType("text/plain"); // Trả về dữ liệu dạng chuỗi, không dùng JSON
-        resp.setCharacterEncoding("UTF-8");
-
-        if (verification != null) {
-            String result = verification.getStatus() + "|" +
-                    (verification.getRejectionReason() != null ? verification.getRejectionReason() : "");
-            resp.getWriter().write(result);
-        } else {
-            resp.getWriter().write("error");
-        }
-    }
 
     private void handleProfileFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
@@ -177,41 +188,7 @@ public class AdminServlet extends HttpServlet {
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
 
-    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Verification> verificationList = listAccountService.getAllVerification();
-        req.setAttribute("verifications", verificationList);
 
-        List<Users> users = listAccountService.getAllUser();
-        List<Users> filteredUsers = new ArrayList<>();
-
-        Set<Integer> userIdsWithDocuments = new HashSet<>();
-        for (Verification verification : verificationList) {
-            userIdsWithDocuments.add(verification.getIdUser());
-        }
-
-        for (Users user : users) {
-            if ("user".equals(user.getRole()) && userIdsWithDocuments.contains(user.getIdUser())) {
-                filteredUsers.add(user);
-            }
-        }
-
-        req.setAttribute("users", filteredUsers);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/approveAccount.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    private void listBrowseProfileView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId")); // Nhận userId từ request
-
-        // Lấy danh sách hồ sơ của userId từ bảng verificationdocument
-        List<Verification> verifications = listAccountService.getVerificationsByUserId(userId);
-
-        // Gửi danh sách hồ sơ đến JSP
-        req.setAttribute("verifications", verifications);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/browseProfileTable.jsp");
-        dispatcher.forward(req, resp);
-    }
 
 
     private void handlePromoteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

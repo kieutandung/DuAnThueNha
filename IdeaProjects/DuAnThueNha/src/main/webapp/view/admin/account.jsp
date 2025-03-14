@@ -206,7 +206,6 @@
     </table>
 </div>
 
-<!-- Add Account Modal (Same as before) -->
 <div class="modal fade" id="addAccountModal" tabindex="-1" role="dialog" aria-labelledby="addAccountModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -384,4 +383,7 @@
     }
 </script>
 </body>
+<footer>
+    <jsp:include page="../footer2.jsp"/>
+</footer>
 </html>
