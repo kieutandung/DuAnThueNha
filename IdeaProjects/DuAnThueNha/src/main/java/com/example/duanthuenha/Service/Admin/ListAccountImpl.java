@@ -4,6 +4,7 @@ import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Report;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
+import com.sun.nio.sctp.Notification;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -327,7 +328,9 @@ public class ListAccountImpl implements ListAccountService {
     @Override
     public List<Report> getAllReport() {
         List<Report> reportList = new ArrayList<>();
-        String sql = "SELECT * FROM report";
+        String sql = "SELECT *\n" +
+                "FROM report\n" +
+                "WHERE status = 'pending' order by idReport desc;";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
@@ -381,5 +384,32 @@ public class ListAccountImpl implements ListAccountService {
         }
         return user;
     }
+
+    @Override
+    public void sendFeedback(com.example.duanthuenha.Model.Notification notification) {
+        String insertImageSQL = "INSERT INTO Notification (idUser, title, content) VALUES (?, ?, ?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(insertImageSQL)) {
+            ps.setInt(1, notification.getIdUser());
+            ps.setString(3, notification.getMessage());
+            ps.setString(2, notification.getTitle());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+        }
+    }
+
+    public void updateReportApproved(int idReport) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE report SET status = ? WHERE idReport = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(2, idReport);
+            ps.setString(1,"approved");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
 

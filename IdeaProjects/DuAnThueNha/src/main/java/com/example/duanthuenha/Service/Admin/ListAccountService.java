@@ -1,8 +1,10 @@
 package com.example.duanthuenha.Service.Admin;
 
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Report;
 import com.example.duanthuenha.Model.Users;
 import com.example.duanthuenha.Model.Verification;
+
 
 import java.util.List;
 
@@ -24,4 +26,7 @@ public interface ListAccountService {
     boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
     List<Report> getAllReport();
     Users getUserByidProduct(int idProduct);
+
+    void sendFeedback(Notification notification);
 }
+

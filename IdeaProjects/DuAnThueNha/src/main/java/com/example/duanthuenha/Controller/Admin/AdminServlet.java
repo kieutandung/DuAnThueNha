@@ -1,9 +1,6 @@
 package com.example.duanthuenha.Controller.Admin;
 
-import com.example.duanthuenha.Model.ProductHost;
-import com.example.duanthuenha.Model.Report;
-import com.example.duanthuenha.Model.Users;
-import com.example.duanthuenha.Model.Verification;
+import com.example.duanthuenha.Model.*;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
@@ -125,6 +122,9 @@ public class AdminServlet extends HttpServlet {
                 case "updateStatus":
                     updateStatus(req, resp);
                     break;
+                case "sendFeedback":
+                    sendFeedback(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -132,6 +132,20 @@ public class AdminServlet extends HttpServlet {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void sendFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
+
+        String feedback = req.getParameter("feedback");
+        String title = req.getParameter("title");
+        String idReport = req.getParameter("idReport");
+        Notification notification = new Notification(userID, title, feedback);
+        listAccountService.updateReportApproved(Integer.parseInt(idReport));
+        listAccountService.sendFeedback(notification);
+        listReportView(req, resp);
     }
 
     private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
