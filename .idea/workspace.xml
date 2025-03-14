@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="?" />
+=======
+    <list default="true" id="367b84d9-3789-4360-bad5-573c60810623" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/IntroductionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/introduce.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/addComments.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/addComments.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/user/houseDetail.jsp" afterDir="false" />
+    </list>
+>>>>>>> 59220abb996e2952602307961494fd806145bee2
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,9 +54,16 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+<<<<<<< HEAD
         <option value="Jsp File" />
         <option value="Kotlin Class" />
         <option value="Jsp File" />
+=======
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Jsp File" />
+>>>>>>> 59220abb996e2952602307961494fd806145bee2
         <option value="Class" />
       </list>
     </option>
@@ -74,19 +92,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build DuAnThueNha.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DuAnThueNha [:ProductImpl.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.97.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/host/revenue&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build DuAnThueNha.executor": "Run",
-    "Gradle.DuAnThueNha [:ProductImpl.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 9.0.97.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/user/chat",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "feature/user/introduce",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -94,8 +131,9 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
+>>>>>>> 59220abb996e2952602307961494fd806145bee2
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.example.duanthuenha.Controller.Admin" />
@@ -218,6 +256,7 @@
       </method>
     </configuration>
   </component>
+<<<<<<< HEAD
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -225,6 +264,8 @@
       </set>
     </attachedChunks>
   </component>
+=======
+>>>>>>> 59220abb996e2952602307961494fd806145bee2
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -252,6 +293,7 @@
       <workItem from="1740990868842" duration="4045000" />
       <workItem from="1741051520188" duration="23024000" />
       <workItem from="1741137676538" duration="24465000" />
+<<<<<<< HEAD
       <workItem from="1741224309231" duration="2641000" />
       <workItem from="1741441309120" duration="6982000" />
       <workItem from="1741527198818" duration="5723000" />
@@ -259,7 +301,16 @@
       <workItem from="1741587477637" duration="13042000" />
       <workItem from="1741742477647" duration="19263000" />
       <workItem from="1741829107000" duration="19663000" />
-      <workItem from="1741916061912" duration="2802000" />
+      <workItem from="1741916061912" duration="3513000" />
+      <workItem from="1741921850530" duration="2232000" />
+=======
+      <workItem from="1741224309231" duration="1353000" />
+      <workItem from="1741266133101" duration="18123000" />
+      <workItem from="1741569593084" duration="24737000" />
+      <workItem from="1741657841015" duration="3098000" />
+      <workItem from="1741741883104" duration="2475000" />
+      <workItem from="1741747432260" duration="2742000" />
+>>>>>>> 59220abb996e2952602307961494fd806145bee2
     </task>
     <servers />
   </component>
@@ -314,7 +365,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/Controller/User/DetailProductUser.java</url>
           <line>26</line>
-          <properties class="com.example.duanthuenha.Controller.User.DetailProductUser" method="doGet">
+          <properties class="com.example.duanthuenha.Controller.User.DetailProductUser">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

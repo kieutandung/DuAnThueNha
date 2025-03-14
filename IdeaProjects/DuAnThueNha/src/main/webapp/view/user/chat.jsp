@@ -36,7 +36,7 @@
 
                                     <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
                                         <c:forEach var="c" items="${allChat}">
-                                            <c:if test="${not empty c.text}">
+                                            <c:if test="${!(myProfile.role eq 'host' and empty c.text)}">
                                                 <ul class="list-unstyled mb-0">
                                                     <li class="p-2 border-bottom"
                                                         style="${(param.action eq 'showChat' and param.idHost eq c.idUser) ? 'background-color: #e0e0e0;' : ''}">

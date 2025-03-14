@@ -1,3 +1,4 @@
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,6 +12,9 @@
 
 </head>
 <body>
+<header>
+    <jsp:include page="menu.jsp"/>
+</header>
 <div class="container">
     <div>
         <div class="chart-container">
@@ -18,9 +22,12 @@
         </div>
         <div class="pie-chart">
             <div class="legend">
-                <div><span class="green"></span> Đơn thuê đã tạo</div>
-                <div><span class="yellow"></span> Nhà đăng mới</div>
-                <div><span class="red"></span> Đơn thuê đã hoàn thành</div>
+                <h3>Số lượng đơn thuê</h3>
+                <div><span class="gray"></span> Đơn chờ xử lý</div>
+                <div><span class="red"></span> Đơn bị hủy</div>
+                <div><span class="green"></span> Đơn hoàn thành</div>
+                <div><span class="yellow"></span> Đơn chờ xác nhận</div>
+                <div><span class="blue"></span> Đơn đã thanh toán</div>
             </div>
             <div class="pie-chart-container">
                 <canvas id="pieChart"></canvas>
@@ -28,38 +35,63 @@
         </div>
     </div>
     <div class="top-houses">
-        <h3>Top nhà được thuê nhiều nhất</h3>
-        <div class="house-card">
-            <img src="house1.jpg" alt="Nhà Nha Trang">
-            <div class="house-details">
-                <p class="price">3.350.000Đ / Day</p>
-                <p><strong><em>Căn hộ tại Nha Trang</em></strong></p>
-                <p>🛏 bedroom: 05  🛁 bathroom: 04  📏 1000m2</p>
-            </div>
-        </div>
-        <div class="house-card">
-            <img src="house2.jpg" alt="Nhà TP HCM">
-            <div class="house-details">
-                <p class="price">5.450.000Đ / Day</p>
-                <p><strong><em>Căn hộ tại TP Hồ Chí Minh</em></strong></p>
-                <p>🛏 bedroom: 05  🛁 bathroom: 04  📏 1000m2</p>
-            </div>
-        </div>
+        <h3>Top 2 nhà được thuê nhiều nhất</h3>
+        ${topProductsHtml}
     </div>
 </div>
+
 <script>
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    new Chart(barCtx, {
+    const pieCtx = document.getElementById('pieChart').getContext('2d');
+
+    const orderStatusData = {
+        datasets: [{
+            data: [
+                <%= request.getAttribute("pendingCount") %>,
+                <%= request.getAttribute("cancelledCount") %>,
+                <%= request.getAttribute("completedCount") %>,
+                <%= request.getAttribute("waitingCount") %>,
+                <%= request.getAttribute("paidCount") %>
+            ],
+            backgroundColor: ['#989898', '#ff0000', '#0fd925', '#d7f111', '#1450ea']
+        }]
+    };
+
+    new Chart(pieCtx, {
+        type: 'pie',
+        data: orderStatusData,
+        options: {
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
+        }
+    });
+</script>
+
+
+<script>
+    const revenueData = {
+        labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+        datasets: [{
+            label: 'Doanh thu (đ)',
+            data: [
+                <%
+                    Map<Integer, Double> revenueByMonth = (Map<Integer, Double>) request.getAttribute("revenueByMonth");
+                    for (int i = 1; i <= 12; i++) {
+                        double revenue = revenueByMonth.getOrDefault(i, 0.0);
+                %> <%= revenue %>, <% } %>
+            ],
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1 ,
+        }]
+    };
+
+    const revenueCtx = document.getElementById('barChart').getContext('2d');
+    new Chart(revenueCtx, {
         type: 'bar',
-        data: {
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10','11','12'],
-            datasets: [{
-                label: 'Lượt thuê theo tháng',
-                data: [10, 16, 8, 15, 2, 4, 10, 15, 12, 11, 15, 10],
-                backgroundColor: 'rgba(137, 196, 244, 0.8)',
-                borderWidth: 1
-            }]
-        },
+        data: revenueData,
         options: {
             scales: {
                 y: {
@@ -68,25 +100,9 @@
             }
         }
     });
-
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-    new Chart(pieCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Đơn thuê đã tạo', 'Nhà đăng mới', 'Đơn thuê đã hoàn thành'],
-            datasets: [{
-                data: [20, 30, 45],
-                backgroundColor: ['green', 'yellow', 'red']
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
-        }
-    });
 </script>
 </body>
+<footer>
+    <jsp:include page="../footer2.jsp"/>
+</footer>
 </html>

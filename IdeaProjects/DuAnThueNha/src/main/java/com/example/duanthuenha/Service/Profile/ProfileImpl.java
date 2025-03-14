@@ -8,12 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ProfileImpl implements ProfileService {
@@ -38,7 +33,7 @@ public class ProfileImpl implements ProfileService {
                         String email = rs.getString("email");
                         String image = rs.getString("image");
                         String birthDate = rs.getString("birthDate");
-
+                        String role = rs.getString("role");
                         String address = rs.getString("address");
                         String gender = rs.getString("gender");
                         if (gender != null && gender.equals("male")) {
@@ -50,7 +45,7 @@ public class ProfileImpl implements ProfileService {
                         if (gender != null && gender.equals("other")) {
                             gender = "Khác";
                         }
-                        users = new Users(idUser, username, password, fullName, phone, email, image, birthDate, address, gender);
+                        users = new Users(idUser, role, username, password, fullName, phone, email, image, birthDate, address, gender);
                         return users;
                     }
                 }

@@ -11,6 +11,23 @@ public class Users {
     private String status;
     private String birthDate;
     private String address;
+    private String rejectionReason;
+
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image, String address, String gender, String birthDate, String rejectionReason) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+        this.image = image;
+        this.status = status;
+        this.address = address;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.rejectionReason = rejectionReason;
+    }
 
     public String getBirthDate() {
         return birthDate;
@@ -90,6 +107,19 @@ public class Users {
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
         this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.image = image;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.gender = gender;
+    }
+    public Users(int idUser,String role ,String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
+        this.idUser = idUser;
+        this.role = role;
         this.username = username;
         this.password = password;
         this.fullName = fullName;

@@ -157,8 +157,8 @@
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
             <li><a href="/homeUserServlet">Trang chủ</a></li>
-            <li><a href="#">Giới thiệu</a></li>
-            <li><a href="/orderInformationServlet">Đơn thuê</a></li>
+            <li><a href="/introductionServlet">Giới thiệu</a></li>
+            <li><a href="/orderInformationServlet">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
         </ul>
 <%--        <ul class="nav-search">--%>

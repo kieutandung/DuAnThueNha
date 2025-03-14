@@ -7,8 +7,12 @@
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/css/home.css" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/account.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view" />
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/account.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin" />
+<<<<<<< HEAD
+        <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/verificationDetails.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin" />
+=======
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin/report.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/admin" />
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/footer.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view" />
+>>>>>>> a9e716017c81fff9d908bb32d5347523b29ac0ec
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/houseDetail.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view" />
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/login.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view" />
         <entry key="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view/profile.jsp" value="file://$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/webapp/view" />

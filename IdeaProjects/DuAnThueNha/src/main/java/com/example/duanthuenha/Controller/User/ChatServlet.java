@@ -87,10 +87,11 @@ public class ChatServlet extends HttpServlet {
             Chat chatCheck = new Chat(userID, idReceiver, null);
             chatImpl.addChat(chatCheck);
             int idChat = chatCheck.getIdChat();
-            Chat newChat = new Chat(idReceiver, users.getImage(), users.getFullName(), idChat, userID, idReceiver, "", "sent");
+            Chat newChat = new Chat(idReceiver, users.getImage(), users.getFullName(), idChat, userID, idReceiver, null, "sent");
             allChat.add(newChat);
             chat.add(chatCheck);
         }
+
         req.setAttribute("myProfile", myProfile);
         req.setAttribute("idHost", idReceiver);
         req.setAttribute("allChat", allChat);
@@ -118,7 +119,6 @@ public class ChatServlet extends HttpServlet {
 
                 List<Chat> allChat = chatImpl.getAllChats(userID);
                 Users myProfile = profileImpl.getUserById(userID);
-
                 req.setAttribute("allChat", allChat);
                 req.setAttribute("myProfile", myProfile);
 
