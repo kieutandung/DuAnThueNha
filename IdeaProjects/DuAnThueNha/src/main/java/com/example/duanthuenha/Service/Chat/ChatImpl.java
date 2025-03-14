@@ -3,10 +3,7 @@ package com.example.duanthuenha.Service.Chat;
 import com.example.duanthuenha.ConnectDB.ConnectDB;
 import com.example.duanthuenha.Model.Chat;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +14,26 @@ public class ChatImpl implements ChatService {
     public void addChat(Chat chat) {
         String query = "INSERT INTO chat (idSender, idReceiver, text) VALUES (?, ?, ?)";
         try (Connection connection = connectDB.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
+             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, chat.getIdSender());
             ps.setInt(2, chat.getIdReceiver());
             ps.setString(3, chat.getText());
-            ps.executeUpdate();
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new SQLException("Thêm chat thất bại, không có hàng nào được thêm vào.");
+            }
+
+            // Lấy khóa tự động sinh ra
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    chat.setIdChat(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Thêm chat thành công nhưng không lấy được idChat.");
+                }
+            }
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+            throw new RuntimeException("Lỗi khi thêm chat", e);
         }
     }
 

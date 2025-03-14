@@ -83,6 +83,14 @@ public class ChatServlet extends HttpServlet {
         List<Chat> chat = chatImpl.getChats(users.getImage(), users.getFullName(), userID, idReceiver);
         List<Chat> allChat = chatImpl.getAllChats(userID);
 
+        if (allChat.size() == 0) {
+            Chat chatCheck = new Chat(userID, idReceiver, null);
+            chatImpl.addChat(chatCheck);
+            int idChat = chatCheck.getIdChat();
+            Chat newChat = new Chat(idReceiver, users.getImage(), users.getFullName(), idChat, userID, idReceiver, "", "sent");
+            allChat.add(newChat);
+            chat.add(chatCheck);
+        }
         req.setAttribute("myProfile", myProfile);
         req.setAttribute("idHost", idReceiver);
         req.setAttribute("allChat", allChat);
