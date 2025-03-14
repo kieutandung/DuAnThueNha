@@ -265,40 +265,19 @@ public class ListAccountImpl implements ListAccountService {
         }
     }
     @Override
-    public Verification getVerificationByIdDocument(int idDocument) {
-        String query = "SELECT * FROM verificationdocument WHERE idDocument = ?";
-        try (Connection conn = connectDB.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, idDocument);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Verification(
-                        rs.getInt("idDocument"),
-                        rs.getInt("userId"),
-                        rs.getString("documentType"),
-                        rs.getString("documentNumber"),
-                        rs.getString("documentImage"),
-                        rs.getString("status"),
-                        rs.getString("rejectionReason"),
-                        rs.getString("createdAt"),
-                        rs.getString("updatedAt")
-                );
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    public boolean updateVerificationStatus(int idDocument, String status, String rejectionReason) {
+    public boolean updateVerificationStatus(int idDocument, String action, String reason) {
         String sql = "UPDATE verificationdocument SET status = ?, rejectionReason = ? WHERE idDocument = ?";
 
-        try (Connection connection = connectDB.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, status);
-            preparedStatement.setString(2, rejectionReason);
-            preparedStatement.setInt(3, idDocument);
-            int rowsAffected = preparedStatement.executeUpdate();
-            return rowsAffected > 0; // Trả về true nếu có bản ghi được cập nhật
+        try (Connection conn = connectDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, action.equals("accept") ? "approved" : "rejected");
+            stmt.setString(2, action.equals("accept") ? "" : reason);
+            stmt.setInt(3, idDocument);
+
+            int rowsUpdated = stmt.executeUpdate();
+            return rowsUpdated > 0;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

@@ -25,8 +25,6 @@ public interface ListAccountService {
     List<Verification> getVerificationsByUserId(int idUser);
     boolean promoteUser(int idUser);
     boolean updateStatus(int idDocument, String status, String rejectionReason);
-    Verification getVerificationByIdDocument(int idDocument);
-    boolean updateVerificationStatus(int idDocument, String status, String rejectionReason);
     Map<Integer, Double> getRevenueByMonth();
     List<Order> getAllOrder();
     Map<String, Integer> getOrderStatusCount();
@@ -34,4 +32,5 @@ public interface ListAccountService {
     List<Users> getAllUserByIdDocument();
     List<Report> getAllReport();
     Users getUserByidProduct(int idProduct);
+    boolean updateVerificationStatus(int idDocument, String action, String reason);
 }

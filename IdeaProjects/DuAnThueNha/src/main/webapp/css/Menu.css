@@ -10,6 +10,7 @@ body {
     background-color: rgba(37, 117, 252, 1);
     box-shadow: 2px 5px 5px 0 rgba(0,0,0,.12);
     text-align: center;
+    z-index: 10000 !important;
 }
 
 .menubar span {
@@ -20,6 +21,7 @@ body {
     font-weight: 300;
     font-size: 2em;
     line-height: 60px;
+    z-index: 100000 !important;
 }
 
 #hambmenu {
@@ -29,6 +31,7 @@ body {
     float: left;
     transition: .5s ease-in-out;
     cursor: pointer;
+    z-index: 10001 !important;
 }
 
 #hambmenu span {
@@ -43,7 +46,7 @@ body {
     left: 0;
     transform: rotate(0deg);
     transition: .25s ease-in-out;
-    padding: 0px;
+    padding: 0px ;
 }
 
 .hambclicker {
@@ -101,7 +104,8 @@ body {
     transition: transform 300ms;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space items evenly */
+    justify-content: space-between;
+    z-index: 9999 !important;
 }
 
 #menu ul {
@@ -110,7 +114,7 @@ body {
     color: black;
     list-style-type: none;
     text-align: left;
-    flex-grow: 1; /* Allow the list to grow and take available space */
+    flex-grow: 1;
 }
 
 #menu li {

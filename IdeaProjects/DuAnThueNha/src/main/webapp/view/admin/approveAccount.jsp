@@ -48,4 +48,7 @@
     </c:choose>
 </div>
 </body>
+<footer>
+    <jsp:include page="../footer2.jsp"/>
+</footer>
 </html>
