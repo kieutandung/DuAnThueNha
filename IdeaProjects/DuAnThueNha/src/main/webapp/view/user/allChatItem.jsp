@@ -18,17 +18,20 @@
                         </div>
                         <div class="pt-1">
                             <p class="fw-bold mb-0">${c.fullName}</p>
-                            <c:choose>
-                                <c:when test="${myProfile.idUser eq c.idSender}">
-                                    <p class="small text-muted">
-                                        Bạn: <span class="truncated">${c.text}</span>
-                                    </p>
-                                </c:when>
-                                <c:otherwise>
-                                    <p class="small text-muted">${c.fullName}: <span class="truncated">${c.text}</span>
-                                    </p>
-                                </c:otherwise>
-                            </c:choose>
+                            <c:if test="${not empty c.text}">
+                                <c:choose>
+                                    <c:when test="${myProfile.idUser eq c.idSender}">
+                                        <p class="small text-muted">
+                                            Bạn: <span class="truncated">${c.text}</span>
+                                        </p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="small text-muted">
+                                                ${c.fullName}: <span class="truncated">${c.text}</span>
+                                        </p>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:if>
                         </div>
                     </div>
                         <%--                                                        <div class="pt-1">--%>
