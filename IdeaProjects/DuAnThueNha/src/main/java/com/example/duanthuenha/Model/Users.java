@@ -13,6 +13,14 @@ public class Users {
     private String address;
     private String rejectionReason;
 
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image, String address, String gender, String birthDate, String rejectionReason) {
         this.idUser = idUser;
         this.username = username;

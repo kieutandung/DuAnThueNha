@@ -108,6 +108,9 @@ public class ChatServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "reloadAllChat":
+                reloadAllChat(req,resp);
+                break;
             case "showChat":
                 showChat(req, resp);
                 break;
@@ -126,6 +129,21 @@ public class ChatServlet extends HttpServlet {
                 dispatcher.forward(req, resp);
                 break;
         }
+    }
+
+    private void reloadAllChat(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
+
+        Users myProfile = profileImpl.getUserById(userID);
+        List<Chat> allChat = chatImpl.getAllChats(userID);
+
+        req.setAttribute("myProfile", myProfile);
+        req.setAttribute("allChat", allChat);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/allChatItem.jsp");
+        dispatcher.forward(req, resp);
     }
 }
 

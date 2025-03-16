@@ -95,6 +95,7 @@ body {
 
 #menu {
     position: absolute;
+    z-index: 1000;
     height: calc(100vh - 60px);
     width: 210px;
     background-color: white;
