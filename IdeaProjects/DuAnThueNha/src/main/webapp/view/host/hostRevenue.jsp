@@ -16,6 +16,11 @@
             overflow-y: auto;
             border: 1px solid #ddd;
         }
+        .table-container th:nth-child(1),
+        .table-container td:nth-child(1) {
+            width: 10%;
+            text-align: center;
+        }
 
 
         .table-container table {
@@ -148,6 +153,5 @@
 <footer>
     <jsp:include page="../footer2.jsp"/>
 </footer>
-</body>
-
+</body> 
 </html>
