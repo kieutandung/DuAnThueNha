@@ -9,9 +9,19 @@ public class Users {
     private String email;
     private String role;
     private String status;
+
+    public String getDocumentFile() {
+        return documentFile;
+    }
+
+    public void setDocumentFile(String documentFile) {
+        this.documentFile = documentFile;
+    }
+
     private String birthDate;
     private String address;
     private String rejectionReason;
+    private String documentFile;
 
     public String getRejectionReason() {
         return rejectionReason;
@@ -112,6 +122,15 @@ public class Users {
         this.documentNumber = documentNumber;
         this.status = status;
     }
+
+    public Users(int idUser, String documentType, String documentNumber, String status, String documentFile) {
+        this.idUser = idUser;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.status = status;
+        this.documentFile = documentFile;
+    }
+
 
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
         this.idUser = idUser;

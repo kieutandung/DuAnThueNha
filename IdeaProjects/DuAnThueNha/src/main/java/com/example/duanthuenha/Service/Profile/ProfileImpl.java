@@ -82,14 +82,16 @@ public class ProfileImpl implements ProfileService {
     }
 
     @Override
-    public void addVerification(int idUser, String documentType, String documentNumber, String documentImage) {
-        String query = "insert into verificationdocument (userId, documentType, documentNumber, documentImage) values (?,?,?,?)";
+    public void addVerification(int idUser, String documentType, String documentNumber, String documentImage, String documentFile) {
+        String query = "insert into verificationdocument (userId, documentType, documentNumber, documentImage, documentFile) values (?,?,?,?,?)";
         try (Connection connection = connectDB.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, idUser);
             stmt.setString(2, documentType);
             stmt.setString(3, documentNumber);
             stmt.setString(4, documentImage);
+            stmt.setString(5, documentFile);
+
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,7 +101,7 @@ public class ProfileImpl implements ProfileService {
 
     public List<Users> getALlDocumentNumberUser(int id) {
         List<Users> users = new ArrayList<>();
-        String query = "select * from verificationdocument where userId = ?";
+        String query = "select * from verificationdocument where userId = ? order by idDocument desc";
         try {
             Connection connection = connectDB.getConnection();
             PreparedStatement pstm = connection.prepareStatement(query);
@@ -140,7 +142,9 @@ public class ProfileImpl implements ProfileService {
                             status = "Không hợp lệ";
                         }
 
-                        Users user = new Users(userId, documentType, documentNumber, status);
+                        String documentFile = rs.getString("documentFile");
+
+                        Users user = new Users(userId, documentType, documentNumber, status,documentFile);
                         users.add(user);
                     }
                 }

@@ -11,6 +11,7 @@
         margin-top: 30px;
         padding-top: 20px;
     }
+
     .footer-container h1 {
         font-size: 18px;
         margin-bottom: 10px;
@@ -27,6 +28,7 @@
         border-radius: 5px;
         border: none;
     }
+
     .footer {
         background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
         background-size: cover;
@@ -126,16 +128,20 @@
             flex-direction: column;
             align-items: center;
         }
+
         .footer-section {
             width: 100%;
             text-align: center;
         }
+
         .footer-section h2, .footer-section h3 {
             margin-bottom: 10px;
         }
+
         .footer-section ul li {
             margin: 5px 0;
         }
+
         .footer-bottom {
             padding-top: 20px;
         }
@@ -147,9 +153,10 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h2>WE Bare BEARS.vn</h2>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội
+                </p>
                 <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 1900 1011</p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Chianhn567@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> WeBareBears@gmail.com</p>
             </div>
 
             <div class="footer-section">

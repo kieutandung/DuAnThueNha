@@ -55,12 +55,7 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-<<<<<<< HEAD
         align-items: flex-start;
-
-=======
-        align-items: flex-start; /* Căn trên để các phần thẳng hàng */
->>>>>>> a9e716017c81fff9d908bb32d5347523b29ac0ec
     }
 
     .footer-section {
@@ -240,7 +235,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội
                 </p>
                 <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 1900 1011</p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Chianhn567@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> WeBareBears@gmail.com</p>
             </div>
 
             <div class="footer-section">
