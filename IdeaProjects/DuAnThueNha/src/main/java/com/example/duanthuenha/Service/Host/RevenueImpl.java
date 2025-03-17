@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,9 @@ public class RevenueImpl implements RevenueService{
                     order.setIdOrder(rs.getInt("idOrder"));
                     order.setIdUser(rs.getInt("idUser"));
                     order.setIdProduct(rs.getInt("idProduct"));
-                    order.setOrderDate(rs.getTimestamp("orderDate").toLocalDateTime());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedDate = rs.getTimestamp("orderDate").toLocalDateTime().format(formatter);
+                    order.setFormattedOrderDate(formattedDate);
                     order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
                     order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
                     order.setNotes(rs.getString("notes"));
@@ -46,7 +49,7 @@ public class RevenueImpl implements RevenueService{
                     order.setPhone(rs.getString("phone"));
                     order.setImage(rs.getString("image"));
                     order.setNameProduct(rs.getString("nameProduct"));
-                    order.setPrice(rs.getDouble("price"));
+                    order.setPrice((int) Math.round(rs.getDouble("price")));
 
                     orderList.add(order);
                 }

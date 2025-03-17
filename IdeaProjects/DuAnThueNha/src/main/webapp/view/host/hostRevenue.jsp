@@ -16,6 +16,11 @@
             overflow-y: auto;
             border: 1px solid #ddd;
         }
+        .table-container th:nth-child(1),
+        .table-container td:nth-child(1) {
+            width: 10%;
+            text-align: center;
+        }
 
 
         .table-container table {
@@ -99,7 +104,7 @@
                     <tr>
                         <td>${loop.index + 1}</td>
                         <td>${order.fullName}</td>
-                        <td>${order.orderDate}</td>
+                        <td>${order.formattedOrderDate}</td>
                         <td><span class="badge bg-success">Hoàn thành</span></td>
                         <td>${order.price} VNĐ</td>
                     </tr>
@@ -148,6 +153,5 @@
 <footer>
     <jsp:include page="../footer2.jsp"/>
 </footer>
-</body>
-
+</body> 
 </html>
