@@ -84,6 +84,16 @@
 
                             <div class="col-md-6 col-lg-7 col-xl-8">
 
+                                <c:if test="${not empty contactPerson}">
+                                    <div class="chat-header d-flex align-items-center p-3 border-bottom">
+                                        <img src="img/${contactPerson.image}" alt="Avatar" class="rounded-circle me-3" style="width:50px; height:50px;">
+                                        <div>
+                                            <h5 class="mb-0">${contactPerson.fullName}</h5>
+                                            <small class="text-muted">${contactPerson.role}</small>
+                                        </div>
+                                    </div>
+                                </c:if>
+
                                 <div id="chat-container" class="pt-3 pe-3"
                                      style="position: relative; height: 400px; overflow-y: auto; scrollbar-width: none">
                                     <c:choose>

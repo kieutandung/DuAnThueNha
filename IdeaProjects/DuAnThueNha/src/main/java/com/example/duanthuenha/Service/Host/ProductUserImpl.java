@@ -266,5 +266,17 @@ public class ProductUserImpl implements ProductUserService {
         }
         return notificationList;
     }
+
+    public void updateNotificationStatus(int idNotification) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE notification SET status = ? WHERE idNotification = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(2, idNotification);
+            ps.setString(1, "read");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 

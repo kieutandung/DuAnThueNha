@@ -132,7 +132,7 @@ public class HomeUserServlet extends HttpServlet {
         List<ProductHost> products = productImpl.getProductsPage(page);
         req.setAttribute("listProduct", products);
         req.setAttribute("tag", page);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/notificationUserServlet");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/notificationUserServlet?action=showHomeUser");
         dispatcher.forward(req, resp);
     }
 
