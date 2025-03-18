@@ -211,6 +211,7 @@ public class ListAccountImpl implements ListAccountService {
                     verification.setRejectionReason(resultSet.getString("rejectionReason"));
                     verification.setCreatedAt(String.valueOf(resultSet.getTimestamp("createdAt").toLocalDateTime().toLocalDate()));
                     verification.setUpdatedAt(String.valueOf(resultSet.getTimestamp("updatedAt").toLocalDateTime().toLocalDate()));
+                    verification.setDocumentFile(resultSet.getString("documentFile"));
 
                     verifications.add(verification);
                 }

@@ -152,7 +152,20 @@
                 <c:if test="${doc.idUser == idUser}">
                     <tr>
                         <td>${status.index + 1}</td>
-                        <td><img src="img/${doc.documentImage}" alt="" width="100"></td>
+                        <td>
+                            <c:if test="${not empty doc.documentFile}">
+                                <a href="/files/${doc.documentFile}" target="_blank">
+                                    <c:choose>
+                                        <c:when test="${not empty doc.documentImage}">
+                                            <img src="img/${doc.documentImage}" alt="Tài liệu" width="50">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src=img/"id-card.png" alt="Không có ảnh" width="50">
+                                        </c:otherwise>
+                                    </c:choose>
+                                </a>
+                            </c:if>
+                        </td>
                         <td>${doc.documentType}</td>
                         <td>${doc.documentNumber}</td>
                         <td>${doc.createdAt}</td>
