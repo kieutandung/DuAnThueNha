@@ -127,18 +127,12 @@ public class HomeUserServlet extends HttpServlet {
         if (count % 10 != 0) {
             endPage++;
         }
-
-        HttpSession session = req.getSession();
-        String userID = (String) session.getAttribute("userId");
-        int idUser = Integer.parseInt(userID);
-        List<Notification> notificationList = productUserImpl.getAllNotificationByidUser(idUser);
-        req.setAttribute("notificationList", notificationList);
-
         req.setAttribute("endPageUser", endPage);
+
         List<ProductHost> products = productImpl.getProductsPage(page);
         req.setAttribute("listProduct", products);
         req.setAttribute("tag", page);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/notificationUserServlet");
         dispatcher.forward(req, resp);
     }
 

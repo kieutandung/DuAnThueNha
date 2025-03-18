@@ -236,7 +236,7 @@ public class ProductUserImpl implements ProductUserService {
 
     @Override
     public List<Notification> getAllNotificationByidUser(int idUser) {
-        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ?";
+        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ? order by idNotification desc";
         List<Notification> notificationList = new ArrayList<>();
 
         try {
