@@ -34,7 +34,6 @@
                     <th>Ảnh</th>
                     <th>Tên nhà thuê</th>
                     <th>Tên người thuê</th>
-                    <th id="phone">Điện thoại</th>
                     <th id="startDate">Ngày bắt đầu</th>
                     <th id="endDate">Ngày kết thúc</th>
                     <th>Số người thuê</th>
@@ -49,7 +48,6 @@
                         <td><img src="img/${order.image}" alt="Ảnh nhà thuê" width="50"></td>
                         <td>${order.nameProduct}</td>
                         <td>${order.fullName}</td>
-                        <td>${order.phone}</td>
                         <td>${order.startDate}</td>
                         <td>${order.endDate}</td>
                         <td id="numPeople">${order.numPeople}</td>
