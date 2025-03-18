@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller.User;
 
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
@@ -25,6 +26,7 @@ public class HomeUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
+
         String category = req.getParameter("category");
         String keyword = req.getParameter("keyword");
         String pageString = req.getParameter("page");
@@ -55,6 +57,7 @@ public class HomeUserServlet extends HttpServlet {
         if (count % 10 != 0) {
             endPage++;
         }
+
         req.setAttribute("endPageUser", endPage);
         List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword, category, page);
         req.setAttribute("listProduct", products);
@@ -108,6 +111,7 @@ public class HomeUserServlet extends HttpServlet {
                 break;
             default:
                 showListProductPage(req, resp);
+                break;
         }
     }
 
@@ -123,6 +127,13 @@ public class HomeUserServlet extends HttpServlet {
         if (count % 10 != 0) {
             endPage++;
         }
+
+        HttpSession session = req.getSession();
+        String userID = (String) session.getAttribute("userId");
+        int idUser = Integer.parseInt(userID);
+        List<Notification> notificationList = productUserImpl.getAllNotificationByidUser(idUser);
+        req.setAttribute("notificationList", notificationList);
+
         req.setAttribute("endPageUser", endPage);
         List<ProductHost> products = productImpl.getProductsPage(page);
         req.setAttribute("listProduct", products);
@@ -136,9 +147,7 @@ public class HomeUserServlet extends HttpServlet {
         String userID = (String) session.getAttribute("userId");
         List<Product> favoriteProducts = productUserImpl.getAllProductsByFavorite(Integer.parseInt(userID));
         req.setAttribute("listProduct", favoriteProducts);
-        System.out.println(favoriteProducts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/favorite.jsp");
         dispatcher.forward(req, resp);
     }
-
 }

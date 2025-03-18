@@ -1,11 +1,7 @@
 package com.example.duanthuenha.Service.Admin;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
-import com.example.duanthuenha.Model.Order;
-import com.example.duanthuenha.Model.Product;
-import com.example.duanthuenha.Model.Report;
-import com.example.duanthuenha.Model.Users;
-import com.example.duanthuenha.Model.Verification;
+import com.example.duanthuenha.Model.*;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -264,6 +260,7 @@ public class ListAccountImpl implements ListAccountService {
             return false;
         }
     }
+
     @Override
     public boolean updateVerificationStatus(int idDocument, String action, String reason) {
         String sql = "UPDATE verificationdocument SET status = ?, rejectionReason = ? WHERE idDocument = ?";
@@ -330,6 +327,7 @@ public class ListAccountImpl implements ListAccountService {
         }
         return rentalRequests;
     }
+
     public Map<Integer, Double> getRevenueByMonth() {
         Map<Integer, Double> revenueByMonth = new HashMap<>();
         String sql = "SELECT MONTH(o.endDate) AS month, SUM(p.price) AS totalRevenue " +
@@ -358,6 +356,7 @@ public class ListAccountImpl implements ListAccountService {
         }
         return revenueByMonth;
     }
+
     public Map<String, Integer> getOrderStatusCount() {
         Map<String, Integer> statusCount = new HashMap<>();
         String sql = "SELECT paymentStatus, COUNT(*) AS count FROM orders GROUP BY paymentStatus";
@@ -375,6 +374,7 @@ public class ListAccountImpl implements ListAccountService {
 
         return statusCount;
     }
+
     public List<Product> getTopRentedProducts() {
         List<Product> topProducts = new ArrayList<>();
         String sql = "SELECT p.idProduct, p.nameProduct, p.image, p.price, COUNT(o.idOrder) AS rentalCount " +
@@ -439,7 +439,39 @@ public class ListAccountImpl implements ListAccountService {
 
     public List<Report> getAllReport() {
         List<Report> reportList = new ArrayList<>();
-        String sql = "SELECT * FROM report";
+        String sql = "SELECT *\n" +
+                "FROM report\n" +
+                "order by idReport desc;";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int idReport = rs.getInt("idReport");
+                int idProduct = rs.getInt("idProduct");
+                int idUser = rs.getInt("idUser");
+                LocalDate reportDate = rs.getTimestamp("reportDate").toLocalDateTime().toLocalDate();
+
+                String description = rs.getString("description");
+                String reason = rs.getString("reason");
+                String status = rs.getString("status");
+                String adminResponse = rs.getString("adminResponse");
+
+                Report report = new Report(idReport, idProduct, idUser, description, status, reason, reportDate, adminResponse);
+                reportList.add(report);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return reportList;
+    }
+
+    public List<Report> getAllReportPending() {
+        List<Report> reportList = new ArrayList<>();
+        String sql = "SELECT *\n" +
+                "FROM report\n" +
+                "WHERE status = 'pending' order by idReport desc;";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql);
@@ -455,7 +487,7 @@ public class ListAccountImpl implements ListAccountService {
                 String reason = rs.getString("reason");
                 String status = rs.getString("status");
 
-                Report report = new Report(idReport,idProduct,idUser,description,status,reason,reportDate);
+                Report report = new Report(idReport, idProduct, idUser, description, status, reason, reportDate);
                 reportList.add(report);
             }
         } catch (SQLException e) {
@@ -493,5 +525,66 @@ public class ListAccountImpl implements ListAccountService {
         }
         return user;
     }
+
+    @Override
+    public void sendFeedback(com.example.duanthuenha.Model.Notification notification) {
+        String insertImageSQL = "INSERT INTO Notification (idUser, title, content,type,idReceiver) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(insertImageSQL)) {
+            ps.setInt(1, notification.getIdUser());
+            ps.setString(3, notification.getMessage());
+            ps.setString(2, notification.getTitle());
+            ps.setString(4, notification.getType());
+            ps.setInt(5, notification.getIdReceiver());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+        }
+    }
+
+    @Override
+    public Notification getNotificationById(int idNotification) {
+        String selectSQL = "SELECT * FROM notification WHERE idNotification = ?";
+        Notification notification = null;
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement pstm = connection.prepareStatement(selectSQL);
+            pstm.setInt(1, idNotification);
+            try {
+                ResultSet rs = pstm.executeQuery();
+                {
+                    if (rs.next()) {
+                        int idUser = rs.getInt("idUser");
+                        String title = rs.getString("title");
+                        String content = rs.getString("content");
+                        String type = rs.getString("type");
+                        String status = rs.getString("status");
+                        notification = new Notification(idNotification, idUser, title, content, type, status);
+                        return notification;
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public void updateReportApproved(int idReport, String adminResponse) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE report SET status = ?, adminResponse = ? WHERE idReport = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(3, idReport);
+            ps.setString(1, "approved");
+            ps.setString(2, adminResponse);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
 

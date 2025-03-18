@@ -3,7 +3,7 @@
 <c:choose>
     <c:when test="${c.idReceiver eq myProfile.idUser}">
         <div class="d-flex flex-row justify-content-start">
-            <img class="rounded-circle" src="${pageContext.request.contextPath}/img/${c.image}" alt="avatar" style="width: 45px; height: 45px;">
+            <img class="rounded-circle" src="${pageContext.request.contextPath}/img/${c.image}" alt="avatar" style="width: 40px; height: 40px;">
             <div>
                 <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3" style="background-color: #e0e0e0">
                         ${c.text}
@@ -20,7 +20,7 @@
                 </p>
 <%--                <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p>--%>
             </div>
-            <img class="rounded-circle" src="${pageContext.request.contextPath}/img/${myProfile.image}" alt="avatar" style="width: 45px; height: 45px;">
+            <img class="rounded-circle" src="${pageContext.request.contextPath}/img/${myProfile.image}" alt="avatar" style="width: 40px; height: 40px;">
         </div>
     </c:otherwise>
 </c:choose>

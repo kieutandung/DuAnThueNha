@@ -21,15 +21,16 @@ public class UserToHostServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String documentType = req.getParameter("documentType");
         String documentId = req.getParameter("documentId");
+        String documentFile = req.getParameter("documentFile");
         String image = req.getParameter("image");
 
         HttpSession session = req.getSession();
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
 
-        profile.addVerification(userID, documentType, documentId, image);
-        displayUserToHost(req,resp);
-     }
+        profile.addVerification(userID, documentType, documentId, image, documentFile);
+        displayUserToHost(req, resp);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -12,7 +12,7 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<section style="background-color: #3b71ca" >
+<section style="background-color: #3b71ca">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
@@ -34,34 +34,49 @@
                                     <%--                    </span>--%>
                                     <%--                                    </div>--%>
 
-                                    <div data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
+                                    <div id="allChatContainer" data-mdb-perfect-scrollbar-init style="position: relative; height: 400px">
                                         <c:forEach var="c" items="${allChat}">
-                                            <ul class="list-unstyled mb-0">
-                                                <li class="p-2 border-bottom"
-                                                    style="${(param.action eq 'showChat' and param.idHost eq c.idUser) ? 'background-color: #e0e0e0;' : ''}">
-                                                    <a href="chatServlet?action=showChat&idHost=${c.idUser}"
-                                                       class="d-flex justify-content-between">
-                                                        <div class="d-flex flex-row">
-                                                            <div>
-                                                                <img
-                                                                        src="img/${c.image}"
-                                                                        alt="avatar"
-                                                                        class="rounded-circle d-flex align-self-center me-3"
-                                                                        width="60">
-                                                                    <%--                                                                <span class="badge bg-success badge-dot"></span>--%>
+                                            <c:if test="${!(myProfile.role eq 'host' and empty c.text)}">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="p-2 border-bottom"
+                                                        style="${(param.action eq 'showChat' and param.idHost eq c.idUser) ? 'background-color: #e0e0e0;' : ''}">
+                                                        <a href="chatServlet?action=showChat&idHost=${c.idUser}"
+                                                           class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-row">
+                                                                <div>
+                                                                    <img
+                                                                            src="img/${c.image}"
+                                                                            alt="avatar"
+                                                                            class="rounded-circle d-flex align-self-center me-3"
+                                                                            width="60">
+                                                                        <%--                                                                <span class="badge bg-success badge-dot"></span>--%>
+                                                                </div>
+                                                                <div class="pt-1">
+                                                                    <p class="fw-bold mb-0">${c.fullName}</p>
+                                                                    <c:if test="${not empty c.text}">
+                                                                        <c:choose>
+                                                                            <c:when test="${myProfile.idUser eq c.idSender}">
+                                                                                <p class="small text-muted">
+                                                                                    Bạn: <span class="truncated">${c.text}</span>
+                                                                                </p>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <p class="small text-muted">
+                                                                                        ${c.fullName}: <span class="truncated">${c.text}</span>
+                                                                                </p>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
+                                                                    </c:if>
+                                                                </div>
                                                             </div>
-                                                            <div class="pt-1">
-                                                                <p class="fw-bold mb-0">${c.fullName}</p>
-                                                                <p class="small text-muted">${c.text}</p>
-                                                            </div>
-                                                        </div>
-                                                            <%--                                                        <div class="pt-1">--%>
-                                                            <%--                                                            <p class="small text-muted mb-1">Just now</p>--%>
-                                                            <%--                                                            <span class="badge bg-danger rounded-pill float-end">3</span>--%>
-                                                            <%--                                                        </div>--%>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                                                <%--                                                        <div class="pt-1">--%>
+                                                                <%--                                                            <p class="small text-muted mb-1">Just now</p>--%>
+                                                                <%--                                                            <span class="badge bg-danger rounded-pill float-end">3</span>--%>
+                                                                <%--                                                        </div>--%>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </c:if>
                                         </c:forEach>
                                     </div>
                                 </div>
@@ -76,26 +91,31 @@
                                             <c:forEach var="c" items="${chat}">
                                                 <c:choose>
                                                     <c:when test="${c.idReceiver eq myProfile.idUser}">
+
                                                         <div class="d-flex flex-row justify-content-start">
-                                                            <img class="rounded-circle" src="img/${c.image}"
-                                                                 alt="avatar"
-                                                                 style="width: 45px; height: 100%;">
-                                                            <div>
-                                                                <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
-                                                                   style="background-color: #e0e0e0">${c.text}</p>
-                                                                    <%-- <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p> --%>
-                                                            </div>
+                                                            <c:if test="${not empty c.text}">
+                                                                <img class="rounded-circle" src="img/${c.image}"
+                                                                     alt="avatar"
+                                                                     style="width: 40px; height: 100%;">
+                                                                <div>
+                                                                    <p class="bg-body-tertiary small p-2 ms-3 mb-1 rounded-3"
+                                                                       style="background-color: #e0e0e0">${c.text}</p>
+                                                                        <%-- <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p> --%>
+                                                                </div>
+                                                            </c:if>
                                                         </div>
-                                                    </c:when>
+                                                        </c:when>
                                                     <c:otherwise>
                                                         <div class="d-flex flex-row justify-content-end">
-                                                            <div>
-                                                                <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${c.text}</p>
-                                                                    <%-- <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p> --%>
-                                                            </div>
-                                                            <img class="rounded-circle" src="img/${myProfile.image}"
-                                                                 alt="avatar"
-                                                                 style="width: 45px; height: 100%;">
+                                                            <c:if test="${not empty c.text}">
+                                                                <div>
+                                                                    <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${c.text}</p>
+                                                                        <%-- <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p> --%>
+                                                                </div>
+                                                                <img class="rounded-circle" src="img/${myProfile.image}"
+                                                                     alt="avatar"
+                                                                     style="width: 40px; height: 100%;">
+                                                            </c:if>
                                                         </div>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -119,8 +139,9 @@
                                                    placeholder="Nhập tin nhắn" name="sendMess">
                                             <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
                                             <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-                                            <button class="ms-3" type="submit" style="border: none; margin: 0; background: none;">
-                                              <i class="fa-solid fa-paper-plane" style="color: #007ce0;"></i>
+                                            <button class="ms-3" type="submit"
+                                                    style="border: none; margin: 0; background: none;">
+                                                <i class="fa-solid fa-paper-plane" style="color: #007ce0;"></i>
                                             </button>
 
                                         </div>
@@ -160,13 +181,31 @@
                 type: 'POST',
                 data: formData,
                 success: function (response) {
-                    // Append HTML fragment của tin nhắn mới (trả về từ chatItem.jsp)
+                    console.log("Send message success");
+                    // Append HTML fragment của tin nhắn mới (chatItem.jsp)
                     $('#chat-container').append(response);
                     // Cuộn container xuống cuối
                     var container = document.getElementById('chat-container');
                     container.scrollTop = container.scrollHeight;
                     // Xóa trường nhập tin nhắn
                     $('#exampleFormControlInput2').val('');
+
+                    // Gọi AJAX để tải lại allChat, thêm tham số cache buster
+                    $.ajax({
+                        url: "chatServlet",
+                        type: "GET",
+                        data: {
+                            action: "reloadAllChat",
+                            _: new Date().getTime()  // tham số cache buster
+                        },
+                        success: function (allChatHtml) {
+                            console.log("Reload allChat success");
+                            $('#allChatContainer').html(allChatHtml);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Lỗi khi tải lại allChat: ", error);
+                        }
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.error("Lỗi khi gửi tin nhắn: ", error);
@@ -174,6 +213,7 @@
             });
         });
     });
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>

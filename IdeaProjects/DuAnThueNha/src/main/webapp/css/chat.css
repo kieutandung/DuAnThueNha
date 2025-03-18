@@ -19,3 +19,11 @@
     margin-left: 2.9rem;
     margin-top: -.75rem;
 }
+.truncated {
+    display: inline-block;
+    max-width: 100px; /* điều chỉnh kích thước theo nhu cầu */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}

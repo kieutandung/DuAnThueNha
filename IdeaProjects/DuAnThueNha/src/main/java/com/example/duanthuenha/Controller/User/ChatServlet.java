@@ -83,6 +83,15 @@ public class ChatServlet extends HttpServlet {
         List<Chat> chat = chatImpl.getChats(users.getImage(), users.getFullName(), userID, idReceiver);
         List<Chat> allChat = chatImpl.getAllChats(userID);
 
+        if (allChat.size() == 0) {
+            Chat chatCheck = new Chat(userID, idReceiver, null);
+            chatImpl.addChat(chatCheck);
+            int idChat = chatCheck.getIdChat();
+            Chat newChat = new Chat(idReceiver, users.getImage(), users.getFullName(), idChat, userID, idReceiver, null, "sent");
+            allChat.add(newChat);
+            chat.add(chatCheck);
+        }
+
         req.setAttribute("myProfile", myProfile);
         req.setAttribute("idHost", idReceiver);
         req.setAttribute("allChat", allChat);
@@ -99,6 +108,9 @@ public class ChatServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "reloadAllChat":
+                reloadAllChat(req,resp);
+                break;
             case "showChat":
                 showChat(req, resp);
                 break;
@@ -110,7 +122,6 @@ public class ChatServlet extends HttpServlet {
 
                 List<Chat> allChat = chatImpl.getAllChats(userID);
                 Users myProfile = profileImpl.getUserById(userID);
-
                 req.setAttribute("allChat", allChat);
                 req.setAttribute("myProfile", myProfile);
 
@@ -118,6 +129,21 @@ public class ChatServlet extends HttpServlet {
                 dispatcher.forward(req, resp);
                 break;
         }
+    }
+
+    private void reloadAllChat(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
+
+        Users myProfile = profileImpl.getUserById(userID);
+        List<Chat> allChat = chatImpl.getAllChats(userID);
+
+        req.setAttribute("myProfile", myProfile);
+        req.setAttribute("allChat", allChat);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/allChatItem.jsp");
+        dispatcher.forward(req, resp);
     }
 }
 

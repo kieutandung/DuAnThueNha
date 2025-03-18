@@ -1,6 +1,7 @@
 package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.Model.Image;
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.ProductHost;
 
@@ -14,4 +15,5 @@ public interface ProductUserService {
     boolean toggleFavorite(int idProduct, int idUser);
     List<Product> getAllProductsByFavorite(int idUser);
     void complaint(int idUser, int idProduct, String description);
+    List<Notification> getAllNotificationByidUser(int idUser);
 }
