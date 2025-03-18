@@ -85,3 +85,9 @@ body {
 .modal-content {
     border-radius: 8px;
 }
+
+.btn.active {
+    background-color: #007bff; /* Màu nền khi active */
+    color: #fff;              /* Màu chữ khi active */
+    border-color: #007bff;
+}

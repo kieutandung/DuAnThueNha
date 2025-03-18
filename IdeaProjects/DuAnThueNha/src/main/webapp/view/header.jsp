@@ -161,11 +161,11 @@
             <li><a href="/orderInformationServlet">Sản phẩm</a></li>
             <li><a href="#">Liên hệ</a></li>
         </ul>
-<%--        <ul class="nav-search">--%>
-<%--            <li>--%>
-<%--                <input type="text" placeholder="Tìm kiếm..." class="search-input">--%>
-<%--            </li>--%>
-<%--        </ul>--%>
+        <%--        <ul class="nav-search">--%>
+        <%--            <li>--%>
+        <%--                <input type="text" placeholder="Tìm kiếm..." class="search-input">--%>
+        <%--            </li>--%>
+        <%--        </ul>--%>
         <ul class="nav-icon">
             <li>
                 <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
@@ -173,31 +173,30 @@
                          class="w-6 h-6 icon-black">
                 </a>
             </li>
-            <li>
+            <li class="dropdown">
                 <i class="bell-icon">
                     <img src="img/bell.png"
                          alt="Notifications" class="icon-black">
                 </i>
-<%--                <div class="dropdown">--%>
-<%--                    <a data-mdb-dropdown-init class="me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"--%>
-<%--                       role="button" data-mdb-toggle="dropdown" aria-expanded="false">--%>
-<%--                        <i class="fas fa-bell"></i>--%>
-<%--                        <span class="badge rounded-pill badge-notification bg-danger">1</span>--%>
-<%--                    </a>--%>
-<%--                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">--%>
-<%--                        <li>--%>
-<%--                            <a class="dropdown-item" href="#">Some news</a>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <a class="dropdown-item" href="#">Another news</a>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <a class="dropdown-item" href="#">Something else here</a>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </li>--%>
 
+                <div class="dropdown-content" style="min-width: 300px; max-height: 400px; overflow-y: auto;">
+                    <c:if test="${not empty notificationList}">
+                        <c:forEach var="n" items="${notificationList}">
+                            <div class="notification-item p-2 border-bottom">
+                                <strong>${n.title}</strong>
+                                <br>
+                                <small class="text-muted">${n.createdAt}</small>
+                                <p>${n.content}</p>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty notificationList}">
+                        <p class="text-center text-muted p-2">Không có thông báo mới</p>
+                    </c:if>
+                    <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>
+                </div>
+
+            </li>
             <!-- Dropdown cho Account -->
             <li class="dropdown">
 
@@ -207,7 +206,8 @@
 
                 <div class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
-                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl"> Bộ sưu tập
+                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập"
+                       class="relative text-black text-2xl"> Bộ sưu tập
                     </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
                     <a href="/loginServlet">Đăng xuất</a>

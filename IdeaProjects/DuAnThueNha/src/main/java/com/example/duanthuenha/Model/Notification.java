@@ -7,6 +7,52 @@ public class Notification {
     private int idUser;
     private String title;
     private String message;
+    private String type;
+    private String status;
+    private int idReceiver;
+
+    public int getIdReceiver() {
+        return idReceiver;
+    }
+
+    public void setIdReceiver(int idReceiver) {
+        this.idReceiver = idReceiver;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Notification(int idNotification, int idUser, String title, String message, String type, String status) {
+        this.idNotification = idNotification;
+        this.idUser = idUser;
+        this.title = title;
+        this.message = message;
+        this.type = type;
+        this.status = status;
+    }
+    public Notification(int idNotification, int idUser, String title, String message, String type, String status,int idReceiver) {
+        this.idNotification = idNotification;
+        this.idUser = idUser;
+        this.title = title;
+        this.message = message;
+        this.type = type;
+        this.status = status;
+        this.idReceiver = idReceiver;
+    }
+
     private LocalDate time;
 
     public Notification(int idNotification, int idUser, String title, String message, LocalDate time) {
@@ -21,6 +67,21 @@ public class Notification {
         this.idUser = idUser;
         this.title = title;
         this.message = message;
+    }
+
+    public Notification(int idUser, String title, String message, String type) {
+        this.idUser = idUser;
+        this.title = title;
+        this.message = message;
+        this.type = type;
+    }
+
+    public Notification(int idUser, String title, String message, String type, int idReceiver) {
+        this.idUser = idUser;
+        this.title = title;
+        this.message = message;
+        this.type = type;
+        this.idReceiver = idReceiver;
     }
 
     public int getIdNotification() {

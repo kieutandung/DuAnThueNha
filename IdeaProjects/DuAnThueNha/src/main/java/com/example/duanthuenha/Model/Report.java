@@ -9,7 +9,15 @@ public class Report {
     private String description;
     private String status;
     private String reason;
+    private String adminResponse;
 
+    public String getAdminResponse() {
+        return adminResponse;
+    }
+
+    public void setAdminResponse(String adminResponse) {
+        this.adminResponse = adminResponse;
+    }
 
     public Report(int idReport, int idProduct, int idUser, String description, String status, String reason, LocalDate reportDate) {
         this.idReport = idReport;
@@ -20,6 +28,18 @@ public class Report {
         this.reason = reason;
         this.reportDate = reportDate;
     }
+
+    public Report(int idReport, int idProduct, int idUser, String description, String status, String reason, LocalDate reportDate, String adminResponse) {
+        this.idReport = idReport;
+        this.idProduct = idProduct;
+        this.idUser = idUser;
+        this.description = description;
+        this.status = status;
+        this.reason = reason;
+        this.reportDate = reportDate;
+        this.adminResponse = adminResponse;
+    }
+
 
     public String getReason() {
         return reason;

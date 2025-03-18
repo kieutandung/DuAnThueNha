@@ -1,6 +1,7 @@
 package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.Report;
 
@@ -23,7 +24,7 @@ public class ProductUserImpl implements ProductUserService {
             ps.setInt(1, report.getIdProduct());
             ps.setInt(2, report.getIdUser());
             ps.setString(3, report.getReason());
-            ps.setString(4,report.getDescription());
+            ps.setString(4, report.getDescription());
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
@@ -231,6 +232,39 @@ public class ProductUserImpl implements ProductUserService {
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi gửi khiếu nại", e);
         }
+    }
+
+    @Override
+    public List<Notification> getAllNotificationByidUser(int idUser) {
+        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ?";
+        List<Notification> notificationList = new ArrayList<>();
+
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement pstm = connection.prepareStatement(selectSQL);
+            pstm.setInt(1, idUser);
+            try {
+                ResultSet rs = pstm.executeQuery();
+                {
+                    while (rs.next()) {
+                        int idNotification = rs.getInt("idNotification");
+                        String title = rs.getString("title");
+                        String content = rs.getString("content");
+                        String type = rs.getString("type");
+                        String status = rs.getString("status");
+                        int idReceiver = rs.getInt("idReceiver");
+                        Notification notification = new Notification(idNotification, idUser, title, content, type, status, idReceiver);
+                        notificationList.add(notification);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return notificationList;
     }
 }
 

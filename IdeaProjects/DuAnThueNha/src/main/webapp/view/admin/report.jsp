@@ -16,11 +16,20 @@
     <div class="card shadow" style="max-width: 95%; margin: auto;">
         <div class="card-body">
             <h4 class="text-center mb-4">Danh sách khiếu nại</h4>
-
+            <div class="mb-3">
+                <a href="adminServlet?action=reportView"
+                   class="btn btn-outline-primary me-2 ${param.action eq 'reportView' ? 'active' : ''}">
+                    Tất cả
+                </a>
+                <a href="adminServlet?action=reportViewPending"
+                   class="btn btn-outline-secondary ${param.action eq 'reportViewPending' ? 'active' : ''}">
+                    Chưa xử lí
+                </a>
+            </div>
             <div class="table-responsive" style="max-height: 600px; overflow: auto;">
                 <table class="table table-striped table-hover table-borderless mb-0 align-middle" style="width: 100%; min-width: 1200px;">
                     <thead class="bg-info text-white">
-                    <tr>
+                    <tr class="text-center">
                         <th>STT</th>
                         <th>Khiếu nại</th>
                         <th>Chi tiết</th>
@@ -32,10 +41,10 @@
                     <tbody>
                     <c:forEach var="r" items="${reportList}" varStatus="status">
                         <tr>
-                            <td>${status.index + 1}</td>
-                            <td>${r.reason}</td>
-                            <td>${r.description}</td>
-                            <td>${usersReport[status.index].fullName}</td>
+                            <td class="text-center">${status.index + 1}</td>
+                            <td class="text-center" >${r.reason}</td>
+                            <td style="max-width: 300px">${r.description}</td>
+                            <td class="text-center">${usersReport[status.index].fullName}</td>
                             <td>
                                 <p><strong>Chủ sở hữu:</strong> ${hostList[status.index].fullName}</p>
                                 <p>
@@ -44,14 +53,24 @@
                                     <span class="ms-2">${productsList[status.index].nameProduct}</span>
                                 </p>
                             </td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary feedback-btn"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#feedbackModal"
-                                        data-title="Khiếu nại của bạn: ${r.reason}"
-                                        data-id-report="${r.idReport}">
-                                    Phản hồi
-                                </button>
+                            <td class="text-center" style="max-width: 280px">
+                                <c:choose>
+                                    <c:when test="${r.status eq 'pending'}">
+                                        <!-- Nếu trạng thái là pending thì hiển thị nút "Phản hồi" -->
+                                        <button class="btn btn-sm btn-outline-primary feedback-btn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#feedbackModal"
+                                                data-title="${r.reason}"
+                                                data-id-report="${r.idReport}"
+                                                data-id-user="${r.idUser}" >
+                                            Phản hồi
+                                        </button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <!-- Nếu không phải pending (đã xử lý) thì hiển thị nội dung phản hồi -->
+                                        <p><strong> Đã phản hồi: </strong>${r.adminResponse}</p>
+                                    </c:otherwise>
+                                </c:choose>
                             </td>
                         </tr>
                     </c:forEach>
@@ -74,6 +93,7 @@
                     <!-- Truyền dữ liệu ẩn -->
                     <input type="hidden" name="title" id="feedbackTitle" value="">
                     <input type="hidden" name="idReport" id="feedbackIdReport" value="">
+                    <input type="hidden" name="idUser" id="feedbackIdUser" value="">
                     <div class="mb-3">
                         <label for="feedbackText" class="form-label fw-semibold">Phản hồi của bạn:</label>
                         <textarea class="form-control" id="feedbackText" name="feedback" rows="3"
@@ -100,8 +120,10 @@
     $(document).on("click", ".feedback-btn", function(){
         var title = $(this).data("title");
         var idReport = $(this).data("idReport");
+        var idUser = $(this).data("idUser");
         $("#feedbackTitle").val(title);
         $("#feedbackIdReport").val(idReport);
+        $("#feedbackIdUser").val(idUser);
     });
 </script>
 

@@ -1,12 +1,6 @@
 package com.example.duanthuenha.Controller.Admin;
 
 import com.example.duanthuenha.Model.*;
-import com.example.duanthuenha.Model.Order;
-import com.example.duanthuenha.Model.Product;
-import com.example.duanthuenha.Model.ProductHost;
-import com.example.duanthuenha.Model.Report;
-import com.example.duanthuenha.Model.Users;
-import com.example.duanthuenha.Model.Verification;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
@@ -18,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
@@ -28,7 +24,6 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -47,10 +42,13 @@ public class AdminServlet extends HttpServlet {
                     handleEditUserView(req, resp);
                     break;
                 case "revenueChart":
-                    revenueChart(req,resp);
+                    revenueChart(req, resp);
                     break;
                 case "reportView":
                     listReportView(req, resp);
+                    break;
+                case "reportViewPending":
+                    listReportViewPending(req, resp);
                     break;
                 default:
                     listAccountView(req, resp);
@@ -122,6 +120,30 @@ public class AdminServlet extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
+    private void listReportViewPending(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Report> reportList = listAccountService.getAllReportPending();
+        List<Users> usersList = new ArrayList<>();
+        List<Users> hostList = new ArrayList<>();
+        List<ProductHost> productsList = new ArrayList<>();
+
+        for (Report report : reportList) {
+            Users user = listAccountService.getUserById(report.getIdUser());
+            Users host = listAccountService.getUserByidProduct(report.getIdProduct());
+            ProductHost productHost = productImpl.getProduct(report.getIdProduct());
+            usersList.add(user);
+            hostList.add(host);
+            productsList.add(productHost);
+        }
+
+
+        req.setAttribute("reportList", reportList);
+        req.setAttribute("hostList", hostList);
+        req.setAttribute("usersReport", usersList);
+        req.setAttribute("productsList", productsList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/report.jsp");
+        dispatcher.forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -129,7 +151,6 @@ public class AdminServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -174,8 +195,11 @@ public class AdminServlet extends HttpServlet {
         String feedback = req.getParameter("feedback");
         String title = req.getParameter("title");
         String idReport = req.getParameter("idReport");
-        Notification notification = new Notification(userID, title, feedback);
-        listAccountService.updateReportApproved(Integer.parseInt(idReport));
+        String type = "khiếu nại";
+        int idReceiver = Integer.parseInt(req.getParameter("idUser"));
+
+        Notification notification = new Notification(userID, title, feedback, type,idReceiver);
+        listAccountService.updateReportApproved(Integer.parseInt(idReport),feedback);
         listAccountService.sendFeedback(notification);
         listReportView(req, resp);
     }
@@ -192,8 +216,6 @@ public class AdminServlet extends HttpServlet {
         boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
-
-
 
 
     private void handlePromoteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -303,7 +325,6 @@ public class AdminServlet extends HttpServlet {
         String status = req.getParameter("status");
         String rejectionReason = req.getParameter("rejectionReason");
 
-        // Cập nhật trạng thái trong cơ sở dữ liệu
         boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
 
         if (success) {

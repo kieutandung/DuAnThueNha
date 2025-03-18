@@ -37,6 +37,7 @@ public interface ListAccountService {
     List<Report> getAllReport();
     Users getUserByidProduct(int idProduct);
     void sendFeedback(Notification notification);
+    Notification getNotificationById(int idNotification);
     boolean updateVerificationStatus(int idDocument, String action, String reason);
 }
 
