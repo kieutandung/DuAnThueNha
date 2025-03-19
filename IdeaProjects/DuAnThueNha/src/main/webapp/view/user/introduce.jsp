@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -10,9 +9,8 @@
     <link rel="stylesheet" href="/css/favorite.css">
 
     <style>
-
         .introduction-text p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.6;
             margin-bottom: 1rem;
             text-align: justify;
@@ -31,7 +29,7 @@
 </section>
 
 <div class="container my-4">
-    <h1 class="mb-4">Giới thiệu</h1>
+    <h2 class="mb-4">Giới thiệu</h2>
     <div class="introduction-text">
         <p>
             Năm 1984, nắm bắt thời cơ Việt Nam quyết tâm mở rộng cánh cửa để hội nhập với nền kinh tế toàn cầu,

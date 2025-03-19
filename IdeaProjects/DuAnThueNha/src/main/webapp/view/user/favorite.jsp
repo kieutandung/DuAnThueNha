@@ -12,15 +12,14 @@
     <link rel="stylesheet" href="/css/favorite.css">
 </head>
 
-<header>
-    <jsp:include page="../header.jsp"/>
-</header>
-
 <section class="hero">
     <h2> Danh sách sản phẩm yêu thích</h2>
 </section>
 
 <body>
+<header>
+    <jsp:include page="../header.jsp"/>
+</header>
 <div class="container mx-auto">
 
     <c:if test="${empty listProduct}">

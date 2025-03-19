@@ -91,7 +91,7 @@ public class ChatServlet extends HttpServlet {
             allChat.add(newChat);
             chat.add(chatCheck);
         }
-
+        req.setAttribute("contactPerson",users);
         req.setAttribute("myProfile", myProfile);
         req.setAttribute("idHost", idReceiver);
         req.setAttribute("allChat", allChat);

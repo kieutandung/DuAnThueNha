@@ -17,6 +17,7 @@
 <header>
     <jsp:include page="headerHost.jsp"/>
 </header>
+
 <div class="container">
     <div class="table-responsive">
         <div class="table-wrapper">
@@ -34,24 +35,24 @@
                     <th>Ảnh</th>
                     <th>Tên nhà thuê</th>
                     <th>Tên người thuê</th>
-                    <th id="startDate">Ngày bắt đầu</th>
-                    <th id="endDate">Ngày kết thúc</th>
+                    <th>Ngày bắt đầu</th>
+                    <th>Ngày kết thúc</th>
                     <th>Số người thuê</th>
                     <th>Trạng thái</th>
-                    <th id="action">Hành động</th>
+                    <th>Hành động</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="order" items="${rentalRequests}" varStatus="status">
                     <tr>
-                        <td class="stt">${status.index + 1}</td>
+                        <td>${status.index + 1}</td>
                         <td><img src="img/${order.image}" alt="Ảnh nhà thuê" width="50"></td>
                         <td>${order.nameProduct}</td>
                         <td>${order.fullName}</td>
                         <td>${order.startDate}</td>
                         <td>${order.endDate}</td>
-                        <td id="numPeople">${order.numPeople}</td>
-                        <td id="status">
+                        <td>${order.numPeople}</td>
+                        <td>
                             <c:choose>
                                 <c:when test="${order.paymentStatus == 'waiting'}">Chờ thanh toán</c:when>
                                 <c:when test="${order.paymentStatus == 'pending'}">Đang xử lý</c:when>
@@ -62,15 +63,17 @@
                         <td class="text-center">
                             <c:choose>
                                 <c:when test="${order.paymentStatus == 'waiting' or order.paymentStatus == 'cancelled'}">
-                                    <span class="text-success fw-bold d-inline-block">Đã duyệt</span>
+                                    <span class="text-success fw-bold">Đã duyệt</span>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="btn-group d-flex justify-content-center gap-2" role="group">
                                         <button class="btn btn-success"
-                                                onclick="confirmAction('${order.idOrder}', 'waiting')">Xác nhận
+                                                onclick="confirmAction('${order.idOrder}', 'waiting', '${order.idUser}')">
+                                            Xác nhận
                                         </button>
                                         <button class="btn btn-danger"
-                                                onclick="confirmAction('${order.idOrder}', 'cancelled')">Từ chối
+                                                onclick="confirmAction('${order.idOrder}', 'cancelled', '${order.idUser}')">
+                                            Từ chối
                                         </button>
                                     </div>
                                 </c:otherwise>
@@ -92,15 +95,16 @@
                 <h5 class="modal-title">Xác nhận hành động</h5>
             </div>
             <div class="modal-body">
-                <p>Bạn có chắc chắn muốn thực hiện hành động này?</p>
+                <p id="confirmMessage">Bạn có chắc chắn muốn thực hiện hành động này?</p>
             </div>
             <div class="modal-footer">
                 <form id="confirmForm" action="listProductHostServlet" method="post">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
                     <input type="hidden" name="action" value="updateStatus">
                     <input type="hidden" name="idOrder" id="orderId">
                     <input type="hidden" name="status" id="orderStatus">
-                    <button type="submit" class="btn btn-success1">Xác nhận</button>
+                    <input type="hidden" name="idReceiver" id="idReceiver">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-success">Xác nhận</button>
                 </form>
             </div>
         </div>
@@ -108,9 +112,16 @@
 </div>
 
 <script>
-    function confirmAction(orderId, status) {
+    function confirmAction(orderId, status, idReceiver) {
         document.getElementById('orderId').value = orderId;
         document.getElementById('orderStatus').value = status;
+        document.getElementById('idReceiver').value = idReceiver;
+
+        let message = status === 'waiting'
+            ? "Bạn có chắc chắn muốn xác nhận đơn hàng này?"
+            : "Bạn có chắc chắn muốn từ chối đơn hàng này?";
+        document.getElementById('confirmMessage').innerText = message;
+
         $('#confirmModal').modal('show');
     }
 </script>

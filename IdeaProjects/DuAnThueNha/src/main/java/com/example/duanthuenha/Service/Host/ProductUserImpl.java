@@ -236,7 +236,7 @@ public class ProductUserImpl implements ProductUserService {
 
     @Override
     public List<Notification> getAllNotificationByidUser(int idUser) {
-        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ?";
+        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ? order by idNotification desc";
         List<Notification> notificationList = new ArrayList<>();
 
         try {
@@ -265,6 +265,18 @@ public class ProductUserImpl implements ProductUserService {
             throw new RuntimeException(e);
         }
         return notificationList;
+    }
+
+    public void updateNotificationStatus(int idNotification) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE notification SET status = ? WHERE idNotification = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(2, idNotification);
+            ps.setString(1, "read");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

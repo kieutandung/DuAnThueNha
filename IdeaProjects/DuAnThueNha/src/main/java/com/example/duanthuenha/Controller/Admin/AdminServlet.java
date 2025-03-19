@@ -326,12 +326,6 @@ public class AdminServlet extends HttpServlet {
         String status = req.getParameter("status");
         String rejectionReason = req.getParameter("rejectionReason");
 
-        boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
-
-        if (success) {
-            resp.getWriter().write("Cập nhật thành công");
-        } else {
-            resp.getWriter().write("Cập nhật thất bại");
-        }
+        listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
     }
 }

@@ -15,7 +15,7 @@
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-3 mt-md-4 pb-3">
                             <h2 class="fw-bold mb-2 text-uppercase">Đăng nhập</h2>
-                            <p class="text-muted mb-5">Vui lòng nhập tên đăng nhập hoặc mật khẩu</p>
+                            <p class="text-muted mb-5">Vui lòng nhập tên đăng nhập và mật khẩu để tiếp tục</p>
                             <div id="alertDiv" class="alert alert-danger" role="alert"
                                  style="display: ${not empty errorMessage ? 'block' : 'none'};">
                                 ${errorMessage}
