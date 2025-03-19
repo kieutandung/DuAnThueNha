@@ -62,13 +62,13 @@
     // Tự động ẩn thông báo sau 3 giây
     setTimeout(function () {
         document.querySelectorAll('.popup').forEach(el => el.style.display = 'none');
-    }, 3000);
+    }, 2000);
 </script>
 <script>
     // Tự động ẩn thông báo sau 3 giây
     setTimeout(function () {
         document.querySelectorAll('div[style*="background"]').forEach(el => el.style.display = 'none');
-    }, 3000);
+    }, 2000);
 </script>
 <div class="actions">
     <div class="left">
@@ -345,20 +345,18 @@
                             <td>Trạng Thái:</td>
                             <td>
                                 <select name="status" id="modalStatus">
-                                    <option value="active">Mở tài khoản</option>
-                                    <option value="block">Khoá tài khoản</option>
+                                    <option value="active" ${status == 'active' ? 'selected' : ''}>Mở tài khoản</option>
+                                    <option value="block" ${status == 'block' ? 'selected' : ''}>Khoá tài khoản</option>
                                 </select>
                             </td>
                         </tr>
-                        <tr id="reasonRow" style="display: none;">
+                        <tr id="reasonRow">
                             <td>Lý do:</td>
-                            <td><input type="text" name="rejectionReason" class="rejectionReason" id="modalRejectionReason" placeholder="Nhập lý do..." required/></td>
+                            <td><input type="text" name="rejectionReason" class="rejectionReason" id="modalRejectionReason" placeholder="Nhập lý do..." value="${rejectionReason}" /></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">
-                                <button class="button-edit-modal" type="button" id="openConfirmModal">Cập nhật tài
-                                    khoản
-                                </button>
+                                <button class="button-edit-modal" type="button" id="openConfirmModal">Cập nhật tài khoản</button>
                             </td>
                         </tr>
                     </table>
@@ -414,22 +412,22 @@
 </script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        let statusSelect = document.getElementById("modalStatus");
-        let reasonRow = document.getElementById("reasonRow");
-        let reasonInput = document.getElementById("modalRejectionReason");
+        const statusSelect = document.getElementById("modalStatus");
+        const reasonRow = document.getElementById("reasonRow");
+        const reasonInput = document.getElementById("modalRejectionReason");
 
         function toggleReasonField() {
             if (statusSelect.value === "block") {
-                reasonRow.style.display = "table-row"; // Hiển thị dòng nhập lý do
-                reasonInput.setAttribute("required", "true");
+                reasonRow.style.display = "table-row";
+                reasonInput.required = true;
             } else {
-                reasonRow.style.display = "none"; // Ẩn nếu không chọn "block"
-                reasonInput.removeAttribute("required");
+                reasonRow.style.display = "none";
+                reasonInput.required = false;
                 reasonInput.value = ""; // Xóa nội dung nhập nếu chọn lại "active"
             }
         }
 
-        // Gọi hàm ngay khi trang tải để xử lý trạng thái mặc định
+        // Kiểm tra trạng thái ban đầu của dropdown khi trang tải
         toggleReasonField();
 
         // Lắng nghe sự kiện thay đổi trên dropdown trạng thái
