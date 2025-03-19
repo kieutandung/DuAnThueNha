@@ -26,7 +26,7 @@
                 <option ${category eq 'Biệt thự' ? 'selected' : ''} >Biệt thự</option>
                 <option ${category eq 'Chung cư' ? 'selected' : ''} >Chung cư</option>
             </select>
-            <input value="${keywordUser}" name="keyword" type="text" placeholder="Nhập địa điểm, diện tích hoặc từ khóa"
+            <input value="${keywordUser}" name="keyword" type="text" placeholder="Nhập địa điểm, diện tích hoặc tên sản phẩm"
                    style="border: 2px solid #c4c5bc;
               border-radius: 5px;
               padding: 8px;

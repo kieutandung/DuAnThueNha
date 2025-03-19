@@ -17,8 +17,7 @@
         width: 100%;
         margin: 0 auto;
     }
-
-
+    
     /* Navbar */
     .navbar {
         position: fixed;
@@ -184,6 +183,40 @@
     }
 
 
+
+    .dropdown-content-manager {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #fff;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 99999 !important; /* Z-index cao để đảm bảo hiển thị trên cùng */
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .dropdown-content-manager a {
+        color: #333;
+        padding: 10px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        z-index: 99999 !important;
+    }
+
+    .dropdown-content-manager a:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Hiển thị dropdown khi hover */
+    .dropdown-manager:hover .dropdown-content-manager {
+        display: block;
+    }
+
+
     /* Responsive Styles */
     @media (max-width: 768px) {
         .navbar {
@@ -223,9 +256,9 @@
         <div class="logo">WeBareBears.vn</div>
         <ul class="nav-links">
             <li><a href="/homeUserServlet">Trang chủ</a></li>
-            <li class="dropdown">
+            <li class="dropdown-manager">
                 <a href="#" class="nav-link">Quản lý</a>
-                <div class="dropdown-content">
+                <div class="dropdown-content-manager">
                     <a href="/listProductHostServlet?action=manageRentalRequests">Quản lý yêu cầu thuê</a>
                     <a href="listProductHostServlet">Quản lý sản phẩm</a>
                     <a href="paymentManagementServlet">Quản lý thanh toán</a>
@@ -235,15 +268,15 @@
             <li><a href="addProductHostServlet">Thêm sản phẩm mới</a></li>
         </ul>
 
-        <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">
-            <ul class="nav-search">
-                <li>
-                    <input id="searchProductHost" type="text" name="searchProductHost"
-                           placeholder="Tìm kiếm theo tên, địa chỉ"
-                           class="search-input" value="${keyword}">
-                </li>
-            </ul>
-        </form>
+<%--        <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">--%>
+<%--            <ul class="nav-search">--%>
+<%--                <li>--%>
+<%--                    <input id="searchProductHost" type="text" name="searchProductHost"--%>
+<%--                           placeholder="Tìm kiếm theo tên, địa chỉ"--%>
+<%--                           class="search-input" value="${keyword}">--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </form>--%>
 
         <ul class="nav-icon">
             <li>

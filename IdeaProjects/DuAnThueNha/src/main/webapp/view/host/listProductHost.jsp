@@ -26,6 +26,17 @@
                     <table class="table user-list">
                         <thead>
                         <tr>
+                            <th colspan="6" style="text-align: center; padding: 10px 0;">
+                                <form action="listProductHostServlet?action=search" method="post"
+                                      style="display: inline-block;">
+                                    <input id="searchProductHost" type="text" name="searchProductHost"
+                                           placeholder="Tìm kiếm theo tên, địa chỉ" class="search-input"
+                                           value="${keyword}">
+                                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                                </form>
+                            </th>
+                        </tr>
+                        <tr>
                             <th class="text-center"><span>STT</span></th>
                             <th><span>Sản phẩm</span></th>
                             <th class="text-center"><span>Giá</span></th>
@@ -68,7 +79,8 @@
                                             </a>
                                             <c:choose>
                                                 <c:when test="${p.status eq 'Không còn kinh doanh'}">
-                                                    <a href="#" class="table-link danger disabled-link" style="color: grey; pointer-events: none;">
+                                                    <a href="#" class="table-link danger disabled-link"
+                                                       style="color: grey; pointer-events: none;">
                                                        <span class="fa-stack">
                                                          <i class="fa fa-square fa-stack-2x"></i>
                                                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -76,7 +88,8 @@
                                                     </a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a href="#" class="table-link danger" onclick="showDeleteModal('${p.idProduct}'); return false;">
+                                                    <a href="#" class="table-link danger"
+                                                       onclick="showDeleteModal('${p.idProduct}'); return false;">
                                                         <span class="fa-stack">
                                                           <i class="fa fa-square fa-stack-2x"></i>
                                                           <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -91,7 +104,7 @@
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <td colspan="5" class="text-center">Không tìm thấy sản phẩm với từ khóa
+                                    <td colspan=6" class="text-center">Không tìm thấy sản phẩm với từ khóa
                                         "${keyword}"
                                         <a style=" padding-left: 5px" href="/listProductHostServlet"
                                            class="btn-thue-ngay">
