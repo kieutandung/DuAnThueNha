@@ -263,9 +263,10 @@ public class AdminServlet extends HttpServlet {
         String email = req.getParameter("email");
         String role = req.getParameter("role");
         String status = req.getParameter("status");
+        String rejectionReason = req.getParameter("rejectionReason");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
         try {
-            listAccountService.updateUser(username, password, fullName, phone, email, role, status, idUser);
+            listAccountService.updateUser(username, password, fullName, phone, email, role, status, rejectionReason, idUser);
             req.setAttribute("message", "Cập nhật người dùng thành công!");
         } catch (Exception e) {
             req.setAttribute("error", "Cập nhật người dùng thất bại!");

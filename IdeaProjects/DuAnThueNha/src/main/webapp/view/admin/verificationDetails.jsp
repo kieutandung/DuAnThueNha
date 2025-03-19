@@ -121,6 +121,27 @@
             font-size: 12px;
         }
     }
+    .table th {
+        background-color: #3384E1;
+        color: white;
+    }
+    .table td {
+        vertical-align: middle;
+    }
+    .view-btn {
+        background-color: #33d0ee; /* Màu xanh */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px; /* Bo góc */
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s; /* Hiệu ứng mượt */
+    }
+
+    .view-btn:hover {
+        background-color: #0c85b6; /* Màu xanh đậm hơn khi hover */
+    }
 </style>
 <header>
     <jsp:include page="menu.jsp"/>
@@ -145,6 +166,7 @@
                 <th>Trạng thái</th>
                 <th>Lý do</th>
                 <th>Hành động</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -153,18 +175,16 @@
                     <tr>
                         <td>${status.index + 1}</td>
                         <td>
-                            <c:if test="${not empty doc.documentFile}">
-                                <a href="/files/${doc.documentFile}" target="_blank">
-                                    <c:choose>
-                                        <c:when test="${not empty doc.documentImage}">
-                                            <img src="img/${doc.documentImage}" alt="Tài liệu" width="50">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <img src=img/"id-card.png" alt="Không có ảnh" width="50">
-                                        </c:otherwise>
-                                    </c:choose>
-                                </a>
-                            </c:if>
+                            <a href="file/${doc.documentFile}" target="_blank">
+                                <c:choose>
+                                    <c:when test="${not empty doc.documentImage}">
+                                        <img src="img/${doc.documentImage}" alt="Tài liệu" width="50">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="img/id-card.png" alt="Không có ảnh" width="50">
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
                         </td>
                         <td>${doc.documentType}</td>
                         <td>${doc.documentNumber}</td>
@@ -199,6 +219,11 @@
                                 </c:otherwise>
                             </c:choose>
                         </td>
+                        <td>
+                            <button class="view-btn" onclick="window.open('file/${doc.documentFile}', '_blank')">
+                                Xem chi tiết
+                            </button>
+                        </td>
                     </tr>
                 </c:if>
             </c:forEach>
@@ -226,7 +251,7 @@
                     </div>
                     <div class="form-group" id="reason-group" style="display: none;">
                         <label for="message-text" class="col-form-label">Lý do:</label>
-                        <textarea class="form-control" id="message-text" name="reason" placeholder="Nhập lý do"></textarea>
+                        <textarea class="form-control" id="message-text" name="reason" placeholder="Nhập lý do" required></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>

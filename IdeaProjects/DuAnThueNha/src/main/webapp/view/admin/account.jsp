@@ -23,7 +23,15 @@
 <link rel="stylesheet" href="css/alert.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+<style>
+    .rejectionReason {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+</style>
 <body>
 <%-- Hiển thị thông báo thành công --%>
 <c:if test="${not empty message}">
@@ -144,8 +152,27 @@
                 <td id="fullName">${user.fullName}</td>
                 <td id="email">${user.email}</td>
                 <td id="phone">${user.phone}</td>
-                <td id="role">${user.role}</td>
-                <td id="status">${user.status}</td>
+                <td id="role">
+                    <c:choose>
+                        <c:when test="${user.role == 'admin'}">Quản trị viên</c:when>
+                        <c:when test="${user.role == 'host'}">Chủ nhà</c:when>
+                        <c:when test="${user.role == 'user'}">Người dùng</c:when>
+                        <c:otherwise>Không xác định</c:otherwise>
+                    </c:choose>
+                </td>
+                <td id="status">
+                    <c:choose>
+                        <c:when test="${user.status == 'active'}">
+                            <span style="color: green; font-weight: bold;">Hoạt động</span>
+                        </c:when>
+                        <c:when test="${user.status == 'block'}">
+                            <span style="color: red; font-weight: bold;">Bị chặn</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span style="color: gray;">Không xác định</span>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
                 <td id="action">
                     <button type="button" class="button edit"
                             onclick='openEditModal({"idUser": "${user.idUser}", "username": "${user.username}", "fullName": "${user.fullName}", "phone": "${user.phone}", "email": "${user.email}", "role": "${user.role}", "status": "${user.status}"})'>
@@ -243,9 +270,9 @@
                             <td>Vai Trò:</td>
                             <td>
                                 <select name="role">
-                                    <option value="ADMIN">Admin</option>
-                                    <option value="HOST">Host</option>
-                                    <option value="USER">User</option>
+                                    <option value="ADMIN">Quản trị viên</option>
+                                    <option value="HOST">Chủ nhà</option>
+                                    <option value="USER">Người dùng</option>
                                 </select>
                             </td>
                         </tr>
@@ -301,28 +328,31 @@
                                 <select name="role" id="modalRole">
 
                                     <c:if test="${user.role != 'admin'}">
-                                        <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Admin</option>
+                                        <option value="admin" ${user.role == 'admin' ? 'selected' : ''}>Quản trị viên</option>
                                     </c:if>
 
                                     <c:if test="${user.role != 'host'}">
-                                        <option value="host" ${user.role == 'host' ? 'selected' : ''}>Host</option>
+                                        <option value="host" ${user.role == 'host' ? 'selected' : ''}>Chủ nhà</option>
                                     </c:if>
 
                                     <c:if test="${user.role != 'user'}">
-                                        <option value="user" ${user.role == 'user' ? 'selected' : ''}>User</option>
+                                        <option value="user" ${user.role == 'user' ? 'selected' : ''}>Người dùng</option>
                                     </c:if>
                                 </select>
                             </td>
-                            Giải thích
                         </tr>
                         <tr>
                             <td>Trạng Thái:</td>
                             <td>
                                 <select name="status" id="modalStatus">
-                                    <option value="active">Active</option>
-                                    <option value="block">Block</option>
+                                    <option value="active">Mở tài khoản</option>
+                                    <option value="block">Khoá tài khoản</option>
                                 </select>
                             </td>
+                        </tr>
+                        <tr id="reasonRow" style="display: none;">
+                            <td>Lý do:</td>
+                            <td><input type="text" name="rejectionReason" class="rejectionReason" id="modalRejectionReason" placeholder="Nhập lý do..." required/></td>
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: center;">
@@ -381,6 +411,30 @@
 
         $('#editAccountModal').modal('show');
     }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let statusSelect = document.getElementById("modalStatus");
+        let reasonRow = document.getElementById("reasonRow");
+        let reasonInput = document.getElementById("modalRejectionReason");
+
+        function toggleReasonField() {
+            if (statusSelect.value === "block") {
+                reasonRow.style.display = "table-row"; // Hiển thị dòng nhập lý do
+                reasonInput.setAttribute("required", "true");
+            } else {
+                reasonRow.style.display = "none"; // Ẩn nếu không chọn "block"
+                reasonInput.removeAttribute("required");
+                reasonInput.value = ""; // Xóa nội dung nhập nếu chọn lại "active"
+            }
+        }
+
+        // Gọi hàm ngay khi trang tải để xử lý trạng thái mặc định
+        toggleReasonField();
+
+        // Lắng nghe sự kiện thay đổi trên dropdown trạng thái
+        statusSelect.addEventListener("change", toggleReasonField);
+    });
 </script>
 </body>
 <footer>

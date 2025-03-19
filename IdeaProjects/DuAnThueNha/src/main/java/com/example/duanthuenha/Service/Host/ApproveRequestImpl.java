@@ -20,7 +20,7 @@ public class ApproveRequestImpl implements ApproveRequestService{
                 "JOIN users u ON o.idUser = u.idUser " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
                 "WHERE p.idUser = ? " +
-                "AND o.paymentStatus != 'completed'";
+                "AND o.paymentStatus NOT IN ('completed', 'paid')";
 
         Connection connection = connectDB.getConnection();
         try {

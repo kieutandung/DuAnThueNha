@@ -51,10 +51,17 @@
                         <td>${order.startDate}</td>
                         <td>${order.endDate}</td>
                         <td id="numPeople">${order.numPeople}</td>
-                        <td id="status">${order.paymentStatus}</td>
+                        <td id="status">
+                            <c:choose>
+                                <c:when test="${order.paymentStatus == 'waiting'}">Chờ thanh toán</c:when>
+                                <c:when test="${order.paymentStatus == 'pending'}">Đang xử lý</c:when>
+                                <c:when test="${order.paymentStatus == 'cancelled'}">Đã huỷ</c:when>
+                                <c:otherwise>Không xác định</c:otherwise>
+                            </c:choose>
+                        </td>
                         <td class="text-center">
                             <c:choose>
-                                <c:when test="${order.paymentStatus == 'paid' or order.paymentStatus == 'cancelled'}">
+                                <c:when test="${order.paymentStatus == 'waiting' or order.paymentStatus == 'cancelled'}">
                                     <span class="text-success fw-bold d-inline-block">Đã duyệt</span>
                                 </c:when>
                                 <c:otherwise>
