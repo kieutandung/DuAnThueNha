@@ -74,10 +74,10 @@ public class ProductImpl implements ProductService {
                             status = "Có thể thuê";
                         }
                         if (status.equals("for rent")) {
-                            status = "Đang được cho thuê";
+                            status = "Hết chỗ";
                         }
                         if (status.equals("sold out")) {
-                            status = "Hết chỗ";
+                            status = "Không còn kinh doanh";
                         }
                         String image = rs.getString("image");
                         String category = rs.getString("category");
@@ -167,14 +167,15 @@ public class ProductImpl implements ProductService {
                 Double price = Double.valueOf(rs.getString("price"));
                 String address = rs.getString("address");
                 String status = rs.getString("status");
+
                 if (status.equals("active")) {
                     status = "Có thể thuê";
                 }
                 if (status.equals("for rent")) {
-                    status = "Đang được cho thuê";
+                    status = "Hết chỗ";
                 }
                 if (status.equals("sold out")) {
-                    status = "Hết chỗ";
+                    status = "Không còn kinh doanh";
                 }
 
                 String image = rs.getString("image");
@@ -223,10 +224,10 @@ public class ProductImpl implements ProductService {
                     status = "Có thể thuê";
                 }
                 if (status.equals("for rent")) {
-                    status = "Đang được cho thuê";
+                    status = "Hết chỗ";
                 }
                 if (status.equals("sold out")) {
-                    status = "Hết chỗ";
+                    status = "Không còn kinh doanh";
                 }
                 String image = rs.getString("image");
                 String category = rs.getString("category");
@@ -296,10 +297,10 @@ public class ProductImpl implements ProductService {
                     status = "Có thể thuê";
                 }
                 if (status.equals("for rent")) {
-                    status = "Đang được cho thuê";
+                    status = "Hết chỗ";
                 }
                 if (status.equals("sold out")) {
-                    status = "Hết chỗ";
+                    status = "Không còn kinh doanh";
                 }
                 String image = rs.getString("image");
                 String categoryU = rs.getString("category");
@@ -338,10 +339,10 @@ public class ProductImpl implements ProductService {
                     status = "Có thể thuê";
                 }
                 if (status.equals("for rent")) {
-                    status = "Đang được cho thuê";
+                    status = "Hết chỗ";
                 }
                 if (status.equals("sold out")) {
-                    status = "Hết chỗ";
+                    status = "Không còn kinh doanh";
                 }
                 String image = rs.getString("image");
                 String categoryU = rs.getString("category");
@@ -479,10 +480,15 @@ public class ProductImpl implements ProductService {
                 Double price = Double.valueOf(rs.getString("price"));
                 String address = rs.getString("address");
                 String status = rs.getString("status");
+
                 if (status.equals("active")) {
                     status = "Có thể thuê";
-                } else {
+                }
+                if (status.equals("for rent")) {
                     status = "Hết chỗ";
+                }
+                if (status.equals("sold out")) {
+                    status = "Không còn kinh doanh";
                 }
                 String image = rs.getString("image");
                 String category = rs.getString("category");
@@ -498,6 +504,18 @@ public class ProductImpl implements ProductService {
         return productList;
     }
 
+    @Override
+    public void stopSelling(int product) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE products SET status = ? WHERE idProduct = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, "sold out");
+            ps.setInt(2, product);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void deleteImages(int idProduct) {
         String sql = "DELETE FROM images WHERE idProduct = ?";
@@ -532,10 +550,10 @@ public class ProductImpl implements ProductService {
                             status = "Có thể thuê";
                         }
                         if (status.equals("for rent")) {
-                            status = "Đang được cho thuê";
+                            status = "Hết chỗ";
                         }
                         if (status.equals("sold out")) {
-                            status = "Hết chỗ";
+                            status = "Không còn kinh doanh";
                         }
 
                         String image = rs.getString("image");

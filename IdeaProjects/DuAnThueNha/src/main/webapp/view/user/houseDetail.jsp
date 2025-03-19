@@ -65,7 +65,8 @@
                         </li>
                     </ul>
 
-                    <textarea id="reasonDetails" name="reasonDetails" placeholder="Nhập chi tiết lý do..." rows="4" style="width: 100%; margin-top: 10px;"></textarea>
+                    <textarea id="reasonDetails" name="reasonDetails" placeholder="Nhập chi tiết lý do..." rows="4"
+                              style="width: 100%; margin-top: 10px;"></textarea>
 
                     <div class="complaint-buttons">
                         <button id="submit-complaint">Gửi khiếu nại</button>
@@ -78,10 +79,11 @@
                 Địa chỉ:</strong> ${product.address}
             </p>
             <p class="my-2"><img style="max-height: 20px; max-width: 20px; padding-bottom: 2px;"
-                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area} m<sup>2</sup>
+                                 src="img/icons8-area-50.png" alt=""> <strong> Diện tích:</strong> ${product.area}
+                m<sup>2</sup>
             </p>
             <c:choose>
-                <c:when test="${product.status eq 'Hết chỗ'}">
+                <c:when test="${product.status eq 'Hết chỗ' or product.status eq 'Không còn kinh doanh'}">
                     <p class="status">
                         <i class="bi bi-x-circle" style="color: #f93434"></i> Trạng thái:
                         <span style="color: #f93434;">${product.status}</span>
@@ -103,7 +105,8 @@
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0">${avtUser.fullName}</h5>
                         <c:if test="${idUser ne avtUser.idUser}">
-                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}" class="ms-4 text-decoration-none">Liên hệ</a>
+                            <a href="chatServlet?action=showChat&idHost=${avtUser.idUser}"
+                               class="ms-4 text-decoration-none">Liên hệ</a>
                         </c:if>
                     </div>
                     <small class="text-muted">${avtUser.address}</small>
@@ -111,14 +114,17 @@
             </div>
 
             <div class="action-buttons mt-3">
-                <a href="/orderProductServlet?productId=${product.idProduct}" class="btn btn-primary mt-3 text-center">
-                    <i class="bi bi-house-door-fill"></i> Thuê ngay
-                </a>
+                <c:if test="${p.status eq 'Có thể thuê'}">
+                    <a href="/orderProductServlet?productId=${product.idProduct}"
+                       class="btn btn-primary mt-3 text-center">
+                        <i class="bi bi-house-door-fill"></i> Thuê ngay
+                    </a>
+                </c:if>
                 <button class="btn btn-outline-danger mt-3" id="favoriteBtn"
                         data-product-id="${product.idProduct}" onclick="toggleFavorite()">
                     <i id="favoriteIcon" class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i> Yêu thích
                 </button>
-                <button class="btn btn-outline-danger mt-3"  id="complaintBtn"  >
+                <button class="btn btn-outline-danger mt-3" id="complaintBtn">
                     <i class="fas fa-exclamation-triangle"></i> Khiếu nại
                 </button>
             </div>
@@ -131,7 +137,7 @@
         <div class="list-group">
             <c:choose>
                 <c:when test="${empty comments}">
-                        <strong style="text-align: center;font-size: 20px">Không có đánh giá nào</strong>
+                    <strong style="text-align: center;font-size: 20px">Không có đánh giá nào</strong>
                 </c:when>
                 <c:otherwise>
                     <c:forEach var="cmt" items="${comments}">

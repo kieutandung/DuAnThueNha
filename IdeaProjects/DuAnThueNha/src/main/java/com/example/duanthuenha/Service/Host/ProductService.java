@@ -3,6 +3,9 @@ package com.example.duanthuenha.Service.Host;
 import com.example.duanthuenha.Model.Image;
 import com.example.duanthuenha.Model.ProductHost;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductService {
@@ -45,5 +48,8 @@ public interface ProductService {
     int getTotalProductsSearchHost(int idUser, String keyword);
 
     List<ProductHost> getProductsPage(int page);
+
+    void stopSelling(int product);
+
 }
 

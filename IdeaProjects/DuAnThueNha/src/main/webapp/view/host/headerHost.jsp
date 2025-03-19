@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <style>
     * {
         margin-left: 0;
@@ -54,6 +56,7 @@
         display: flex;
         align-items: center;
     }
+
     .nav-search {
         padding-top: 15px;
         list-style: none;
@@ -114,7 +117,7 @@
         background-color: #fff;
         min-width: 150px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 99999 !important; /* Z-index cao để đảm bảo hiển thị trên cùng */
+        z-index: 99999 !important;
         border-radius: 4px;
         overflow: hidden;
     }
@@ -133,11 +136,52 @@
         background-color: #f1f1f1;
     }
 
-    /* Hiển thị dropdown khi hover */
-    .dropdown:hover .dropdown-content {
-        display: block;
+    .dropdown-content.show {
+        display: block; /* Khi có class .show, dropdown-content sẽ hiện */
     }
 
+    .notification-item:hover {
+        background-color: #f1f1f1;
+    }
+
+    .notification-header {
+        margin-bottom: 5px;
+    }
+
+    /* Đường gạch phân cách */
+    .notification-separator {
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 5px 0;
+    }
+
+    .notification-content {
+        max-height: 150px; /* Điều chỉnh chiều cao tối đa theo ý bạn */
+        overflow-y: auto;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .bell-icon {
+        position: relative; /* Để badge có thể định vị tuyệt đối dựa trên .bell-icon */
+        display: inline-block;
+        width: 25px; /* điều chỉnh theo kích thước icon chuông */
+        height: 25px; /* điều chỉnh theo kích thước icon chuông */
+    }
+
+    /* Badge số thông báo */
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -7px;
+        background-color: #3b71ca;
+        color: white;
+        border-radius: 90%;
+        padding: 2px 6px;
+        font-size: 12px;
+        line-height: 1;
+        z-index: 1000;
+    }
 
 
     /* Responsive Styles */
@@ -194,7 +238,8 @@
         <form action="listProductHostServlet?action=search" method="post" style=" margin-bottom: 0px;">
             <ul class="nav-search">
                 <li>
-                    <input id="searchProductHost" type="text" name="searchProductHost" placeholder="Tìm kiếm theo tên, địa chỉ"
+                    <input id="searchProductHost" type="text" name="searchProductHost"
+                           placeholder="Tìm kiếm theo tên, địa chỉ"
                            class="search-input" value="${keyword}">
                 </li>
             </ul>
@@ -203,35 +248,107 @@
         <ul class="nav-icon">
             <li>
                 <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
-                    <img src="img/chat (1).png" alt="Char"
-                         class="w-6 h-6 icon-black">
+                    <img src="img/chat (1).png" alt="Chat" class="w-6 h-6 icon-black">
                 </a>
             </li>
-            <li>
+            <li class="dropdown">
                 <i class="bell-icon">
-                    <img src="img/bell.png"
-                         alt="Notifications" class="icon-black">
+                    <img src="img/bell.png" alt="Notifications" class="icon-black">
+                    <c:if test="${sessionScope.unreadCount gt 0}">
+                        <span class="notification-badge">${sessionScope.unreadCount}</span>
+                    </c:if>
                 </i>
+                <div class="dropdown-content-ui">
+                    <!-- Gán ID cho dropdown thông báo -->
+                    <div id="notificationDropdown" class="dropdown-content"
+                         style="width: 300px; max-height: 400px; overflow-y: auto;">
+                        <c:if test="${not empty sessionScope.notificationList}">
+                            <c:forEach var="n" items="${sessionScope.notificationList}" varStatus="status">
+                                <div class="notification-item p-2 border-bottom">
+                                    <p class="notification-header">
+                                        <strong>${n.type}</strong>
+                                    </p>
+                                    <hr class="notification-separator">
+                                    <div class="notification-content">
+                                        <p>${n.type} của bạn: ${n.title} đã được phản hồi: ${n.message}</p>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${empty sessionScope.notificationList}">
+                            <p class="text-center text-muted p-2">Không có thông báo mới</p>
+                        </c:if>
+                        <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>
+                    </div>
+                </div>
             </li>
-
             <!-- Dropdown cho Account -->
             <li class="dropdown">
-
                 <i class="account-icon">
                     <img src="img/userIcon.png" alt="Account">
                 </i>
-
-                <div class="dropdown-content">
+                <!-- Gán ID cho dropdown tài khoản -->
+                <div id="accountDropdown" class="dropdown-content">
                     <a href="/profileServlet">Thông tin cá nhân</a>
-                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập" class="relative text-black text-2xl"> Bộ sưu tập
+                    <a href="/homeUserServlet?action=showFavorite" title="Bộ sưu tập"
+                       class="relative text-black text-2xl">
+                        Bộ sưu tập
                     </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
-                    <a href="/loginServlet">Đăng xuất</a>
+                    <hr style="margin: 0">
+                    <a href="/loginServlet" style="text-align: center">Đăng xuất</a>
                 </div>
             </li>
         </ul>
     </nav>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bellIcon = document.querySelector('.bell-icon');
+        const notificationDropdown = document.getElementById('notificationDropdown');
 
+        const accountIcon = document.querySelector('.account-icon');
+        const accountDropdown = document.getElementById('accountDropdown');
+
+
+        bellIcon.addEventListener('click', function (event) {
+            event.stopPropagation();
+            notificationDropdown.classList.toggle('show');
+            accountDropdown.classList.remove('show');
+
+            fetch('notificationUserServlet', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: ''
+            }).then(response => {
+
+                const badge = document.querySelector('.notification-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+                return response.text();
+            })
+        });
+
+
+        accountIcon.addEventListener('click', function (event) {
+            event.stopPropagation();
+            accountDropdown.classList.toggle('show');
+
+            notificationDropdown.classList.remove('show');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!notificationDropdown.contains(event.target) && !bellIcon.contains(event.target)) {
+                notificationDropdown.classList.remove('show');
+            }
+            if (!accountDropdown.contains(event.target) && !accountIcon.contains(event.target)) {
+                accountDropdown.classList.remove('show');
+            }
+        });
+    });
+</script>
 
 

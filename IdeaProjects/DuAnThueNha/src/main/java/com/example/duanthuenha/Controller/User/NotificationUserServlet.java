@@ -49,7 +49,6 @@ public class NotificationUserServlet extends HttpServlet {
         session.setAttribute("senderList", senderList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
         dispatcher.forward(req, resp);
-
     }
 
     @Override
@@ -92,5 +91,4 @@ public class NotificationUserServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
         dispatcher.forward(req, resp);
     }
-
 }

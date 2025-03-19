@@ -10,8 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApproveRequestImpl implements ApproveRequestService{
+public class ApproveRequestImpl implements ApproveRequestService {
     private final ConnectDB connectDB = new ConnectDB();
+
     @Override
     public List<Order> getAllRentalRequestsByHost(int userID) {
         List<Order> rentalRequests = new ArrayList<>();
@@ -70,13 +71,7 @@ public class ApproveRequestImpl implements ApproveRequestService{
             ps.setString(1, newStatus);
             ps.setInt(2, idOrder);
 
-            int rowsUpdated = ps.executeUpdate();
-
-            if (rowsUpdated > 0) {
-                System.out.println("Cập nhật thành công đơn hàng ID: " + idOrder);
-            } else {
-                System.out.println("Không tìm thấy đơn hàng để cập nhật.");
-            }
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

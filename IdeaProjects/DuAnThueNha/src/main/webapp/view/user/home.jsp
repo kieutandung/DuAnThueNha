@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -53,7 +53,7 @@
                                 <p><strong>Địa chỉ:</strong> ${p.address}</p>
                                 <p><strong>Diện tích</strong> ${p.area} m<sup>2</sup></p>
                                 <c:choose>
-                                    <c:when test="${p.status eq 'Hết chỗ'}">
+                                    <c:when test="${p.status eq 'Hết chỗ' or p.status eq 'Không còn kinh doanh'}">
                                         <p class="status" style="color: #f93434">
                                             <i class="bi bi-x-circle"></i> Trạng thái:
                                             <span style="color: red;">${p.status}</span>
@@ -66,9 +66,11 @@
                                         </p>
                                     </c:otherwise>
                                 </c:choose>
-                                <a href="/orderProductServlet?productId=${p.idProduct}" class="btn-thue-ngay">
-                                    <i class="bi bi-house-door-fill"></i> Thuê ngay
-                                </a>
+                                <c:if test="${p.status eq 'Có thể thuê'}">
+                                    <a href="/orderProductServlet?productId=${p.idProduct}" class="btn-thue-ngay">
+                                        <i class="bi bi-house-door-fill"></i> Thuê ngay
+                                    </a>
+                                </c:if>
                             </div>
                         </div>
                     </div>

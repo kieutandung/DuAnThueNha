@@ -203,7 +203,7 @@
             <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li><a href="/introductionServlet">Giới thiệu</a></li>
             <li><a href="/orderInformationServlet">Sản phẩm</a></li>
-            <li><a href="#">Liên hệ</a></li>
+            <li><a href="/chatServlet">Liên hệ</a></li>
         </ul>
         <%--        <ul class="nav-search">--%>
         <%--            <li>--%>
@@ -260,7 +260,8 @@
                         Bộ sưu tập
                     </a>
                     <a href="/orderInformationServlet">Lịch sử thuê nhà</a>
-                    <a href="/loginServlet">Đăng xuất</a>
+                    <hr style="margin: 0">
+                    <a href="/loginServlet" style="text-align: center">Đăng xuất</a>
                 </div>
             </li>
         </ul>

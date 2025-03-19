@@ -16,9 +16,9 @@
     <div class="row mb-6">
         <div class="col-lg-12 mt-5">
 
-            <div id="alertDivSuc" class="alert alert-success" role="alert"
+            <div id="alertDivSuc" class="alert alert-success text-center" role="alert"
                  style="display: ${not empty successMessage ? 'block' : 'none'};">
-                <strong>${successMessage}</strong>
+                ${successMessage}
             </div>
 
             <div class="main-box clearfix">
@@ -61,18 +61,30 @@
                                         <td class="text-center" style="width: 20%;">
                                             <a href="editProductHostServlet?productId=${p.idProduct}"
                                                class="table-link">
-                        <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                        </span>
+                                                <span class="fa-stack">
+                                                  <i class="fa fa-square fa-stack-2x"></i>
+                                                  <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                </span>
                                             </a>
-                                            <a href="#" class="table-link danger"
-                                               onclick="showDeleteModal('${p.idProduct}'); return false;">
-                        <span class="fa-stack">
-                            <i class="fa fa-square fa-stack-2x"></i>
-                            <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                        </span>
-                                            </a>
+                                            <c:choose>
+                                                <c:when test="${p.status eq 'Không còn kinh doanh'}">
+                                                    <a href="#" class="table-link danger disabled-link" style="color: grey; pointer-events: none;">
+                                                       <span class="fa-stack">
+                                                         <i class="fa fa-square fa-stack-2x"></i>
+                                                         <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                       </span>
+                                                    </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="#" class="table-link danger" onclick="showDeleteModal('${p.idProduct}'); return false;">
+                                                        <span class="fa-stack">
+                                                          <i class="fa fa-square fa-stack-2x"></i>
+                                                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                         </span>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -89,27 +101,6 @@
                                 </tr>
                             </c:otherwise>
                         </c:choose>
-
-                        <div class="modal fade" id="deleteConfirmModal" tabindex="-1"
-                             aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteConfirmModalLabel">Xác nhận xóa</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Đóng"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Bạn có chắc chắn muốn xóa sản phẩm này không?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
-                                        </button>
-                                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         </tbody>
                     </table>
                 </div>
@@ -128,6 +119,27 @@
                                                  class="page-link">Tiếp</a></li>
                     </c:if>
                 </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1"
+     aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmModalLabel">Xác nhận ngừng bán sản phẩm ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn ngừng bán sản phẩm này không ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Cập nhật</button>
             </div>
         </div>
     </div>
