@@ -162,10 +162,16 @@ public class ListProductHostServlet extends HttpServlet {
         if (count % 10 != 0) {
             endPage++;
         }
+
         req.setAttribute("startIndex", startIndex);
         req.setAttribute("endPageUser", endPage);
         req.setAttribute("tag", page);
         List<ProductHost> products = productService.getAllProductsById(userID, page);
+
+        if (products.isEmpty()){
+            req.setAttribute("nothing",10);
+        }
+
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
         dispatcher.forward(req, resp);
