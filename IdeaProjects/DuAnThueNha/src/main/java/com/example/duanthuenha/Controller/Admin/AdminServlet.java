@@ -41,8 +41,8 @@ public class AdminServlet extends HttpServlet {
                 case "editUser":
                     handleEditUserView(req, resp);
                     break;
-                case "revenueChart":
-                    revenueChart(req, resp);
+                case "accountManagement":
+                    listAccountView(req, resp);
                     break;
                 case "reportView":
                     listReportView(req, resp);
@@ -51,7 +51,7 @@ public class AdminServlet extends HttpServlet {
                     listReportViewPending(req, resp);
                     break;
                 default:
-                    listAccountView(req, resp);
+                    revenueChart(req, resp);
                     break;
             }
         } catch (ServletException e) {
@@ -178,8 +178,11 @@ public class AdminServlet extends HttpServlet {
                 case "sendFeedback":
                     sendFeedback(req, resp);
                     break;
-                default:
+                case "accountManagement":
                     listAccountView(req, resp);
+                    break;
+                default:
+                    revenueChart(req, resp);
                     break;
             }
         } catch (ServletException e) {
