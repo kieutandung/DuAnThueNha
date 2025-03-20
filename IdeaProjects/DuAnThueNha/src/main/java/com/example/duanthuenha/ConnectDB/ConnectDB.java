@@ -8,7 +8,6 @@ public class ConnectDB {
     private String url = "jdbc:mysql://localhost:3306/DuAnThueNha?useSSL=true&serverTimezone=UTC";
     private String username = "root";
     private String password = "123456";
-
     public Connection getConnection() {
         Connection connection = null;
         try {

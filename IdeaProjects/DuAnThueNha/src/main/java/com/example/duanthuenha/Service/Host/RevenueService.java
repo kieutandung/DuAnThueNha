@@ -9,5 +9,5 @@ import java.util.Map;
 public interface RevenueService {
     List<Order> getAllOrderByIdUser(int idUser);
     Map<Integer, Double> getRevenueByMonth(int idUser);
-    List<Product> getTopRentedHouses();
+    List<Product> getTopRentedHouses(int idUser);
 }

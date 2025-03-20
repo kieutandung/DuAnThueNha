@@ -30,7 +30,7 @@ public class RevenueServlet extends HttpServlet {
 
         req.setAttribute("orders", orders);
         req.setAttribute("revenueByMonthByIdUser", revenueByMonthByIdUser);
-        List<Product> topHouses = revenueService.getTopRentedHouses();
+        List<Product> topHouses = revenueService.getTopRentedHouses(userID);
         req.setAttribute("topHouses" , topHouses);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/hostRevenue.jsp");
