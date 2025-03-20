@@ -37,7 +37,7 @@
         </div>
     </form>
 </section>
-<div class="container my-5">
+<div class="container my-5" style="min-height: 700px;">
     <h2 class="mb-4" style="font-weight: bold">Danh sách sản phẩm</h2>
     <c:choose>
         <c:when test="${not empty listProduct}">

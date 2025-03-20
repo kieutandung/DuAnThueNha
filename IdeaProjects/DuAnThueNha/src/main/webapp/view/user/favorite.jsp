@@ -19,10 +19,10 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<div class="container mx-auto">
+<div class="container mx-auto" style="min-height: 700px;">
 
     <c:if test="${empty listProduct}">
-        <p class="text-center text-gray-600">Bạn chưa có sản phẩm yêu thích nào.</p>
+        <p class="text-center text-gray-600" style="margin-top: 50px">Bạn chưa có sản phẩm yêu thích nào.</p>
     </c:if>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

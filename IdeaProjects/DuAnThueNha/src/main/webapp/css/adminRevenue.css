@@ -48,11 +48,12 @@
     display: inline-block;
     border-radius: 3px;
 }
-.gray { background: #989898; }
-.blue { background: #1450ea; }
-.green { background: #0fd925; }
-.yellow { background: #d7f111; }
-.red { background: #ff0000; }
+
+.gray { background: #FFCE56; }
+.green { background: #4BC0C0; }
+.yellow { background: #36A2EB; }
+.red { background: #FF6384; }
+
 .top-houses {
     padding: 15px;
 }

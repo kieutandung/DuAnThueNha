@@ -88,108 +88,116 @@
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<div class="container mt-4">
+<div class="container mt-4" style="min-height: 700px;">
     <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link active" href="#">Tất cả</a></li>
         <%--        <li class="nav-item"><a class="nav-link" href="#">Sắp tới</a></li>--%>
 <%--        <li class="nav-item"><a class="nav-link" href="#">Hoàn tất</a></li>--%>
 <%--        <li class="nav-item"><a class="nav-link" href="#">Đã hủy</a></li>--%>
     </ul>
-    <c:forEach var="order" items="${orders}">
-        <div class="custom-card"
-             data-id="${order.idOrder}"
-             data-start="${order.startDate}"
-             data-end="${order.endDate}"
-             data-price="${order.price}">
-        <div class="card-body">
-                <div class="order-header">
-                    <c:choose>
-                        <c:when test="${order.paymentStatus eq 'pending'}">
-                            <span class="badge bg-secondary">Chờ xác nhận</span>
-                        </c:when>
-                        <c:when test="${order.paymentStatus eq 'waiting'}">
-                            <span class="badge bg-danger">Chưa thanh toán</span>
-                        </c:when>
-                        <c:when test="${order.paymentStatus eq 'cancelled'}">
-                            <span class="badge bg-danger">Đã huỷ</span>
-                        </c:when>
-                        <c:when test="${order.paymentStatus eq 'completed'}">
-                            <span class="badge bg-success">Đã hoàn thành</span>
-                        </c:when>
-                        <c:when test="${order.paymentStatus eq 'paid'}">
-                            <span class="badge bg-success">Đã thanh toán</span>
-                        </c:when>
-                        <c:otherwise>
-                            <span class="badge bg-dark">${order.paymentStatus}</span>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img src="img/${order.image}" class="room-image me-3">
-                    <div>
-                        <h5 class="room-title">${order.nameProduct}</h5>
-                        <div class="d-flex justify-content-between checkin-checkout">
-                            <div class="checkin-info">
-                                <p class="text-muted fw-semibold mb-1">Nhận phòng</p>
-                                <p class="text-muted mb-0">${order.startDate}</p>
+    <c:choose>
+        <c:when test="${not empty orders}">
+            <c:forEach var="order" items="${orders}">
+                <div class="custom-card"
+                     data-id="${order.idOrder}"
+                     data-start="${order.startDate}"
+                     data-end="${order.endDate}"
+                     data-price="${order.price}">
+                    <div class="card-body">
+                        <div class="order-header">
+                            <c:choose>
+                                <c:when test="${order.paymentStatus eq 'pending'}">
+                                    <span class="badge bg-secondary">Chờ xác nhận</span>
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'waiting'}">
+                                    <span class="badge bg-danger">Chưa thanh toán</span>
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'cancelled'}">
+                                    <span class="badge bg-danger">Đã huỷ</span>
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'completed'}">
+                                    <span class="badge bg-success">Đã hoàn thành</span>
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'paid'}">
+                                    <span class="badge bg-success">Đã thanh toán</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="badge bg-dark">${order.paymentStatus}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <img src="img/${order.image}" class="room-image me-3">
+                            <div>
+                                <h5 class="room-title">${order.nameProduct}</h5>
+                                <div class="d-flex justify-content-between checkin-checkout">
+                                    <div class="checkin-info">
+                                        <p class="text-muted fw-semibold mb-1">Nhận phòng</p>
+                                        <p class="text-muted mb-0">${order.startDate}</p>
+                                    </div>
+                                    <div class="checkout-info">
+                                        <p class="text-muted fw-semibold mb-1">Trả phòng</p>
+                                        <p class="text-muted mb-0">${order.endDate}</p>
+                                    </div>
+                                    <div class="number-people">
+                                        <p class="text-muted fw-semibold mb-1">Số người thuê</p>
+                                        <p class="text-muted mb-0">${order.numPeople}</p>
+                                    </div>
+                                    <div class="total-price">
+                                        <p class="text-muted fw-semibold mb-1">Tổng tiền</p>
+                                        <p class="text-muted mb-0">
+                                        <span id="total-price-${order.idOrder}">
+                                            <fmt:formatNumber value="${order.calculateTotalPrice()}" type="number"/>
+                                        </span> VNĐ
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="checkout-info">
-                                <p class="text-muted fw-semibold mb-1">Trả phòng</p>
-                                <p class="text-muted mb-0">${order.endDate}</p>
-                            </div>
-                            <div class="number-people">
-                                <p class="text-muted fw-semibold mb-1">Số người thuê</p>
-                                <p class="text-muted mb-0">${order.numPeople}</p>
-                            </div>
-                            <div class="total-price">
-                                <p class="text-muted fw-semibold mb-1">Tổng tiền</p>
-                                <p class="text-muted mb-0">
-            <span id="total-price-${order.idOrder}">
-                <fmt:formatNumber value="${order.calculateTotalPrice()}" type="number"/>
-            </span> VNĐ
-                                </p>
-                            </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-content-end gap-2 p-2">
+                            <c:choose>
+                                <c:when test="${order.paymentStatus eq 'waiting'}">
+                                    <button class="btn btn-primary btn-payment"
+                                            data-idOrder="${order.idOrder}"
+                                            data-image="img/${order.image}"
+                                            data-nameProduct="${order.nameProduct}"
+                                            data-price="${order.price}"
+                                            data-numDate="${order.calculateDays()}"
+                                            data-totalPrice="${order.calculateTotalPrice()}">
+                                        Thanh toán
+                                    </button>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${order.paymentStatus eq 'completed'}">
+                                    <a href="commentServlet?productId=${order.idProduct}"
+                                       class="btn btn-danger custom-btn">
+                                        Viết đánh giá
+                                    </a>
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'cancelled'}">
+                                    <!-- Không hiển thị nút nào nếu đã huỷ -->
+                                </c:when>
+                                <c:when test="${order.paymentStatus eq 'completed'}">
+                                    <!-- Có thể hiển thị thêm nút khác nếu cần -->
+                                </c:when>
+                                <c:otherwise>
+                                    <button type="button" class="btn btn-danger custom-btn" onclick="confirmCancel(${order.idOrder})">
+                                        Hủy
+                                    </button>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
-            <div class="mt-3 d-flex justify-content-end gap-2 p-2">
-                <c:choose>
-                    <c:when test="${order.paymentStatus eq 'waiting'}">
-                        <button class="btn btn-primary btn-payment"
-                                data-idOrder="${order.idOrder}"
-                                data-image="img/${order.image}"
-                                data-nameProduct="${order.nameProduct}"
-                                data-price="${order.price}"
-                                data-numDate="${order.calculateDays()}"
-                                data-totalPrice="${order.calculateTotalPrice()}">
-                            Thanh toán
-                        </button>
-                    </c:when>
-                </c:choose>
-                <c:choose>
-                    <c:when test="${order.paymentStatus eq 'completed'}">
-                        <a href="commentServlet?productId=${order.idProduct}"
-                           class="btn btn-danger custom-btn">
-                            Viết đánh giá
-                        </a>
-                    </c:when>
-                    <c:when test="${order.paymentStatus eq 'cancelled'}">
-
-                    </c:when>
-                    <c:when test="${order.paymentStatus eq 'completed'}">
-
-                    </c:when>
-                    <c:otherwise>
-                        <button type="button" class="btn btn-danger custom-btn" onclick="confirmCancel(${order.idOrder})">
-                            Hủy
-                        </button>
-                    </c:otherwise>
-                </c:choose>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <div class="text-center my-5">
+                <p>Bạn chưa có đơn hàng nào</p>
             </div>
-        </div>
-        </div>
-    </c:forEach>
-
+        </c:otherwise>
+    </c:choose>
 </div>
 
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog">

@@ -146,19 +146,48 @@ public class ListAccountImpl implements ListAccountService {
 
     public void updateUser(String username, String password, String fullName, String phone, String email, String role, String status, String rejectionReason, int idUser) {
         try (Connection connection = connectDB.getConnection()) {
-            String query = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ?, rejectionReason = ? WHERE idUser = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ps.setString(3, fullName);
-            ps.setString(4, phone);
-            ps.setString(5, email);
-            ps.setString(6, role);
-            ps.setString(7, status);
-            ps.setString(8, rejectionReason);
-            ps.setInt(9, idUser);
+            connection.setAutoCommit(false); // Bắt đầu transaction
 
-            ps.executeUpdate();
+            // 1. Lấy vai trò hiện tại của user trước khi cập nhật
+            String oldRole = "";
+            String selectQuery = "SELECT role FROM users WHERE idUser = ?";
+            try (PreparedStatement psSelect = connection.prepareStatement(selectQuery)) {
+                psSelect.setInt(1, idUser);
+                ResultSet rs = psSelect.executeQuery();
+                if (rs.next()) {
+                    oldRole = rs.getString("role");
+                }
+            }
+
+            // 2. Cập nhật thông tin người dùng
+            String updateQuery = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ?, rejectionReason = ? WHERE idUser = ?";
+            try (PreparedStatement ps = connection.prepareStatement(updateQuery)) {
+                ps.setString(1, username);
+                ps.setString(2, password);
+                ps.setString(3, fullName);
+                ps.setString(4, phone);
+                ps.setString(5, email);
+                ps.setString(6, role);
+                ps.setString(7, status);
+                ps.setString(8, rejectionReason);
+                ps.setInt(9, idUser);
+                ps.executeUpdate();
+            }
+            // 3. Nếu role thay đổi từ 'user' sang 'host', thêm thông báo vào bảng notification
+            if ("user".equals(oldRole) && "host".equals(role)) {
+                String insertNotification = "INSERT INTO notification (idUser, title, content, createdAt, type, status, idReceiver) VALUES (?, ?, ?, NOW(), ?, ?, ?)";
+                try (PreparedStatement psNotification = connection.prepareStatement(insertNotification)) {
+                    psNotification.setInt(1, idUser);
+                    psNotification.setString(2, "Chúc mừng! Bạn đã trở thành chủ nhà");
+                    psNotification.setString(3, "Tài khoản của bạn đã được nâng cấp lên chủ nhà. Bạn có thể bắt đầu đăng tải các căn hộ cho thuê ngay bây giờ.");
+                    psNotification.setString(4, "Thăng chức");
+                    psNotification.setString(5, "unread");
+                    psNotification.setInt(6, idUser); // Người nhận thông báo là chính user đó
+                    psNotification.executeUpdate();
+                }
+            }
+
+            connection.commit(); // Xác nhận transaction
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

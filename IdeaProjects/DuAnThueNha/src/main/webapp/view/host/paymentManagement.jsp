@@ -17,7 +17,7 @@
 <header>
     <jsp:include page="headerHost.jsp"/>
 </header>
-<div class="container">
+<div class="container" style="min-height: 700px;">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">

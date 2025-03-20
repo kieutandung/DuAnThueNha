@@ -27,7 +27,6 @@
                 <div><span class="red"></span> Đơn bị hủy</div>
                 <div><span class="green"></span> Đơn hoàn thành</div>
                 <div><span class="yellow"></span> Đơn chờ xác nhận</div>
-                <div><span class="blue"></span> Đơn đã thanh toán</div>
             </div>
             <div class="pie-chart-container">
                 <canvas id="pieChart"></canvas>
@@ -50,11 +49,16 @@
                 <%= request.getAttribute("cancelledCount") %>,
                 <%= request.getAttribute("completedCount") %>,
                 <%= request.getAttribute("waitingCount") %>,
-                <%= request.getAttribute("paidCount") %>
             ],
-            backgroundColor: ['#989898', '#ff0000', '#0fd925', '#d7f111', '#1450ea']
+            backgroundColor: [
+                '#FFCE56',
+                '#FF6384',
+                '#4BC0C0',
+                '#36A2EB',
+            ]
         }]
     };
+
 
     new Chart(pieCtx, {
         type: 'pie',
