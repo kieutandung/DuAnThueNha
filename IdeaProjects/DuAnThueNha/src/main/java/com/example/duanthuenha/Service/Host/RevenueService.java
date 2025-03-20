@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface RevenueService {
-    List<Order> getAllOrderByIdUser(int idUser);
+    List<Order> getAllCompletedOrdersByHost(int hostId);
     Map<Integer, Double> getRevenueByMonth(int idUser);
     List<Product> getTopRentedHouses(int idUser);
 }

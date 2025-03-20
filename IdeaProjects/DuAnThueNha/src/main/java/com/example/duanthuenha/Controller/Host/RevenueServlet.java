@@ -25,7 +25,7 @@ public class RevenueServlet extends HttpServlet {
         String userIDS = (String) session.getAttribute("userId");
         int userID = Integer.parseInt(userIDS);
 
-        List<Order> orders = revenueService.getAllOrderByIdUser(userID);
+        List<Order> orders = revenueService.getAllCompletedOrdersByHost(userID);
         Map<Integer, Double> revenueByMonthByIdUser = revenueService.getRevenueByMonth(userID);
 
         req.setAttribute("orders", orders);
