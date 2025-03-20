@@ -40,6 +40,9 @@ function showNotification(message, type) {
         title: message,
         showConfirmButton: false,
         timer: 2500,
-        timerProgressBar: true
+        timerProgressBar: true,
+        customClass: {
+            popup: 'my-toast'
+        }
     });
 }
