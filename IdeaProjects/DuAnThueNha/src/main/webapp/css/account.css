@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 0;
 }
 
@@ -25,21 +25,47 @@ td {
 
 th, td {
     padding: 12px;
-    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 th {
     background-color: #4CAF50;
     color: white;
+    text-align: center; /* Căn giữa cho tất cả các tiêu đề */
 }
 
-img {
-    width: 50px; /* Kích thước ảnh */
-    height: 50px; /* Kích thước ảnh */
+.table-main tr:hover {
+    background-color: #e0f7fa; /* Màu nền khi hover */
+}
+.table-main th {
+    text-align: center;
+}
+
+.table-main td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #454545;
+    text-align: left; /* Mặc định căn trái cho tất cả các ô */
+}
+
+/* Căn trái cho tên và email */
+td#fullName,
+td#email ,
+th#fullName-th ,
+th#email-th{
+    text-align: left; /* Căn trái cho tên và email */
+}
+
+/* Căn giữa cho các cột cụ thể */
+td#avatar,
+td#status,
+td#phone,
+td#action {
+    text-align: center; /* Căn giữa cho các cột cụ thể */
 }
 
 .button {
+    border-radius: 5px;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
@@ -149,5 +175,12 @@ img {
 #status{
     text-align: center;
 }
-
+.img-status {
+    width: 35px;
+    height: 35px;
+}
+.button.edit {
+    background-color: #05AD27;
+    color: white;
+}
 

@@ -23,24 +23,13 @@
         border-radius: 5px;
         border: none;
     }
-    .footer {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        padding: 40px 0;
-    }
 
-    .container {
-        width: 80%;
-        margin: auto;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
     .footer {
-        background: rgba(0, 0, 0, 0.7);
+        background-image: url("../img/background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         color: white;
         padding: 40px 0;
         font-family: Arial, sans-serif;
@@ -53,20 +42,42 @@
 
     .footer-content {
         display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
-        justify-content: space-between; /* Căn giữa theo chiều ngang */
-        align-items: center;    /* Căn giữa theo chiều dọc */
+    }
+
+    .container {
+        width: 80%;
+        margin: auto;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
     }
 
     .footer-section {
-        width: 22%;
+        width: 25%;
         margin-bottom: 20px;
         padding: 10px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
     }
 
-    .footer-section h2, .footer-section h3 {
-        color: #0099FF;
+    .footer-section h2 {
+        margin-top: 5px;
+    }
+
+    .footer-section h3 {
+        color: #ffffff;
         margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        margin: 10px 0;
     }
 
     .footer-section ul {
@@ -124,32 +135,107 @@
             flex-direction: column;
             align-items: center;
         }
+
         .footer-section {
             width: 100%;
             text-align: center;
         }
+
         .footer-section h2, .footer-section h3 {
             margin-bottom: 10px;
         }
+
         .footer-section ul li {
             margin: 5px 0;
         }
+
         .footer-bottom {
             padding-top: 20px;
         }
     }
 
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .item {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: end;
+        padding: 10px;
+        height: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .item.large {
+        grid-column: span 1;
+        height: 200px;
+    }
+
+    .item.tall {
+        grid-row: span 2;
+        height: 410px;
+    }
+
+    .gallery {
+        margin-bottom: 50px;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    h2 span {
+        text-align: left;
+        font-size: 20px;
+    }
 
 </style>
+<div class="container">
+    <h2><span> Các dự án đã triển khai tại một số thành phố</span></h2>
+    <div class="gallery">
+        <div class="item large"
+             style="background-image: url('../img/DaNang.jpg');">
+            Đà Nẵng
+        </div>
+        <div class="item large"
+             style="background-image: url('../img/HaNoi.jpeg');">
+            Hà Nội
+        </div>
+        <div class="item tall"
+             style="background-image: url('../img/DaLat.jpg');">
+            Đà Lạt
+        </div>
+        <div class="item" style="background-image: url('../img/hcm.jpg');">Hồ Chí Minh</div>
+        <div class="item"
+             style="background-image: url('../img/hcm2.JPG');">
+            Hà Đông
+        </div>
+    </div>
+</div>
 
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h2>WE Bare BEARS.vn</h2>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội</p>
+                <p><i class="fas fa-map-marker-alt"></i> <strong>Địa chỉ:</strong> Tầng 8 Ladeco, 266 Đội Cấn, Hà Nội
+                </p>
                 <p><i class="fas fa-phone"></i> <strong>Hotline:</strong> 1900 1011</p>
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Chianhn567@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> WeBareBears@gmail.com</p>
             </div>
 
             <div class="footer-section">

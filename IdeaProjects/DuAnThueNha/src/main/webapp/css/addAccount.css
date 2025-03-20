@@ -15,7 +15,8 @@
 }
 .username,
 .fullName,
-.phone {
+.phone ,
+.rejectionReason {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -91,5 +92,19 @@ input[type="submit"]:hover {
 
 .table-modal-add.button:hover {
     background-color: #4cae4c; /* Màu khi hover */
+}
+.button-add-modal {
+    background-color: #007bff; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Không viền */
+    border-radius: 5px; /* Bo tròn góc */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    font-size: 16px; /* Kích thước chữ */
+    cursor: pointer; /* Con trỏ chuột khi di chuột qua */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.button-add-modal:hover {
+    background-color: #0056b3; /* Màu nền khi di chuột qua */
 }
 

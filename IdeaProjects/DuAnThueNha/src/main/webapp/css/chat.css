@@ -1,0 +1,29 @@
+#chat3 .form-control {
+    border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+[data-mdb-perfect-scrollbar-init] {
+    overflow-y: auto !important;
+    max-height: 400px;
+}
+
+.badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -.75rem;
+}
+.truncated {
+    display: inline-block;
+    max-width: 100px; /* điều chỉnh kích thước theo nhu cầu */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
