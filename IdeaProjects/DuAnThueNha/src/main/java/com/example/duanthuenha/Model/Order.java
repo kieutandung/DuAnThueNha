@@ -23,6 +23,8 @@ public class Order {
     private String nameProduct;
     private double price;
     private double totalPrice;
+    private String formattedOrderDate;
+
 
     // Constructor đầy đủ
     public Order(int idOrder, int idUser, int idProduct, LocalDateTime orderDate, LocalDate startDate, LocalDate endDate, String notes, int numPeople, String paymentStatus) {
@@ -45,6 +47,13 @@ public class Order {
         this.notes = notes;
         this.numPeople = numPeople;
         this.paymentStatus = paymentStatus;
+    }
+    public String getFormattedOrderDate() {
+        return formattedOrderDate;
+    }
+
+    public void setFormattedOrderDate(String formattedOrderDate) {
+        this.formattedOrderDate = formattedOrderDate;
     }
 
     public Order() {}
@@ -115,9 +124,11 @@ public class Order {
     }
 
     public double calculateTotalPrice() {
-        long days = ChronoUnit.DAYS.between(startDate, endDate);
-        days = Math.max(days, 1); // Đảm bảo ít nhất 1 ngày
+        long days = calculateDays();
+        days = Math.max(days, 1);
         return days * price;
     }
-
+    public long calculateDays() {
+        return ChronoUnit.DAYS.between(startDate, endDate);
+    }
 }

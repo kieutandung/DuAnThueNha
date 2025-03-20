@@ -4,7 +4,6 @@ import com.example.duanthuenha.Model.*;
 import com.example.duanthuenha.Service.Comment.CommentImpl;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 import com.example.duanthuenha.Service.Host.ProductUserImpl;
-import com.example.duanthuenha.Service.Host.ProductUserService;
 import com.example.duanthuenha.Service.Profile.ProfileImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -19,36 +18,44 @@ import java.util.List;
 
 @WebServlet(value = "/detailProductUser")
 public class DetailProductUser extends HttpServlet {
-    ProductUserService productUserService = new ProductUserImpl();
+    ProductUserImpl productUserService = new ProductUserImpl();
+    ProductImpl productImpl = new ProductImpl();
+    ProfileImpl profileImpl = new ProfileImpl();
+    CommentImpl commentService = new CommentImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         int productId = Integer.parseInt(req.getParameter("productId"));
-        ProductImpl productImpl = new ProductImpl();
-        ProfileImpl profileImpl = new ProfileImpl();
-        CommentImpl commentService = new CommentImpl();
+
         List<Image> listImage = productImpl.getImagesByProductId(productId);
         ProductHost product = productImpl.getProduct(productId);
 
-        Image image = new Image(productId,product.getImage());
-        listImage.add(0,image);
+        Image image = new Image(productId, product.getImage());
+        listImage.add(0, image);
         Users avtUser = profileImpl.getUserById(product.getIdUser());
         List<Comment> comments = commentService.getCommentsByProductId(productId);
-
         boolean isFavorite = productUserService.isFavorite(Integer.parseInt(userID), productId);
 
         req.setAttribute("isFavorite", isFavorite);
         req.setAttribute("listImage", listImage);
         req.setAttribute("product", product);
         req.setAttribute("avtUser", avtUser);
-
+        req.setAttribute("idUser", userID);
         req.setAttribute("comments", comments);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/houseDetail.jsp");
         dispatcher.forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         if (action == null) {
             action = "";
@@ -57,8 +64,27 @@ public class DetailProductUser extends HttpServlet {
             case "toggleFavorite":
                 toggleFavorite(req, resp);
                 break;
-
+            case "report":
+                reportHost(req, resp);
+                break;
         }
+    }
+
+    private void reportHost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        HttpSession session = req.getSession();
+        String userID = (String) session.getAttribute("userId");
+        int idUser = Integer.parseInt(userID);
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        String reason = req.getParameter("reason");
+        String reasonDetails = req.getParameter("reasonDetails");
+        Report report = new Report(productId, idUser, reason, reasonDetails);
+        productUserService.addReport(report);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        resp.sendRedirect("/detailProductUser?productId=" + productId);
     }
 
     private void toggleFavorite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -67,7 +93,7 @@ public class DetailProductUser extends HttpServlet {
         int userId = Integer.parseInt((String) session.getAttribute("userId"));
         if (!productUserService.isFavorite(userId, productId)) {
             List<Product> favorites = productUserService.getAllProductsByFavorite(userId);
-            if (favorites.size() >= 10) {
+            if (favorites.size() >= 12) {
                 resp.setContentType("text/plain");
                 resp.getWriter().write("error");
                 return;
@@ -81,5 +107,4 @@ public class DetailProductUser extends HttpServlet {
             resp.getWriter().write("removed");
         }
     }
-
 }

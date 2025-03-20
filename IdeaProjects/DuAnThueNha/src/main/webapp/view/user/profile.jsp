@@ -160,7 +160,7 @@
                     </div>
                     <c:if test="${sessionScope.role == 'host'}">
                         <div style="padding-left: 55px">
-                            <a href="listProductHostServlet"><img src="/img/LogoHost.png" style="width: 150px"></a>
+                            <a href="revenueServlet"><img src="/img/LogoHost.png" style="width: 150px"></a>
                         </div>
                     </c:if>
                 </c:when>
@@ -233,7 +233,7 @@
 
                 <!-- Ẩn file input mặc định -->
                 <input type="file" id="image" name="image" accept="image/*" style="display: none;">
-
+                <input type="hidden" name = "imageJoker" value="img/${user.image}">
                 <!-- Ô hiển thị ảnh (preview) -->
                 <div style="margin-top: 10px;">
                     <img id="imagePreview"

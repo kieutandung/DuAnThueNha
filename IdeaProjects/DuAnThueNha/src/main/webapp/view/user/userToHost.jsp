@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/userToHost.css">
+    <link rel="stylesheet" href="/css/userToHost.css">
 </head>
 <body>
 <header>
     <jsp:include page="../header.jsp"/>
 </header>
-<div class="container rounded bg-white mt-5 mb-5">
+<div class="container rounded bg-white mt-5 mb-5 shadow-container">
     <div class="row">
         <%--        <div class="col-md-3 border-right">--%>
         <%--            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>--%>
@@ -47,6 +47,10 @@
                                placeholder="Nhập số tài liệu" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="documentFile" class="form-label">Chọn tài liệu:</label>
+                        <input type="file" required id="documentFile" name="documentFile" class="form-control" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+                    </div>
 
                     <!-- 3. Chọn ảnh tài liệu -->
                     <div class="mb-3">
@@ -66,19 +70,21 @@
                 <h4 class="text-center mb-4">Toàn bộ giấy tờ của bạn</h4>
                 <div class="scrollable-container" style="max-height: 500px; overflow-y: auto;">
                     <c:forEach var="o" items="${allUserDocumentNumber}">
-                        <div class="p-3 py-3 border-bottom">
-                            <div class="info-item d-flex align-items-center justify-content-between">
-                                <div>
-                                    <b>${o.documentType}:</b> ${o.documentNumber} &nbsp; <span>${o.status}</span>
+                        <a href= "file/${o.documentFile}" target="_blank" class="document-link">
+                            <div class="p-3 py-3 border-bottom">
+                                <div class="info-item d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <b>${o.documentType}:</b> ${o.documentNumber} &nbsp; <span>${o.status}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
             </div>
             <c:if test="${sessionScope.role == 'host'}">
                 <div class="col-md-3 mx-auto text-center">
-                    <a href="/listProductHostServlet" class="btn btn-primary mb-3">Đến gian hàng của bạn</a>
+                    <a href="/revenueServlet" class="btn btn-primary mb-3">Đến gian hàng của bạn</a>
                 </div>
             </c:if>
         </div>

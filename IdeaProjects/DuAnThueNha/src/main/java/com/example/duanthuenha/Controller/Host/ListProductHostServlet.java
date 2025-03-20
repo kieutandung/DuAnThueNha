@@ -3,7 +3,6 @@ package com.example.duanthuenha.Controller.Host;
 import com.example.duanthuenha.Model.Order;
 import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ApproveRequestImpl;
-import com.example.duanthuenha.Service.Host.ApproveRequestService;
 import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -25,7 +24,7 @@ import java.util.List;
 @WebServlet(value = "/listProductHostServlet")
 public class ListProductHostServlet extends HttpServlet {
     private final ProductImpl productService = new ProductImpl();
-    private final ApproveRequestImpl approveRequestService  = new ApproveRequestImpl();
+    private final ApproveRequestImpl approveRequestService = new ApproveRequestImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,15 +52,19 @@ public class ListProductHostServlet extends HttpServlet {
 
     private void updateOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int idOrder = Integer.parseInt(req.getParameter("idOrder"));
-        String status = req.getParameter("status");
+        String newStatus = req.getParameter("status");
+        int idReceiver = Integer.parseInt(req.getParameter("idReceiver"));
 
-        System.out.println("orderId nhận được: " + idOrder);
-        System.out.println("Trạng thái mới: " + status);
+        if (newStatus == null || newStatus.isEmpty()) {
+            resp.getWriter().write("Lỗi: Trạng thái không hợp lệ!");
+            return;
+        }
 
-        approveRequestService.updateStatus(idOrder, status);
-
+        approveRequestService.updateStatus(idOrder, newStatus, idReceiver);
         resp.sendRedirect(req.getContextPath() + "/listProductHostServlet?action=manageRentalRequests");
     }
+
+
 
 
     @Override
@@ -81,13 +84,13 @@ public class ListProductHostServlet extends HttpServlet {
             switch (action) {
                 case "delete":
                     int productId = Integer.parseInt(req.getParameter("productId"));
-                    productService.deleteProduct(productId);
-                    productService.deleteImages(productId);
-                    req.setAttribute("successMessage", "Xóa thành công");
+                    productService.stopSelling(productId);
+                    ProductHost productHost = productService.getProduct(productId);
+                    req.setAttribute("successMessage", "Sản phẩm " + productHost.getNameProduct() +" đã cập nhật thành công trạng thái thành ngừng kinh doanh");
                     showListProductHost(req, resp);
                     break;
                 case "manageRentalRequests":
-                    showListManageRentalRequests(req,resp);
+                    showListManageRentalRequests(req, resp);
                     break;
                 default:
                     showListProductHost(req, resp);
@@ -125,14 +128,17 @@ public class ListProductHostServlet extends HttpServlet {
             pageString = "1";
         }
         int page = Integer.parseInt(pageString);
-        int count = productService.getTotalProductsSearchHost(userID,keyword);
+        int itemsPerPage = 10;
+        int startIndex = (page - 1) * itemsPerPage;
+        int count = productService.getTotalProductsSearchHost(userID, keyword);
         int endPage = count / 10;
         if (count % 10 != 0) {
             endPage++;
         }
+        req.setAttribute("startIndex", startIndex);
         req.setAttribute("endPageUser", endPage);
         req.setAttribute("tag", page);
-        List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword,page);
+        List<ProductHost> products = productService.getAllProductsWithKeyword(userID, keyword, page);
         req.setAttribute("keyword", keyword);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
@@ -149,14 +155,17 @@ public class ListProductHostServlet extends HttpServlet {
             pageString = "1";
         }
         int page = Integer.parseInt(pageString);
+        int itemsPerPage = 10;
+        int startIndex = (page - 1) * itemsPerPage;
         int count = productService.getTotalProductsHost(userID);
         int endPage = count / 10;
         if (count % 10 != 0) {
             endPage++;
         }
+        req.setAttribute("startIndex", startIndex);
         req.setAttribute("endPageUser", endPage);
         req.setAttribute("tag", page);
-        List<ProductHost> products = productService.getAllProductsById(userID,page);
+        List<ProductHost> products = productService.getAllProductsById(userID, page);
         req.setAttribute("listProduct", products);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/host/listProductHost.jsp");
         dispatcher.forward(req, resp);

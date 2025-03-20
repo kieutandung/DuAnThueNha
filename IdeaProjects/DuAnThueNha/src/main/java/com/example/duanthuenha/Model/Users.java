@@ -9,8 +9,43 @@ public class Users {
     private String email;
     private String role;
     private String status;
+
+    public String getDocumentFile() {
+        return documentFile;
+    }
+
+    public void setDocumentFile(String documentFile) {
+        this.documentFile = documentFile;
+    }
+
     private String birthDate;
     private String address;
+    private String rejectionReason;
+    private String documentFile;
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+    public Users(int idUser, String username, String password, String fullName, String phone, String email, String role, String status, String image, String address, String gender, String birthDate, String rejectionReason) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.role = role;
+        this.image = image;
+        this.status = status;
+        this.address = address;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.rejectionReason = rejectionReason;
+    }
 
     public String getBirthDate() {
         return birthDate;
@@ -88,8 +123,30 @@ public class Users {
         this.status = status;
     }
 
+    public Users(int idUser, String documentType, String documentNumber, String status, String documentFile) {
+        this.idUser = idUser;
+        this.documentType = documentType;
+        this.documentNumber = documentNumber;
+        this.status = status;
+        this.documentFile = documentFile;
+    }
+
+
     public Users(int idUser, String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
         this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.email = email;
+        this.image = image;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.gender = gender;
+    }
+    public Users(int idUser,String role ,String username, String password, String fullName, String phone, String email, String image,String birthDate, String address, String gender) {
+        this.idUser = idUser;
+        this.role = role;
         this.username = username;
         this.password = password;
         this.fullName = fullName;

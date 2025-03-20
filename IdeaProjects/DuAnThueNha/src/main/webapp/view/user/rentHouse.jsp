@@ -61,10 +61,10 @@
 
             <label class="form-label mt-2">Đặt ngày:</label>
             <div class="date-buttons">
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="1">1 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="2">2 ngày</button>
                 <button type="button" class="btn btn-outline-primary duration-btn" data-days="3">3 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="7">7 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="10">10 ngày</button>
-                <button type="button" class="btn btn-outline-primary duration-btn" data-days="15">15 ngày</button>
+                <button type="button" class="btn btn-outline-primary duration-btn" data-days="5">5 ngày</button>
             </div>
 
             <label for="endDatePicker" class="form-label mt-2">Ngày kết thúc:</label>
@@ -87,9 +87,9 @@
                     <p class="house-name"><strong>Tên nhà: </strong> <span id="houseName"><c:out
                             value="${product.nameProduct}"/></span></p>
                     <p><strong>Giá: </strong><span id="pricePerDay"><c:out value="${product.getFormattedPrice()}"/></span></p>
-                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p><strong>Ngày đặt: </strong> <span id="orderDate">-</span></p>
                     <p><strong>Ngày kết thúc:</strong> <span id="endDate">-</span></p>
+                    <p><strong>Số người thuê:</strong> <span id="numPeopleOrder">-</span></p>
                     <p style="margin-bottom: 43px"><strong>Thành tiền:</strong> <span id="totalAmount">0</span> VNĐ</p>
 
                     <button type="button" class="btn btn-success btn-rent mt-5 ">Thuê ngay</button>
@@ -120,12 +120,13 @@
     </div>
 </div>
 
-<script src="/js/rentHouse.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>
 </footer>
+
+<script src="/js/rentHouse.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

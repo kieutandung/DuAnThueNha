@@ -1,5 +1,6 @@
 package com.example.duanthuenha.Controller.User;
 
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Product;
 import com.example.duanthuenha.Model.ProductHost;
 import com.example.duanthuenha.Service.Host.ProductImpl;
@@ -25,9 +26,12 @@ public class HomeUserServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
+
         String category = req.getParameter("category");
         String keyword = req.getParameter("keyword");
         String pageString = req.getParameter("page");
+
+        req.setAttribute("category", category);
 
         if (pageString == null || pageString.isEmpty()) {
             pageString = "1";
@@ -44,8 +48,6 @@ public class HomeUserServlet extends HttpServlet {
             showProductWithKeyword(req, resp, keyword, page);
             return;
         }
-
-
         showProductWithCategoryAndKeyword(req, resp, category, keyword, page);
     }
 
@@ -55,6 +57,7 @@ public class HomeUserServlet extends HttpServlet {
         if (count % 10 != 0) {
             endPage++;
         }
+
         req.setAttribute("endPageUser", endPage);
         List<ProductHost> products = productImpl.getAllProductsWithCategoryAndKeywordUser(keyword, category, page);
         req.setAttribute("listProduct", products);
@@ -108,6 +111,7 @@ public class HomeUserServlet extends HttpServlet {
                 break;
             default:
                 showListProductPage(req, resp);
+                break;
         }
     }
 
@@ -124,10 +128,11 @@ public class HomeUserServlet extends HttpServlet {
             endPage++;
         }
         req.setAttribute("endPageUser", endPage);
+
         List<ProductHost> products = productImpl.getProductsPage(page);
         req.setAttribute("listProduct", products);
         req.setAttribute("tag", page);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/home.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/notificationUserServlet?action=showHomeUser");
         dispatcher.forward(req, resp);
     }
 
@@ -136,9 +141,7 @@ public class HomeUserServlet extends HttpServlet {
         String userID = (String) session.getAttribute("userId");
         List<Product> favoriteProducts = productUserImpl.getAllProductsByFavorite(Integer.parseInt(userID));
         req.setAttribute("listProduct", favoriteProducts);
-        System.out.println(favoriteProducts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("view/user/favorite.jsp");
         dispatcher.forward(req, resp);
     }
-
 }

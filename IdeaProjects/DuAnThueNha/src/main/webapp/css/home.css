@@ -87,7 +87,7 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .hero {
-    background-image: url('https://i.postimg.cc/44H24fk4/z6346861583592-862dc98dfcc26c43d1219f679827a619.jpg');
+    background-image: url("../img/background.jpg");
     background-size: cover;
     background-position: center;
     text-align: center;

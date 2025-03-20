@@ -297,9 +297,35 @@ header {
  th#endDate ,
  th#action ,
  td#status ,
- td#numPeople{
+ td#numPeople {
      text-align: center;
-
  }
+.custom-footer .btn-success1 {
+    background-color: #28a745;
+    color: white;
+}
+.custom-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+.status-waiting {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: blue;
+    font-weight: bold;
+}
+
+.status-cancelled {
+    color: red;
+    font-weight: bold;
+}
+
+.status-default {
+    color: gray;
+    font-weight: bold;
+}
 
 

@@ -1,9 +1,9 @@
 package com.example.duanthuenha.Service.Host;
 
 import com.example.duanthuenha.ConnectDB.ConnectDB;
-import com.example.duanthuenha.Model.Image;
+import com.example.duanthuenha.Model.Notification;
 import com.example.duanthuenha.Model.Product;
-import com.example.duanthuenha.Model.ProductHost;
+import com.example.duanthuenha.Model.Report;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +15,21 @@ import java.util.List;
 
 public class ProductUserImpl implements ProductUserService {
     private ConnectDB connectDB = new ConnectDB();
+
+
+    public void addReport(Report report) {
+        String query = "INSERT INTO report (idProduct, idUser,reason,description) VALUES (?, ?, ?, ?)";
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, report.getIdProduct());
+            ps.setInt(2, report.getIdUser());
+            ps.setString(3, report.getReason());
+            ps.setString(4, report.getDescription());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi thêm sản phẩm", e);
+        }
+    }
 
     @Override
     public void addProduct(Product product) {
@@ -201,5 +216,67 @@ public class ProductUserImpl implements ProductUserService {
         return favoriteProducts;
     }
 
+    @Override
+    public void complaint(int idUser, int idProduct, String description) {
+        String sql = "INSERT INTO complaints (idUser, idProduct, complaintDate, description, status) " +
+                "VALUES (?, ?, NOW(), ?, 'pending')";
+
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, idUser);
+            ps.setInt(2, idProduct);
+            ps.setString(3, description);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi gửi khiếu nại", e);
+        }
+    }
+
+    @Override
+    public List<Notification> getAllNotificationByidUser(int idUser) {
+        String selectSQL = "SELECT * FROM notification WHERE idReceiver = ? order by idNotification desc";
+        List<Notification> notificationList = new ArrayList<>();
+
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement pstm = connection.prepareStatement(selectSQL);
+            pstm.setInt(1, idUser);
+            try {
+                ResultSet rs = pstm.executeQuery();
+                {
+                    while (rs.next()) {
+                        int idNotification = rs.getInt("idNotification");
+                        String title = rs.getString("title");
+                        String content = rs.getString("content");
+                        String type = rs.getString("type");
+                        String status = rs.getString("status");
+                        int idReceiver = rs.getInt("idReceiver");
+                        Notification notification = new Notification(idNotification, idUser, title, content, type, status, idReceiver);
+                        notificationList.add(notification);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return notificationList;
+    }
+
+    public void updateNotificationStatus(int idNotification) {
+        try (Connection connection = connectDB.getConnection()) {
+            String query = "UPDATE notification SET status = ? WHERE idNotification = ?";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(2, idNotification);
+            ps.setString(1, "read");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
