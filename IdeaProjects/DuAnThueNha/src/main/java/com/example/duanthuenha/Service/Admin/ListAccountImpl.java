@@ -414,7 +414,7 @@ public class ListAccountImpl implements ListAccountService {
                 "WHERE o.paymentStatus = 'completed' " +
                 "GROUP BY p.idProduct " +
                 "ORDER BY rentalCount DESC " +
-                "LIMIT 2";  // Giữ nguyên LIMIT 2
+                "LIMIT 5";
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {

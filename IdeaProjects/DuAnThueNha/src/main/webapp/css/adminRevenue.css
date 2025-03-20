@@ -53,14 +53,7 @@
 .green { background: #0fd925; }
 .yellow { background: #d7f111; }
 .red { background: #ff0000; }
-.top-houses {
-    padding: 15px;
-}
-.top-houses h3 {
-    margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: bold;
-}
+
 .house-card {
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -82,4 +75,14 @@
 .house-details .price {
     color: green;
     font-weight: bold;
+}
+.top-houses {
+    max-height: 620px; /* Giới hạn chiều cao */
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung quá dài */
+    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+    -ms-overflow-style: none; /* Ẩn thanh cuộn trên IE/Edge */
+}
+
+.top-houses::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome, Safari */
 }

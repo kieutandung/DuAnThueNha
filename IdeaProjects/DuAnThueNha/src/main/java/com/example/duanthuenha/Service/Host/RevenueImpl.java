@@ -91,7 +91,7 @@ public class RevenueImpl implements RevenueService{
                 "WHERE o.paymentStatus = 'completed' " +
                 "GROUP BY p.idProduct " +
                 "ORDER BY rentCount DESC " +
-                "LIMIT 2";
+                "LIMIT 5";
 
         try (Connection conn = connectDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
