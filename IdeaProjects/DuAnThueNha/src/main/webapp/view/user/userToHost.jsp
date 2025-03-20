@@ -84,7 +84,7 @@
             </div>
             <c:if test="${sessionScope.role == 'host'}">
                 <div class="col-md-3 mx-auto text-center">
-                    <a href="/listProductHostServlet" class="btn btn-primary mb-3">Đến gian hàng của bạn</a>
+                    <a href="/revenueServlet" class="btn btn-primary mb-3">Đến gian hàng của bạn</a>
                 </div>
             </c:if>
         </div>

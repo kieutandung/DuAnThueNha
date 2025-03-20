@@ -151,7 +151,7 @@
     String idUser = request.getParameter("idUser");
     request.setAttribute("idUser", idUser);
 %>
-<div class="table-container">
+<div class="table-container" style="min-height: 700px;">
     <div class="table-title">Danh sách tài liệu xác minh</div> <!-- Tiêu đề cố định -->
 
     <div class="table-wrapper">

@@ -86,7 +86,7 @@
 
     </div>
 </div>
-<div class="table-main">
+<div class="table-main" style="min-height: 700px;">
     <table>
         <thead>
         <tr>

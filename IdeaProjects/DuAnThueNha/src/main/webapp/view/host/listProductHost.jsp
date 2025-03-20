@@ -12,7 +12,7 @@
 </header>
 <body>
 
-<div class="container">
+<div class="container" style="min-height: 700px;">
     <div class="row mb-6">
         <div class="col-lg-12 mt-5">
 

@@ -160,7 +160,7 @@
                     </div>
                     <c:if test="${sessionScope.role == 'host'}">
                         <div style="padding-left: 55px">
-                            <a href="listProductHostServlet"><img src="/img/LogoHost.png" style="width: 150px"></a>
+                            <a href="revenueServlet"><img src="/img/LogoHost.png" style="width: 150px"></a>
                         </div>
                     </c:if>
                 </c:when>

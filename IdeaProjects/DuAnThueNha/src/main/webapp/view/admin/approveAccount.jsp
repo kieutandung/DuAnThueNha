@@ -11,7 +11,7 @@
 </head>
 <body>
 <header><jsp:include page="menu.jsp"/></header>
-<div class="table-main">
+<div class="table-main" style="min-height: 700px;">
     <h3 class="table-title">Danh Sách Người Dùng Chờ Duyệt</h3>
     <c:choose>
         <c:when test="${not empty users}">

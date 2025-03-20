@@ -12,7 +12,7 @@
 <header>
     <jsp:include page="menu.jsp"/>
 </header>
-<div class="container-fluid py-5">
+<div class="container-fluid py-5" style="min-height: 700px;">
     <div class="card shadow" style="max-width: 95%; margin: auto;">
         <div class="card-body">
             <h4 class="text-center mb-4">Danh sách khiếu nại</h4>
