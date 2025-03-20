@@ -19,34 +19,42 @@ public class RevenueImpl implements RevenueService{
     ConnectDB connectDB = new ConnectDB();
 
     @Override
-    public List<Order> getAllOrderByIdUser(int idUser) {
+    public List<Order> getAllCompletedOrdersByHost(int hostId) {
         List<Order> orderList = new ArrayList<>();
         String sql = "SELECT o.*, u.fullName, u.phone, p.nameProduct, p.image, p.price " +
                 "FROM orders o " +
-                "JOIN users u ON o.idUser = u.idUser " +
-                "JOIN products p ON o.idProduct = p.idProduct " +
-                "WHERE o.paymentStatus = 'completed' AND o.idUser = ?";
+                "JOIN products p ON o.idProduct = p.idProduct " + // Kết nối bảng products
+                "JOIN users u ON o.idUser = u.idUser " + // Kết nối bảng users để lấy thông tin khách thuê
+                "WHERE o.paymentStatus = 'completed' AND p.idUser = ?"; // Lọc theo hostId
 
         try (Connection connection = connectDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, idUser);
+            ps.setInt(1, hostId); // Host ID từ bảng products
+
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Order order = new Order();
                     order.setIdOrder(rs.getInt("idOrder"));
-                    order.setIdUser(rs.getInt("idUser"));
+                    order.setIdUser(rs.getInt("idUser")); // Đây là idUser của người thuê
                     order.setIdProduct(rs.getInt("idProduct"));
+
+                    // Định dạng ngày
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     String formattedDate = rs.getTimestamp("orderDate").toLocalDateTime().format(formatter);
                     order.setFormattedOrderDate(formattedDate);
+
                     order.setStartDate(rs.getTimestamp("startDate").toLocalDateTime().toLocalDate());
                     order.setEndDate(rs.getTimestamp("endDate").toLocalDateTime().toLocalDate());
                     order.setNotes(rs.getString("notes"));
                     order.setNumPeople(rs.getInt("numPeople"));
                     order.setPaymentStatus(rs.getString("paymentStatus"));
+
+                    // Thông tin khách thuê
                     order.setFullName(rs.getString("fullName"));
                     order.setPhone(rs.getString("phone"));
+
+                    // Thông tin nhà
                     order.setImage(rs.getString("image"));
                     order.setNameProduct(rs.getString("nameProduct"));
                     order.setPrice((int) Math.round(rs.getDouble("price")));
@@ -56,7 +64,7 @@ public class RevenueImpl implements RevenueService{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Lỗi khi lấy danh sách đơn hàng của user", e);
+            throw new RuntimeException("Lỗi khi lấy danh sách đơn hàng hoàn thành của host", e);
         }
         return orderList;
     }
