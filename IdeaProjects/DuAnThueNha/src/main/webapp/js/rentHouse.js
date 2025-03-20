@@ -101,13 +101,17 @@ document.addEventListener("DOMContentLoaded", function () {
             title: message,
             showConfirmButton: false,
             timer: 2500,
-            timerProgressBar: true
+            timerProgressBar: true,
+            customClass: {
+                popup: 'my-toast'
+            }
         });
     }
 
     // Khi nhấn "Thuê ngay"
     rentButton.addEventListener("click", function (event) {
-        event.preventDefault(); // Ngăn form submit ngay lập tức
+        event.preventDefault();
+
 
         if (!startDateInput.value) {
             showNotification("Vui lòng chọn ngày bắt đầu!", "warning");

@@ -28,10 +28,12 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <c:forEach var="p" items="${listProduct}">
             <div class="border rounded-lg shadow-lg p-4 bg-white relative mt-4">
+
                 <div class="relative h-48">
                     <img src="img/${p.image}" alt="Ảnh" onclick="redirectToDetail('${p.idProduct}')"
                          class="w-full h-full object-cover mx-auto block">
                 </div>
+
                 <h2 class="text-lg font-semibold mt-4 truncate">${p.nameProduct}</h2>
                 <p class="text-gray-600 truncate">${p.address}</p>
                 <p class="text-gray-600">Giá: <fmt:formatNumber value="${p.price}" pattern="#,###"/> VNĐ</p>
@@ -53,7 +55,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/favorite.js"></script>
 <script>
-    function redirectToDetail(productId) {
+
+    window.redirectToDetail = function(productId) {
         window.location.href = '/detailProductUser?productId=' + encodeURIComponent(productId);
     }
 </script>

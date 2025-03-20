@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/rentHouse.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
     <style>
+
         body {
             background-color: #f8f9fa;
         }
@@ -31,6 +31,7 @@
             width: auto;
             padding: 10px 20px;
         }
+
     </style>
 </head>
 
@@ -123,10 +124,10 @@
 <footer class="mt-5">
     <jsp:include page="../footer.jsp"/>
 </footer>
-
-<script src="/js/rentHouse.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/rentHouse.js"></script>
+
 
 </body>
 </html>
