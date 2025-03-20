@@ -10,7 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fd46b9c-cf76-45d5-93e8-31ae49f99a8a" name="Changes" comment="?">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/IdeaProjects/DuAnThueNha/src/main/java/com/example/duanthuenha/ConnectDB/ConnectDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Tomcat Server.Tomcat 9.0.97.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "optimize__ux",
+    "git-widget-placeholder": "fix__bug",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/SAM/IdeaProjects/DuAnWeb/DuAnThueNha/IdeaProjects/DuAnThueNha/src/main/webapp/img",
