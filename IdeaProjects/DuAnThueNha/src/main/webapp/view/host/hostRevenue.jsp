@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/css/hostRevenue.css">
     <style>
+        #barChart {
+            margin-left: 50px;
+        }
         .table-container {
             max-height: 190px;
             overflow-y: auto;

@@ -84,3 +84,6 @@
 .top-houses::-webkit-scrollbar {
     display: none; /* Ẩn thanh cuộn trên Chrome, Safari */
 }
+#barChart {
+    margin-left: 100px;
+}
