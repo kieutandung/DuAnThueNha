@@ -56,8 +56,8 @@
             background: #f1f1f1;
         }
         .top-houses {
-            max-height: 500px;
-            min-height: 500px;
+            max-height: 600px;
+            min-height: 600px;
             overflow-y: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -144,7 +144,7 @@
     Map<Integer, Double> revenueByMonthByIdUser = (Map<Integer, Double>) request.getAttribute("revenueByMonthByIdUser");
     for (int i = 1; i <= 12; i++) {
         double revenue = (revenueByMonthByIdUser != null && revenueByMonthByIdUser.containsKey(i)) ? revenueByMonthByIdUser.get(i) : 0.0;
-%>
+    %>
     revenueDataHost[<%= i - 1 %>] = <%= revenue %>;
     <% } %>
 
@@ -166,6 +166,13 @@
         },
         options: {
             scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false, // Không tự động ẩn nhãn
+                        maxRotation: 0,  // Giữ nhãn nằm ngang
+                        minRotation: 0
+                    }
+                },
                 y: {
                     beginAtZero: true
                 }

@@ -194,7 +194,7 @@
         <ul class="nav-links">
             <li><a href="/homeUserServlet">Trang chủ</a></li>
             <li><a href="/introductionServlet">Giới thiệu</a></li>
-            <li><a href="/orderInformationServlet">Sản phẩm</a></li>
+            <li><a href="/orderInformationServlet">Đơn hàng</a></li>
             <li><a href="/chatServlet">Liên hệ</a></li>
         </ul>
 
