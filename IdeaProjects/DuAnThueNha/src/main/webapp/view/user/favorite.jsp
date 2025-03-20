@@ -7,7 +7,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Sản phẩm yêu thích</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/favorite.css">
 </head>
@@ -45,10 +44,12 @@
             </div>
         </c:forEach>
     </div>
+
 </div>
 <footer class="mt-5 text-center">
     <jsp:include page="../footer2.jsp"/>
 </footer>
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/favorite.js"></script>
 <script>

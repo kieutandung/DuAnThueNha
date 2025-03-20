@@ -2,14 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
     * {
-        margin-left: 0;
+        margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, sans-serif;
     }
-
     body {
-        padding-top: 70px;
+        padding-top: 80px;
     }
 
     header, .navbar {
@@ -25,7 +24,7 @@
         left: 0;
         width: 100%;
         background: #fff;
-        z-index: 1000; /* Đảm bảo hiển thị trên cùng */
+        z-index: 9999; /* Đảm bảo hiển thị trên cùng */
         display: flex;
         justify-content: space-between;
         padding: 15px 30px;
@@ -49,7 +48,7 @@
         align-items: center;
     }
 
-    .nav-icon, .nav-search {
+    .nav-icon {
         padding-top: 15px;
         list-style: none;
         display: flex;
@@ -127,6 +126,7 @@
     .notification-header {
         margin-bottom: 5px;
     }
+
     .notification-content {
         max-height: 150px;
         overflow-y: auto;
@@ -197,11 +197,7 @@
             <li><a href="/orderInformationServlet">Sản phẩm</a></li>
             <li><a href="/chatServlet">Liên hệ</a></li>
         </ul>
-        <%--        <ul class="nav-search">--%>
-        <%--            <li>--%>
-        <%--                <input type="text" placeholder="Tìm kiếm..." class="search-input">--%>
-        <%--            </li>--%>
-        <%--        </ul>--%>
+
         <ul class="nav-icon">
             <li>
                 <a href="chatServlet" title="Nhắn tin" class="relative text-black text-2xl">
@@ -234,7 +230,7 @@
                         <c:if test="${empty sessionScope.notificationList}">
                             <p class="text-center text-muted p-2">Không có thông báo mới</p>
                         </c:if>
-<%--                        <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>--%>
+                        <%--                        <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>--%>
                     </div>
                 </div>
             </li>
@@ -256,7 +252,7 @@
                 </div>
             </li>
         </ul>
-
+    </nav>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -280,12 +276,12 @@
                 body: ''
             }).then(response => {
 
-                    const badge = document.querySelector('.notification-badge');
-                    if (badge) {
-                        badge.style.display = 'none';
-                    }
-                    return response.text();
-                })
+                const badge = document.querySelector('.notification-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+                return response.text();
+            })
         });
 
 
