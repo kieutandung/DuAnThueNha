@@ -21,7 +21,7 @@ public class ApproveRequestImpl implements ApproveRequestService {
                 "JOIN users u ON o.idUser = u.idUser " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
                 "WHERE p.idUser = ? " +
-                "AND o.paymentStatus != 'completed'";
+                "AND o.paymentStatus NOT IN ('completed', 'paid')";
 
         Connection connection = connectDB.getConnection();
         try {
@@ -62,22 +62,40 @@ public class ApproveRequestImpl implements ApproveRequestService {
     }
 
     @Override
-    public void updateStatus(int idOrder, String newStatus) {
-        String sql = "UPDATE orders SET paymentStatus = ? WHERE idOrder = ?";
+    public void updateStatus(int idOrder, String newStatus, int idReceiver) {
+        String updateOrderSql = "UPDATE orders SET paymentStatus = ? WHERE idOrder = ?";
+        String insertNotificationSql = "INSERT INTO notification (idUser, title, content, createdAt, type, status, idReceiver) VALUES (?, ?, ?, NOW(), ?, 'unread', ?)";
 
-        try (Connection connection = connectDB.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = connectDB.getConnection()) {
+            connection.setAutoCommit(false);
 
-            ps.setString(1, newStatus);
-            ps.setInt(2, idOrder);
+            // Cập nhật trạng thái đơn hàng
+            try (PreparedStatement ps = connection.prepareStatement(updateOrderSql)) {
+                ps.setString(1, newStatus);
+                ps.setInt(2, idOrder);
+                ps.executeUpdate();
+            }
 
-            ps.executeUpdate();
+            // Thêm thông báo vào bảng notification
+            try (PreparedStatement ps = connection.prepareStatement(insertNotificationSql)) {
+                ps.setInt(1, idReceiver);
+                ps.setString(2, "Cập nhật đơn hàng");
+                String contentMessage = newStatus.equals("waiting") ? "Đơn hàng của bạn đã được xác nhận, thanh toán ngay để có thể thuê nhà." : "Đơn hàng của bạn đã bị từ chối.";
+                ps.setString(3, contentMessage);
+                ps.setString(4, "Xác nhận đơn");
+                ps.setInt(5, idReceiver);
+                ps.executeUpdate();
+            }
+
+            connection.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Lỗi khi cập nhật trạng thái đơn hàng", e);
+            throw new RuntimeException("Lỗi khi cập nhật trạng thái đơn hàng và gửi thông báo", e);
         }
     }
+
+
 
     @Override
     public List<Order> getAllPaymentManagement(int userID) {

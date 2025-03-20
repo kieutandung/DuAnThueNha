@@ -52,11 +52,19 @@ public class ListProductHostServlet extends HttpServlet {
 
     private void updateOrderStatus(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int idOrder = Integer.parseInt(req.getParameter("idOrder"));
-        String status = req.getParameter("status");
+        String newStatus = req.getParameter("status");
+        int idReceiver = Integer.parseInt(req.getParameter("idReceiver"));
 
-        approveRequestService.updateStatus(idOrder, status);
+        if (newStatus == null || newStatus.isEmpty()) {
+            resp.getWriter().write("Lỗi: Trạng thái không hợp lệ!");
+            return;
+        }
+
+        approveRequestService.updateStatus(idOrder, newStatus, idReceiver);
         resp.sendRedirect(req.getContextPath() + "/listProductHostServlet?action=manageRentalRequests");
     }
+
+
 
 
     @Override

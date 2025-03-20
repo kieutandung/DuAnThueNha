@@ -28,9 +28,11 @@ public class DetailProductUser extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         resp.setCharacterEncoding("UTF-8");
+
         HttpSession session = req.getSession();
         String userID = (String) session.getAttribute("userId");
         int productId = Integer.parseInt(req.getParameter("productId"));
+
         List<Image> listImage = productImpl.getImagesByProductId(productId);
         ProductHost product = productImpl.getProduct(productId);
 

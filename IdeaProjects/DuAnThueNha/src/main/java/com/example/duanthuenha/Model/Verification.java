@@ -10,6 +10,7 @@ public class Verification {
     private String rejectionReason;
     private String createdAt;
     private String updatedAt;
+    private String documentFile;
 
     // Thêm thông tin từ bảng users
     private String fullName;
@@ -20,7 +21,7 @@ public class Verification {
     // Constructor đầy đủ
     public Verification(int idDocument, int idUser, String documentType, String documentNumber,
                         String documentImage, String status, String rejectionReason,
-                        String createdAt, String updatedAt, String fullName,
+                        String createdAt, String updatedAt, String documentFile , String fullName,
                         String email, String phone, String image) {
         this.idDocument = idDocument;
         this.idUser = idUser;
@@ -31,6 +32,7 @@ public class Verification {
         this.rejectionReason = rejectionReason;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.documentFile = documentFile;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
@@ -40,12 +42,20 @@ public class Verification {
     // Constructor không có thông tin user
     public Verification(int idDocument, int idUser, String documentType, String documentNumber,
                         String documentImage, String status, String rejectionReason,
-                        String createdAt, String updatedAt) {
+                        String createdAt, String updatedAt, String documentFile) {
         this(idDocument, idUser, documentType, documentNumber, documentImage,
-                status, rejectionReason, createdAt, updatedAt, "", "", "", "");
+                status, rejectionReason, createdAt, updatedAt, documentFile, "", "", "", "");
     }
 
     public Verification() {}
+
+    public String getDocumentFile() {
+        return documentFile;
+    }
+
+    public void setDocumentFile(String documentFile) {
+        this.documentFile = documentFile;
+    }
 
     // Getter và Setter cho các trường dữ liệu
     public int getIdDocument() {

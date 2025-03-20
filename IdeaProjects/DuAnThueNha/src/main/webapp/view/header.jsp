@@ -127,16 +127,8 @@
     .notification-header {
         margin-bottom: 5px;
     }
-
-    /* Đường gạch phân cách */
-    .notification-separator {
-        border: 0;
-        border-top: 1px solid #ccc;
-        margin: 5px 0;
-    }
-
     .notification-content {
-        max-height: 150px; /* Điều chỉnh chiều cao tối đa theo ý bạn */
+        max-height: 150px;
         overflow-y: auto;
         white-space: normal;
         word-wrap: break-word;
@@ -233,9 +225,8 @@
                                     <p class="notification-header">
                                         <strong>${n.type}</strong>
                                     </p>
-                                    <hr class="notification-separator">
                                     <div class="notification-content">
-                                        <p>${n.type} của bạn: ${n.title} đã được phản hồi: ${n.message}</p>
+                                        <p>${n.title} : ${n.message}</p>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -243,7 +234,7 @@
                         <c:if test="${empty sessionScope.notificationList}">
                             <p class="text-center text-muted p-2">Không có thông báo mới</p>
                         </c:if>
-                        <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>
+<%--                        <a href="/profileServlet" class="d-block text-center mt-2">Xem tất cả thông báo</a>--%>
                     </div>
                 </div>
             </li>

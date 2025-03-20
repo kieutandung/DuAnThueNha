@@ -144,9 +144,9 @@ public class ListAccountImpl implements ListAccountService {
     }
 
 
-    public void updateUser(String username, String password, String fullName, String phone, String email, String role, String status, int idUser) {
+    public void updateUser(String username, String password, String fullName, String phone, String email, String role, String status, String rejectionReason, int idUser) {
         try (Connection connection = connectDB.getConnection()) {
-            String query = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ? WHERE idUser = ?";
+            String query = "UPDATE users SET username = ?, password = ?, fullName = ?, phone = ?, email = ?, role = ?, status = ?, rejectionReason = ? WHERE idUser = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
@@ -155,7 +155,8 @@ public class ListAccountImpl implements ListAccountService {
             ps.setString(5, email);
             ps.setString(6, role);
             ps.setString(7, status);
-            ps.setInt(8, idUser);
+            ps.setString(8, rejectionReason);
+            ps.setInt(9, idUser);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -211,6 +212,7 @@ public class ListAccountImpl implements ListAccountService {
                     verification.setRejectionReason(resultSet.getString("rejectionReason"));
                     verification.setCreatedAt(String.valueOf(resultSet.getTimestamp("createdAt").toLocalDateTime().toLocalDate()));
                     verification.setUpdatedAt(String.valueOf(resultSet.getTimestamp("updatedAt").toLocalDateTime().toLocalDate()));
+                    verification.setDocumentFile(resultSet.getString("documentFile"));
 
                     verifications.add(verification);
                 }

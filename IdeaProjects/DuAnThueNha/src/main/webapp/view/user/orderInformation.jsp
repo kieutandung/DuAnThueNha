@@ -176,6 +176,9 @@
                     <c:when test="${order.paymentStatus eq 'cancelled'}">
 
                     </c:when>
+                    <c:when test="${order.paymentStatus eq 'completed'}">
+
+                    </c:when>
                     <c:otherwise>
                         <button type="button" class="btn btn-danger custom-btn" onclick="confirmCancel(${order.idOrder})">
                             Hủy

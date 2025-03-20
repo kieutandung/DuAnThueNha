@@ -114,7 +114,7 @@
             </div>
 
             <div class="action-buttons mt-3">
-                <c:if test="${p.status eq 'Có thể thuê'}">
+                <c:if test="${product.status eq 'Có thể thuê'}">
                     <a href="/orderProductServlet?productId=${product.idProduct}"
                        class="btn btn-primary mt-3 text-center">
                         <i class="bi bi-house-door-fill"></i> Thuê ngay
