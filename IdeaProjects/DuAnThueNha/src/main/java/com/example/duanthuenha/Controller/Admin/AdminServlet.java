@@ -213,7 +213,7 @@ public class AdminServlet extends HttpServlet {
             rejectionReason = null;
         }
 
-        boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
+        listAccountService.updateStatus(idDocument, status, rejectionReason);
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
 
