@@ -131,6 +131,7 @@
                         <li class="page-item"><a href="listProductHostServlet?page=${tag + 1}"
                                                  class="page-link">Tiếp</a></li>
                     </c:if>
+
                 </ul>
             </div>
         </div>

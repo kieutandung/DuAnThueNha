@@ -80,7 +80,7 @@ public class ApproveRequestImpl implements ApproveRequestService {
             try (PreparedStatement ps = connection.prepareStatement(insertNotificationSql)) {
                 ps.setInt(1, idReceiver);
                 ps.setString(2, "Cập nhật đơn hàng");
-                String contentMessage = newStatus.equals("waiting") ? "Đơn hàng của bạn đã được xác nhận." : "Đơn hàng của bạn đã bị từ chối.";
+                String contentMessage = newStatus.equals("waiting") ? "Đơn hàng của bạn đã được xác nhận, thanh toán ngay để có thể thuê nhà." : "Đơn hàng của bạn đã bị từ chối.";
                 ps.setString(3, contentMessage);
                 ps.setString(4, "Xác nhận đơn");
                 ps.setInt(5, idReceiver);

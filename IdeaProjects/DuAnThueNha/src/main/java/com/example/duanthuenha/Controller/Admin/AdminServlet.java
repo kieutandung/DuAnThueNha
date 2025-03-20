@@ -213,7 +213,7 @@ public class AdminServlet extends HttpServlet {
             rejectionReason = null;
         }
 
-        boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
+        listAccountService.updateStatus(idDocument, status, rejectionReason);
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
 
@@ -265,14 +265,20 @@ public class AdminServlet extends HttpServlet {
         String status = req.getParameter("status");
         String rejectionReason = req.getParameter("rejectionReason");
         int idUser = Integer.parseInt(req.getParameter("idUser"));
+
         try {
+            // Gọi phương thức updateUser với logic cập nhật và tạo thông báo nếu cần
             listAccountService.updateUser(username, password, fullName, phone, email, role, status, rejectionReason, idUser);
+
+            // Gửi phản hồi về giao diện
             req.setAttribute("message", "Cập nhật người dùng thành công!");
         } catch (Exception e) {
-            req.setAttribute("error", "Cập nhật người dùng thất bại!");
+            e.printStackTrace();
+            req.setAttribute("error", "Cập nhật người dùng thất bại! Lỗi: " + e.getMessage());
         }
         listAccountView(req, resp);
     }
+
 
 
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
