@@ -55,6 +55,16 @@
         .table-container::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
+        .top-houses {
+            max-height: 500px; /* Giới hạn chiều cao */
+            overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung quá dài */
+            scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+            -ms-overflow-style: none; /* Ẩn thanh cuộn trên IE/Edge */
+        }
+
+        .top-houses::-webkit-scrollbar {
+            display: none; /* Ẩn thanh cuộn trên Chrome, Safari */
+        }
 
     </style>
 </head>
@@ -72,8 +82,10 @@
             <canvas id="barChart"></canvas>
         </div>
     </div>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
     <div class="top-houses">
-        <h3>Top nhà được thuê nhiều nhất</h3>
+        <h5 class="mb-2">Top ${fn:length(topHouses)} nhà được thuê nhiều nhất: </h5>
         <c:forEach var="house" items="${topHouses}">
             <div class="house-card">
                 <img src="img/${house.image}" alt="${house.nameProduct}">
@@ -85,6 +97,7 @@
             </div>
         </c:forEach>
     </div>
+
 
     <div class="customer-info">
         <h3>Bảng thông tin khách hàng</h3>

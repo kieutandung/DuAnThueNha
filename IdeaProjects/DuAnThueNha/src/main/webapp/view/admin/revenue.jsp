@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="top-houses">
-        <h3>Top 2 nhà được thuê nhiều nhất</h3>
+        <h5 class="mb-2">Top ${topHousesCount} nhà được thuê nhiều nhất: </h5>
         ${topProductsHtml}
     </div>
 </div>

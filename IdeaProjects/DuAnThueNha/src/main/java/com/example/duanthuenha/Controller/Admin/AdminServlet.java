@@ -64,6 +64,8 @@ public class AdminServlet extends HttpServlet {
         Map<Integer, Double> revenueByMonth = listAccountService.getRevenueByMonth();
         Map<String, Integer> orderStatusCount = listAccountService.getOrderStatusCount();
         List<Product> topProducts = listAccountService.getTopRentedProducts();
+        req.setAttribute("topHousesCount", topProducts.size());
+        req.setAttribute("topProducts", topProducts);
 
         // Tính toán dữ liệu để gửi qua JSP
         req.setAttribute("pendingCount", orderStatusCount.getOrDefault("pending", 0));
@@ -96,6 +98,7 @@ public class AdminServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/revenue.jsp");
         dispatcher.forward(req, resp);
     }
+
 
     private void listReportView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Report> reportList = listAccountService.getAllReport();
