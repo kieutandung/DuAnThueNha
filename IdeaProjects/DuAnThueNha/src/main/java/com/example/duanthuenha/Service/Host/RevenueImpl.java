@@ -83,28 +83,29 @@ public class RevenueImpl implements RevenueService{
         }
         return revenueByMonth;
     }
-    public List<Product> getTopRentedHouses() {
+    public List<Product> getTopRentedHouses(int idUser) {
         List<Product> topHouses = new ArrayList<>();
         String sql = "SELECT p.idProduct, p.nameProduct, p.price, p.image, p.area, COUNT(o.idOrder) AS rentCount " +
                 "FROM orders o " +
                 "JOIN products p ON o.idProduct = p.idProduct " +
-                "WHERE o.paymentStatus = 'completed' " +
+                "WHERE o.paymentStatus = 'completed' AND p.idUser = ? " +
                 "GROUP BY p.idProduct " +
                 "ORDER BY rentCount DESC " +
                 "LIMIT 5";
 
         try (Connection conn = connectDB.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-
-            while (rs.next()) {
-                Product product = new Product();
-                product.setIdProduct(rs.getInt("idProduct"));
-                product.setNameProduct(rs.getString("nameProduct"));
-                product.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
-                product.setImage(rs.getString("image"));
-                product.setArea(rs.getDouble("area"));
-                topHouses.add(product);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idUser); // Truyền idUser vào câu lệnh SQL
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Product product = new Product();
+                    product.setIdProduct(rs.getInt("idProduct"));
+                    product.setNameProduct(rs.getString("nameProduct"));
+                    product.setPrice(BigDecimal.valueOf(rs.getDouble("price")));
+                    product.setImage(rs.getString("image"));
+                    product.setArea(rs.getDouble("area"));
+                    topHouses.add(product);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,6 +113,7 @@ public class RevenueImpl implements RevenueService{
         }
         return topHouses;
     }
+
 
 
 }

@@ -56,16 +56,16 @@
             background: #f1f1f1;
         }
         .top-houses {
-            max-height: 500px; /* Giới hạn chiều cao */
-            overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung quá dài */
-            scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
-            -ms-overflow-style: none; /* Ẩn thanh cuộn trên IE/Edge */
+            max-height: 500px;
+            min-height: 500px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
         .top-houses::-webkit-scrollbar {
-            display: none; /* Ẩn thanh cuộn trên Chrome, Safari */
+            display: none;
         }
-
     </style>
 </head>
 <body>
@@ -83,50 +83,60 @@
         </div>
     </div>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
     <div class="top-houses">
-        <h5 class="mb-2">Top ${fn:length(topHouses)} nhà được thuê nhiều nhất: </h5>
-        <c:forEach var="house" items="${topHouses}">
-            <div class="house-card">
-                <img src="img/${house.image}" alt="${house.nameProduct}">
-                <div class="house-details">
-                    <p class="price">${house.price} VNĐ / Ngày</p>
-                    <p><strong><em>${house.nameProduct}</em></strong></p>
-                    <p>Diện tích: ${house.area}m²</p>
-                </div>
-            </div>
-        </c:forEach>
+        <c:choose>
+            <c:when test="${not empty topHouses}">
+                <h5 class="mb-2">Top ${fn:length(topHouses)} nhà được thuê nhiều nhất: </h5>
+                <c:forEach var="house" items="${topHouses}">
+                    <div class="house-card">
+                        <img src="img/${house.image}" alt="${house.nameProduct}">
+                        <div class="house-details">
+                            <p class="price">${house.price} VNĐ / Ngày</p>
+                            <p><strong><em>${house.nameProduct}</em></strong></p>
+                            <p>Diện tích: ${house.area}m²</p>
+                        </div>
+                    </div>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <p style="text-align: center">Chưa có sản phẩm nào</p>
+            </c:otherwise>
+        </c:choose>
     </div>
-
-
     <div class="customer-info">
         <h3>Bảng thông tin khách hàng</h3>
-        <div class="table-container"> <!-- Đảm bảo bọc bảng trong div này -->
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Tên khách hàng</th>
-                    <th>Ngày</th>
-                    <th>Trạng thái</th>
-                    <th>Số tiền</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${orders}" var="order" varStatus="loop">
-                    <tr>
-                        <td>${loop.index + 1}</td>
-                        <td>${order.fullName}</td>
-                        <td>${order.formattedOrderDate}</td>
-                        <td><span class="badge bg-success">Hoàn thành</span></td>
-                        <td>${order.price} VNĐ</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
+        <div class="table-container">
+            <c:choose>
+                <c:when test="${not empty orders}">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên khách hàng</th>
+                            <th>Ngày</th>
+                            <th>Trạng thái</th>
+                            <th>Số tiền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${orders}" var="order" varStatus="loop">
+                            <tr>
+                                <td>${loop.index + 1}</td>
+                                <td>${order.fullName}</td>
+                                <td>${order.formattedOrderDate}</td>
+                                <td><span class="badge bg-success">Hoàn thành</span></td>
+                                <td>${order.price} VNĐ</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </c:when>
+                <c:otherwise>
+                    <p style="align-items: center">Chưa có đơn hàng nào.</p>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
-
 </div>
 <script>
     const revenueDataHost = [];
