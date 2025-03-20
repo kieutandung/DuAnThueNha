@@ -47,71 +47,85 @@
                         </thead>
                         <tbody>
                         <c:choose>
-                            <c:when test="${not empty listProduct}">
-                                <c:forEach var="p" items="${listProduct}" varStatus="status">
-                                    <input type="hidden" name="productId" value="${p.idProduct}">
-                                    <tr>
-                                        <td class="text-center">
-                                                ${startIndex + status.index + 1}
-                                        </td>
-                                        <td>
-                                            <img src="img/${p.image}" alt=""
-                                                 onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
-                                            <a href="editProductHostServlet?productId=${p.idProduct}"
-                                               class="user-link">${p.nameProduct}</a>
-                                        </td>
-                                        <td>
-                                                ${p.price} VNĐ
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="label label-default"> ${p.status}</span>
-                                        </td>
-                                        <td>
-                                            <a href="editProductHostServlet?productId=${p.idProduct}"> ${p.address}</a>
-                                        </td>
-                                        <td class="text-center" style="width: 20%;">
-                                            <a href="editProductHostServlet?productId=${p.idProduct}"
-                                               class="table-link">
+                            <c:when test="${not empty nothing}">
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                        Bạn chưa có sản phẩm nào:
+                                        <a style="padding-left: 5px" href="addProductHostServlet" class="btn-thue-ngay">
+                                            <i class="bi bi-house-door-fill"></i> Thêm ngay
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${not empty listProduct}">
+                                        <c:forEach var="p" items="${listProduct}" varStatus="status">
+                                            <input type="hidden" name="productId" value="${p.idProduct}">
+                                            <tr>
+                                                <td class="text-center">
+                                                        ${startIndex + status.index + 1}
+                                                </td>
+                                                <td>
+                                                    <img src="img/${p.image}" alt=""
+                                                         onerror="this.onerror=null; this.src='img/defaultImg-removebg-preview.png';">
+                                                    <a href="editProductHostServlet?productId=${p.idProduct}"
+                                                       class="user-link">${p.nameProduct}</a>
+                                                </td>
+                                                <td>
+                                                        ${p.price} VNĐ
+                                                </td>
+                                                <td class="text-center">
+                                                    <span class="label label-default"> ${p.status}</span>
+                                                </td>
+                                                <td>
+                                                    <a href="editProductHostServlet?productId=${p.idProduct}"> ${p.address}</a>
+                                                </td>
+                                                <td class="text-center" style="width: 20%;">
+                                                    <a href="editProductHostServlet?productId=${p.idProduct}"
+                                                       class="table-link">
                                                 <span class="fa-stack">
                                                   <i class="fa fa-square fa-stack-2x"></i>
                                                   <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                                 </span>
-                                            </a>
-                                            <c:choose>
-                                                <c:when test="${p.status eq 'Không còn kinh doanh'}">
-                                                    <a href="#" class="table-link danger disabled-link"
-                                                       style="color: grey; pointer-events: none;">
+                                                    </a>
+                                                    <c:choose>
+                                                        <c:when test="${p.status eq 'Không còn kinh doanh'}">
+                                                            <a href="#" class="table-link danger disabled-link"
+                                                               style="color: grey; pointer-events: none;">
                                                        <span class="fa-stack">
                                                          <i class="fa fa-square fa-stack-2x"></i>
                                                          <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                                        </span>
-                                                    </a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a href="#" class="table-link danger"
-                                                       onclick="showDeleteModal('${p.idProduct}'); return false;">
+                                                            </a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="#" class="table-link danger"
+                                                               onclick="showDeleteModal('${p.idProduct}'); return false;">
                                                         <span class="fa-stack">
                                                           <i class="fa fa-square fa-stack-2x"></i>
                                                           <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                                          </span>
-                                                    </a>
-                                                </c:otherwise>
-                                            </c:choose>
+                                                            </a>
+                                                        </c:otherwise>
+                                                    </c:choose>
 
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <tr>
-                                    <td colspan=6" class="text-center">Không tìm thấy sản phẩm với từ khóa
-                                        "${keyword}"
-                                        <a style=" padding-left: 5px" href="/listProductHostServlet"
-                                           class="btn-thue-ngay">
-                                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
-                                        </a>
-                                    </td>
-                                </tr>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr>
+                                            <td colspan=6" class="text-center">Không tìm thấy sản phẩm với từ khóa
+                                                "${keyword}"
+                                                <a style=" padding-left: 5px" href="/listProductHostServlet"
+                                                   class="btn-thue-ngay">
+                                                    <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
                         </tbody>
