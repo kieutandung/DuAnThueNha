@@ -1,8 +1,8 @@
 package com.example.duanthuenha.Controller.Admin;
 
-import com.example.duanthuenha.Model.Verification;
+import com.example.duanthuenha.Model.*;
 import com.example.duanthuenha.Service.Admin.ListAccountImpl;
-import com.example.duanthuenha.Model.Users;
+import com.example.duanthuenha.Service.Host.ProductImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,18 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 @WebServlet(value = "/adminServlet")
 public class AdminServlet extends HttpServlet {
     private ListAccountImpl listAccountService = new ListAccountImpl();
+    private ProductImpl productImpl = new ProductImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -42,11 +41,14 @@ public class AdminServlet extends HttpServlet {
                 case "editUser":
                     handleEditUserView(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
+                case "revenueChart":
+                    revenueChart(req, resp);
                     break;
-                case "browseProfile":
-                    listBrowseProfileView(req, resp);
+                case "reportView":
+                    listReportView(req, resp);
+                    break;
+                case "reportViewPending":
+                    listReportViewPending(req, resp);
                     break;
                 default:
                     listAccountView(req, resp);
@@ -57,6 +59,91 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+    private void revenueChart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Order> orders = listAccountService.getAllOrder();
+        Map<Integer, Double> revenueByMonth = listAccountService.getRevenueByMonth();
+        Map<String, Integer> orderStatusCount = listAccountService.getOrderStatusCount();
+        List<Product> topProducts = listAccountService.getTopRentedProducts();
+
+        // Tính toán dữ liệu để gửi qua JSP
+        req.setAttribute("pendingCount", orderStatusCount.getOrDefault("pending", 0));
+        req.setAttribute("cancelledCount", orderStatusCount.getOrDefault("cancelled", 0));
+        req.setAttribute("completedCount", orderStatusCount.getOrDefault("completed", 0));
+        req.setAttribute("waitingCount", orderStatusCount.getOrDefault("waiting", 0));
+        req.setAttribute("paidCount", orderStatusCount.getOrDefault("paid", 0));
+
+        req.setAttribute("orders", orders);
+        req.setAttribute("revenueByMonth", revenueByMonth);
+
+        // Xử lý HTML của top sản phẩm trong Servlet
+        StringBuilder topProductsHtml = new StringBuilder();
+        if (topProducts != null && !topProducts.isEmpty()) {
+            for (Product product : topProducts) {
+                topProductsHtml.append("<div class='house-card'>")
+                        .append("<img src='img/").append(product.getImage()).append("'>")
+                        .append("<div class='house-details'>")
+                        .append("<p class='price'>").append(product.getPrice()).append(" VNĐ / Ngày</p>")
+                        .append("<p><strong><em>").append(product.getNameProduct()).append("</em></strong></p>")
+                        .append("</div>")
+                        .append("</div>");
+            }
+        } else {
+            topProductsHtml.append("<p>Không có dữ liệu.</p>");
+        }
+
+        req.setAttribute("topProductsHtml", topProductsHtml.toString());
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/revenue.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void listReportView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Report> reportList = listAccountService.getAllReport();
+        List<Users> usersList = new ArrayList<>();
+        List<Users> hostList = new ArrayList<>();
+        List<ProductHost> productsList = new ArrayList<>();
+
+        for (Report report : reportList) {
+            Users user = listAccountService.getUserById(report.getIdUser());
+            Users host = listAccountService.getUserByidProduct(report.getIdProduct());
+            ProductHost productHost = productImpl.getProduct(report.getIdProduct());
+            usersList.add(user);
+            hostList.add(host);
+            productsList.add(productHost);
+        }
+
+        req.setAttribute("reportList", reportList);
+        req.setAttribute("hostList", hostList);
+        req.setAttribute("usersReport", usersList);
+        req.setAttribute("productsList", productsList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/report.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private void listReportViewPending(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Report> reportList = listAccountService.getAllReportPending();
+        List<Users> usersList = new ArrayList<>();
+        List<Users> hostList = new ArrayList<>();
+        List<ProductHost> productsList = new ArrayList<>();
+
+        for (Report report : reportList) {
+            Users user = listAccountService.getUserById(report.getIdUser());
+            Users host = listAccountService.getUserByidProduct(report.getIdProduct());
+            ProductHost productHost = productImpl.getProduct(report.getIdProduct());
+            usersList.add(user);
+            hostList.add(host);
+            productsList.add(productHost);
+        }
+
+
+        req.setAttribute("reportList", reportList);
+        req.setAttribute("hostList", hostList);
+        req.setAttribute("usersReport", usersList);
+        req.setAttribute("productsList", productsList);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/report.jsp");
+        dispatcher.forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -64,7 +151,6 @@ public class AdminServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String action = req.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -80,20 +166,18 @@ public class AdminServlet extends HttpServlet {
                 case "delete":
                     deleteUser(req, resp);
                     break;
-                case "approveAccount":
-                    listApproveAccount(req, resp);
-                    break;
                 case "promoteUser":
                     handlePromoteUser(req, resp);
                     break;
                 case "profileFeedback":
                     handleProfileFeedback(req, resp);
                     break;
-                case "getVerification":  // ✅ Thêm case này
-                    getVerificationInfo(req, resp);
-                    break;
                 case "updateStatus":
                     updateStatus(req, resp);
+                    break;
+                case "sendFeedback":
+                    sendFeedback(req, resp);
+                    break;
                 default:
                     listAccountView(req, resp);
                     break;
@@ -102,20 +186,22 @@ public class AdminServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void getVerificationInfo(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idDocument = Integer.parseInt(req.getParameter("idDocument"));
-        Verification verification = listAccountService.getVerificationByIdDocument(idDocument);
 
-        resp.setContentType("text/plain"); // Trả về dữ liệu dạng chuỗi, không dùng JSON
-        resp.setCharacterEncoding("UTF-8");
+    private void sendFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        String userIDS = (String) session.getAttribute("userId");
+        int userID = Integer.parseInt(userIDS);
 
-        if (verification != null) {
-            String result = verification.getStatus() + "|" +
-                    (verification.getRejectionReason() != null ? verification.getRejectionReason() : "");
-            resp.getWriter().write(result);
-        } else {
-            resp.getWriter().write("error");
-        }
+        String feedback = req.getParameter("feedback");
+        String title = req.getParameter("title");
+        String idReport = req.getParameter("idReport");
+        String type = "khiếu nại";
+        int idReceiver = Integer.parseInt(req.getParameter("idUser"));
+
+        Notification notification = new Notification(userID, title, feedback, type,idReceiver);
+        listAccountService.updateReportApproved(Integer.parseInt(idReport),feedback);
+        listAccountService.sendFeedback(notification);
+        listReportView(req, resp);
     }
 
     private void handleProfileFeedback(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -130,44 +216,6 @@ public class AdminServlet extends HttpServlet {
         boolean success = listAccountService.updateStatus(idDocument, status, rejectionReason);
         resp.sendRedirect(req.getHeader("Referer")); // Quay lại trang trước
     }
-
-    private void listApproveAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Verification> verificationList = listAccountService.getAllVerification();
-        req.setAttribute("verifications", verificationList);
-
-        List<Users> users = listAccountService.getAllUser();
-        List<Users> filteredUsers = new ArrayList<>();
-
-        Set<Integer> userIdsWithDocuments = new HashSet<>();
-        for (Verification verification : verificationList) {
-            userIdsWithDocuments.add(verification.getIdUser());
-        }
-
-        for (Users user : users) {
-            if ("user".equals(user.getRole()) && userIdsWithDocuments.contains(user.getIdUser())) {
-                filteredUsers.add(user);
-            }
-        }
-
-        req.setAttribute("users", filteredUsers);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/approveAccount.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-    private void listBrowseProfileView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId")); // Nhận userId từ request
-
-        // Lấy danh sách hồ sơ của userId từ bảng verificationdocument
-        List<Verification> verifications = listAccountService.getVerificationsByUserId(userId);
-
-        // Gửi danh sách hồ sơ đến JSP
-        req.setAttribute("verifications", verifications);
-
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/browseProfileTable.jsp");
-        dispatcher.forward(req, resp);
-    }
-
-
 
 
     private void handlePromoteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -226,11 +274,10 @@ public class AdminServlet extends HttpServlet {
     }
 
 
-
     private void listAccountView(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> usersList = listAccountService.getAllUser();
         req.setAttribute("users", usersList);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -245,7 +292,7 @@ public class AdminServlet extends HttpServlet {
         String name = req.getParameter("name");
         List<Users> users = listAccountService.searchUsersByName(name);
         req.setAttribute("users", users);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -261,7 +308,7 @@ public class AdminServlet extends HttpServlet {
             req.setAttribute("users", users);
             session.setAttribute("isSorted", false);
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/account.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/account.jsp");
         dispatcher.forward(req, resp);
     }
 
@@ -269,21 +316,15 @@ public class AdminServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("idUser")); // Get the user ID to edit
         Users user = listAccountService.getUserById(id); // Fetch user details from the service
         req.setAttribute("user", user); // Set user details to request attribute
-        RequestDispatcher dispatcher = req.getRequestDispatcher("view/editAccount.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/admin/editAccount.jsp");
         dispatcher.forward(req, resp);
     }
+
     private void updateStatus(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idDocument = Integer.parseInt(req.getParameter("idDocument"));
         String status = req.getParameter("status");
         String rejectionReason = req.getParameter("rejectionReason");
 
-        // Cập nhật trạng thái trong cơ sở dữ liệu
-        boolean success = listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
-
-        if (success) {
-            resp.getWriter().write("Cập nhật thành công");
-        } else {
-            resp.getWriter().write("Cập nhật thất bại");
-        }
+        listAccountService.updateVerificationStatus(idDocument, status, rejectionReason);
     }
 }

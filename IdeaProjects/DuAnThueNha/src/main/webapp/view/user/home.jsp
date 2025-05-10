@@ -3,13 +3,14 @@
 
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <script src="/js/home.js"></script>
     <link rel="stylesheet" href="/css/home.css">
+
 </head>
 <body>
 <header>
@@ -21,9 +22,9 @@
         <div class="search-bar">
             <select name="category">
                 <option value="">Loại nhà đất</option>
-                <option>Căn hộ</option>
-                <option>Biệt thự</option>
-                <option>Chung cư</option>
+                <option ${category eq 'Căn hộ' ? 'selected' : ''} >Căn hộ</option>
+                <option ${category eq 'Biệt thự' ? 'selected' : ''} >Biệt thự</option>
+                <option ${category eq 'Chung cư' ? 'selected' : ''} >Chung cư</option>
             </select>
             <input value="${keywordUser}" name="keyword" type="text" placeholder="Nhập địa điểm, diện tích hoặc từ khóa"
                    style="border: 2px solid #c4c5bc;
@@ -50,9 +51,9 @@
                                 <h5 class="card-title">${p.nameProduct}</h5>
                                 <p><strong>Giá:</strong> ${p.getFormattedPrice()}</p>
                                 <p><strong>Địa chỉ:</strong> ${p.address}</p>
-                                <p><strong>Diện tích</strong> ${p.area} m2</p>
+                                <p><strong>Diện tích</strong> ${p.area} m<sup>2</sup></p>
                                 <c:choose>
-                                    <c:when test="${p.status eq 'Hết chỗ'}">
+                                    <c:when test="${p.status eq 'Hết chỗ' or p.status eq 'Không còn kinh doanh'}">
                                         <p class="status" style="color: #f93434">
                                             <i class="bi bi-x-circle"></i> Trạng thái:
                                             <span style="color: red;">${p.status}</span>
@@ -65,9 +66,11 @@
                                         </p>
                                     </c:otherwise>
                                 </c:choose>
-                                <a href="/orderProductServlet?productId=${p.idProduct}" class="btn-thue-ngay">
-                                    <i class="bi bi-house-door-fill"></i> Thuê ngay
-                                </a>
+                                <c:if test="${p.status eq 'Có thể thuê'}">
+                                    <a href="/orderProductServlet?productId=${p.idProduct}" class="btn-thue-ngay">
+                                        <i class="bi bi-house-door-fill"></i> Thuê ngay
+                                    </a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
@@ -78,25 +81,24 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p style="color: red">Không tìm thấy sản phẩm với từ khóa "${keywordUser}"
-                        <a href="/homeUserServlet">
-                            <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
-                        </a>
                     </p>
-
+                    <a href="/homeUserServlet">
+                        <i class="bi bi-house-door-fill"></i> Trở lại trang chủ
+                    </a>
                 </div>
             </div>
         </c:otherwise>
     </c:choose>
     <ul class="pagination">
         <c:if test="${tag > 1}">
-            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}">Trước</a></li>
+            <li class="page-item disabled"><a href="homeUserServlet?page=${tag - 1}"> Trước </a></li>
         </c:if>
         <c:forEach var="i" begin="1" end="${endPageUser}">
             <li class="page-item ${tag == i?"active":""}"><a href="homeUserServlet?page=${i}" class="page-link">${i}</a>
             </li>
         </c:forEach>
         <c:if test="${tag < endPageUser}">
-        <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link">Tiếp</a></li>
+            <li class="page-item"><a href="homeUserServlet?page=${tag + 1}" class="page-link"> Tiếp </a></li>
         </c:if>
     </ul>
 

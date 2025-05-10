@@ -59,3 +59,112 @@ body {
     border-radius: 10px;
 }
 
+.hidden {
+    display: none;
+}
+#complaint-popup {
+    position: absolute;
+    top: 130px;
+    right: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(124, 124, 124, 0.3);
+    z-index: 1000;
+    width: 350px;
+}
+
+#complaintBtn {
+    background-color: #FFC107;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#complaintBtn i {
+    font-size: 12px;
+}
+#complaintBtn i {
+    font-size: 12px;
+
+}
+
+#submit-complaint {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#submit-complaint:hover {
+    background-color: #218838;
+}
+
+#close-popup {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#close-popup:hover {
+    background-color: #c82333;
+}
+#complaint-popup ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#otherReasonText {
+    margin-bottom: 20px;
+}
+.complaint-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.action-buttons a,
+.action-buttons button {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 12px;
+}
+#favoriteBtn {
+    cursor: pointer;
+}
+
+#favoriteBtn:hover {
+    background-color: #f52538;
+    border-color: #f52538;
+    color: #ffffff;
+}
+
+#favoriteBtn:hover i {
+    color: #ffffff !important;
+}
+.action-buttons a.btn-primary:hover {
+    background-color: #4199f8;
+    border-color: #4199f8;
+}

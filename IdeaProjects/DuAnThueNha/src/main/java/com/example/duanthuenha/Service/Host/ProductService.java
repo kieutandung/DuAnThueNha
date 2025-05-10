@@ -3,6 +3,9 @@ package com.example.duanthuenha.Service.Host;
 import com.example.duanthuenha.Model.Image;
 import com.example.duanthuenha.Model.ProductHost;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ProductService {
@@ -12,7 +15,7 @@ public interface ProductService {
 
     ProductHost getProduct(int id);
 
-    List<ProductHost> getAllProductsById(int id);
+    List<ProductHost> getAllProductsById(int id, int page);
 
     List<Image> getImagesByProductId(int productId);
 
@@ -20,7 +23,7 @@ public interface ProductService {
 
     void editProduct(ProductHost product);
 
-    List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword);
+    List<ProductHost> getAllProductsWithKeyword(int idUser, String keyword, int page);
 
     void deleteProduct(int id);
 
@@ -40,6 +43,13 @@ public interface ProductService {
 
     int getTotalProductsCategoryAndKeyword(String keyword, String category);
 
+    int getTotalProductsHost(int idUser);
+
+    int getTotalProductsSearchHost(int idUser, String keyword);
+
     List<ProductHost> getProductsPage(int page);
+
+    void stopSelling(int product);
+
 }
 

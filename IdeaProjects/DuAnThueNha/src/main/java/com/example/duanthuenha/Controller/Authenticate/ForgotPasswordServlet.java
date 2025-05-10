@@ -40,7 +40,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         if (newPassword != null && confirmPassword != null) {
             if (!newPassword.equals(confirmPassword)) {
                 req.removeAttribute("successMessage");
-                req.setAttribute("errorMessage", "Mật khẩu chưa trùng khớp, vui lòng nhập lại.");
+                req.setAttribute("errorMessage", "Mật khẩu chưa trùng khớp, vui lòng nhập lại !");
                 req.getRequestDispatcher("view/forgotPassword.jsp").forward(req, resp);
                 return;
             }
@@ -51,7 +51,7 @@ public class ForgotPasswordServlet extends HttpServlet {
                 return;
             } else {
                 req.removeAttribute("successMessage");
-                req.setAttribute("errorMessage", "Có lỗi xảy ra, vui lòng thử lại sau.");
+                req.setAttribute("errorMessage", "Có lỗi xảy ra, vui lòng thử lại sau !");
             }
         }
         req.getRequestDispatcher("view/authenticate/forgotPassword.jsp").forward(req, resp);

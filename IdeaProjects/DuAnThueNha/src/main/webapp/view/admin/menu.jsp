@@ -12,9 +12,10 @@
 </div>
 <div id="menu" class="">
     <ul>
-        <li><i class=""></i><a href="#">Mục lục</a></li>
-        <li><i class=""></i><a href="/adminServlet">Danh sách tài khoản</a></li>
-        <li><i class=""></i><a href="/adminServlet?action=approveAccount">Hợp đồng</a></li>
+        <li><i class=""></i><a href="/adminServlet?action=revenueChart">Doanh thu</a></li>
+        <li><i class=""></i><a href="/adminServlet">Quản lý tài khoản</a></li>
+        <li><i class=""></i><a href="/approveAccountServlet">Quản lý hồ sơ</a></li>
+        <li><i class=""></i><a href="/adminServlet?action=reportView">Khiếu nại</a></li>
         <li class="logout-item">
             <a href="/loginServlet" class="logout-link">
                 <i class="logout-icon">

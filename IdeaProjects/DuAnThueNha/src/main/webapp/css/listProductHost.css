@@ -1,4 +1,9 @@
-body{margin-top:20px;}
+* {
+    z-index: 1;
+}
+
+body{margin-top:20px;
+}
 
 
 /* USER LIST TABLE */
@@ -45,10 +50,7 @@ body{margin-top:20px;}
     vertical-align: middle;
     padding: 12px 8px;
 }
-.table tbody > tr > td:first-child,
-.table thead > tr > th:first-child {
-    padding-left: 20px;
-}
+
 .table thead > tr > th span {
     border-bottom: 2px solid #C2C2C2;
     display: inline-block;

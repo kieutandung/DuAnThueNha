@@ -136,8 +136,8 @@
 
                                     <div class="mb-4">
                                         <div class="form-floating">
-                                            <input  type="number" id="area" name="area" class="form-control"
-                                                   placeholder="Diện tích (m2)" required value="${product.area}" >
+                                            <input type="number" id="area" name="area" class="form-control"
+                                                   placeholder="Diện tích (m2)" required value="${product.area}">
                                             <label for="area">Diện tích (m2)</label>
                                         </div>
                                     </div>
@@ -159,8 +159,11 @@
                                                     <option value="active" ${product.status eq 'active' ? 'selected' : ''}>
                                                         Cho thuê
                                                     </option>
-                                                    <option value="sold out" ${product.status eq 'blocked' ? 'selected' : ''}>
+                                                    <option value="for rent" ${product.status eq 'for rent' ? 'selected' : ''}>
                                                         Hết chỗ
+                                                    </option>
+                                                    <option value="sold out" ${product.status eq 'sold out' ? 'selected' : ''}>
+                                                        Không còn kinh doanh
                                                     </option>
                                                 </select>
                                                 <label for="statusProduct">Trạng thái</label>
